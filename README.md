@@ -6,13 +6,13 @@
 [Rodrigo Andrade](https://github.com/rcaa)
 
 **Integrantes:**
-[Iris Santana](https://github.com/irisviana)
-[Raquel Vieira](https://github.com/RaquelVieiraa)
-[Vinícius Almeida](https://github.com/vinesnts)
+[@irisviana](https://github.com/irisviana)
+[@RaquelVieiraa](https://github.com/RaquelVieiraa)
+[@vinesnts](https://github.com/vinesnts)
 
 
 **Equipe:**
-[Salão de Beleza](https://github.com/LAPA-UAG)
+[LAPA](https://github.com/LAPA-UAG)
 
 ## Informações do projeto
 
