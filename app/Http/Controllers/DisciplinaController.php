@@ -35,23 +35,23 @@ class DisciplinaController extends Controller
         return redirect()->route('admin.disciplinas');
     }
 
-    public function editar($id) 
+    public function editar($identifier) 
     {
-        $registro = $this->disciplina->find($id);
+        $registro = $this->disciplina->find($identifier);
         return view('admin.disciplina.editar', compact('registro'));        
     }
 
-    public function atualizar(Request $request, $id)
+    public function atualizar(Request $request, $identifier)
     {
         $dados = $request->all();
-        $this->disciplina->find($id)->update($dados);
+        $this->disciplina->find($identifier)->update($dados);
 
         return redirect()->route('admin.disciplinas');
     }
 
-    public function deletar($id)
+    public function deletar($identifier)
     {
-        $this->disciplina->find($id)->delete();
+        $this->disciplina->find($identifier)->delete();
         return redirect()->route('admin.disciplinas');
     }
 }
