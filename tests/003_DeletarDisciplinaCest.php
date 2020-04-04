@@ -3,13 +3,13 @@
 class DeletarDisciplinaCest
 {
     // tests
-    public function tryToTest(AcceptanceTester $I)
+    public function tryToTest(AcceptanceTester $test)
     {
-        $I->amGoingTo('deletar a disciplina Engenharia de Softare Editado');
-        $I->amOnPage('/admin/disciplinas');
-        $I->see('Engenharia de Software Editado', '//table/tbody/tr[1]');
-        $I->click('Deletar', '//table/tbody/tr[1]');
-        $I->acceptPopup();
-        $I->dontSee('Engenharia de Software Editado');
+        $test->amGoingTo('deletar a disciplina Engenharia de Softare Editado');
+        $test->amOnPage('/admin/disciplinas');
+        $test->see('Engenharia de Software Editado', '//table/tbody/tr[1]');
+        $test->click('Deletar', '//table/tbody/tr[1]');
+        $test->acceptPopup();
+        $test->dontSee('Engenharia de Software Editado');
     }
 }
