@@ -1,20 +1,89 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: black;
+}
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
+* {
+  box-sizing: border-box;
+}
 
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+/* Add padding to containers */
+.container {
+  padding: 16px;
+  background-color: white;
+}
 
-                            <div class="col-md-6">
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+  
+}
+
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for the submit button */
+.registerbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+  font-size: 18px;
+  
+}
+
+.registerbtn:hover {
+  opacity: 1;
+}
+
+/* Add a blue text color to links */
+a {
+  color: dodgerblue;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+</style>
+</head>
+<body>
+
+<form method="POST" action="{{ route('register') }}">
+  @csrf
+  <div class="container">
+    <h1>Cadastro</h1>
+    <p>Por favor preencha o formulário para criar uma conta.</p>
+    <hr>
+
+    <label for="name"><b>Nome</b></label>
+    <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                 @error('name')
@@ -22,13 +91,9 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                            </div>
-                        </div>
-
-			<div class="form-group row">
-                            <label for="cpf" class="col-md-4 col-form-label text-md-right">{{ __('CPF') }}</label>
-
-                            <div class="col-md-6">
+    </div>
+    <label for="cpf"><b>Cpf</b></label>
+    <div class="col-md-6">
                                 <input id="cpf" type="text" class="form-control @error('cpf') is-invalid @enderror" name="cpf" value="{{ old('cpf') }}" required autocomplete="cpf" autofocus>
 
                                 @error('cpf')
@@ -36,64 +101,61 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                            </div>
-                        </div>
-
-			<div class="form-group{{ $errors->has('isAdmin') ? ' has-error' : '' }}">
-    			     <label>Administrador?</label>
-    			     <select class="form-control" name="isAdmin" id="isAdmin">
-        	            	 <option value="1" @if (old('active') == 1) selected @endif>Sim</option>
-        	             	 <option value="0" @if (old('active') == 0) selected @endif>Não</option>
-    			    </select>
-			</div>
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+    </div>
+    
+    <label for="email"><b>E-mail</b></label>
+    <div class="col-md-6">
+                                <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
+    </div>
+    <label for="psw"><b>Senha</b></label>
+    <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
-                                @error('password')
+                                @error('Senha')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
     </div>
-</div>
+
+    <label for="psw-repeat"><b>Confirme a senha</b></label>
+   <div class="col-md-6">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+   </div>
+   <div class="form-group{{ $errors->has('isAdmin') ? ' has-error' : '' }}">
+    			    <label for="adm"><b>Administrador?</b></label>
+    			     <select class="form-control" name="isAdmin" id="isAdmin">
+        	            	 <option value="1" @if (old('active') == 1) selected @endif>Sim</option>
+        	             	 <option value="0" @if (old('active') == 0) selected @endif>Não</option>
+    			    </select>
+    </div>
+    <hr>
+    <p>Criando uma conta você concorda com nossos <a href="#">Termos & Privacidade</a>.</p>
+
+    <button type="submit" class="registerbtn">Cadastrar</button>
+  </div>
+  
+  <div class="container signin">
+    @if (Route::has('register'))
+            <p>Já possui uma conta? <a class="btn btn-link" href="{{ route('login') }}">{{ __('Acessar conta') }}</a>.</p>
+                
+                              
+    @endif
+    
+  </div>
+</form>
+
+</body>
+</html>
+
+
+
+            
+   
 @endsection
