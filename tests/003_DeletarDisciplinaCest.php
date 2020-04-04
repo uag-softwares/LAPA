@@ -9,7 +9,6 @@ class DeletarDisciplinaCest
         $test->amOnPage('/admin/disciplinas');
         $test->see('Engenharia de Software Editado', '//table/tbody/tr[1]');
         $test->click('Deletar', '//table/tbody/tr[1]');
-        $test->acceptPopup();
         $test->dontSee('Engenharia de Software Editado');
     }
 }
