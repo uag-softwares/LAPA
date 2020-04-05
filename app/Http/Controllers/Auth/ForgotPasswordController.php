@@ -19,4 +19,8 @@ class ForgotPasswordController extends Controller
     */
 
     use SendsPasswordResetEmails;
+    public function __construct()///criar outro controler 
+    {
+       $this->middleware('guest');
+    }
 }
