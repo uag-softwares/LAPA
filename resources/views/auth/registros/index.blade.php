@@ -35,14 +35,14 @@ s
     <th>Senha</th>
   </tr>
   <tr>
-    <td>{{$registro->name}}</td>
-    <td>{{$registro->cpf}}</td>
-    <td>{{$registro->isAdmin}}</td>
-    <td>{{$registro->email}}</td>
-    <td>{{$registro->password}}</td>
+    <td>{{ Auth::user()->name }}</td>
+    <td>{{Auth::user()->cpf}}</td>
+    <td>{{Auth::user()->isAdmin}}</td>
+    <td>{{Auth::user()->email}}</td>
+    <td>{{Auth::user()->password}}</td>
     <td>
           <a class="btn deep-orange" href="{{ route('auth.registros.editar') }}">Editar</a>
-          <a class="btn red" href="{{ route('auth.registros.deletar',$registro->id) }}"onclick="return confirm('Tem certeza que deseja excluir a conta?');">Deletar</a> 
+          <a class="btn red" href="{{ route('auth.registros.deletar',Auth::user()->id) }}"onclick="return confirm('Tem certeza que deseja excluir a conta?');">Deletar</a> 
     </td>
    
             

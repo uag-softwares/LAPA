@@ -46,7 +46,7 @@ hr {
 <body>
 <label for="name"><b>Nome</b></label>
     <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{isset($usuario->name) ? $usuario->name : ''}}" required autocomplete="name" autofocus>
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{isset(Auth::user()->name) ? Auth::user()->name : ''}}" required autocomplete="name" autofocus>
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -56,7 +56,7 @@ hr {
     </div>
     <label for="cpf"><b>Cpf</b></label>
     <div class="col-md-6">
-                                <input id="cpf" type="text" class="form-control @error('cpf') is-invalid @enderror" name="cpf" value="{{isset($usuario->cpf) ? $usuario->cpf : ''}}" required autocomplete="cpf" autofocus>
+                                <input id="cpf" type="text" class="form-control @error('cpf') is-invalid @enderror" name="cpf" value="{{isset(Auth::user()->cpf) ? Auth::user()->cpf : ''}}" required autocomplete="cpf" autofocus>
 
                                 @error('cpf')
                                     <span class="invalid-feedback" role="alert">
@@ -67,7 +67,7 @@ hr {
     
     <label for="email"><b>E-mail</b></label>
     <div class="col-md-6">
-                                <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{isset($usuario->email) ? $usuario->email: ''}}" required autocomplete="email" autofocus>
+                                <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{isset(Auth::user()->email) ? Auth::user()->email: ''}}" required autocomplete="email" autofocus>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -77,7 +77,7 @@ hr {
     </div>
     <label for="psw"><b>Senha</b></label>
     <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{isset($usuario->password) ? $usuario->password: ''}}" required autocomplete="new-password">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{isset(Auth::user()->password) ? Auth::user()->password: ''}}" required autocomplete="new-password">
 
                                 @error('Senha')
                                     <span class="invalid-feedback" role="alert">
@@ -88,7 +88,7 @@ hr {
 
     <label for="psw-repeat"><b>Confirme a senha</b></label>									
    <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" value="{{isset($usuario->password_confirmation) ? $usuario->password_confirmation: ''}}" required autocomplete="new-password">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" value="{{isset(Auth::user()->password_confirmation) ? Auth::user()->password_confirmation: ''}}" required autocomplete="new-password">
    </div>
    <div class="form-group{{ $errors->has('isAdmin') ? ' has-error' : '' }}">
     			    <label for="adm"><b>Administrador?</b></label>

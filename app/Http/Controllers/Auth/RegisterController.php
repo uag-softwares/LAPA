@@ -31,14 +31,14 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
-    
+   protected $usuario=null;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
     
-     public function __construct()///criar outro controler 
+     public function __construct(User $usuario) 
     {
        $this->middleware('auth', ['except' => [
             'register','showRegistrationForm']]);
@@ -46,6 +46,7 @@ class RegisterController extends Controller
             'register',
             'showRegistrationForm',
         ]]);
+       $this->usuario=$usuario;
        
     }
 
@@ -81,31 +82,34 @@ class RegisterController extends Controller
         ]);
     }
     public function index (){
-        $registro= Auth::user();
-	return view('auth.registros.index ',compact('registro'));
+        
+       
+	return view('auth.registros.index ');
     }
 
     public function editar(){
-	$usuario= Auth::user();
-	return view('auth.registros.editar',compact('usuario'));
+	
+	
+	return view('auth.registros.editar');
     }
    
     public function atualizar(Request $req)
     {
 	$dados = $req->all();
-	 $usuario= Auth::user();
-	$usuario->update($dados);
+	$this->usuario=Auth::user();
+	
+	$this->usuario->update($dados);
 	
         return redirect()->route('auth.registros')->with('success','Usuário editado com sucesso');           
 
     }
 
   public function deletar($id_user){
-	$usuario= User::find($id_user);
+	$this->usuario= User::find($id_user);
 
         Auth::logout();
 
-    if ($usuario->delete()) {
+    if ($this->usuario->delete()) {
 
          return redirect()->route('register')->with('sucesso','Conta exluida com sucesso');
     }
