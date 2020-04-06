@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Auth;
+use Illuminate\Http\Request;
 class RegisterController extends Controller
 {
     /*
@@ -30,7 +31,7 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
-
+    
     /**
      * Create a new controller instance.
      *
@@ -45,7 +46,7 @@ class RegisterController extends Controller
             'register',
             'showRegistrationForm',
         ]]);
-        
+       
     }
 
     /**
@@ -83,4 +84,31 @@ class RegisterController extends Controller
         $registro= Auth::user();
 	return view('auth.registros.index ',compact('registro'));
     }
+
+    public function editar(){
+	$usuario= Auth::user();
+	return view('auth.registros.editar',compact('usuario'));
+    }
+   
+    public function atualizar(Request $req)
+    {
+	$dados = $req->all();
+	 $usuario= Auth::user();
+	$usuario->update($dados);
+	
+        return redirect()->route('auth.registros')->with('success','Usuário editado com sucesso');           
+
+    }
+
+  public function deletar($id_user){
+	$usuario= User::find($id_user);
+
+        Auth::logout();
+
+    if ($usuario->delete()) {
+
+         return redirect()->route('register')->with('sucesso','Conta exluida com sucesso');
+    }
+  }
+  
 }

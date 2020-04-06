@@ -7,7 +7,7 @@
 <style>
 
 /* Set a style for the submit button */
-.registerbtn {
+.updatebtn {
   background-color: #4CAF50;
   color: white;
   padding: 16px 20px;
@@ -20,7 +20,7 @@
   
 }
 
-.registerbtn:hover {
+.updatebtn:hover {
   opacity: 1;
 }
 
@@ -30,7 +30,7 @@ a {
 }
 
 /* Set a grey background color and center the text of the "sign in" section */
-.signin {
+.update{
   background-color: #f1f1f1;
   text-align: center;
 }
@@ -38,28 +38,20 @@ a {
 </head>
 
 
-<form method="POST" action="{{ route('register') }}">
+<form method="POST" action="{{ route('auth.registros.atualizar')}}">
   @csrf
   <div class="container">
-    <h1>Cadastro</h1>
-    <p>Por favor preencha o formulário para criar uma conta.</p>
+    <h1>Editar Informações</h1>
+    
     <hr>
-
+    <input type="hidden"  name="_method" value="PUT">
+    
     @include('auth.registros._form')
-    <hr>
-    <p>Criando uma conta você concorda com nossos <a href="#">Termos & Privacidade</a>.</p>
-
-    <button type="submit" class="registerbtn">Cadastrar</button>
+    </hr>
+    <button type="submit" class="updatebtn">Editar</button>
   </div>
   
-  <div class="container signin">
-    @if (Route::has('register'))
-            <p>Já possui uma conta? <a class="btn btn-link" href="{{ route('login') }}">{{ __('Acessar conta') }}</a>.</p>
-                
-                              
-    @endif
-    
-  </div>
+
 </form>
 
 </html>
