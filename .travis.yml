@@ -13,6 +13,7 @@ install:
   - php artisan key:generate
 
 before_script:
+  - mysql -e 'CREATE DATABASE laravel;'
   - php artisan migrate
   - php artisan serve &
 
