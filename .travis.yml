@@ -13,6 +13,7 @@ install:
   - php artisan key:generate
 
 before_script:
+  - php artisan migrate
   - php artisan serve &
 
 script:
