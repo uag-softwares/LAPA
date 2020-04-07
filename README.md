@@ -3,13 +3,12 @@
 ## Informações do nosso time
 
 **Docente:**
-[Rodrigo Andrade](https://github.com/rcaa)
+[@rcaa](https://github.com/rcaa)
 
 **Integrantes:**
 [@irisviana](https://github.com/irisviana)
 [@RaquelVieiraa](https://github.com/RaquelVieiraa)
 [@vinesnts](https://github.com/vinesnts)
-
 
 **Equipe:**
 [LAPA](https://github.com/LAPA-UAG)
