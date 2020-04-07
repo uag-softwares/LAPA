@@ -11,9 +11,9 @@
 
         <div class="container">
             <h1>Adicionar disciplina</h1>
-            <form action="{{ route('admin.disciplina.salvar') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('auth.disciplina.salvar') }}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
-                @include('admin.disciplina._form')
+                @include('auth.disciplinas._form')
                 <div class="input-btn">
                     <button class="btn">Adicionar</button>
                 </div>

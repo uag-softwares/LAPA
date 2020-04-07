@@ -68,13 +68,23 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
+                        
+                        <a class="btn btn-link" href="{{ route('auth.registros') }}">{{ __('Configurações') }}</a>
+			<a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Sair') }}
+                        </a>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                        </form>
+                    @else
+                        <a href="{{ route('login') }}">Acessar Conta</a>
+
+                    @if (Route::has('register'))
+                            <a href="{{ route('register') }}">Cadastrar-se</a>
+                    @endif 
                     @endauth
                 </div>
             @endif

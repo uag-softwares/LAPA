@@ -20,7 +20,119 @@ class AcceptanceTester extends \Codeception\Actor
 {
     use _generated\AcceptanceTesterActions;
 
+    /**
+     * @Given Eu estou logado
+     */
+    public function euEstouLogado()
+    {
+        $this->amOnPage('/login');
+        $this->fillField(['name' => 'email'], 'v.santos0406@gmail.com');
+        $this->fillField(['name' => 'password'], '12345678');
+        $this->click('Login');
+    }
+
+    /**
+     * @Given Eu estou na pagina de disciplinas
+     */
+    public function euEstouNaPaginaDeDisciplinas()
+    {
+        $this->amOnPage('/auth/disciplinas');
+    }
+
    /**
-    * Define custom actions here
+    * @Given Eu clico em 'Adicionar'
     */
+    public function euClicoEmAdicionar()
+    {
+        $this->click('Adicionar');
+    }
+
+   /**
+    * @Then Eu deve estar na pagina de criar disciplina
+    */
+    public function euDeveEstarNaPaginaDeCriarDisciplina()
+    {
+        $this->amOnPage('/auth/disciplina/adicionar');
+    }
+
+   /**
+    * @When Eu preencho o campo nome com 'ES'
+    */
+    public function euPreenchoOCampoNomeComES()
+    {
+        $this->fillField(['name' => 'nome'], 'ES');
+    }
+
+   /**
+    * @When Eu seleciono o professor 'Rodrigo'
+    */
+    public function euSelecionoOProfessorRodrigo()
+    {
+        $this->selectOption(['name' => 'user_id'], 'Rodrigo');
+    }
+
+   /**
+    * @Then Eu devo ver a disciplina 'ES'
+    */
+    public function euDevoVerADisciplinaES()
+    {
+        $this->see('ES');
+    }
+
+    /**
+     * @Given Eu clico em 'Editar' a disciplina 'ES'
+     */
+    public function euClicoEmEditarADisciplinaES()
+    {
+        $this->click('Editar', '//table/tbody/tr[1]');
+    }
+
+   /**
+    * @Then Eu devo estar na pagina de edicao da disciplina 'ES'
+    */
+    public function euDevoEstarNaPaginaDeEdicaoDaDisciplinaES()
+    {
+        $this->seeInCurrentUrl('/auth/disciplina/editar/');
+    }
+
+   /**
+    * @When Eu edito o nome para 'IHC'
+    */
+    public function euEditoONomeParaIHC()
+    {
+        $this->fillField(['name' => 'nome'], 'IHC');
+    }
+
+   /**
+    * @When Eu clico em 'Editar'
+    */
+    public function euClicoEmEditar()
+    {
+        $this->click('Editar');
+    }
+
+   /**
+    * @Then Eu devo ver a disciplina 'IHC'
+    */
+    public function euDevoVerADisciplinaIHC()
+    {
+        $this->see('IHC');
+    }
+
+    /**
+     * @Given Eu clico em 'Deletar' a disciplina 'IHC'
+     */
+    public function euClicoEmDeletarADisciplinaIHC()
+    {
+        $this->click('Deletar', '//table/tbody/tr[1]');
+        //$this->acceptPopup();
+    }
+
+   /**
+    * @Then Eu nao vejo a disciplina 'IHC'
+    */
+    public function euNaoVejoADisciplinaIHC()
+    {
+        $this->dontSee('IHC');
+    }
 }

@@ -12,6 +12,10 @@ class Disciplina extends Model
      * @var array
      */
     protected $fillable = [
-        'nome',
+        'nome', 'user_id',
     ];
+
+    public function user() {
+        return $this->belongsTo('App\User');
+    }
 }

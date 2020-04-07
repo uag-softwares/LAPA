@@ -11,7 +11,7 @@
 
         <div class="container">
             <h1>Gerenciar disciplinas</h1>
-            <a href="{{ route('admin.disciplina.adicionar') }}" class="btn">Adicionar</a>
+            <a href="{{ route('auth.disciplina.adicionar') }}" class="btn">Adicionar</a>
             <table>
                 <thead>
                     <tr>
@@ -24,10 +24,10 @@
                     @foreach($registros as $registro)
                     <tr>
                         <td>{{ $registro->nome }}</td>
-                        <td>A ser adicionado</td>
+                        <td>{{ $registro->user->name }}</td>
                         <td>
-                            <a href="{{ route('admin.disciplina.editar', $registro->id) }}" class="btn">Editar</a>
-                            <a href="{{ route('admin.disciplina.deletar', $registro->id) }}" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar a disciplina?');">Deletar</a>
+                            <a href="{{ route('auth.disciplina.editar', $registro->id) }}" class="btn">Editar</a>
+                            <a href="{{ route('auth.disciplina.deletar', $registro->id) }}" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar a disciplina?');">Deletar</a>
                         </td>
                     </tr>
                     @endforeach
