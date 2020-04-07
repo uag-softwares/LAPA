@@ -19,12 +19,12 @@ class DisciplinaController extends Controller
     public function index() 
     {
         $registros = $this->disciplina->all();
-        return view('admin.disciplina.index', compact('registros'));
+        return view('auth.disciplina.index', compact('registros'));
     }
 
     public function adicionar() 
     {
-        return view('admin.disciplina.adicionar');
+        return view('auth.disciplina.adicionar');
     }
 
     public function salvar(Request $request) 
@@ -32,13 +32,13 @@ class DisciplinaController extends Controller
         $dados = $request->all();
         $this->disciplina->create($dados);
 
-        return redirect()->route('admin.disciplinas');
+        return redirect()->route('auth.disciplinas');
     }
 
     public function editar($identifier) 
     {
         $registro = $this->disciplina->find($identifier);
-        return view('admin.disciplina.editar', compact('registro'));        
+        return view('auth.disciplina.editar', compact('registro'));        
     }
 
     public function atualizar(Request $request, $identifier)
@@ -46,12 +46,12 @@ class DisciplinaController extends Controller
         $dados = $request->all();
         $this->disciplina->find($identifier)->update($dados);
 
-        return redirect()->route('admin.disciplinas');
+        return redirect()->route('auth.disciplinas');
     }
 
     public function deletar($identifier)
     {
         $this->disciplina->find($identifier)->delete();
-        return redirect()->route('admin.disciplinas');
+        return redirect()->route('auth.disciplinas');
     }
 }

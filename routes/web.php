@@ -18,18 +18,18 @@ Route::get('/', function () {
 });
 
 
-Route::get('/admin/disciplinas', ['as' => 'admin.disciplinas', 'uses' => 'DisciplinaController@index']);
-Route::get('/admin/disciplina/adicionar', ['as' => 'admin.disciplina.adicionar', 'uses' => 'DisciplinaController@adicionar']);
-Route::post('/admin/disciplina/salvar', ['as' => 'admin.disciplina.salvar', 'uses' => 'DisciplinaController@salvar']);
-Route::get('/admin/disciplina/editar/{id}', ['as' => 'admin.disciplina.editar', 'uses' => 'DisciplinaController@editar']);
-Route::put('/admin/disciplina/atualizar/{id}', ['as' => 'admin.disciplina.atualizar', 'uses' => 'DisciplinaController@atualizar']);
-Route::get('/admin/disciplina/deletar/{id}', ['as' => 'admin.disciplina.deletar', 'uses' => 'DisciplinaController@deletar']);
+Route::get('/auth/disciplinas', ['as' => 'auth.disciplinas', 'uses' => 'DisciplinaController@index']);
+Route::get('/auth/disciplina/adicionar', ['as' => 'auth.disciplina.adicionar', 'uses' => 'DisciplinaController@adicionar']);
+Route::post('/auth/disciplina/salvar', ['as' => 'auth.disciplina.salvar', 'uses' => 'DisciplinaController@salvar']);
+Route::get('/auth/disciplina/editar/{id}', ['as' => 'auth.disciplina.editar', 'uses' => 'DisciplinaController@editar']);
+Route::put('/auth/disciplina/atualizar/{id}', ['as' => 'auth.disciplina.atualizar', 'uses' => 'DisciplinaController@atualizar']);
+Route::get('/auth/disciplina/deletar/{id}', ['as' => 'auth.disciplina.deletar', 'uses' => 'DisciplinaController@deletar']);
 
 
-Route::get('/admin/postagens', ['as' => 'admin.postagens', 'uses' => 'PostagemController@index']);
-Route::get('/admin/postagem/adicionar', ['as' => 'admin.postagem.adicionar', 'uses' => 'PostagemController@adicionar']);
-Route::post('/admin/postagem/salvar', ['as' => 'admin.postagem.salvar', 'uses' => 'PostagemController@salvar']);
-Route::get('/admin/postagem/editar/{id}', ['as' => 'admin.postagem.editar', 'uses' => 'PostagemController@editar']);
-Route::put('/admin/postagem/atualizar/{id}', ['as' => 'admin.postagem.atualizar', 'uses' => 'PostagemController@atualizar']);
-Route::get('/admin/postagem/deletar/{id}', ['as' => 'admin.postagem.deletar', 'uses' => 'PostagemController@deletar']);
+Route::get('/auth/postagens', ['as' => 'auth.postagens', 'uses' => 'PostagemController@index']);
+Route::get('/auth/postagem/adicionar', ['as' => 'auth.postagem.adicionar', 'uses' => 'PostagemController@adicionar']);
+Route::post('/auth/postagem/salvar', ['as' => 'auth.postagem.salvar', 'uses' => 'PostagemController@salvar']);
+Route::get('/auth/postagem/editar/{id}', ['as' => 'auth.postagem.editar', 'uses' => 'PostagemController@editar']);
+Route::put('/auth/postagem/atualizar/{id}', ['as' => 'auth.postagem.atualizar', 'uses' => 'PostagemController@atualizar']);
+Route::get('/auth/postagem/deletar/{id}', ['as' => 'auth.postagem.deletar', 'uses' => 'PostagemController@deletar']);
 

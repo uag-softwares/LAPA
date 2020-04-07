@@ -20,12 +20,12 @@ class PostagemController extends Controller
     public function index() 
     {
         $registros = $this->postagem->all();
-        return view('admin.postagem.index', compact('registros'));
+        return view('auth.postagem.index', compact('registros'));
     }
 
     public function adicionar() 
     {
-        return view('admin.postagem.adicionar');
+        return view('auth.postagem.adicionar');
     }
 
     public function salvar(Request $request) 
@@ -43,13 +43,13 @@ class PostagemController extends Controller
         }
         $this->postagem->create($dados);
 
-        return redirect()->route('admin.postagens');
+        return redirect()->route('auth.postagens');
     }
 
     public function editar($identifier) 
     {
         $registro = $this->postagem->find($identifier);
-        return view('admin.postagem.editar', compact('registro'));        
+        return view('auth.postagem.editar', compact('registro'));        
     }
 
     public function atualizar(Request $request, $identifier)
@@ -68,13 +68,13 @@ class PostagemController extends Controller
 
         $this->postagem->find($identifier)->update($dados);
 
-        return redirect()->route('admin.postagens');
+        return redirect()->route('auth.postagens');
     }
 
     public function deletar($identifier)
     {
         $this->postagem->find($identifier)->delete();
-        return redirect()->route('admin.postagens');
+        return redirect()->route('auth.postagens');
     }
     
     

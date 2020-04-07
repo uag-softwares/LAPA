@@ -11,7 +11,7 @@
 
         <div class="container">
             <h1>Gerenciar postagens</h1>
-            <a href="{{ route('admin.postagem.adicionar') }}" class="btn">Adicionar</a>
+            <a href="{{ route('auth.postagem.adicionar') }}" class="btn">Adicionar</a>
             <table>
                 <thead>
                     <tr>
@@ -26,8 +26,8 @@
                         <td>{{ $registro->titulo }}</td>
                         <td>{{ $registro->data }}</td>
                         <td>
-                            <a href="{{ route('admin.postagem.editar', $registro->id) }}" class="btn">Editar</a>
-                            <a href="{{ route('admin.postagem.deletar', $registro->id) }}" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar essa postagem?');">Deletar</a>
+                            <a href="{{ route('auth.postagem.editar', $registro->id) }}" class="btn">Editar</a>
+                            <a href="{{ route('auth.postagem.deletar', $registro->id) }}" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar essa postagem?');">Deletar</a>
                         </td>
                     </tr>
                     @endforeach
