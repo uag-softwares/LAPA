@@ -21,12 +21,27 @@ class AcceptanceTester extends \Codeception\Actor
     use _generated\AcceptanceTesterActions;
 
     /**
+     * @Given Eu crio um usuario para o teste
+     */
+    public function euCrioUmUsuarioParaOTeste()
+    {
+        $this->amOnPage('/register');
+        $this->fillField(['name' => 'name'], 'Rodrigo');
+        $this->fillField(['name' => 'cpf'], '11111111111');
+        $this->fillField(['name' => 'email'], 'admin@admin.com');
+        $this->fillField(['name' => 'password'], '12345678');
+        $this->fillField(['name' => 'password_confirmation'], '12345678');
+        $this->selectOption(['name' => 'isAdmin'], 'Sim');
+        $this->click('Cadastrar');
+    }
+
+    /**
      * @Given Eu estou logado
      */
     public function euEstouLogado()
     {
         $this->amOnPage('/login');
-        $this->fillField(['name' => 'email'], 'v.santos0406@gmail.com');
+        $this->fillField(['name' => 'email'], 'admin@admin.com');
         $this->fillField(['name' => 'password'], '12345678');
         $this->click('Login');
     }
