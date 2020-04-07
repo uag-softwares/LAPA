@@ -150,4 +150,67 @@ class AcceptanceTester extends \Codeception\Actor
     {
         $this->dontSee('IHC');
     }
+
+    /**
+     *==================================== A partir daqui metodos para feature Postagem =======================
+     */
+
+     /**
+     * @Given Eu estou na pagina de postagens
+     */
+    public function euEstouNaPaginaDePostagens()
+    {
+        $this->amOnPage('/auth/postagens');
+    }
+
+    /**
+    * @Then Eu deve estar na pagina de criar postagens
+    */
+    public function euDeveEstarNaPaginaDeCriarPostagens()
+    {
+        $this->amOnPage('/auth/postagem/adicionar');
+    }
+
+
+   /**
+    * @When Eu preencho o campo titulo com 'Visita ao LAPA'
+    */
+    public function euPreenchoOCampoTituloComVisitaAoLAPA()
+    {
+        $this->fillField(['name' => 'titulo'], 'Visita ao LAPA');
+    }
+
+   /**
+    * @When Eu preencho o campo descricao com 'Recebemos em nosso laboratorio visita dos alunos da escola publica EREMG'
+    */
+    public function euPreenchoOCampoDescricaoComRecebemosEmNossoLaboratorioVisitaDosAlunosDaEscolaPublicaEREMG()
+    {
+        $this->fillField(['name' => 'descricao'], 'Recebemos em nosso laboratorio visita dos alunos da escola publica EREMG');
+    }
+
+    /**
+     * @When Eu escolho a data ':num1:num:num5/:num1:num4/:num5:num1:num5:num1'
+     */
+    public function euEscolhoAData($num1, $num2, $num3, $num4, $num5, $num6, $num7, $num8)
+    {
+        $this->fillField(['name' => 'data'], $num1.$num2.'/'.$num3.$num4.'/'.$num5.$num6.$num7.$num8);
+    }
+
+   /**
+    * @When Eu clico em 'Escolher arquivo' e escolho 'teste.pdf'
+    */
+    public function euClicoEmEscolherArquivoEEscolhotestepdf()
+    {
+        $this->attachFile(['name' => 'anexo'], 'teste.pdf');
+    }
+
+   /**
+    * @Then Eu devo ver a postagem 'Visita ao LAPA'
+    */
+    public function euDevoVerAPostagemVisitaAoLAPA()
+    {
+        $this->see('Visita ao LAPA');
+    }
+    
+
 }
