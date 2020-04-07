@@ -4,17 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Postagem;
+use App\User;
 
 class PostagemController extends Controller
 {
     
     // Model de postagem adicionado ao controller para evitar uso estatico
     protected $postagem;
+    protected $user;
 
-    public function __construct(Postagem $postagem)
+
+    public function __construct(Postagem $postagem, User $user)
     {
-       // this->middleware('auth');
+        $this->middleware('auth');
         $this->postagem = $postagem;
+        $this->user = $user;
     }
 
     public function index() 
@@ -25,7 +29,8 @@ class PostagemController extends Controller
 
     public function adicionar() 
     {
-        return view('auth.postagem.adicionar');
+        $users = $this->user->all();
+        return view('auth.postagem.adicionar', compact('users'));
     }
 
     public function salvar(Request $request) 
@@ -42,13 +47,13 @@ class PostagemController extends Controller
             $dados['anexo'] = $dir.'/'.$nomeAnexo;
         }
         $this->postagem->create($dados);
-
         return redirect()->route('auth.postagens');
     }
 
     public function editar($identifier) 
     {
         $registro = $this->postagem->find($identifier);
+        $users = $this->user->all();
         return view('auth.postagem.editar', compact('registro'));        
     }
 
@@ -67,7 +72,6 @@ class PostagemController extends Controller
         }
 
         $this->postagem->find($identifier)->update($dados);
-
         return redirect()->route('auth.postagens');
     }
 

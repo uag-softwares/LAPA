@@ -4,27 +4,33 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Disciplina;
+use App\User;
 
 class DisciplinaController extends Controller
 {
 
     // Model de disciplina adicionado ao controller para evitar uso estatico
     protected $disciplina;
+    protected $user;
 
-    public function __construct(Disciplina $disciplina)
+    public function __construct(Disciplina $disciplina, User $user)
     {
+        $this->middleware('auth');
         $this->disciplina = $disciplina;
+        $this->user = $user;
     }
 
     public function index() 
     {
         $registros = $this->disciplina->all();
-        return view('auth.disciplina.index', compact('registros'));
+        return view('auth.disciplinas.index', compact('registros'));
     }
 
     public function adicionar() 
     {
-        return view('auth.disciplina.adicionar');
+        $users = $this->user->all();
+        return view('auth.disciplinas.adicionar', compact('users'));
+
     }
 
     public function salvar(Request $request) 
@@ -38,7 +44,9 @@ class DisciplinaController extends Controller
     public function editar($identifier) 
     {
         $registro = $this->disciplina->find($identifier);
-        return view('auth.disciplina.editar', compact('registro'));        
+        $users = $this->user->all();
+        return view('auth.disciplinas.editar', compact('registro', 'users'));        
+
     }
 
     public function atualizar(Request $request, $identifier)

@@ -6,7 +6,11 @@ suites:
         modules:
             enabled:
                 - PhpBrowser:
+<<<<<<< HEAD
                     url: http://localhost:8000
+=======
+                    url: 'http://localhost:8000'
+>>>>>>> 46081d764266099e6437e5dcafe8db258d2152dd
                 - \Helper\Acceptance
                 
         # add Codeception\Step\Retry trait to AcceptanceTester to enable retries

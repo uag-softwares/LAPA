@@ -8,13 +8,17 @@ addons:
   chrome: stable
 
 install:
-  - cp .env.testing .env
+  - cp .env.example .env
   - travis_retry composer install --no-interaction --prefer-dist --no-suggest
   - php artisan key:generate
 
 before_script:
-  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
+  - mysql -e 'CREATE DATABASE laravel;'
+  - php artisan migrate
   - php artisan serve &
 
 script:
   - php vendor/bin/codecept run
+
+services:
+  - mysql
