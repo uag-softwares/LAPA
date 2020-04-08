@@ -53,7 +53,9 @@ class AcceptanceTester extends \Codeception\Actor
     {
         $this->amOnPage('/auth/registros');
         $this->seeInCurrentUrl('/auth/registros');
-        $this->click('Deletar', '//table/tr/td[text()="Rodrigo"]/ancestor::tr/td[5]');
+        $this->click('Deletar', '//table/tbody/tr/td[text()="Rodrigo"]/ancestor::tr/td[5]');
+        //$this->seeInPopup('Tem certeza que deseja excluir a conta?'); // Para teste no chromedriver
+        //$this->acceptPopup(); // Para teste no chromedriver
         $this->dontSee('Rodrigo');
     }
 
@@ -154,7 +156,8 @@ class AcceptanceTester extends \Codeception\Actor
     public function euClicoEmDeletarADisciplinaIHC()
     {
         $this->click('Deletar', '//table/tbody/tr/td[text()="IHC"]/ancestor::tr/td[3]');
-        //$this->acceptPopup();
+        //$this->seeInPopup('Tem certeza que deseja deletar a disciplina?'); // Para teste no chromedriver
+        //$this->acceptPopup(); // Para teste no chromedriver
     }
 
    /**
@@ -291,6 +294,8 @@ class AcceptanceTester extends \Codeception\Actor
     public function euClicoEmDeletarAPostagemEntregaDePeasAoAcervo()
     {
         $this->click('Deletar', '//table/tbody/tr[1]');
+        //$this->seeInPopup('Tem certeza que deseja deletar essa postagem?'); // Para teste no chromedriver
+        //$this->acceptPopup(); // Para teste no chromedriver
     }
 
    /**

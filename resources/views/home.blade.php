@@ -20,7 +20,7 @@
                             {{ __('Disciplinas') }}
                         </a>
                         <a href="{{ route('auth.postagens') }}" class="btn">
-                            {{ __('Projetos') }}
+                            {{ __('Postagens') }}
                         </a>
                         <a href="#" class="btn">
                             {{ __('Agenda') }}
