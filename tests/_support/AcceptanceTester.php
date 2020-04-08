@@ -99,7 +99,7 @@ class AcceptanceTester extends \Codeception\Actor
      */
     public function euClicoEmEditarADisciplinaES()
     {
-        $this->click('Editar', '//table/tbody/tr[1]');
+        $this->click('Editar', '//table/tbody/tr/td[text()="ES"]/ancestor::tr/td[3]');
     }
 
    /**
@@ -139,7 +139,7 @@ class AcceptanceTester extends \Codeception\Actor
      */
     public function euClicoEmDeletarADisciplinaIHC()
     {
-        $this->click('Deletar', '//table/tbody/tr[1]');
+        $this->click('Deletar', '//table/tbody/tr/td[text()="IHC"]/ancestor::tr/td[3]');
         //$this->acceptPopup();
     }
 
@@ -149,5 +149,16 @@ class AcceptanceTester extends \Codeception\Actor
     public function euNaoVejoADisciplinaIHC()
     {
         $this->dontSee('IHC');
+    }
+
+    /**
+     * @Then Eu deleto o usuario para o teste
+     */
+    public function euDeletoOUsuarioParaOTeste()
+    {
+        $this->amOnPage('/auth/registros');
+        $this->seeInCurrentUrl('/auth/registros');
+        $this->click('Deletar', '//table/tr/td[text()="Rodrigo"]/ancestor::tr/td[5]');
+        $this->dontSee('Rodrigo');
     }
 }

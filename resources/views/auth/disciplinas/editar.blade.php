@@ -1,16 +1,9 @@
-<html>
-    <head>
-        <title>
-            Editar disciplina
-        </title>
-    </head>
-    <body>
-        <header>
+@extends('layouts.app')
 
-        </header>
-
+@section('titulo', 'Editar disciplina')
+@section('content')
         <div class="container">
-            <h1>Editar disciplina</h1>
+            <h2>Editar disciplina</h2>
             <form action="{{ route('auth.disciplina.atualizar', $registro->id) }}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <input type="hidden" name="_method" value="put">
@@ -20,9 +13,4 @@
                 </div>
             </form>
         </div>
-
-        <footer>
-
-        </footer>
-    </body>
-</html>
+@endsection
