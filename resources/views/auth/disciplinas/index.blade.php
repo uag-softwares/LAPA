@@ -1,18 +1,11 @@
-<html>
-    <head>
-        <title>
-            Gerenciar disciplinas
-        </title>
-    </head>
-    <body>
-        <header>
+@extends('layouts.app')
 
-        </header>
-
+@section('titulo', 'Gerenciar disciplinas')
+@section('content')
         <div class="container">
-            <h1>Gerenciar disciplinas</h1>
-            <a href="{{ route('auth.disciplina.adicionar') }}" class="btn">Adicionar</a>
-            <table>
+            <h2>Gerenciar disciplinas</h2>
+            <a href="{{ route('auth.disciplina.adicionar') }}" class="btn mb-2">Adicionar</a>
+            <table class="table">
                 <thead>
                     <tr>
                         <th>Nome</th>
@@ -24,7 +17,7 @@
                     @foreach($registros as $registro)
                     <tr>
                         <td>{{ $registro->nome }}</td>
-                        <td>{{ $registro->user->name }}</td>
+                        <td>{{ isset($registro->user) ? $registro->user->name : 'Nenhum professor' }}</td>
                         <td>
                             <a href="{{ route('auth.disciplina.editar', $registro->id) }}" class="btn">Editar</a>
                             <a href="{{ route('auth.disciplina.deletar', $registro->id) }}" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar a disciplina?');">Deletar</a>
@@ -34,9 +27,4 @@
                 </tbody>
             </table>
         </div>
-
-        <footer>
-
-        </footer>
-    </body>
-</html>
+@endsection

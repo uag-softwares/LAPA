@@ -47,6 +47,20 @@ class AcceptanceTester extends \Codeception\Actor
     }
 
     /**
+     * @Then Eu deleto o usuario para o teste
+     */
+    public function euDeletoOUsuarioParaOTeste()
+    {
+        $this->amOnPage('/auth/registros');
+        $this->seeInCurrentUrl('/auth/registros');
+        $this->click('Deletar', '//table/tr/td[text()="Rodrigo"]/ancestor::tr/td[5]');
+        $this->dontSee('Rodrigo');
+    }
+
+    /*==================================== A partir daqui metodos para feature Disciplina =======================
+     */
+
+    /**
      * @Given Eu estou na pagina de disciplinas
      */
     public function euEstouNaPaginaDeDisciplinas()
@@ -91,7 +105,7 @@ class AcceptanceTester extends \Codeception\Actor
     */
     public function euDevoVerADisciplinaES()
     {
-        $this->see('ES');
+        $this->see('ES', '//table/tbody/tr');
     }
 
     /**
@@ -99,7 +113,7 @@ class AcceptanceTester extends \Codeception\Actor
      */
     public function euClicoEmEditarADisciplinaES()
     {
-        $this->click('Editar', '//table/tbody/tr[1]');
+        $this->click('Editar', '//table/tbody/tr/td[text()="ES"]/ancestor::tr/td[3]');
     }
 
    /**
@@ -131,7 +145,7 @@ class AcceptanceTester extends \Codeception\Actor
     */
     public function euDevoVerADisciplinaIHC()
     {
-        $this->see('IHC');
+        $this->see('IHC', '//table/tbody/tr');
     }
 
     /**
@@ -139,7 +153,7 @@ class AcceptanceTester extends \Codeception\Actor
      */
     public function euClicoEmDeletarADisciplinaIHC()
     {
-        $this->click('Deletar', '//table/tbody/tr[1]');
+        $this->click('Deletar', '//table/tbody/tr/td[text()="IHC"]/ancestor::tr/td[3]');
         //$this->acceptPopup();
     }
 
@@ -150,4 +164,144 @@ class AcceptanceTester extends \Codeception\Actor
     {
         $this->dontSee('IHC');
     }
+
+
+    /*==================================== A partir daqui metodos para feature Postagem =======================
+     */
+
+     /**
+     * @Given Eu estou na pagina de postagens
+     */
+    public function euEstouNaPaginaDePostagens()
+    {
+        $this->amOnPage('/auth/postagens');
+    }
+
+    
+    /**
+    * @Then Eu deve estar na pagina de criar postagem
+    */
+    public function euDeveEstarNaPaginaDeCriarPostagem()
+    {
+        $this->amOnPage('/auth/postagem/adicionar');
+    }
+
+
+   /**
+    * @When Eu preencho o campo titulo com 'Visita ao LAPA'
+    */
+    public function euPreenchoOCampoTituloComVisitaAoLAPA()
+    {
+        $this->fillField(['name' => 'titulo'], 'Visita ao LAPA');
+    }
+
+    /**
+     * @When Eu preencho o campo descricao com 'Recebemos alunos da escola EREMG'
+     */
+    public function euPreenchoOCampoDescricaoComRecebemosAlunosDaEscolaEREMG()
+    {
+        $this->fillField(['name' => 'descricao'], 'Recebemos alunos da escola EREMG');
+    }
+
+    /**
+     * @When Eu preencho o campo data com 'a data de hoje'
+     */
+    public function euPreenchoOCampoDataComaDataDeHoje()
+    {
+        $this->fillField(['name' => 'data'], date('Y-m-d'));  
+    }
+
+
+   /**
+    * @When Eu clico em 'Escolher arquivo' e escolho 'teste.pdf'
+    */
+    public function euClicoEmEscolherArquivoEEscolhotestepdf()
+    {
+        $this->attachFile(['name' => 'anexo'], 'teste.pdf');
+    }
+
+   /**
+    * @Then Eu devo ver a postagem 'Visita ao LAPA'
+    */
+    public function euDevoVerAPostagemVisitaAoLAPA()
+    {
+        $this->see('Visita ao LAPA', '//table/tbody/tr');
+    }
+    
+    /**
+     * @Given Eu clico em 'Editar' a postagem 'Visita ao LAPA'
+     */
+    public function euClicoEmEditarAPostagemVisitaAoLAPA()
+    {
+        $this->click('Editar', '//table/tbody/tr[1]');
+    }
+
+   /**
+    * @Then Eu devo estar na pagina de edicao da postagem 'Visita ao LAPA'
+    */
+    public function euDevoEstarNaPaginaDeEdicaoDaPostagemVisitaAoLAPA()
+    {
+        $this->seeInCurrentUrl('/auth/postagem/editar/');
+    }
+
+   /**
+    * @When Eu edito o titulo para 'Entrega de peças ao acervo'
+    */
+    public function euEditoOTituloParaEntregaDePeasAoAcervo()
+    {
+        $this->fillField(['name' => 'titulo'], 'Entrega de peças ao acervo');
+    }
+
+    /**
+     * @When Eu edito a descricao para 'Chegaram novas peças no nosso acervo'
+     */
+    public function euEditoADescricaoParaChegaramNovasPeasNoNossoAcervo()
+    {
+        $this->fillField(['name' => 'descricao'], 'Chegaram novas peças no nosso acervo');
+    }
+
+   /**
+    * @Then Eu devo ver a postagem 'Entrega de peças ao acervo'
+    */
+    public function euDevoVerAPostagemEntregaDePeasAoAcervo()
+    {
+        $this->see('Entrega de peças ao acervo', '//table/tbody/tr');
+    }
+
+    /**
+     * @Then Eu devo ver como descricao da postagem 'Chegaram novas peças no nosso acervo'
+     */
+    public function euDevoVerComoDescricaoDaPostagemChegaramNovasPeasNoNossoAcervo()
+    {
+        $this->see('Chegaram novas peças no nosso acervo', '//table/tbody/tr');
+    }
+
+   /**
+    * @Then Eu devo ver como descricao da postagem 'Novas peças chegaram ao nosso acervo neste mês'
+    */
+    public function euDevoVerComoDescricaoDaPostagemNovasPeasChegaramAoNossoAcervoNesteMs()
+    {
+        $this->see('Novas peças chegaram ao nosso acervo neste mês');
+    }
+
+
+    /**
+     * @Given Eu clico em 'Deletar' a postagem 'Entrega de peças ao acervo'
+     */
+    public function euClicoEmDeletarAPostagemEntregaDePeasAoAcervo()
+    {
+        $this->click('Deletar', '//table/tbody/tr[1]');
+    }
+
+   /**
+    * @Then Eu nao vejo a disciplina 'Entrega de peças ao acervo'
+    */
+    public function euNaoVejoADisciplinaEntregaDePeasAoAcervo()
+    {
+        $this->dontSee('Entrega de peças ao acervo');
+    }
+
+   
+
+
 }

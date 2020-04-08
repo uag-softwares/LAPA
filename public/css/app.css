@@ -1,0 +1,78 @@
+/* tamanho de fonte padrão dentro da classe container */
+div.container {
+    text-align: center;
+    font-size: 24px;
+}
+
+.form-group {
+    text-align: start;
+}
+
+/* Muda a cor de fundo da header */
+header {
+    background-color: #f4f4f4;
+}
+
+/* Barra de navegação do site */
+.navbar-custom {
+    background-color: #00c853;
+}
+
+/* change the brand and text color */
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text {
+    color: rgba(255,255,255,.8);
+}
+
+/* Muda a cor e fonte dos links da navbar */
+.navbar-custom .navbar-nav .nav-link, .nav-item.dropdown button {
+    color: #FFFFFF;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: bold;
+}
+
+/* Muda a cor e fonte dos links da dropdown de acesso */ 
+.dropdown-menu a {
+    color: #000000;
+    font-size: 28px;
+    font-style: normal;
+
+}
+
+/* Muda a cor de links ativos e quando o mouse passar na navbar */
+.navbar-custom .nav-item.active .nav-link,
+.navbar-custom .nav-item:hover .nav-link, 
+.nav-item.dropdown button:hover {
+    color: #ffffffdd;
+}
+
+/* Centraliza verticalmente os links da navbar */
+.nav-item {
+    align-self: center;
+}
+
+/* Muda a cor do botao de expandir a navbar no celular */
+.navbar .fas {
+    color: #FFFFFF;
+}
+
+/* Tamanho da fonte de todos os botoes */
+a.btn, button.btn {
+    font-size: 24px;
+    background-color: #00c853;
+    color: #FFFFFF;
+}
+
+a.btn.btn-danger, button.btn.btn-danger {
+    background-color: #dc3545;
+}
+
+a.btn:hover, button.btn:hover {
+    background-color: #28a745;
+    color: #FFFFFF;
+}
+
+a.btn.btn-danger:hover, button.btn.btn-danger:hover {
+    background-color: #bd2a39;
+}

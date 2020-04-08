@@ -30,6 +30,7 @@ class DisciplinaController extends Controller
     {
         $users = $this->user->all();
         return view('auth.disciplinas.adicionar', compact('users'));
+
     }
 
     public function salvar(Request $request) 
@@ -45,6 +46,7 @@ class DisciplinaController extends Controller
         $registro = $this->disciplina->find($identifier);
         $users = $this->user->all();
         return view('auth.disciplinas.editar', compact('registro', 'users'));        
+
     }
 
     public function atualizar(Request $request, $identifier)

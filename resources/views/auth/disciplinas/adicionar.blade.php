@@ -1,16 +1,9 @@
-<html>
-    <head>
-        <title>
-            Adicionar disciplina
-        </title>
-    </head>
-    <body>
-        <header>
+@extends('layouts.app')
 
-        </header>
-
+@section('titulo', 'Adicionar disciplina')
+@section('content')
         <div class="container">
-            <h1>Adicionar disciplina</h1>
+            <h2>Adicionar disciplina</h2>
             <form action="{{ route('auth.disciplina.salvar') }}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 @include('auth.disciplinas._form')
@@ -19,9 +12,4 @@
                 </div>
             </form>
         </div>
-
-        <footer>
-
-        </footer>
-    </body>
-</html>
+@endsection
