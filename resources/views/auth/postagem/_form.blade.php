@@ -9,7 +9,7 @@
 
 <div class="form-group">
     <label for="nome">Data</label>
-    <input class="form-control form-control-lg" type="datetime-local" name="data" value="{{ isset($registro->data) ? $registro->data : '' }}" placeholder="Escolha a data da postagem">
+    <input class="form-control form-control-lg" type="date" name="data" value="{{ isset($registro->data) ? $registro->data : '' }}" placeholder="Escolha a data da postagem">
 </div>
 <div class="form-group">
     <label for="nome">Anexo</label>

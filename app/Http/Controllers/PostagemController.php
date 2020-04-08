@@ -53,7 +53,7 @@ class PostagemController extends Controller
     public function editar($identifier) 
     {
         $registro = $this->postagem->find($identifier);
-        $users = $this->user->all();
+        // $users = $this->user->all();
         return view('auth.postagem.editar', compact('registro'));        
     }
 
