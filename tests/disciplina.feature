@@ -27,4 +27,3 @@ Feature: disciplina
     And Eu estou na pagina de disciplinas
     And Eu clico em 'Deletar' a disciplina 'IHC'
     Then Eu nao vejo a disciplina 'IHC'
-    And Eu deleto o usuario para o teste

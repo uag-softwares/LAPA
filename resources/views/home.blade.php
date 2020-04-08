@@ -19,7 +19,7 @@
                         <a href="{{ route('auth.disciplinas') }}" class="btn">
                             {{ __('Disciplinas') }}
                         </a>
-                        <a href="#" class="btn">
+                        <a href="{{ route('auth.postagens') }}" class="btn">
                             {{ __('Projetos') }}
                         </a>
                         <a href="#" class="btn">
