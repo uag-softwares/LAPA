@@ -22,9 +22,13 @@ Feature: postagem
     Then Eu devo estar na pagina de edicao da postagem 'Visita ao LAPA'
     When Eu edito o titulo para 'Entrega de peças ao acervo'
     And Eu edito a descricao para 'Chegaram novas peças no nosso acervo'
+    And Eu edito o campo data com 'a data de amanha'
+    And Eu clico em 'Escolher arquivo' editando o anexo para 'arquivo.pdf'
     And Eu clico em 'Editar'
     Then Eu devo ver a postagem 'Entrega de peças ao acervo'
     And Eu devo ver como descricao da postagem 'Chegaram novas peças no nosso acervo' 
+    And Eu devo ver que a data mudou para 'a data de amanha'
+    And Eu devo ver que o anexo mudou para 'arquivo.pdf'
   
   
   Scenario: deletar uma postagem com sucesso

@@ -301,7 +301,38 @@ class AcceptanceTester extends \Codeception\Actor
         $this->dontSee('Entrega de peças ao acervo');
     }
 
-   
+    /**
+     * @When Eu edito o campo data com 'a data de amanha'
+     */
+    public function euEditoOCampoDataComaDataDeAmanha()
+    {
+        $this->fillField(['name' => 'data'], date('Y-m-d'));  
+    }
+
+   /**
+    * @Then Eu devo ver que a data mudou para 'a data de amanha'
+    */
+    public function euDevoVerQueADataMudouParaaDataDeAmanha()
+    {
+        $this->see(date('Y-m-d'), '//table/tbody/tr');
+    }
+
+    /**
+     * @When Eu clico em 'Escolher arquivo' editando o anexo para 'arquivo.pdf'
+     */
+    public function euClicoEmEscolherArquivoEditandoOAnexoParaarquivopdf()
+    {
+        $this->attachFile(['name' => 'anexo'], 'arquivo.pdf');
+    }
+
+   /**
+    * @Then Eu devo ver que o anexo mudou para 'arquivo.pdf'
+    */
+    public function euDevoVerQueOAnexoMudouParaarquivopdf()
+    {
+        $this->dontSee('teste.pdf', '//table/tbody/tr'); 
+    }
+
 
 
 }
