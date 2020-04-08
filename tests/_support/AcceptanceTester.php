@@ -332,6 +332,140 @@ class AcceptanceTester extends \Codeception\Actor
     {
         $this->dontSee('teste.pdf', '//table/tbody/tr'); 
     }
+/*==================================== feature usuario =======================
+     */
+     /**
+     * @Given Eu estou na pagina de registro de usuario
+     */
+     public function euEstouNaPaginaDeRegistroDeUsuario()
+     {
+         $this->amOnPage('/register');
+     }
+
+    /**
+     * @When Eu preencho o campo email com  :arg1
+     */
+     public function euPreenchoOCampoEmailCom($arg1)
+     {
+	$this->fillField(['name' => 'email'], $arg1);
+         
+     }
+
+    /**
+     * @When Eu preencho o campo senha :arg1
+     */
+     public function euPreenchoOCampoSenha($arg1)
+     {
+	$this->fillField(['name' => 'password'], $arg1);
+         
+     }
+
+    /**
+     * @When Eu preencho o campo confirmacao de senha :arg1
+     */
+     public function euPreenchoOCampoConfirmacaoDeSenha($arg1)
+     {
+          $this->fillField(['name' => 'password_confirmation'], $arg1);
+     }
+
+    /**
+     * @When Eu preencho o campo nome :arg1
+     */
+     public function euPreenchoOCampoNome($arg1)
+     {
+         $this->fillField(['name' => 'name'], $arg1);
+     }
+
+    /**
+     * @When Eu preencho o campo cpf :arg1
+     */
+     public function euPreenchoOCampoCpf($arg1)
+     {
+         $this->fillField(['name' => 'cpf'], $arg1);
+     }
+     /**
+     * @When Eu seleciono :arg1 usuario como administrador
+     */
+     public function euSelecionoUsuarioComoAdministrador($arg1)
+     {
+         $this->selectOption(['name' => 'isAdmin'], $arg1);
+     }
+
+
+    /**
+     * @When Eu clico em  criar registro de usuario
+     */
+     public function euClicoEmCriarRegistroDeUsuario()
+     {
+         $this->click('Cadastrar');
+     }
+
+       /**
+     * @Then Eu vejo que o registro foi criado com sucesso
+     */
+     public function euVejoQueORegistroFoiCriadoComSucesso()
+     {
+         $this->amOnPage('/');
+     }
+
+     /**
+     * @Given Eu abro pagina de configuracao de usuario
+     */
+     public function euAbroPaginaDeConfiguracaoDeUsuario()
+     {
+          $this->amOnPage('/auth/registros');
+     }
+
+    /**
+     * @When Eu clico em deletar registro
+     */
+     public function euClicoEmDeletarRegistro()
+     {
+         $this->click('Deletar', '//table/tbody/tr[1]');
+     }
+
+    /**
+     * @Then Eu vejo que o registro do usuario foi removido
+     */
+     public function euVejoQueORegistroDoUsuarioFoiRemovido()
+     {
+         $this->amOnPage('/register');
+
+     }
+     /**
+     * @Given Eu estou na pagina de login
+     */
+     public function euEstouNaPaginaDeLogin()
+     {
+          $this->amOnPage('/login');
+     }
+
+    /**
+     * @When Eu clico em login
+     */
+     public function euClicoEmLogin()
+     {
+         
+         $this->click('Login');
+     }
+
+    
+      /**
+     * @Then Eu vejo que o usuario com nome :arg1 nao foi salvo
+     */
+     public function euVejoQueOUsuarioComNomeNaoFoiSalvo($arg1)
+     {
+         $this->dontSee($arg1);
+     }
+
+      /**
+     * @Then Eu vejo que o usuario nao esta logado
+     */
+     public function euVejoQueOUsuarioNaoEstaLogado()
+     {
+         $this->amOnPage('/login');
+     }
+      
 
 
 

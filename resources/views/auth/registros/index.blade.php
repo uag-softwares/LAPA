@@ -13,6 +13,7 @@
             <th>E-mail</th>
             <th>Ações</th>
         </tr>
+	<tbody>
         <tr>
             <td>{{ Auth::user()->name }}</td>
             <td>{{Auth::user()->cpf}}</td>
@@ -23,6 +24,7 @@
                 <a class="btn btn-danger" href="{{ route('auth.registros.deletar',Auth::user()->id) }}"onclick="return confirm('Tem certeza que deseja excluir a conta?');">Deletar</a> 
             </td>
         </tr>
+     </tbody>
     </table>
 </div>
 @endsection
