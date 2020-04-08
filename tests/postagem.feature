@@ -4,7 +4,7 @@ Feature: postagem
   I need to poder criar, ver, atualizar e deletar postagens
 
   Scenario: criar uma postagem valida
-    Given Eu estou logado
+    Given Eu crio um usuario para o teste
     And Eu estou na pagina de postagens
     And Eu clico em 'Adicionar'
     Then Eu deve estar na pagina de criar postagem
