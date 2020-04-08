@@ -163,10 +163,11 @@ class AcceptanceTester extends \Codeception\Actor
         $this->amOnPage('/auth/postagens');
     }
 
+    
     /**
-    * @Then Eu deve estar na pagina de criar postagens
+    * @Then Eu deve estar na pagina de criar postagem
     */
-    public function euDeveEstarNaPaginaDeCriarPostagens()
+    public function euDeveEstarNaPaginaDeCriarPostagem()
     {
         $this->amOnPage('/auth/postagem/adicionar');
     }
@@ -189,12 +190,13 @@ class AcceptanceTester extends \Codeception\Actor
     }
 
     /**
-     * @When Eu escolho a data ':num1:num:num5/:num1:num4/:num5:num1:num5:num1'
+     * @When Eu preencho o campo data com 'a data de hoje'
      */
-    public function euEscolhoAData($num1, $num2, $num3, $num4, $num5, $num6, $num7, $num8)
+    public function euPreenchoOCampoDataComaDataDeHoje()
     {
-        $this->fillField(['name' => 'data'], $num1.$num2.'/'.$num3.$num4.'/'.$num5.$num6.$num7.$num8);
+        $this->fillField(['name' => 'data'], '07/04/2020');  
     }
+
 
    /**
     * @When Eu clico em 'Escolher arquivo' e escolho 'teste.pdf'
@@ -212,5 +214,72 @@ class AcceptanceTester extends \Codeception\Actor
         $this->see('Visita ao LAPA');
     }
     
+    /**
+     * @Given Eu clico em 'Editar' a postagem 'Visita ao LAPA'
+     */
+    public function euClicoEmEditarAPostagemVisitaAoLAPA()
+    {
+        $this->click('Editar', '//table/tbody/tr[1]');
+    }
+
+   /**
+    * @Then Eu devo estar na pagina de edicao da postagem 'Visita ao LAPA'
+    */
+    public function euDevoEstarNaPaginaDeEdicaoDaPostagemVisitaAoLAPA()
+    {
+        $this->seeInCurrentUrl('/auth/postagem/editar/');
+    }
+
+   /**
+    * @When Eu edito o titulo para 'Entrega de peças ao acervo'
+    */
+    public function euEditoOTituloParaEntregaDePeasAoAcervo()
+    {
+        $this->fillField(['name' => 'titulo'], 'Entrega de peças ao acervo');
+    }
+
+   /**
+    * @Then Eu devo ver a postagem 'Entrega de peças ao acervo'
+    */
+    public function euDevoVerAPostagemEntregaDePeasAoAcervo()
+    {
+        $this->see('Entrega de peças ao acervo');
+    }
+
+    /**
+    * @When Eu edito a descricao para 'Novas peças chegaram ao nosso acervo neste mês'
+    */
+    public function euEditoADescricaoParaNovasPeasChegaramAoNossoAcervoNesteMs()
+    {
+        $this->fillField(['name' => 'descricao'], 'Novas peças chegaram ao nosso acervo neste mês');
+    }
+
+   /**
+    * @Then Eu devo ver como descricao da postagem 'Novas peças chegaram ao nosso acervo neste mês'
+    */
+    public function euDevoVerComoDescricaoDaPostagemNovasPeasChegaramAoNossoAcervoNesteMs()
+    {
+        $this->see('Novas peças chegaram ao nosso acervo neste mês');
+    }
+
+
+    /**
+     * @Given Eu clico em 'Deletar' a postagem 'Entrega de peças ao acervo'
+     */
+    public function euClicoEmDeletarAPostagemEntregaDePeasAoAcervo()
+    {
+        $this->click('Deletar', '//table/tbody/tr[1]');
+    }
+
+   /**
+    * @Then Eu nao vejo a disciplina 'Entrega de peças ao acervo'
+    */
+    public function euNaoVejoADisciplinaEntregaDePeasAoAcervo()
+    {
+        $this->dontSee('Entrega de peças ao acervo');
+    }
+
+   
+
 
 }
