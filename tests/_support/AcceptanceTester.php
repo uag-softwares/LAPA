@@ -71,7 +71,7 @@ class AcceptanceTester extends \Codeception\Actor
     }
 
    /**
-    * @Given Eu clico em 'Adicionar'
+    * @Given Eu clico em Adicionar
     */
     public function euClicoEmAdicionar()
     {
@@ -79,93 +79,102 @@ class AcceptanceTester extends \Codeception\Actor
     }
 
    /**
-    * @Then Eu deve estar na pagina de criar disciplina
+    * @Then Eu devo estar na pagina de criar disciplina
     */
-    public function euDeveEstarNaPaginaDeCriarDisciplina()
+    public function euDevoEstarNaPaginaDeCriarDisciplina()
     {
         $this->amOnPage('/auth/disciplina/adicionar');
     }
 
    /**
-    * @When Eu preencho o campo nome com 'ES'
+    * @When Eu preencho o campo nome com :arg1
     */
-    public function euPreenchoOCampoNomeComES()
+    public function euPreenchoOCampoNomeCom($arg1)
     {
-        $this->fillField(['name' => 'nome'], 'ES');
+        $this->fillField(['name' => 'nome'], $arg1);
     }
 
    /**
-    * @When Eu seleciono o professor 'Rodrigo'
+    * @When Eu seleciono o professor :arg1
     */
-    public function euSelecionoOProfessorRodrigo()
+    public function euSelecionoOProfessor($arg1)
     {
-        $this->selectOption(['name' => 'user_id'], 'Rodrigo');
+        $this->selectOption(['name' => 'user_id'], $arg1);
     }
 
    /**
-    * @Then Eu devo ver a disciplina 'ES'
+    * @Then Eu devo ver a disciplina :arg1
     */
-    public function euDevoVerADisciplinaES()
+    public function euDevoVerADisciplina($arg1)
     {
-        $this->see('ES', '//table/tbody/tr');
+        $this->see($arg1, '//table/tbody/tr');
     }
 
     /**
-     * @Given Eu clico em 'Editar' a disciplina 'ES'
+     * @Given Eu clico em Editar a disciplina :arg1
      */
-    public function euClicoEmEditarADisciplinaES()
+    public function euClicoEmEditarADisciplina($arg1)
     {
-        $this->click('Editar', '//table/tbody/tr/td[text()="ES"]/ancestor::tr/td[3]');
+        $this->click('Editar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[3]');
     }
 
    /**
-    * @Then Eu devo estar na pagina de edicao da disciplina 'ES'
+    * @Then Eu devo estar na pagina de editar a disciplina
     */
-    public function euDevoEstarNaPaginaDeEdicaoDaDisciplinaES()
+    public function euDevoEstarNaPaginaDeEditaraDisciplina()
     {
         $this->seeInCurrentUrl('/auth/disciplina/editar/');
     }
 
    /**
-    * @When Eu edito o nome para 'IHC'
+    * @When Eu edito o nome para :arg1
     */
-    public function euEditoONomeParaIHC()
+    public function euEditoONomePara($arg1)
     {
-        $this->fillField(['name' => 'nome'], 'IHC');
+        $this->fillField(['name' => 'nome'], $arg1);
     }
 
    /**
-    * @When Eu clico em 'Editar'
+    * @When Eu clico em Editar
     */
     public function euClicoEmEditar()
     {
         $this->click('Editar');
     }
 
-   /**
-    * @Then Eu devo ver a disciplina 'IHC'
-    */
-    public function euDevoVerADisciplinaIHC()
+    /**
+     * @When Eu edito o professor para :arg1
+     */
+    public function euEditoOProfessorPara($arg1)
     {
-        $this->see('IHC', '//table/tbody/tr');
+        $this->selectOption(['name' => 'user_id'], $arg1);
     }
 
-    /**
-     * @Given Eu clico em 'Deletar' a disciplina 'IHC'
-     */
-    public function euClicoEmDeletarADisciplinaIHC()
+   /**
+    * @Then Eu devo ver o professor :arg1
+    */
+    public function euDevoVerOProfessor($arg1)
     {
-        $this->click('Deletar', '//table/tbody/tr/td[text()="IHC"]/ancestor::tr/td[3]');
+        $this->see($arg1, '//table/tbody/tr');
+    }
+
+
+    /**
+     * @Given Eu clico em Deletar a disciplina :arg1
+     */
+    public function euClicoEmDeletarADisciplina($arg1)
+    {
+        $this->click('Deletar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[3]');
         //$this->seeInPopup('Tem certeza que deseja deletar a disciplina?'); // Para teste no chromedriver
         //$this->acceptPopup(); // Para teste no chromedriver
     }
 
    /**
-    * @Then Eu nao vejo a disciplina 'IHC'
+    * @Then Eu nao vejo a disciplina :arg1
     */
-    public function euNaoVejoADisciplinaIHC()
+    public function euNaoVejoADisciplina($arg1)
     {
-        $this->dontSee('IHC');
+        $this->dontSee($arg1);
     }
 
 
@@ -191,151 +200,137 @@ class AcceptanceTester extends \Codeception\Actor
 
 
    /**
-    * @When Eu preencho o campo titulo com 'Visita ao LAPA'
+    * @When Eu preencho o campo titulo com :arg1
     */
-    public function euPreenchoOCampoTituloComVisitaAoLAPA()
+    public function euPreenchoOCampoTituloCom($arg1)
     {
-        $this->fillField(['name' => 'titulo'], 'Visita ao LAPA');
+        $this->fillField(['name' => 'titulo'], $arg1);
     }
 
     /**
-     * @When Eu preencho o campo descricao com 'Recebemos alunos da escola EREMG'
+     * @When Eu preencho o campo descricao com :arg1
      */
-    public function euPreenchoOCampoDescricaoComRecebemosAlunosDaEscolaEREMG()
+    public function euPreenchoOCampoDescricaoCom($arg1)
     {
-        $this->fillField(['name' => 'descricao'], 'Recebemos alunos da escola EREMG');
+        $this->fillField(['name' => 'descricao'], $arg1);
     }
 
     /**
-     * @When Eu preencho o campo data com 'a data de hoje'
+     * @When Eu preencho o campo data com :arg1
      */
-    public function euPreenchoOCampoDataComaDataDeHoje()
+    public function euPreenchoOCampoDataCom($arg1)
     {
-        $this->fillField(['name' => 'data'], date('Y-m-d'));  
+        $date = strtotime($arg1);
+        $this->fillField(['name' => 'data'], date('Y-m-d', $date));  
     }
 
 
    /**
-    * @When Eu clico em 'Escolher arquivo' e escolho 'teste.pdf'
+    * @When Eu clico em Escolher arquivo e escolho :arg1
     */
-    public function euClicoEmEscolherArquivoEEscolhotestepdf()
+    public function euClicoEmEscolherArquivoEEscolho($arg1)
     {
-        $this->attachFile(['name' => 'anexo'], 'teste.pdf');
+        $this->attachFile(['name' => 'anexo'], $arg1);
     }
 
    /**
-    * @Then Eu devo ver a postagem 'Visita ao LAPA'
+    * @Then Eu devo ver a postagem :arg1
     */
-    public function euDevoVerAPostagemVisitaAoLAPA()
+    public function euDevoVerAPostagem($arg1)
     {
-        $this->see('Visita ao LAPA', '//table/tbody/tr');
+        $this->see($arg1, '//table/tbody/tr');
     }
     
     /**
-     * @Given Eu clico em 'Editar' a postagem 'Visita ao LAPA'
+     * @Given Eu clico em Editar a postagem :arg1
      */
-    public function euClicoEmEditarAPostagemVisitaAoLAPA()
+    public function euClicoEmEditarAPostagem($arg1)
     {
-        $this->click('Editar', '//table/tbody/tr[1]');
+        $this->click('Editar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[5]');
     }
 
    /**
-    * @Then Eu devo estar na pagina de edicao da postagem 'Visita ao LAPA'
+    * @Then Eu devo estar na pagina de editar a postagem
     */
-    public function euDevoEstarNaPaginaDeEdicaoDaPostagemVisitaAoLAPA()
+    public function euDevoEstarNaPaginaDeEdicaoDaPostagem()
     {
         $this->seeInCurrentUrl('/auth/postagem/editar/');
     }
 
    /**
-    * @When Eu edito o titulo para 'Entrega de peças ao acervo'
+    * @When Eu edito o titulo para :arg1
     */
-    public function euEditoOTituloParaEntregaDePeasAoAcervo()
+    public function euEditoOTituloPara($arg1)
     {
-        $this->fillField(['name' => 'titulo'], 'Entrega de peças ao acervo');
+        $this->fillField(['name' => 'titulo'], $arg1);
     }
 
     /**
-     * @When Eu edito a descricao para 'Chegaram novas peças no nosso acervo'
+     * @When Eu edito a descricao para :arg1
      */
-    public function euEditoADescricaoParaChegaramNovasPeasNoNossoAcervo()
+    public function euEditoADescricaoPara($arg1)
     {
-        $this->fillField(['name' => 'descricao'], 'Chegaram novas peças no nosso acervo');
-    }
-
-   /**
-    * @Then Eu devo ver a postagem 'Entrega de peças ao acervo'
-    */
-    public function euDevoVerAPostagemEntregaDePeasAoAcervo()
-    {
-        $this->see('Entrega de peças ao acervo', '//table/tbody/tr');
+        $this->fillField(['name' => 'descricao'], $arg1);
     }
 
     /**
-     * @Then Eu devo ver como descricao da postagem 'Chegaram novas peças no nosso acervo'
+     * @Then Eu devo ver como descricao da postagem :arg1
      */
-    public function euDevoVerComoDescricaoDaPostagemChegaramNovasPeasNoNossoAcervo()
+    public function euDevoVerComoDescricaoDaPostagem($arg1)
     {
-        $this->see('Chegaram novas peças no nosso acervo', '//table/tbody/tr');
+        $this->see($arg1, '//table/tbody/tr');
     }
-
-   /**
-    * @Then Eu devo ver como descricao da postagem 'Novas peças chegaram ao nosso acervo neste mês'
-    */
-    public function euDevoVerComoDescricaoDaPostagemNovasPeasChegaramAoNossoAcervoNesteMs()
-    {
-        $this->see('Novas peças chegaram ao nosso acervo neste mês');
-    }
-
 
     /**
-     * @Given Eu clico em 'Deletar' a postagem 'Entrega de peças ao acervo'
+     * @Given Eu clico em Deletar a postagem :arg1
      */
-    public function euClicoEmDeletarAPostagemEntregaDePeasAoAcervo()
+    public function euClicoEmDeletarAPostagem($arg1)
     {
-        $this->click('Deletar', '//table/tbody/tr[1]');
+        $this->click('Deletar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[5]');
         //$this->seeInPopup('Tem certeza que deseja deletar essa postagem?'); // Para teste no chromedriver
         //$this->acceptPopup(); // Para teste no chromedriver
     }
 
    /**
-    * @Then Eu nao vejo a disciplina 'Entrega de peças ao acervo'
+    * @Then Eu nao vejo a postagem :arg1
     */
-    public function euNaoVejoADisciplinaEntregaDePeasAoAcervo()
+    public function euNaoVejoAPostagem($arg1)
     {
-        $this->dontSee('Entrega de peças ao acervo');
+        $this->dontSee($arg1);
     }
 
     /**
-     * @When Eu edito o campo data com 'a data de amanha'
+     * @When Eu edito o campo data com :arg1
      */
-    public function euEditoOCampoDataComaDataDeAmanha()
+    public function euEditoOCampoDataCom($arg1)
     {
-        $this->fillField(['name' => 'data'], date('Y-m-d'));  
+        $date = strtotime($arg1);
+        $this->fillField(['name' => 'data'], date('Y-m-d', $date));  
     }
 
    /**
-    * @Then Eu devo ver que a data mudou para 'a data de amanha'
+    * @Then Eu devo ver que a data mudou para :arg1
     */
-    public function euDevoVerQueADataMudouParaaDataDeAmanha()
+    public function euDevoVerQueADataMudouPara($arg1)
     {
-        $this->see(date('Y-m-d'), '//table/tbody/tr');
+        $date = strtotime($arg1);
+        $this->see(date('Y-m-d', $date), '//table/tbody/tr');
     }
 
     /**
-     * @When Eu clico em 'Escolher arquivo' editando o anexo para 'arquivo.pdf'
+     * @When Eu clico em Escolher arquivo editando o anexo para :arg1
      */
-    public function euClicoEmEscolherArquivoEditandoOAnexoParaarquivopdf()
+    public function euClicoEmEscolherArquivoEditandoOAnexoPara($arg1)
     {
-        $this->attachFile(['name' => 'anexo'], 'arquivo.pdf');
+        $this->attachFile(['name' => 'anexo'], $arg1);
     }
 
    /**
-    * @Then Eu devo ver que o anexo mudou para 'arquivo.pdf'
+    * @Then Eu devo ver que o anexo mudou para :arg1
     */
-    public function euDevoVerQueOAnexoMudouParaarquivopdf()
+    public function euDevoVerQueOAnexoMudouPara($arg1)
     {
-        $this->dontSee('teste.pdf', '//table/tbody/tr'); 
+        $this->dontSee($arg1, '//table/tbody/tr'); 
     }
 /*==================================== feature usuario =======================
      */

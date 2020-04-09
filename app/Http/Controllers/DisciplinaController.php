@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Disciplina;
 use App\User;
+use Validator;
+use App\Http\Requests\DisciplinaRequest;
 
 class DisciplinaController extends Controller
 {
@@ -33,9 +35,12 @@ class DisciplinaController extends Controller
 
     }
 
-    public function salvar(Request $request) 
+    public function salvar(DisciplinaRequest $request) 
     {
+        $request->validated();
+
         $dados = $request->all();
+
         $this->disciplina->create($dados);
 
         return redirect()->route('auth.disciplinas');
@@ -49,8 +54,10 @@ class DisciplinaController extends Controller
 
     }
 
-    public function atualizar(Request $request, $identifier)
+    public function atualizar(DisciplinaRequest $request, $identifier)
     {
+        $request->validated();
+
         $dados = $request->all();
         $this->disciplina->find($identifier)->update($dados);
 
