@@ -18,7 +18,7 @@ Feature: usuario
          Given Eu crio um usuario para o teste
          And   Eu abro pagina de configuracao de usuario
          When  Eu clico em deletar registro
-        Then   Eu vejo que o registro do usuario foi removido
+         Then   Eu vejo que o registro do usuario foi removido
 
   Scenario: login de usuaio nao cadastrado
          Given Eu estou na pagina de login
