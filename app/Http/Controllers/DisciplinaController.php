@@ -37,7 +37,7 @@ class DisciplinaController extends Controller
 
     public function salvar(DisciplinaRequest $request) 
     {
-        $validated = $request->validated();
+        $request->validated();
 
         $dados = $request->all();
 
@@ -56,7 +56,7 @@ class DisciplinaController extends Controller
 
     public function atualizar(DisciplinaRequest $request, $identifier)
     {
-        $validated = $request->validated();
+        $request->validated();
 
         $dados = $request->all();
         $this->disciplina->find($identifier)->update($dados);
