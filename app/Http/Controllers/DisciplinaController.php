@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Disciplina;
 use App\User;
+use Validator;
 
 class DisciplinaController extends Controller
 {
@@ -36,6 +37,15 @@ class DisciplinaController extends Controller
     public function salvar(Request $request) 
     {
         $dados = $request->all();
+
+        $validarDados = Validator::make( $dados,
+                                    $this->disciplina::$rules,
+                                    $this->disciplina::$messages);
+
+        if($validarDados->fails()) {
+            return redirect()->back()->withErrors($validarDados->errors())->withInput();
+        }
+
         $this->disciplina->create($dados);
 
         return redirect()->route('auth.disciplinas');
