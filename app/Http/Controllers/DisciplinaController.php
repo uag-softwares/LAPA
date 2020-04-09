@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Disciplina;
 use App\User;
 use Validator;
+use App\Http\Requests\DisciplinaRequest;
 
 class DisciplinaController extends Controller
 {
@@ -34,17 +35,11 @@ class DisciplinaController extends Controller
 
     }
 
-    public function salvar(Request $request) 
+    public function salvar(DisciplinaRequest $request) 
     {
+        $validated = $request->validated();
+
         $dados = $request->all();
-
-        $validarDados = Validator::make( $dados,
-                                    $this->disciplina::$rules,
-                                    $this->disciplina::$messages);
-
-        if($validarDados->fails()) {
-            return redirect()->back()->withErrors($validarDados->errors())->withInput();
-        }
 
         $this->disciplina->create($dados);
 
@@ -59,8 +54,10 @@ class DisciplinaController extends Controller
 
     }
 
-    public function atualizar(Request $request, $identifier)
+    public function atualizar(DisciplinaRequest $request, $identifier)
     {
+        $validated = $request->validated();
+
         $dados = $request->all();
         $this->disciplina->find($identifier)->update($dados);
 
