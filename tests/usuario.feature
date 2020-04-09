@@ -15,7 +15,7 @@ Feature: usuario
     	 Then  Eu vejo que o registro foi criado com sucesso
 
   Scenario: remover registro do usuario logado 
-         Given Eu estou logado
+         Given Eu crio um usuario para o teste
          And   Eu abro pagina de configuracao de usuario
          When  Eu clico em deletar registro
         Then   Eu vejo que o registro do usuario foi removido
