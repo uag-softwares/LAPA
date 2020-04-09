@@ -6,6 +6,7 @@
     <h2>Configurações do Usuário</h2>
 
     <table class="table">
+
         <thead>
             <tr>
                 <th>Nome</th>
