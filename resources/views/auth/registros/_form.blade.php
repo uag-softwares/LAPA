@@ -37,6 +37,7 @@
             </span>
         @enderror
     </div>
+    @guest
     <div class="form-group">
         <label for="psw-repeat">Confirme a senha*</label>									
         <input id="password-confirm" type="password" class="form-control form-control-lg" name="password_confirmation" value="{{isset($user->password_confirmation) ? $user->password_confirmation: ''}}" required autocomplete="new-password">
@@ -46,6 +47,7 @@
             </span>
         @enderror
    </div>
+   @endguest
    <div class="form-group {{ $errors->has('isAdmin') ? ' has-error' : '' }}">
         <label for="adm">Administrador?</label>
           <select class="form-control form-control-lg" name="isAdmin" id="isAdmin">

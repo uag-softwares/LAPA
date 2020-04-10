@@ -115,10 +115,14 @@ class RegisterController extends Controller
         $data->validated();
 	$dados = $data->all();
         $user=Auth::user();
-	$dados['password']= Hash::make($dados['password']);
-        $user->update($dados);
-	return redirect()->route('auth.registros')->with('success','Usuário editado com sucesso'); 
-             
+        if(Hash::check($dados['password'], $user->password)){
+		$dados['password']= $user->password;
+        	$user->update($dados);
+		return redirect()->route('auth.registros')->with('success','Usuário editado com sucesso'); 
+        }  
+        else{
+		return redirect()->back()->withErrors(['password' => 'Senha incorreta']);
+        }   
 
     }
 
