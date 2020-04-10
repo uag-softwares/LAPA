@@ -27,7 +27,7 @@ class AcceptanceTester extends \Codeception\Actor
     {
         $this->amOnPage('/register');
         $this->fillField(['name' => 'name'], 'Rodrigo');
-        $this->fillField(['name' => 'cpf'], '11111111111');
+        $this->fillField(['name' => 'cpf'], '111.111.111-11');
         $this->fillField(['name' => 'email'], 'admin@admin.com');
         $this->fillField(['name' => 'password'], '12345678');
         $this->fillField(['name' => 'password_confirmation'], '12345678');
