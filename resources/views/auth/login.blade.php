@@ -7,20 +7,16 @@
         <div class="container">
             <h2>Login</h2>
             <div class="form-group">
-                <input id="email" type="email" placeholder="E-mail" class="form-control form-control-lg @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                <input id="email" type="email" placeholder="E-mail" class="form-control form-control-lg" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
-                @error('E-mail')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
+               
             </div>
             <div class="form-group">
-                <input id="password" type="password" placeholder="Senha" class="form-control form-control-lg @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" >
+                <input id="password" type="password" placeholder="Senha" class="form-control form-control-lg @error('email') is-invalid @enderror" name="password" required autocomplete="current-password" >
 
-                @error('Senha')
+                @error('email')
                     <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
+                        <strong>Verifique se seu e-mail e senha estão corretos</strong>
                     </span>
                 @enderror
             </div>
