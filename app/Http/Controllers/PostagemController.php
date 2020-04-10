@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Postagem;
 use App\User;
+use Validator;
+use App\Http\Requests\PostagemRequest;
 
 class PostagemController extends Controller
 {
@@ -33,8 +35,9 @@ class PostagemController extends Controller
         return view('auth.postagem.adicionar', compact('users'));
     }
 
-    public function salvar(Request $request) 
+    public function salvar(PostagemRequest $request) 
     {
+        $request->validated();
         $dados = $request->all();
 
         if($request->hasFile('anexo')) {
@@ -53,12 +56,12 @@ class PostagemController extends Controller
     public function editar($identifier) 
     {
         $registro = $this->postagem->find($identifier);
-        // $users = $this->user->all();
         return view('auth.postagem.editar', compact('registro'));        
     }
 
-    public function atualizar(Request $request, $identifier)
+    public function atualizar(PostagemRequest $request, $identifier)
     {
+        $request->validated();
         $dados = $request->all();
 
         if($request->hasFile('anexo')) {
