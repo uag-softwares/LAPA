@@ -215,15 +215,6 @@ class AcceptanceTester extends \Codeception\Actor
         $this->fillField(['name' => 'descricao'], $arg1);
     }
 
-    /**
-     * @When Eu preencho o campo data com :arg1
-     */
-    public function euPreenchoOCampoDataCom($arg1)
-    {
-        $date = strtotime($arg1);
-        $this->fillField(['name' => 'data'], date('Y-m-d', $date));  
-    }
-
 
    /**
     * @When Eu clico em Escolher arquivo e escolho :arg1
@@ -299,23 +290,6 @@ class AcceptanceTester extends \Codeception\Actor
         $this->dontSee($arg1);
     }
 
-    /**
-     * @When Eu edito o campo data com :arg1
-     */
-    public function euEditoOCampoDataCom($arg1)
-    {
-        $date = strtotime($arg1);
-        $this->fillField(['name' => 'data'], date('Y-m-d', $date));  
-    }
-
-   /**
-    * @Then Eu devo ver que a data mudou para :arg1
-    */
-    public function euDevoVerQueADataMudouPara($arg1)
-    {
-        $date = strtotime($arg1);
-        $this->see(date('Y-m-d', $date), '//table/tbody/tr');
-    }
 
     /**
      * @When Eu clico em Escolher arquivo editando o anexo para :arg1

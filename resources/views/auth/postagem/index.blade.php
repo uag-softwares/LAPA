@@ -20,7 +20,7 @@
                     <tr>
                         <td>{{ $registro->titulo }}</td>
                         <td>{{ $registro->descricao }}</td>
-                        <td>{{ date('Y-m-d', strtotime($registro->data)) }}</td>
+                        <td>{{ $registro->created_at }}
                         <td>{{ $registro->anexo}}</td>
                         <td>
                             <a href="{{ route('auth.postagem.editar', $registro->id) }}" class="btn">Editar</a>
