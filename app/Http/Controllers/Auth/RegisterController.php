@@ -41,7 +41,7 @@ class RegisterController extends Controller
      * @return void
      */
     
-     public function __construct(User $usuario,Auth $auth, Hash $hash) 
+     public function __construct(User $usuario) 
     {
        $this->middleware('auth', ['except' => [
             'register','showRegistrationForm']]);
