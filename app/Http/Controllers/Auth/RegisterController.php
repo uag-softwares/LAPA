@@ -120,9 +120,9 @@ class RegisterController extends Controller
         	$user->update($dados);
 		return redirect()->route('auth.registros')->with('success','Usuário editado com sucesso'); 
         }  
-        else{
-		return redirect()->back()->withErrors(['password' => 'Senha incorreta']);
-        }   
+        
+	return redirect()->back()->withErrors(['password' => 'Senha incorreta']);
+          
 
     }
 
