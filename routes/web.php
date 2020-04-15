@@ -39,6 +39,13 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('/auth/postagem/editar/{id}', ['as' => 'auth.postagem.editar', 'uses' => 'PostagemController@editar'], function () {});
 	Route::put('/auth/postagem/atualizar/{id}', ['as' => 'auth.postagem.atualizar', 'uses' => 'PostagemController@atualizar'], function () {});
 	Route::get('/auth/postagem/deletar/{id}', ['as' => 'auth.postagem.deletar', 'uses' => 'PostagemController@deletar'], function () {});
+
+	Route::get('/auth/categorias', ['as' => 'auth.categorias', 'uses' => 'CategoriaController@index'], function () {});
+	Route::get('/auth/categoria/adicionar', ['as' => 'auth.categoria.adicionar', 'uses' => 'CategoriaController@adicionar'], function () {});
+	Route::post('/auth/categoria/salvar', ['as' => 'auth.categoria.salvar', 'uses' => 'CategoriaController@salvar'], function () {});
+	Route::get('/auth/categoria/editar/{id}', ['as' => 'auth.categoria.editar', 'uses' => 'CategoriaController@editar'], function () {});
+	Route::put('/auth/categoria/atualizar/{id}', ['as' => 'auth.categoria.atualizar', 'uses' => 'CategoriaController@atualizar'], function () {});
+	Route::get('/auth/categoria/deletar/{id}', ['as' => 'auth.categoria.deletar', 'uses' => 'CategoriaController@deletar'], function () {});
   
 });
 
