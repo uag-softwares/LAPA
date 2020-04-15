@@ -52,7 +52,7 @@ class AcceptanceTester extends \Codeception\Actor
     {
         $this->amOnPage('/auth/registros');
         $this->seeInCurrentUrl('/auth/registros');
-        $this->click('Deletar', '//table/tbody/tr/td[text()="Rodrigo"]/ancestor::tr/td[5]');
+        $this->click('Deletar', '//table/tbody/tr/td[text()="Rodrigo"]/ancestor::tr/td[4]');
         //$this->seeInPopup('Tem certeza que deseja excluir a conta?'); // Para teste no chromedriver
         //$this->acceptPopup(); // Para teste no chromedriver
         $this->dontSee('Rodrigo');
