@@ -272,6 +272,7 @@ class AcceptanceTester extends \Codeception\Actor
         $this->see($arg1, '//table/tbody/tr');
     }
 
+
     /**
      * @Given Eu clico em Deletar a postagem :arg1
      */
@@ -299,13 +300,38 @@ class AcceptanceTester extends \Codeception\Actor
         $this->attachFile(['name' => 'anexo'], $arg1);
     }
 
+
    /**
-    * @Then Eu devo ver que o anexo mudou para :arg1
+    * @Then Eu vejo que a postagem com titulo :arg1 nao foi adicionada
     */
-    public function euDevoVerQueOAnexoMudouPara($arg1)
+    public function euVejoQueAPostagemComTituloNaoFoiAdicionada($arg1)
     {
-        $this->dontSee($arg1, '//table/tbody/tr'); 
+        $this->dontSee($arg1);
     }
+
+    /**
+     * @Then Eu vejo a mensagem de erro :arg1
+     */
+    public function euVejoAMensagemDeErro($arg1)
+    {
+        $this->see($arg1);
+    }
+
+    /**
+     * @Then Eu devo ver a mensagem de erro :arg1
+     */
+    public function euDevoVerAMensagemDeErro($arg1)
+    {
+        $this->see($arg1);
+    }
+
+    
+
+
+
+
+
+   
 /*==================================== feature usuario =======================
      */
      /**
@@ -424,7 +450,7 @@ class AcceptanceTester extends \Codeception\Actor
      }
 
     
-      /**
+    /**
      * @Then Eu vejo que o usuario com nome :arg1 nao foi salvo
      */
      public function euVejoQueOUsuarioComNomeNaoFoiSalvo($arg1)
