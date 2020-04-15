@@ -48,10 +48,4 @@
         @enderror
    </div>
    @endguest
-   <div class="form-group {{ $errors->has('isAdmin') ? ' has-error' : '' }}">
-        <label for="adm">Administrador?</label>
-          <select class="form-control form-control-lg" name="isAdmin" id="isAdmin">
-                <option value="1" @if (old('active') == 1) selected @endif>Sim</option>
-                <option value="0" @if (old('active') == 0) selected @endif>Não</option>
-        </select>
-    </div>
+  

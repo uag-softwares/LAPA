@@ -31,7 +31,6 @@ class AcceptanceTester extends \Codeception\Actor
         $this->fillField(['name' => 'email'], 'admin@admin.com');
         $this->fillField(['name' => 'password'], '12345678');
         $this->fillField(['name' => 'password_confirmation'], '12345678');
-        $this->selectOption(['name' => 'isAdmin'], 'Sim');
         $this->click('Cadastrar');
     }
 
@@ -357,14 +356,7 @@ class AcceptanceTester extends \Codeception\Actor
      {
          $this->fillField(['name' => 'cpf'], $arg1);
      }
-     /**
-     * @When Eu seleciono :arg1 usuario como administrador
-     */
-     public function euSelecionoUsuarioComoAdministrador($arg1)
-     {
-         $this->selectOption(['name' => 'isAdmin'], $arg1);
-     }
-
+    
 
     /**
      * @When Eu clico em  criar registro de usuario
