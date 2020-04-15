@@ -41,8 +41,8 @@ class MaterialController extends Controller
             $anexo = $request->file('anexo');
             $num = rand(1111,9999);
             $dir = 'img/materiais/';
-            $ex = $anexo->guessClientExtension();
-            $nomeAnexo = 'anexo_'.$num.'.'.$ex;
+            $exAnexo = $anexo->guessClientExtension();
+            $nomeAnexo = 'anexo_'.$num.'.'.$exAnexo;
             $anexo->move($dir, $nomeAnexo);
             $dados['anexo'] = $dir.'/'.$nomeAnexo;
         }
@@ -66,8 +66,8 @@ class MaterialController extends Controller
             $anexo = $request->file('anexo');
             $num = rand(1111,9999);
             $dir = 'img/materiais';
-            $ex = $anexo->guessClientExtension(); 
-            $nomeAnexo = 'anexo_'.$num.'.'.$ex;
+            $exAnexo = $anexo->guessClientExtension(); 
+            $nomeAnexo = 'anexo_'.$num.'.'.$exAnexo;
             $anexo->move($dir, $nomeAnexo);
             $dados['anexo'] = $dir.'/'.$nomeAnexo;
         }
