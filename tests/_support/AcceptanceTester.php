@@ -271,6 +271,7 @@ class AcceptanceTester extends \Codeception\Actor
         $this->see($arg1, '//table/tbody/tr');
     }
 
+
     /**
      * @Given Eu clico em Deletar a postagem :arg1
      */
@@ -298,13 +299,32 @@ class AcceptanceTester extends \Codeception\Actor
         $this->attachFile(['name' => 'anexo'], $arg1);
     }
 
+
    /**
-    * @Then Eu devo ver que o anexo mudou para :arg1
+    * @Then Eu vejo que a postagem com titulo :arg1 nao foi adicionada
     */
-    public function euDevoVerQueOAnexoMudouPara($arg1)
+    public function euVejoQueAPostagemComTituloNaoFoiAdicionada($arg1)
     {
-        $this->dontSee($arg1, '//table/tbody/tr'); 
+        $this->dontSee($arg1);
     }
+
+    /**
+     * @Then Eu vejo a mensagem de erro :arg1
+     */
+    public function euVejoAMensagemDeErro($arg1)
+    {
+        $this->see($arg1);
+    }
+
+    /**
+     * @Then Eu devo ver a mensagem de erro :arg1
+     */
+    public function euDevoVerAMensagemDeErro($arg1)
+    {
+        $this->see($arg1);
+    }
+
+       
 /*==================================== feature usuario =======================
      */
      /**
@@ -414,9 +434,8 @@ class AcceptanceTester extends \Codeception\Actor
          
          $this->click('Login');
      }
-
-    
-      /**
+ 
+    /**
      * @Then Eu vejo que o usuario com nome :arg1 nao foi salvo
      */
      public function euVejoQueOUsuarioComNomeNaoFoiSalvo($arg1)
@@ -432,6 +451,86 @@ class AcceptanceTester extends \Codeception\Actor
          $this->amOnPage('/login');
      }
       
+
+
+
+
+
+
+
+   
+     /**
+     * @Given Eu estou na pagina de categorias
+     */
+    public function euEstouNaPaginaDeCategorias()
+    {
+        $this->amOnPage('/auth/categorias');   
+    }
+
+     /**
+    * @Then Eu devo estar na pagina de criar categoria
+    */
+    public function euDevoEstarNaPaginaDeCriarCategoria()
+    {
+        $this->amOnPage('/auth/categoria/adicionar');
+    }
+
+    /**
+    * @Then Eu devo ver a categoria :arg1
+    */
+    public function euDevoVerACategoria($arg1)
+    {
+        $this->see($arg1);
+    }
+     
+
+    /**
+     * @Given Eu clico em Editar a categoria :arg1
+     */
+    public function euClicoEmEditarACategoria($arg1)
+    {
+        $this->click('Editar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[3]');
+    }
+
+    /**
+     * @When Eu seleciono a disciplina :arg1
+     */
+    public function euSelecionoADisciplina($arg1)
+    {
+        $this->selectOption(['name' => 'disciplina_id'], $arg1);
+    }
+
+   /**
+    * @When Eu edito a disciplina para :arg1
+    */
+    public function euEditoADisciplinaPara($arg1)
+    {
+        $this->selectOption(['name' => 'disciplina_id'], $arg1);
+    }
+
+    /**
+     * @Given Eu clico em Deletar a categoria :arg1
+     */
+    public function euClicoEmDeletarACategoria($arg1)
+    {
+        $this->click('Deletar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[3]');   
+    }
+
+   /**
+    * @Then Eu nao vejo categoria :arg1
+    */
+    public function euNaoVejoCategoria($arg1)
+    {
+       $this->dontSee($arg1);
+    }
+
+    /**
+     * @Then Eu devo estar na pagina de editar a categoria
+     */
+    public function euDevoEstarNaPaginaDeEditarACategoria()
+    {
+        $this->amOnPage('/auth/categoria/editar');
+    }
 
 
 
