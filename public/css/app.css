@@ -76,3 +76,16 @@ a.btn:hover, button.btn:hover {
 a.btn.btn-danger:hover, button.btn.btn-danger:hover {
     background-color: #bd2a39;
 }
+
+/* Pagina dos detalhes da visita */
+div.container div.visita-detalhes {
+    text-align: start;
+    border-radius: 10px;
+}
+
+div.container div.visita-msg {
+    padding: 1em;
+    text-align: start;
+    border: 1px solid #00c853;
+    border-radius: 10px;
+}
