@@ -497,49 +497,48 @@ class AcceptanceTester extends \Codeception\Actor
      */
     public function euClicoEmEditarACategoria($arg1)
     {
-        $this->click('Editar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[5]');
+        $this->click('Editar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[3]');
+    }
+
+    /**
+     * @When Eu seleciono a disciplina :arg1
+     */
+    public function euSelecionoADisciplina($arg1)
+    {
+        $this->selectOption(['name' => 'disciplina_id'], $arg1);
     }
 
    /**
-    * @Then Eu devo estar na pagina de editar a categoria
+    * @When Eu edito a disciplina para :arg1
     */
+    public function euEditoADisciplinaPara($arg1)
+    {
+        $this->selectOption(['name' => 'disciplina_id'], $arg1);
+    }
+
+    /**
+     * @Given Eu clico em Deletar a categoria :arg1
+     */
+    public function euClicoEmDeletarACategoria($arg1)
+    {
+        $this->click('Deletar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[3]');   
+    }
+
+   /**
+    * @Then Eu nao vejo categoria :arg1
+    */
+    public function euNaoVejoCategoria($arg1)
+    {
+       $this->dontSee($arg1);
+    }
+
+    /**
+     * @Then Eu devo estar na pagina de editar a categoria
+     */
     public function euDevoEstarNaPaginaDeEditarACategoria()
     {
         $this->amOnPage('/auth/categoria/editar');
     }
-
-   /**
-    * @When Eu edito o nome  da categoria para :arg1
-    */
-    public function euEditoONomeDaCategoriaPara($arg1)
-    {
-        $this->fillField(['name' => 'nome'], $arg1);
-    }
-
-   /**
-    * @Then Eu devo ver a categoria com nome :arg1
-    */
-    public function euDevoVerACategoriaComNome($arg1)
-    {
-        $this->see($arg1);
-    }
-
-   /**
-    * @Given Eu clico em Deletar a categoria :arg1
-    */
-    public function euClicoEmDeletarACategoria($arg1)
-    {
-        $this->click('Deletar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[5]');
-    }
-
-   /**
-    * @Then Eu nao vejo a categoria com nome :arg1
-    */
-    public function euNaoVejoACategoriaComNome($arg1)
-    {
-        $this->dontSee($arg1); 
-    }
-
 
 
 
