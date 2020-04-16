@@ -16,7 +16,7 @@
                         <th>Ações</th>
                     </tr>
                </thead>
-                <tbody">
+                <tbody>
                     @foreach ($registros as $registro)
                         <tr>
                             <td>{{ $registro->titulo }}</td>
@@ -25,7 +25,7 @@
                             <td>{{ $registro->anexo}}</td>
                             <td>{{ $registro->publicado ? "Sim" : "Não" }}</td>
                             <td>
-                                <a href="{{ route('auth.atla.editar',$registro->id) }}">Editar</a>
+                                <a href="{{ route('auth.atla.editar',$registro->id) }}" class="btn">Editar</a>
                                 <a href="{{ route('auth.atla.deletar', $registro->id) }}" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar esse atla');">Deletar</a>
                             </td>
                         </tr>

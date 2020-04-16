@@ -9,7 +9,7 @@ Feature: categoria
     And Eu clico em Adicionar
     Then Eu devo estar na pagina de criar categoria
     When Eu preencho o campo nome com "Sistema nervoso"
-    And Eu seleciono a disciplina "Patologia"
+    And Eu seleciono a disciplina "1"
     And Eu clico em Adicionar
     Then Eu devo ver a categoria "Sistema nervoso"
 

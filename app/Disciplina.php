@@ -21,8 +21,9 @@ class Disciplina extends Model
 
     public function categoria() {
         return $this->hasMany('App\Categoria');
-  
-    public function materiais() {
+    }
+
+    public function material() {
         return $this->hasMany('App\Material');
 
     }
