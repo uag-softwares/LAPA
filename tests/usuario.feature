@@ -10,7 +10,6 @@ Feature: usuario
     	 And   Eu preencho o campo confirmacao de senha "12345678"
     	 And   Eu preencho o campo nome "iris viana"
     	 And   Eu preencho o campo cpf "809.098.098-00"
-	 And   Eu seleciono "Sim" usuario como administrador
     	 And   Eu clico em  criar registro de usuario
     	 Then  Eu vejo que o registro foi criado com sucesso
 
@@ -34,7 +33,6 @@ Feature: usuario
     	 And   Eu preencho o campo confirmacao de senha "12345678"
     	 And   Eu preencho o campo nome "iris viana"
     	 And   Eu preencho o campo cpf "809.098.098-00"
-	 And   Eu seleciono "Sim" usuario como administrador
     	 And   Eu clico em  criar registro de usuario
     	 Then  Eu vejo que o usuario com nome "iris viana" nao foi salvo
 
