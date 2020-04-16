@@ -1,13 +1,13 @@
         <div id="app">
 
             <header class="d-flex px-5 justify-content-around text-center align-items-center">
-                <img class="d-none d-md-block" src="{{ asset('img/logo.png') }}" alt="">
+                <img class="d-none d-md-block my-4" style="height:200px;" src="{{ asset('img/lapa-icon.png') }}" alt="">
                 <div class="title">
                     <h2>Laboratório de Anatomia e Patologia Animal</h2>
                     <h3>Medicina Veterinária</h3>
                     <h3>Universidade Federal do Agreste de Pernambuco</h3>
                 </div>
-                <img class="d-none d-md-block" src="{{ asset('img/logo.png') }}" alt="">
+                <img class="d-none d-md-block my-4" style="height:200px;" src="{{ asset('img/logo.png') }}" alt="">
             </header>
 
             <nav class="navbar navbar-expand-lg navbar-custom">
@@ -21,7 +21,7 @@
                         <i class="fas fa-bars"></i>
                     </button>
 
-                    <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                         <ul class="navbar-nav">
                             <li class="nav-item">
                                 <a href="#" class="nav-link">Atlas Interativo</a>

@@ -40,6 +40,12 @@ Route::middleware(['auth'])->group(function () {
 	Route::put('/auth/postagem/atualizar/{id}', ['as' => 'auth.postagem.atualizar', 'uses' => 'PostagemController@atualizar'], function () {});
 	Route::get('/auth/postagem/deletar/{id}', ['as' => 'auth.postagem.deletar', 'uses' => 'PostagemController@deletar'], function () {});
   
+	Route::get('/auth/visitas', ['as' => 'auth.visitas', 'uses' => 'VisitaController@index'], function() {});
+	Route::get('/auth/visita/adicionar', ['as' => 'auth.visita.adicionar', 'uses' => 'VisitaController@adicionar'], function() {});
+	Route::post('/auth/visita/salvar', ['as' => 'auth.visita.salvar', 'uses' => 'VisitaController@salvar'], function() {});
+	Route::get('/auth/visita/editar/{id}', ['as' => 'auth.visita.editar', 'uses' => 'VisitaController@editar'], function() {});
+	Route::put('/auth/visitas/atualizar/{id}', ['as' => 'auth.visita.atualizar', 'uses' => 'VisitaController@atualizar'], function() {});
+	Route::get('/auth/visitas/deletar/{id}', ['as' => 'auth.visita.deletar', 'uses' => 'VisitaController@deletar'], function() {});
 });
 
 Route::get('/home', 'HomeController@index')->name('home');

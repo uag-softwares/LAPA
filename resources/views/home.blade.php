@@ -25,6 +25,9 @@
                         <a href="#" class="btn">
                             {{ __('Agenda') }}
                         </a>
+                        <a href="{{ route('auth.visitas') }}" class="btn">
+                            {{ __('Visitas') }}
+                        </a>
                         <a href="#" class="btn">
                             {{ __('Quem somos') }}
                         </a>
