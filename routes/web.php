@@ -46,6 +46,13 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('/auth/categoria/editar/{id}', ['as' => 'auth.categoria.editar', 'uses' => 'CategoriaController@editar'], function () {});
 	Route::put('/auth/categoria/atualizar/{id}', ['as' => 'auth.categoria.atualizar', 'uses' => 'CategoriaController@atualizar'], function () {});
 	Route::get('/auth/categoria/deletar/{id}', ['as' => 'auth.categoria.deletar', 'uses' => 'CategoriaController@deletar'], function () {});
+
+	Route::get('/auth/atlas', ['as' => 'auth.atlas', 'uses' => 'AtlaController@index'], function () {});
+	Route::get('/auth/atla/adicionar', ['as' => 'auth.atla.adicionar', 'uses' => 'AtlaController@adicionar'], function () {});
+	Route::post('/auth/atla/salvar', ['as' => 'auth.atla.salvar', 'uses' => 'AtlaController@salvar'], function () {});
+	Route::get('/auth/atla/editar/{id}', ['as' => 'auth.atla.editar', 'uses' => 'AtlaController@editar'], function () {});
+	Route::put('/auth/atla/atualizar/{id}', ['as' => 'auth.atla.atualizar', 'uses' => 'AtlaController@atualizar'], function () {});
+	Route::get('/auth/atla/deletar/{id}', ['as' => 'auth.atla.deletar', 'uses' => 'AtlaController@deletar'], function () {});
   
 });
 

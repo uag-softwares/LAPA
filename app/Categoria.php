@@ -12,7 +12,11 @@ class categoria extends Model
     * @var array
     */
     protected $fillable = [
-        'nome',
+        'nome', 'disciplina_id',
     ];
+
+    public function disciplina() {
+        return $this->belongsTo('App\Disciplina');
+    }
 
 }

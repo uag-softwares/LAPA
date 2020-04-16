@@ -25,6 +25,7 @@ class CategoriaRequest extends FormRequest
     {
         return [
             'nome' => 'required|min:3',
+            'disciplina_id' => 'integer|nullable',
             
         ];
     }
@@ -39,6 +40,7 @@ class CategoriaRequest extends FormRequest
         return [
             'nome.required' => 'O nome da categoria é obrigatório',
             'nome.min' => 'O tamanho mínimo do nome é 3 letras',
+            'user_id' => 'A disciplina deve estar cadastrada',
             
         ];
     }

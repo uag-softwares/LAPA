@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Validator;
 use App\Categoria;
+use App\Disciplina;
 use App\Http\Requests\CategoriaRequest;
 
 class CategoriaController extends Controller
@@ -12,12 +13,14 @@ class CategoriaController extends Controller
     
     // Model de categoria adicionado ao controller para evitar uso estatico
     protected $categoria;
+    protected $disciplina;
     
 
-    public function __construct(Categoria $categoria)
+    public function __construct(Categoria $categoria, Disciplina $disciplina)
     {
         $this->middleware('auth');
         $this->categoria = $categoria;
+        $this->disciplina = $disciplina;
         
     }
 
@@ -29,7 +32,8 @@ class CategoriaController extends Controller
 
     public function adicionar() 
     {
-        return view('auth.categorias.adicionar');
+        $disciplinas = $this->disciplina->all();
+        return view('auth.categorias.adicionar', compact('disciplinas'));
 
     }
 
@@ -47,7 +51,8 @@ class CategoriaController extends Controller
     public function editar($identifier) 
     {
         $registro = $this->categoria->find($identifier);
-        return view('auth.categorias.editar', compact('registro'));        
+        $disciplinas = $this->disciplina->all();
+        return view('auth.categorias.editar', compact('registro', 'disciplinas'));        
 
     }
 

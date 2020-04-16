@@ -4,22 +4,18 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Disciplina extends Model
+class Atla extends Model
 {
-    /**
+   /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'nome', 'user_id',
+        'titulo', 'descricao', 'anexo', 'publicado', 'categoria_id',
     ];
 
     public function user() {
-        return $this->belongsTo('App\User');
-    }
-
-    public function categoria() {
-        return $this->hasMany('App\Categoria');
-    }
+        return $this->belongsTo('App\Categoria');
+    } 
 }
