@@ -18,4 +18,7 @@ class Disciplina extends Model
     public function user() {
         return $this->belongsTo('App\User');
     }
+    public function materiais() {
+        return $this->hasMany('App\Material');
+    }
 }

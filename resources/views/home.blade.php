@@ -22,6 +22,9 @@
                         <a href="{{ route('auth.postagens') }}" class="btn">
                             {{ __('Postagens') }}
                         </a>
+			<a href="{{ route('auth.materiais') }}" class="btn">
+                            {{ __('Materiais') }}
+                        </a>
                         <a href="#" class="btn">
                             {{ __('Agenda') }}
                         </a>

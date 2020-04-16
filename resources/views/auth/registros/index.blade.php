@@ -10,7 +10,6 @@
             <tr>
                 <th>Nome</th>
                 <th>Cpf</th>
-                <th>Administrador?</th>
                 <th>E-mail</th>
                 <th>Ações</th>
             </tr>
@@ -19,7 +18,6 @@
             <tr>
                 <td>{{ Auth::user()->name }}</td>
                 <td>{{Auth::user()->cpf}}</td>
-                <td>{{Auth::user()->isAdmin}}</td>
                 <td>{{Auth::user()->email}}</td>
                 <td>
                     <a class="btn" href="{{ route('auth.registros.editar') }}">Editar</a>

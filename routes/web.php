@@ -39,6 +39,13 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('/auth/postagem/editar/{id}', ['as' => 'auth.postagem.editar', 'uses' => 'PostagemController@editar'], function () {});
 	Route::put('/auth/postagem/atualizar/{id}', ['as' => 'auth.postagem.atualizar', 'uses' => 'PostagemController@atualizar'], function () {});
 	Route::get('/auth/postagem/deletar/{id}', ['as' => 'auth.postagem.deletar', 'uses' => 'PostagemController@deletar'], function () {});
+        
+	Route::get('/auth/materiais', ['as' => 'auth.materiais', 'uses' => 'MaterialController@index'], function () {});
+	Route::get('/auth/materiais/adicionar', ['as' => 'auth.material.adicionar', 'uses' => 'MaterialController@adicionar'], function () {});
+	Route::post('/auth/materiais/salvar', ['as' => 'auth.material.salvar', 'uses' => 'MaterialController@salvar'], function () {});
+	Route::get('/auth/materiais/editar/{id}', ['as' => 'auth.material.editar', 'uses' => 'MaterialController@editar'], function () {});
+	Route::put('/auth/materiais/atualizar/{id}', ['as' => 'auth.material.atualizar', 'uses' => 'MaterialController@atualizar'], function () {});
+	Route::get('/auth/materiais/deletar/{id}', ['as' => 'auth.material.deletar', 'uses' => 'MaterialController@deletar'], function () {});
   
 	Route::get('/auth/visitas', ['as' => 'auth.visitas', 'uses' => 'VisitaController@index'], function() {});
 	Route::get('/auth/visita/adicionar', ['as' => 'auth.visita.adicionar', 'uses' => 'VisitaController@adicionar'], function() {});
