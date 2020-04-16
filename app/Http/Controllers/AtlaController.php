@@ -48,8 +48,8 @@ class AtlaController extends Controller
             $anexo = $request->file('anexo');
             $num = rand(1111,9999);
             $dir = 'img/atlas/';
-            $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
-            $nomeAnexo = 'anexo_'.$num.'.'.$ex;
+            $extensao = $anexo->guessClientExtension(); //Define a extensao do arquivo
+            $nomeAnexo = 'anexo_'.$num.'.'.$extensao;
             $anexo->move($dir, $nomeAnexo);
             $dados['anexo'] = $dir.'/'.$nomeAnexo;
         }
