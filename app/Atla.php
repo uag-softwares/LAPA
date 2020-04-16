@@ -15,7 +15,7 @@ class Atla extends Model
         'titulo', 'descricao', 'anexo', 'publicado', 'categoria_id',
     ];
 
-    public function user() {
+    public function categoria() {
         return $this->belongsTo('App\Categoria');
     } 
 }

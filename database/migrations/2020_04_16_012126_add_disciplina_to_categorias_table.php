@@ -14,7 +14,7 @@ class AddDisciplinaToCategoriasTable extends Migration
     public function up()
     {
         Schema::table('categorias', function (Blueprint $table) {
-            $table->unsignedBigInteger('disciplina_id')->nullable();
+            $table->unsignedBigInteger('disciplina_id');
             $table->foreign('disciplina_id')
                 ->references('id')
                 ->on('disciplinas')

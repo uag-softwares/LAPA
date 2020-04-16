@@ -25,6 +25,9 @@
                         <a href="{{ route('auth.categorias') }}" class="btn">
                             {{ __('Categorias') }}
                         </a>
+                        <a href="{{ route('auth.atlas') }}" class="btn">
+                            {{ __('Atlas') }}
+                        </a>
                         <a href="#" class="btn">
                             {{ __('Agenda') }}
                         </a>

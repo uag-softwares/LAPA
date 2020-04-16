@@ -14,7 +14,16 @@ class CreateAtlasTable extends Migration
     public function up()
     {
         Schema::create('atlas', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('titulo');
+            $table->longText('descricao');
+            $table->string('anexo')->nullable();
+            $table->boolean('publicado')->nullable();
+            $table->unsignedBigInteger('categoria_id')->nullable();
+            $table->foreign('categoria_id')
+                ->references('id')
+                ->on('categorias')
+                ->onDelete('cascade');  
             $table->timestamps();
         });
     }
