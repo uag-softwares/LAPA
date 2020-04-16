@@ -22,11 +22,15 @@
                         <a href="{{ route('auth.postagens') }}" class="btn">
                             {{ __('Postagens') }}
                         </a>
+
                         <a href="{{ route('auth.categorias') }}" class="btn">
                             {{ __('Categorias') }}
                         </a>
                         <a href="{{ route('auth.atlas') }}" class="btn">
                             {{ __('Atlas') }}
+                        </a>
+                        <a href="{{ route('auth.materiais') }}" class="btn">
+                            {{ __('Materiais') }}
                         </a>
                         <a href="#" class="btn">
                             {{ __('Agenda') }}

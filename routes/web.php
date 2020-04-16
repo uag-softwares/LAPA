@@ -53,6 +53,14 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('/auth/atla/editar/{id}', ['as' => 'auth.atla.editar', 'uses' => 'AtlaController@editar'], function () {});
 	Route::put('/auth/atla/atualizar/{id}', ['as' => 'auth.atla.atualizar', 'uses' => 'AtlaController@atualizar'], function () {});
 	Route::get('/auth/atla/deletar/{id}', ['as' => 'auth.atla.deletar', 'uses' => 'AtlaController@deletar'], function () {});
+        
+	Route::get('/auth/materiais', ['as' => 'auth.materiais', 'uses' => 'MaterialController@index'], function () {});
+	Route::get('/auth/materiais/adicionar', ['as' => 'auth.material.adicionar', 'uses' => 'MaterialController@adicionar'], function () {});
+	Route::post('/auth/materiais/salvar', ['as' => 'auth.material.salvar', 'uses' => 'MaterialController@salvar'], function () {});
+	Route::get('/auth/materiais/editar/{id}', ['as' => 'auth.material.editar', 'uses' => 'MaterialController@editar'], function () {});
+	Route::put('/auth/materiais/atualizar/{id}', ['as' => 'auth.material.atualizar', 'uses' => 'MaterialController@atualizar'], function () {});
+	Route::get('/auth/materiais/deletar/{id}', ['as' => 'auth.material.deletar', 'uses' => 'MaterialController@deletar'], function () {});
+
   
 });
 

@@ -93,7 +93,6 @@ class RegisterController extends Controller
         return $this->usuario->create([
             'name' => $data['name'],
 	    'cpf' => $data['cpf'],
-	    'isAdmin' => $data['isAdmin'],
 	    'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
