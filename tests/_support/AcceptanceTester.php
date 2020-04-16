@@ -325,13 +325,7 @@ class AcceptanceTester extends \Codeception\Actor
         $this->see($arg1);
     }
 
-    
-
-
-
-
-
-   
+       
 /*==================================== feature usuario =======================
      */
      /**
@@ -448,8 +442,7 @@ class AcceptanceTester extends \Codeception\Actor
          
          $this->click('Login');
      }
-
-    
+ 
     /**
      * @Then Eu vejo que o usuario com nome :arg1 nao foi salvo
      */
@@ -466,6 +459,87 @@ class AcceptanceTester extends \Codeception\Actor
          $this->amOnPage('/login');
      }
       
+
+
+
+
+
+
+
+   
+     /**
+     * @Given Eu estou na pagina de categorias
+     */
+    public function euEstouNaPaginaDeCategorias()
+    {
+        $this->amOnPage('/auth/categorias');   
+    }
+
+     /**
+    * @Then Eu devo estar na pagina de criar categoria
+    */
+    public function euDevoEstarNaPaginaDeCriarCategoria()
+    {
+        $this->amOnPage('/auth/categoria/adicionar');
+    }
+
+    /**
+    * @Then Eu devo ver a categoria :arg1
+    */
+    public function euDevoVerACategoria($arg1)
+    {
+        $this->see($arg1);
+    }
+     
+
+    /**
+     * @Given Eu clico em Editar a categoria :arg1
+     */
+    public function euClicoEmEditarACategoria($arg1)
+    {
+        $this->click('Editar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[5]');
+    }
+
+   /**
+    * @Then Eu devo estar na pagina de editar a categoria
+    */
+    public function euDevoEstarNaPaginaDeEditarACategoria()
+    {
+        $this->amOnPage('/auth/categoria/editar');
+    }
+
+   /**
+    * @When Eu edito o nome  da categoria para :arg1
+    */
+    public function euEditoONomeDaCategoriaPara($arg1)
+    {
+        $this->fillField(['name' => 'nome'], $arg1);
+    }
+
+   /**
+    * @Then Eu devo ver a categoria com nome :arg1
+    */
+    public function euDevoVerACategoriaComNome($arg1)
+    {
+        $this->see($arg1);
+    }
+
+   /**
+    * @Given Eu clico em Deletar a categoria :arg1
+    */
+    public function euClicoEmDeletarACategoria($arg1)
+    {
+        $this->click('Deletar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[5]');
+    }
+
+   /**
+    * @Then Eu nao vejo a categoria com nome :arg1
+    */
+    public function euNaoVejoACategoriaComNome($arg1)
+    {
+        $this->dontSee($arg1); 
+    }
+
 
 
 
