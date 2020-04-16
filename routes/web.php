@@ -39,6 +39,20 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('/auth/postagem/editar/{id}', ['as' => 'auth.postagem.editar', 'uses' => 'PostagemController@editar'], function () {});
 	Route::put('/auth/postagem/atualizar/{id}', ['as' => 'auth.postagem.atualizar', 'uses' => 'PostagemController@atualizar'], function () {});
 	Route::get('/auth/postagem/deletar/{id}', ['as' => 'auth.postagem.deletar', 'uses' => 'PostagemController@deletar'], function () {});
+
+	Route::get('/auth/categorias', ['as' => 'auth.categorias', 'uses' => 'CategoriaController@index'], function () {});
+	Route::get('/auth/categoria/adicionar', ['as' => 'auth.categoria.adicionar', 'uses' => 'CategoriaController@adicionar'], function () {});
+	Route::post('/auth/categoria/salvar', ['as' => 'auth.categoria.salvar', 'uses' => 'CategoriaController@salvar'], function () {});
+	Route::get('/auth/categoria/editar/{id}', ['as' => 'auth.categoria.editar', 'uses' => 'CategoriaController@editar'], function () {});
+	Route::put('/auth/categoria/atualizar/{id}', ['as' => 'auth.categoria.atualizar', 'uses' => 'CategoriaController@atualizar'], function () {});
+	Route::get('/auth/categoria/deletar/{id}', ['as' => 'auth.categoria.deletar', 'uses' => 'CategoriaController@deletar'], function () {});
+
+	Route::get('/auth/atlas', ['as' => 'auth.atlas', 'uses' => 'AtlaController@index'], function () {});
+	Route::get('/auth/atla/adicionar', ['as' => 'auth.atla.adicionar', 'uses' => 'AtlaController@adicionar'], function () {});
+	Route::post('/auth/atla/salvar', ['as' => 'auth.atla.salvar', 'uses' => 'AtlaController@salvar'], function () {});
+	Route::get('/auth/atla/editar/{id}', ['as' => 'auth.atla.editar', 'uses' => 'AtlaController@editar'], function () {});
+	Route::put('/auth/atla/atualizar/{id}', ['as' => 'auth.atla.atualizar', 'uses' => 'AtlaController@atualizar'], function () {});
+	Route::get('/auth/atla/deletar/{id}', ['as' => 'auth.atla.deletar', 'uses' => 'AtlaController@deletar'], function () {});
         
 	Route::get('/auth/materiais', ['as' => 'auth.materiais', 'uses' => 'MaterialController@index'], function () {});
 	Route::get('/auth/materiais/adicionar', ['as' => 'auth.material.adicionar', 'uses' => 'MaterialController@adicionar'], function () {});
@@ -46,7 +60,14 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('/auth/materiais/editar/{id}', ['as' => 'auth.material.editar', 'uses' => 'MaterialController@editar'], function () {});
 	Route::put('/auth/materiais/atualizar/{id}', ['as' => 'auth.material.atualizar', 'uses' => 'MaterialController@atualizar'], function () {});
 	Route::get('/auth/materiais/deletar/{id}', ['as' => 'auth.material.deletar', 'uses' => 'MaterialController@deletar'], function () {});
+
   
+	Route::get('/auth/visitas', ['as' => 'auth.visitas', 'uses' => 'VisitaController@index'], function() {});
+	Route::get('/auth/visita/adicionar', ['as' => 'auth.visita.adicionar', 'uses' => 'VisitaController@adicionar'], function() {});
+	Route::post('/auth/visita/salvar', ['as' => 'auth.visita.salvar', 'uses' => 'VisitaController@salvar'], function() {});
+	Route::get('/auth/visita/editar/{id}', ['as' => 'auth.visita.editar', 'uses' => 'VisitaController@editar'], function() {});
+	Route::put('/auth/visitas/atualizar/{id}', ['as' => 'auth.visita.atualizar', 'uses' => 'VisitaController@atualizar'], function() {});
+	Route::get('/auth/visitas/deletar/{id}', ['as' => 'auth.visita.deletar', 'uses' => 'VisitaController@deletar'], function() {});
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
