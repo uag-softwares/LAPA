@@ -176,6 +176,30 @@ class AcceptanceTester extends \Codeception\Actor
         $this->dontSee($arg1);
     }
 
+    /**
+     * @Then Eu devo ver que a disciplina com nome invalido não foi adicionada
+     */
+    public function euDevoVerQueADisciplinaComNomeInvalidoNoFoiAdicionada()
+    {
+        $this->see('O tamanho mínimo do nome é 3 letras');
+    }
+
+    /**
+     * @Then Eu devo ver que a disciplina sem nome não foi adicionada
+     */
+    public function euDevoVerQueADisciplinaSemNomeNoFoiAdicionada()
+    {
+        $this->see('O nome da disciplina é obrigatório');
+    }
+
+    /**
+     * @Then Eu devo ver a disciplina :arg1 sem professor
+     */
+    public function euDevoVerADisciplinaSemProfessor($arg1)
+    {
+        $this->see('Nenhum professor', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[2]');
+    }
+
 
     /*==================================== A partir daqui metodos para feature Postagem =======================
      */
