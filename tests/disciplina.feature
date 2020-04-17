@@ -49,13 +49,13 @@ Feature: disciplina
     And Eu seleciono o professor "Rodrigo"
     And Eu clico em Adicionar
     Then Eu devo ver que a disciplina com nome invalido não foi adicionada
-    And Eu deleto o usuario para o teste
 
   Scenario: criar uma disciplina valida sem professor
-    Given Eu crio um usuario para o teste
+    Given Eu estou logado
     And Eu estou na pagina de disciplinas
     And Eu clico em Adicionar
     Then Eu devo estar na pagina de criar disciplina
     When Eu preencho o campo nome com "Engenharia de Software"
     And Eu clico em Adicionar
     Then Eu devo ver a disciplina "Engenharia de Software" sem professor
+    And Eu deleto o usuario para o teste
