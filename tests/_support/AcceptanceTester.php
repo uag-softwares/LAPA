@@ -724,6 +724,85 @@ class AcceptanceTester extends \Codeception\Actor
      {
          $this->amOnPage('/');
      }
+      /**
+     * @Given Eu abro a pagina de materiais
+     */
+     public function euAbroAPaginaDeMateriais()
+     {
+        $this->amOnPage('/auth/materiais');
+     }   
+
+    /**
+     * @Then Eu devo estar na pagina de criar material
+     */
+     public function euDevoEstarNaPaginaDeCriarMaterial()
+     {
+         $this->amOnPage('/auth/materiais/adicionar');
+     }
+
+    /**
+     * @When Eu preencho o campo texto com :arg1
+     */
+     public function euPreenchoOCampoTextoCom($arg1)
+     {
+          $this->fillField(['name' => 'texto'], $arg1);
+     }
+
+    /**
+     * @Then Eu devo ver o material com titulo :arg1 criado com sucesso
+     */
+     public function euDevoVerOMaterialComTituloCriadoComSucesso($arg1)
+     {
+         $this->see($arg1, '//table/tbody/tr');
+     }
+      /**
+     * @Given Eu clico em Editar material com titulo :arg1
+     */
+     public function euClicoEmEditarMaterialComTitulo($arg1)
+     {
+         $this->click('Editar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[5]');
+     }
+
+    /**
+     * @Then Eu devo estar na pagina de editar material
+     */
+     public function euDevoEstarNaPaginaDeEditarMaterial()
+     {
+          $this->seeInCurrentUrl('/auth/materiais/editar/');
+         
+     }
+
+    /**
+     * @When Eu edito o campo titulo para :arg1
+     */
+     public function euEditoOCampoTituloPara($arg1)
+     {
+         $this->fillField(['name' => 'titulo'], $arg1);
+     }
+
+    /**
+     * @Then Eu devo ver uma menssagem de erro :arg1
+     */
+     public function euDevoVerUmaMenssagemDeErro($arg1)
+     {
+         $this->see($arg1);
+     }
+
+     /**
+     * @When Eu clico em Deletar material com titulo :arg1
+     */
+     public function euClicoEmDeletarMaterialComTitulo($arg1)
+     {
+         $this->click('Editar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[5]');
+     }
+
+    /**
+     * @Then Eu devo ver que o material com titulo :arg1 foi removido
+     */
+     public function euDevoVerQueOMaterialComTituloFoiRemovido($arg1)
+     {
+         $this->dontSee($arg1);
+     }
 
 
 
