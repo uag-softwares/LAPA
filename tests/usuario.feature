@@ -5,7 +5,7 @@ Feature: usuario
 
   Scenario: criar registro de usuario valido
 	 Given Eu estou na pagina de registro de usuario
-    	 When  Eu preencho o campo email com  "irisviana12@gmail.com"
+    	 When  Eu preencho o campo email com "irisviana12@gmail.com"
     	 And   Eu preencho o campo senha "12345678"
     	 And   Eu preencho o campo confirmacao de senha "12345678"
     	 And   Eu preencho o campo nome "iris viana"
@@ -21,14 +21,14 @@ Feature: usuario
 
   Scenario: login de usuaio nao cadastrado
          Given Eu estou na pagina de login
-    	 And   Eu preencho o campo email com  "irisviana12@gmail.com"
+    	 And   Eu preencho o campo email com "irisviana12@gmail.com"
 	 And   Eu preencho o campo senha "12345678"
     	 When  Eu clico em login
     	 Then  Eu vejo que o usuario nao esta logado
 
   Scenario: criar registro de usuario com email em branco
 	 Given Eu estou na pagina de registro de usuario
-    	 When  Eu preencho o campo email com  ""
+    	 When  Eu preencho o campo email com ""
     	 And   Eu preencho o campo senha "12345678"
     	 And   Eu preencho o campo confirmacao de senha "12345678"
     	 And   Eu preencho o campo nome "iris viana"

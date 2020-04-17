@@ -29,4 +29,33 @@ Feature: disciplina
     And Eu estou na pagina de disciplinas
     And Eu clico em Deletar a disciplina "IHC"
     Then Eu nao vejo a disciplina "IHC"
+
+  Scenario: criar uma disciplina com sem nome
+    Given Eu estou logado
+    And Eu estou na pagina de disciplinas
+    And Eu clico em Adicionar
+    Then Eu devo estar na pagina de criar disciplina
+    When Eu preencho o campo nome com ""
+    And Eu seleciono o professor "Rodrigo"
+    And Eu clico em Adicionar
+    Then Eu devo ver que a disciplina sem nome não foi adicionada
+
+  Scenario: criar uma disciplina com nome invalido
+    Given Eu estou logado
+    And Eu estou na pagina de disciplinas
+    And Eu clico em Adicionar
+    Then Eu devo estar na pagina de criar disciplina
+    When Eu preencho o campo nome com "ES"
+    And Eu seleciono o professor "Rodrigo"
+    And Eu clico em Adicionar
+    Then Eu devo ver que a disciplina com nome invalido não foi adicionada
+
+  Scenario: criar uma disciplina valida sem professor
+    Given Eu estou logado
+    And Eu estou na pagina de disciplinas
+    And Eu clico em Adicionar
+    Then Eu devo estar na pagina de criar disciplina
+    When Eu preencho o campo nome com "Engenharia de Software"
+    And Eu clico em Adicionar
+    Then Eu devo ver a disciplina "Engenharia de Software" sem professor
     And Eu deleto o usuario para o teste

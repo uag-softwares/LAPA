@@ -65,7 +65,7 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('/auth/visitas', ['as' => 'auth.visitas', 'uses' => 'VisitaController@index'], function() {});
 	Route::get('/auth/visita/adicionar', ['as' => 'auth.visita.adicionar', 'uses' => 'VisitaController@adicionar'], function() {});
 	Route::post('/auth/visita/salvar', ['as' => 'auth.visita.salvar', 'uses' => 'VisitaController@salvar'], function() {});
-	Route::get('/auth/visita/editar/{id}', ['as' => 'auth.visita.editar', 'uses' => 'VisitaController@editar'], function() {});
+	Route::get('/auth/visita/ver/{id}', ['as' => 'auth.visita.ver', 'uses' => 'VisitaController@ver'], function() {});
 	Route::put('/auth/visitas/atualizar/{id}', ['as' => 'auth.visita.atualizar', 'uses' => 'VisitaController@atualizar'], function() {});
 	Route::get('/auth/visitas/deletar/{id}', ['as' => 'auth.visita.deletar', 'uses' => 'VisitaController@deletar'], function() {});
 });

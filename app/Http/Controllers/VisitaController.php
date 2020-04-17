@@ -37,17 +37,22 @@ class VisitaController extends Controller
         return redirect()->route('auth.visitas');
     }
 
-    public function editar($identifier)
+    public function ver($identifier)
     {
         $registro = $this->visita->find($identifier);
-        return view('auth.visitas.editar', compact('registro'));
+        return view('auth.visitas.ver', compact('registro'));
     }
 
-    public function atualizar(VisitaRequest $request, $identifier)
+    public function atualizar(Request $request, $identifier)
     {
-        $request->validated();
-
         $dados = $request->all();
+        
+        if($dados['confirmada'] == true) {
+            $dados['confirmada'] = 1;
+        } else {
+            $dados['confirmada'] = 0;
+        }
+
         $this->visita->find($identifier)->update($dados);
         
         return redirect()->route('auth.visitas');

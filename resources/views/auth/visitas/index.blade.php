@@ -23,10 +23,10 @@
                         <td>{{ date('d/m/Y', strtotime($registro->data)).' das '.date('H:i', strtotime($registro->hora_inicial)).' às '.date('H:i', strtotime($registro->hora_final)) }}</td>
                         <td>{{ $registro->telefone }}</td>
                         <td>{{ $registro->email }}</td>
-                        <td>{{ $registro->confirmada }}</td>
+                        <td>{{ $registro->confirmada ? 'Sim' : 'Não' }}</td>
                         <td>
-                            <a href="{{ route('auth.visita.editar', $registro->id) }}" class="btn">Ver</a>
-                            <a href="{{ route('auth.visita.deletar', $registro->id) }}" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar essa visita?');">Cancelar</a>
+                            <a href="{{ route('auth.visita.ver', $registro->id) }}" class="btn">Ver</a>
+                            <a href="{{ route('auth.visita.deletar', $registro->id) }}" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja cancelar essa visita?');">Cancelar</a>
                         </td>
                     </tr>
                     @endforeach
