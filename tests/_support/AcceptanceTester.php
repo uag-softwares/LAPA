@@ -677,5 +677,55 @@ class AcceptanceTester extends \Codeception\Actor
     {
         $this->dontSee($arg1, '//table/tbody/tr');
     }
+     /**
+     * @Given Eu clico em editar registro do usuario
+     */
+     public function euClicoEmEditarRegistroDoUsuario()
+     {
+         $this->click('Editar', '//table/tbody/tr/td/ancestor::tr/td[4]');
+     }
+
+    /**
+     * @Then Eu vejo que o nome do registro do usuario foi atualizado para :arg1
+     */
+     public function euVejoQueONomeDoRegistroDoUsuarioFoiAtualizadoPara($arg1)
+     {
+          $this->see($arg1, '//table/tbody/tr');
+     }
+
+    
+    /**
+     * @Then Eu devo estar na pagina de editar registro
+     */
+     public function euDevoEstarNaPaginaDeEditarRegistro()
+     {
+           $this->amOnPage('/auth/registros/editar');
+     }
+
+    /**
+     * @When Eu edito o nome do registro para :arg1
+     */
+     public function euEditoONomeDoRegistroPara($arg1)
+     {
+         $this->fillField(['name' => 'name'], $arg1);
+     }
+      /**
+     * @Then Eu vejo que o nome do registro do usuario nao foi atualizado com sucesso
+     */
+     public function euVejoQueONomeDoRegistroDoUsuarioNaoFoiAtualizadoComSucesso()
+     {
+         $this->see('Senha deve ser obrigatória');
+     }
+
+      /**
+     * @Then Eu vejo que o usuario esta logado
+     */
+     public function euVejoQueOUsuarioEstaLogado()
+     {
+         $this->amOnPage('/');
+     }
+
+
+
 
 }
