@@ -27,7 +27,7 @@
 </div>
 <div class="form-group">
     <label for="user_id">Selecione a disciplina</label>
-    <select class="form-control form-control-lg" name="disciplina_id" id="disciplinas">
+    <select class="form-control form-control-lg @error('disciplina_id') is-invalid @enderror" name="disciplina_id" id="disciplinas">
         <option hidden disabled selected value>{{ __('Selecione uma disciplina') }}</option>
         @foreach($disciplinas as $disciplina)
             @if(isset($registro->disciplina->id) && $disciplina->id = $registro->disciplina->id)
@@ -37,6 +37,11 @@
             @endif
         @endforeach
     </select>
+    @error('disciplina_id')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+    @enderror
 </div>
 
 
