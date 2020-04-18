@@ -1,0 +1,55 @@
+Feature: atla
+  In order to gerenciar o sistema do LAPA
+  As a user
+  I need to poder criar, ver, atualizar e deletar categorias
+
+  Scenario: criar uma disciplina valida para teste de categoria
+    Given Eu crio um usuario para o teste
+    And Eu estou na pagina de disciplinas
+    And Eu clico em Adicionar
+    Then Eu devo estar na pagina de criar disciplina
+    When Eu preencho o campo nome com "IHC"
+    And Eu seleciono o professor "Rodrigo"
+    And Eu clico em Adicionar
+    Then Eu devo ver a disciplina "IHC"
+
+  Scenario: criar uma categoria valida para o teste de atla
+    Given Eu estou logado
+    And Eu estou na pagina de categorias
+    And Eu clico em Adicionar
+    Then Eu devo estar na pagina de criar categoria
+    When Eu preencho o campo nome com "Sistema nervoso"
+    And Eu seleciono a disciplina "IHC"
+    And Eu clico em Adicionar
+    Then Eu devo ver a categoria "Sistema nervoso"
+  
+  Scenario: criar um atla valido
+    Given Eu estou logado
+    And Eu estou na pagina de atlas
+    And Eu clico em Adicionar
+    Then Eu devo estar na pagina de criar atla
+    When Eu preencho o campo titulo com "Olho mamifero"
+    And Eu preencho o campo descricao com "foto do olho do mamifero"
+    And Eu seleciono a categoria "Sistema nervoso"
+    And Eu clico em Escolher arquivo e escolho "teste.pdf"
+    And Eu clico em Adicionar
+    Then Eu devo ver o atlas "Olho mamifero"
+
+  Scenario: atualizar um atlas existente
+    Given Eu estou logado
+    And Eu estou na pagina de atlas
+    And Eu clico em Editar o atlas "Olho mamifero"
+    And Eu edito o campo titulo para "Olho esquerdo"
+    And Eu edito a descricao para "Olho mamifero na diagonal"
+    And Eu seleciono a categoria "Nenhum"
+    And Eu clico em Escolher arquivo editando o anexo para "arquivo.pdf"
+    And Eu clico em Editar
+    Then Eu devo ver o atlas "Olho esquerdo"
+    And Eu devo ver como descricao do atlas "Olho mamifero na diagonal"
+
+  Scenario: deletar uma postagem com sucesso
+    Given Eu estou logado
+    And Eu estou na pagina de atlas
+    And Eu clico em Deletar o atlas "Olho esquerdo"
+    Then Eu nao vejo o atlas "Olho esquerdo"
+    And Eu deleto o usuario para o teste
