@@ -68,7 +68,7 @@ class RegisterController extends Controller
 	    'name.string'=>'Nome não pode conter números',
 	    'name.min'=>'Nome deve conter no mínimo três caracteres',
 	    'cpf.required'=>'CPF deve ser obrigatório',
-	    'cpf.regex'=>'CPF formato inválido',
+	    'cpf.regex'=>'CPF deve conter formato ddd.ddd.ddd-dd',
 	    'cpf.unique'=>'CPF já existe',
 	    'email.required'=>'Email deve ser obrigatório',
 	    'email.email'=>'Email inválido',
