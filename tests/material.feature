@@ -4,10 +4,7 @@ Feature: material
   I need to ser capaz de criar,editar,atualizar,deletar materiais
 
   Scenario: criar material valido
-    Given Eu estou na pagina de login
-    And   Eu preencho o campo email com "irisviana12@gmail.com"
-    And   Eu preencho o campo senha "12345678"
-    And   Eu clico em login
+    Given Eu crio um usuario para o teste
     And   Eu abro a pagina de materiais
     And   Eu clico em Adicionar
     Then  Eu devo estar na pagina de criar material
@@ -19,10 +16,7 @@ Feature: material
     Then  Eu devo ver o material com titulo "Material de Engenharia de Software" criado com sucesso
 
   Scenario: atualizar material com titulo em branco
-    Given Eu estou na pagina de login
-    And   Eu preencho o campo email com "irisviana12@gmail.com"
-    And   Eu preencho o campo senha "12345678"
-    And   Eu clico em login
+    Given Eu estou logado
     And   Eu abro a pagina de materiais
     And   Eu clico em Editar material com titulo "Material de Engenharia de Software"
     Then  Eu devo estar na pagina de editar material 
@@ -31,10 +25,8 @@ Feature: material
     Then  Eu devo ver uma menssagem de erro "Título do material é obrigatório"
 
  Scenario: deletar material valido
-    Given Eu estou na pagina de login
-    And   Eu preencho o campo email com "irisviana12@gmail.com"
-    And   Eu preencho o campo senha "12345678"
-    And   Eu clico em login
+    Given Eu estou logado
     And   Eu abro a pagina de materiais
     When  Eu clico em Deletar material com titulo "Material de Engenharia de Software"
     Then  Eu devo ver que o material com titulo "Material de Engenharia de Software" foi removido
+    And Eu deleto o usuario para o teste
