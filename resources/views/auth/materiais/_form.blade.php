@@ -43,5 +43,9 @@
         </span>
     @enderror
 </div>
+<div class="form-group">
+     <hr>
+      <p>Disciplina não cadastrada? <a class="" href="{{ route('auth.disciplina.adicionar') }}">{{ __('Cadastrar Disciplina') }}</a>.</p>
+</div>
 
 
