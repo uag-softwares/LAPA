@@ -56,9 +56,10 @@ class AtlaController extends Controller
 
         if(isset($dados['publicado'])) {
             $dados['publicado'] = true;
-        }
+        } else {
             $dados['publicado'] = false;    
-            
+        }
+
         $this->atla->create($dados);
 
         return redirect()->route('auth.atlas');
@@ -90,9 +91,9 @@ class AtlaController extends Controller
 
         if(isset($dados['publicado'])) {
             $dados['publicado'] = true;
-        } 
-            $dados['publicado'] = false;
-        
+        } else {
+            $dados['publicado'] = false;    
+        }
         $this->atla->find($identifier)->update($dados);
 
         return redirect()->route('auth.atlas');
