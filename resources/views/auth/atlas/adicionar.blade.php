@@ -3,7 +3,7 @@
 @section('titulo', 'Adicionar atla')
 @section('content')
         <div class="container">
-            <h2>Adicionar categoria</h2>
+            <h2>Adicionar página do atlas</h2>
             <form action="{{ route('auth.atla.salvar') }}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 @include('auth.atlas._form')

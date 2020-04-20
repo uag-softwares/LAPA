@@ -1,11 +1,16 @@
 /* tamanho de fonte padrão dentro da classe container */
 div.container {
     text-align: center;
-    font-size: 24px;
+    font-size: 22px;
 }
 
 .form-group {
     text-align: start;
+}
+
+/* Remover o espaçamento da navbar */
+nav.navbar {
+    padding: 0;
 }
 
 /* Muda a cor de fundo da header */
@@ -27,7 +32,7 @@ header {
 /* Muda a cor e fonte dos links da navbar */
 .navbar-custom .navbar-nav .nav-link, .nav-item.dropdown button {
     color: #FFFFFF;
-    font-size: 28px;
+    font-size: 22px;
     font-style: normal;
     font-weight: bold;
 }
@@ -35,16 +40,9 @@ header {
 /* Muda a cor e fonte dos links da dropdown de acesso */ 
 .dropdown-menu a {
     color: #000000;
-    font-size: 28px;
+    font-size: 22px;
     font-style: normal;
 
-}
-
-/* Muda a cor de links ativos e quando o mouse passar na navbar */
-.navbar-custom .nav-item.active .nav-link,
-.navbar-custom .nav-item:hover .nav-link, 
-.nav-item.dropdown button:hover {
-    color: #ffffffdd;
 }
 
 /* Centraliza verticalmente os links da navbar */
@@ -59,7 +57,7 @@ header {
 
 /* Tamanho da fonte de todos os botoes */
 a.btn, button.btn {
-    font-size: 24px;
+    font-size: 22px;
     background-color: #00c853;
     color: #FFFFFF;
 }
@@ -68,9 +66,15 @@ a.btn.btn-danger, button.btn.btn-danger {
     background-color: #dc3545;
 }
 
-a.btn:hover, button.btn:hover {
+a.btn:hover, button.btn:hover, .navbar-custom .nav-item.active .nav-link,
+.navbar-custom .nav-item:hover .nav-link, 
+.nav-item.dropdown button:hover {
     background-color: #28a745;
     color: #FFFFFF;
+}
+
+.nav-item.dropdown button:hover {
+    border-radius: 0;
 }
 
 a.btn.btn-danger:hover, button.btn.btn-danger:hover {
@@ -88,4 +92,39 @@ div.container div.visita-msg {
     text-align: start;
     border: 1px solid #00c853;
     border-radius: 10px;
+}
+
+/* cards da pagina logado */
+.card {
+    cursor: pointer;
+    width: 10em;
+    margin: 0 0.5rem 0.5rem;
+}
+
+.card:hover {
+    background-color: #f5f5f5;
+}
+
+.card div.card-header span {
+    font-size: 1.5em;
+}
+
+.card a.btn, button.btn {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.card div.card-header, .card div.card-footer {
+    background-color: #ffffff00;
+    border: 0;
+    padding: 0.5em 0;
+}
+
+.card div.card-body {
+    padding: 0;
+}
+
+a.clickable-card, a:hover.clickable-card {
+    color: #000;
+    text-decoration: none;
 }

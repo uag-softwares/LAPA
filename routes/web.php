@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',['as'=> 'site.home','uses'=> 'HomeController@home'],function () {});
+Route::get('/gerenciar', ['as' => 'auth.gerenciar', 'uses' => 'HomeController@home'], function () {});
 
 Auth::routes();
 
