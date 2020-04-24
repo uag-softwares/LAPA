@@ -47,7 +47,7 @@ Feature: atla
     Then Eu devo ver o atlas "Olho esquerdo"
     And Eu devo ver como descricao do atlas "Olho mamifero na diagonal"
 
-  Scenario: deletar uma postagem com sucesso
+  Scenario: deletar um atlas com sucesso
     Given Eu estou logado
     And Eu estou na pagina de atlas
     And Eu clico em Deletar o atlas "Olho esquerdo"

@@ -475,9 +475,58 @@ class AcceptanceTester extends \Codeception\Actor
          $this->amOnPage('/login');
      }
       
+/**
+     * @Given Eu clico em editar registro do usuario
+     */
+     public function euClicoEmEditarRegistroDoUsuario()
+     {
+         $this->click('Editar', '//table/tbody/tr/td/ancestor::tr/td[4]');
+     }
 
-    /**================ Testes de categoria aqui ===========================*/   
     /**
+     * @Then Eu vejo que o nome do registro do usuario foi atualizado para :arg1
+     */
+     public function euVejoQueONomeDoRegistroDoUsuarioFoiAtualizadoPara($arg1)
+     {
+          $this->see($arg1, '//table/tbody/tr');
+     }
+
+    
+    /**
+     * @Then Eu devo estar na pagina de editar registro
+     */
+     public function euDevoEstarNaPaginaDeEditarRegistro()
+     {
+           $this->amOnPage('/auth/registros/editar');
+     }
+
+    /**
+     * @When Eu edito o nome do registro para :arg1
+     */
+     public function euEditoONomeDoRegistroPara($arg1)
+     {
+         $this->fillField(['name' => 'name'], $arg1);
+     }
+      /**
+     * @Then Eu vejo que o nome do registro do usuario nao foi atualizado com sucesso
+     */
+     public function euVejoQueONomeDoRegistroDoUsuarioNaoFoiAtualizadoComSucesso()
+     {
+         $this->see('Senha deve ser obrigatória');
+     }
+
+      /**
+     * @Then Eu vejo que o usuario esta logado
+     */
+     public function euVejoQueOUsuarioEstaLogado()
+     {
+         $this->amOnPage('/');
+     }
+
+
+/**================ Testes de categoria aqui ===========================*/
+   
+     /**
      * @Given Eu estou na pagina de categorias
      */
     public function euEstouNaPaginaDeCategorias()
@@ -671,6 +720,90 @@ class AcceptanceTester extends \Codeception\Actor
     {
         $this->dontSee($arg1, '//table/tbody/tr');
     }
+/**================ Testes de materiais aqui ===========================*/
+     
+      /**
+     * @Given Eu abro a pagina de materiais
+     */
+     public function euAbroAPaginaDeMateriais()
+     {
+        $this->amOnPage('/auth/materiais');
+     }   
+
+    /**
+     * @Then Eu devo estar na pagina de criar material
+     */
+     public function euDevoEstarNaPaginaDeCriarMaterial()
+     {
+         $this->amOnPage('/auth/materiais/adicionar');
+     }
+
+    /**
+     * @When Eu preencho o campo texto com :arg1
+     */
+     public function euPreenchoOCampoTextoCom($arg1)
+     {
+          $this->fillField(['name' => 'texto'], $arg1);
+     }
+
+    /**
+     * @Then Eu devo ver o material com titulo :arg1 criado com sucesso
+     */
+     public function euDevoVerOMaterialComTituloCriadoComSucesso($arg1)
+     {
+         $this->see($arg1, '//table/tbody/tr');
+     }
+      /**
+     * @Given Eu clico em Editar material com titulo :arg1
+     */
+     public function euClicoEmEditarMaterialComTitulo($arg1)
+     {
+         $this->click('Editar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[5]');
+     }
+
+    /**
+     * @Then Eu devo estar na pagina de editar material
+     */
+     public function euDevoEstarNaPaginaDeEditarMaterial()
+     {
+          $this->seeInCurrentUrl('/auth/materiais/editar/');
+         
+     }
+
+    /**
+     * @When Eu edito o campo titulo para :arg1
+     */
+     public function euEditoOCampoTituloPara($arg1)
+     {
+         $this->fillField(['name' => 'titulo'], $arg1);
+     }
+
+    /**
+     * @Then Eu devo ver uma menssagem de erro :arg1
+     */
+     public function euDevoVerUmaMenssagemDeErro($arg1)
+     {
+         $this->see($arg1);
+     }
+
+     /**
+     * @When Eu clico em Deletar material com titulo :arg1
+     */
+     public function euClicoEmDeletarMaterialComTitulo($arg1)
+     {
+         $this->click('Editar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[5]');
+     }
+
+    /**
+     * @Then Eu devo ver que o material com titulo :arg1 foi removido
+     */
+     public function euDevoVerQueOMaterialComTituloFoiRemovido($arg1)
+     {
+         $this->dontSee($arg1);
+     }
+
+
+
 
     /**
     * @When Eu seleciono a categoria :arg1
@@ -713,14 +846,7 @@ class AcceptanceTester extends \Codeception\Actor
         $this->click('Editar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[6]');
     }
 
-   /**
-    * @Given Eu edito o campo titulo para :arg1
-    */
-    public function euEditoOCampoTituloPara($arg1)
-    {
-        $this->fillField(['name' => 'titulo'], $arg1);
-    }
-
+   
    /**
     * @Then Eu devo ver como descricao do atlas :arg1
     */

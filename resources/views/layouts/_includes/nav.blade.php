@@ -1,16 +1,19 @@
         <div id="app">
 
-            <header class="d-flex px-5 justify-content-around text-center align-items-center">
-                <img class="d-none d-md-block my-4" style="height:200px;" src="{{ asset('img/lapa-icon.png') }}" alt="">
-                <div class="title">
-                    <h2>Laboratório de Anatomia e Patologia Animal</h2>
-                    <h3>Medicina Veterinária</h3>
-                    <h3>Universidade Federal do Agreste de Pernambuco</h3>
+            <header class="d-flex px-md-5 px-4 justify-content-around text-md-center text-left align-items-center">
+                <div class="title d-md-none">
+                    <h3>Laboratório de Anatomia e Patologia Animal</h3>
                 </div>
-                <img class="d-none d-md-block my-4" style="height:200px;" src="{{ asset('img/logo.png') }}" alt="">
+                <img class="my-4" style="height:130px;" src="{{ asset('img/lapa-icon.png') }}" alt="">
+                <div class="title d-none d-md-block">
+                    <h3>Laboratório de Anatomia e Patologia Animal</h3>
+                    <h4>Medicina Veterinária</h4>
+                    <h4>Universidade Federal do Agreste de Pernambuco</h4>
+                </div>
+                <img class="my-4" style="height:130px;" src="{{ asset('img/logo.png') }}" alt="">
             </header>
 
-            <nav class="navbar navbar-expand-lg navbar-custom">
+            <nav class="navbar navbar-expand-lg navbar-custom px-4">
                 <div class="container">
                     <ul class="navbar-nav">
                         <li class="nav-item">
@@ -49,7 +52,8 @@
                                         {{ Auth::user()->name }}
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                                        <a href="{{ route('auth.registros') }}" class="dropdown-item">Configurações</a>
+                                        <a href="{{ route('auth.gerenciar') }}" class="dropdown-item">Gerenciar</a>
+                                        <a href="{{ route('auth.registros') }}" class="dropdown-item">Minha conta</a>
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">

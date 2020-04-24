@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Material;
 use App\Disciplina;
+use Validator;
+use App\Http\Requests\MaterialRequest;
 class MaterialController extends Controller
 {
    protected $material;
@@ -32,9 +34,9 @@ class MaterialController extends Controller
         return view('auth.materiais.adicionar', compact('disciplinas'));
     }
 
-    public function salvar(Request $request) 
+    public function salvar(MaterialRequest $request) 
     {
-        
+        $request->validated();
         $dados = $request->all();
 
         if($request->hasFile('anexo')) {
@@ -57,9 +59,9 @@ class MaterialController extends Controller
         return view('auth.materiais.editar', compact('registro','disciplinas'));        
     }
 
-    public function atualizar(Request $request, $material_id)
+    public function atualizar(MaterialRequest $request, $material_id)
     {
-       
+        $request->validated();
         $dados = $request->all();
 
         if($request->hasFile('anexo')) {
