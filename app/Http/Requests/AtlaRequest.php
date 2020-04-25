@@ -39,9 +39,9 @@ class AtlaRequest extends FormRequest
     public function messages()
     {
         return [
-            'titulo.required' => 'O título da postagem é obrigatório',
+            'titulo.required' => 'O título do atlas é obrigatório',
             'titulo.min' => 'O tamanho mínimo do título é de 5 letras',
-            'descricao.required' => 'A descrição da postagem é obrigatória',
+            'descricao.required' => 'A descrição do atlas é obrigatório',
             'descricao.min' => 'O tamanho mínimo da descrição é 10 letras',
             'categoria_id' => 'A categoria deve estar cadastrada',
             

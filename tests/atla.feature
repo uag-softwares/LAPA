@@ -35,6 +35,46 @@ Feature: atla
     And Eu clico em Adicionar
     Then Eu devo ver o atlas "Olho mamifero"
 
+  Scenario: criar um atla com titulo invalido
+    Given Eu estou logado
+    And Eu estou na pagina de atlas
+    And Eu clico em Adicionar
+    Then Eu devo estar na pagina de criar atla
+    When Eu preencho o campo titulo com "O"
+    And Eu preencho o campo descricao com "foto do olho do mamifero"
+    And Eu seleciono a categoria "Sistema nervoso"
+    And Eu clico em Escolher arquivo e escolho "teste.pdf"
+    And Eu clico em Adicionar
+    Then Eu vejo a mensagem de erro "O tamanho mínimo do título é de 5 letras"
+  
+  Scenario: criar um atla com descricao invalido
+    Given Eu estou logado
+    And Eu estou na pagina de atlas
+    And Eu clico em Adicionar
+    Then Eu devo estar na pagina de criar atla
+    When Eu preencho o campo titulo com "Olho de um peixe"
+    And Eu preencho o campo descricao com "OOO"
+    And Eu seleciono a categoria "Sistema nervoso"
+    And Eu clico em Escolher arquivo e escolho "teste.pdf"
+    And Eu clico em Adicionar
+    Then Eu vejo a mensagem de erro "O tamanho mínimo da descrição é 10 letras"
+    
+  Scenario: atualizar titulo de um atlas invalido
+    Given Eu estou logado
+    And Eu estou na pagina de atlas
+    And Eu clico em Editar o atlas "Olho mamifero"
+    When Eu edito o titulo para ""
+    And Eu clico em Editar
+    Then Eu vejo a mensagem de erro "O título do atlas é obrigatório"
+  
+  Scenario: atualizar descricao de um atlas invalido
+    Given Eu estou logado
+    And Eu estou na pagina de atlas
+    And Eu clico em Editar o atlas "Olho mamifero"
+    When Eu edito a descricao para ""
+    And Eu clico em Editar
+    Then Eu vejo a mensagem de erro "A descrição do atlas é obrigatório"
+
   Scenario: atualizar um atlas existente
     Given Eu estou logado
     And Eu estou na pagina de atlas
