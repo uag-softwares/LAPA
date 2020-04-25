@@ -3,7 +3,7 @@ Feature: disciplina
   As a user
   I need to poder criar, ver, atualizar e deletar disciplinas
 
-  Scenario: criar uma disciplina valida
+   Scenario: criar uma disciplina valida
     Given Eu crio um usuario para o teste
     And Eu estou na pagina de disciplinas
     And Eu clico em Adicionar
