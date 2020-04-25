@@ -8,10 +8,10 @@ Feature: categoria
     And Eu estou na pagina de disciplinas
     And Eu clico em Adicionar
     Then Eu devo estar na pagina de criar disciplina
-    When Eu preencho o campo nome com "Engenharia de Software"
+    When Eu preencho o campo nome com "Iniciação a Programação"
     And Eu seleciono o professor "Rodrigo"
     And Eu clico em Adicionar
-    Then Eu devo ver a disciplina "Engenharia de Software"
+    Then Eu devo ver a disciplina "Iniciação a Programação"
 
   Scenario: criar uma categoria valida
     Given Eu estou logado
@@ -19,7 +19,7 @@ Feature: categoria
     And Eu clico em Adicionar
     Then Eu devo estar na pagina de criar categoria
     When Eu preencho o campo nome com "Sistema nervoso"
-    And Eu seleciono a disciplina "Engenharia de Software"
+    And Eu seleciono a disciplina "Iniciação a Programação"
     And Eu clico em Adicionar
     Then Eu devo ver a categoria "Sistema nervoso"
 
@@ -29,10 +29,8 @@ Feature: categoria
     And Eu clico em Editar a categoria "Sistema nervoso"
     Then Eu devo estar na pagina de editar a categoria
     When Eu edito o nome para "Sistema linfatico"
-    And Eu edito a disciplina para "Nenhum"
     And Eu clico em Editar
     Then Eu devo ver a categoria "Sistema linfatico"
-    And Eu devo ver a disciplina "Nenhuma disciplina"
 
   #deletar na funciona pq o atualizar nao esta funcionando.. 
   Scenario: deletar uma categoria com sucesso
@@ -40,6 +38,12 @@ Feature: categoria
     And Eu estou na pagina de categorias
     And Eu clico em Deletar a categoria "Sistema linfatico"
     Then Eu nao vejo categoria "Sistema linfatico"
+
+  Scenario: deletar uma disciplina de teste com sucesso
+    Given Eu estou logado
+    And Eu estou na pagina de disciplinas
+    And Eu clico em Deletar a disciplina "Iniciação a Programação"
+    Then Eu nao vejo a disciplina "Iniciação a Programação"
     And Eu deleto o usuario para o teste
   
 

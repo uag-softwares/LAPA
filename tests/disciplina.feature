@@ -30,7 +30,7 @@ Feature: disciplina
     And Eu clico em Deletar a disciplina "IHC"
     Then Eu nao vejo a disciplina "IHC"
 
-  Scenario: criar uma disciplina com sem nome
+  Scenario: criar uma disciplina sem nome
     Given Eu estou logado
     And Eu estou na pagina de disciplinas
     And Eu clico em Adicionar
@@ -58,4 +58,5 @@ Feature: disciplina
     When Eu preencho o campo nome com "Engenharia de Software"
     And Eu clico em Adicionar
     Then Eu devo ver a disciplina "Engenharia de Software" sem professor
+    And Eu clico em Deletar a disciplina "Engenharia de Software"
     And Eu deleto o usuario para o teste

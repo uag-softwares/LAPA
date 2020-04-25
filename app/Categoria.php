@@ -19,4 +19,8 @@ class categoria extends Model
         return $this->belongsTo('App\Disciplina');
     }
 
+    public function atla() {
+        return $this->hasMany('App\Atla');
+    }
+
 }

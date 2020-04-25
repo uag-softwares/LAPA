@@ -25,7 +25,7 @@ class CategoriaRequest extends FormRequest
     {
         return [
             'nome' => 'required|min:3',
-            'disciplina_id' => 'integer|nullable',
+            'disciplina_id' => 'required|integer|exists:disciplinas,id',
             
         ];
     }
@@ -40,8 +40,9 @@ class CategoriaRequest extends FormRequest
         return [
             'nome.required' => 'O nome da categoria é obrigatório',
             'nome.min' => 'O tamanho mínimo do nome é 3 letras',
-            'user_id' => 'A disciplina deve estar cadastrada',
-            
+            'disciplina_id.required' => 'Você deve escolher uma disciplina',
+            'disciplina_id.integer' => 'Erro ao cadastrar a disciplina, tente novamente',
+            'disciplina_id.exists' => 'A disciplina não existe, tente novamente',            
         ];
     }
 }

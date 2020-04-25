@@ -41,4 +41,8 @@ class User extends Authenticatable
         return $this->hasMany('App\Disciplina');
     }
 
+    public function postagem() {
+        return $this->hasMany('App\Postagem');
+    }
+
 }

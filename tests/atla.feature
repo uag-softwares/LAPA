@@ -92,4 +92,10 @@ Feature: atla
     And Eu estou na pagina de atlas
     And Eu clico em Deletar o atlas "Olho esquerdo"
     Then Eu nao vejo o atlas "Olho esquerdo"
+
+  Scenario: deletar uma disciplina de teste com sucesso
+    Given Eu estou logado
+    And Eu estou na pagina de disciplinas
+    And Eu clico em Deletar a disciplina "IHC"
+    Then Eu nao vejo a disciplina "IHC"
     And Eu deleto o usuario para o teste

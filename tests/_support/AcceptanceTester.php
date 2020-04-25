@@ -596,7 +596,7 @@ class AcceptanceTester extends \Codeception\Actor
      */
     public function euDevoEstarNaPaginaDeEditarACategoria()
     {
-        $this->amOnPage('/auth/categoria/editar');
+        $this->seeInCurrentUrl('/auth/categoria/editar');
     }
 
 
