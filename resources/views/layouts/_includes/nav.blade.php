@@ -27,7 +27,7 @@
                     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a href="#" class="nav-link">Atlas Interativo</a>
+                                <a href="{{ route('site.atlas.index') }}" class="nav-link">Atlas Interativo</a>
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link">Agenda</a>

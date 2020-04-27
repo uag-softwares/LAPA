@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',['as'=> 'site.home','uses'=> 'HomeController@home'],function () {});
 Route::get('/gerenciar', ['as' => 'auth.gerenciar', 'uses' => 'HomeController@home'], function () {});
 
+Route::get('/site/atlas/index', ['as' => 'site.atlas.index', 'uses' => 'AtlaController@siteIndex'], function () {});
+Route::get('/site/atlas/categoria/{id}', ['as' => 'site.atlas.categoria', 'uses' => 'AtlaController@atlasPorCategoria'], function () {});
+
 Auth::routes();
 
 
