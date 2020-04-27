@@ -47,7 +47,8 @@
 </div>
 <div class="form-group">
     <label for="telefone">Telefone</label>
-    <input class="form-control form-control-lg @error('telefone') is-invalid @enderror" type="text" name="telefone" value="{{ isset($registro->telefone) ? $registro->telefone : old('telefone') }}" placeholder="Digite o seu número de telefone">
+    <input class="form-control telefone form-control-lg @error('telefone') is-invalid @enderror" type="text" name="telefone" value="{{ isset($registro->telefone) ? $registro->telefone : old('telefone') }}" placeholder="Digite o seu número de telefone">
+    
     @error('telefone')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>

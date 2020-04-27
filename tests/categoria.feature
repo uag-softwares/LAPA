@@ -32,7 +32,7 @@ Feature: categoria
     And Eu clico em Editar
     Then Eu devo ver a categoria "Sistema linfatico"
 
-  #deletar na funciona pq o atualizar nao esta funcionando.. 
+ 
   Scenario: deletar uma categoria com sucesso
     Given Eu estou logado
     And Eu estou na pagina de categorias

@@ -29,6 +29,12 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <!-- Icones do Font Awesome -->
         <script src="https://kit.fontawesome.com/8eafe50798.js" defer crossorigin="anonymous"></script>
+
+        <!-- Mascaras -->
+        <script type="text/javascript" src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
+        <script type="text/javascript" src="{{ asset('js/jquery/jquery.inputmask.js') }}"></script>      
+        <script type="text/javascript" src="{{ asset('js/jquery/jquery.maskMoney.min.js') }}"></script>
+        <script defer="true" src="{{ asset('js/masks.js') }}"></script>
     </head>
     <body>
     @include('layouts._includes.nav')
