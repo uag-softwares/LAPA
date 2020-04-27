@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Validator;
 use App\Atla;
 use App\Categoria;
+use App\Disciplina;
 use App\Http\Requests\AtlaRequest;
 
 class AtlaController extends Controller
@@ -14,16 +15,15 @@ class AtlaController extends Controller
     // Model de atla adicionado ao controller para evitar uso estatico
     protected $atla;
     protected $categoria;
+    protected $disciplinas;
     
     
 
-    public function __construct(Atla $atla, Categoria $categoria)
+    public function __construct(Atla $atla, Categoria $categoria, Disciplina $disciplina)
     {
-        $this->middleware('auth');
         $this->atla = $atla;
-        $this->categoria = $categoria;
-        
-        
+        $this->categoria = $categoria; 
+        $this->disciplina = $disciplina;       
     }
 
     public function index() 
@@ -102,5 +102,22 @@ class AtlaController extends Controller
     {
         $this->atla->find($identifier)->delete();
         return redirect()->route('auth.atlas');
+    }
+
+    public function siteIndex() 
+    {
+        $registros = $this->atla->all();
+        $categorias = $this->categoria->all();
+        $disciplinas = $this->disciplina->all();
+        return view('site.atlas.index', compact('registros', 'categorias', 'disciplinas'));
+    }
+
+    public function atlasPorCategoria($categoria_id) 
+    {
+        $categoria = $this->categoria->find($categoria_id);
+        $busca = $this->atla->where('categoria_id', $categoria_id);
+        $registros = $busca->get();
+        $paginas = $busca->paginate(1);
+        return view('site.atlas.ver_atlas', compact('paginas', 'registros', 'categoria'));
     }
 }

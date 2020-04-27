@@ -81,6 +81,21 @@ a.btn.btn-danger:hover, button.btn.btn-danger:hover {
     background-color: #bd2a39;
 }
 
+.btn.btn-link {
+    all: unset;
+    font-size: 22px;
+    background-color: #ffffff00;
+    color: #007bff;
+    padding: 0 0.5rem;
+}
+
+.btn.btn-link:hover {
+    background-color: #ffffff00;
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+
 /* Pagina dos detalhes da visita */
 div.container div.visita-detalhes {
     text-align: start;
@@ -128,3 +143,41 @@ a.clickable-card, a:hover.clickable-card {
     color: #000;
     text-decoration: none;
 }
+/* Fim de cards da pagina logado */
+
+/* Atlas */
+
+ul {
+    padding: 0;
+}
+/* Fim de Atlas */
+
+/* Zoom no atlas */
+#overlay{
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background: rgba(0,0,0,0.8) none 50% / contain no-repeat;
+  cursor: pointer;
+  transition: 0.3s;
+  
+  visibility: hidden;
+  opacity: 0;
+}
+#overlay.open {
+  visibility: visible;
+  opacity: 1;
+  z-index: 999;
+}
+
+#overlay:after { /* X button icon */
+  content: "\2715";
+  position: absolute;
+  color:#fff;
+  top: 10px;
+  right:20px;
+  font-size: 2em;
+}
+/* Fim de Zoom no atlas */
