@@ -40,4 +40,9 @@ class User extends Authenticatable
     public function disciplina() {
         return $this->hasMany('App\Disciplina');
     }
+
+    public function postagem() {
+        return $this->hasMany('App\Postagem');
+    }
+
 }

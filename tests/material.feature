@@ -3,8 +3,17 @@ Feature: material
   As a cliente
   I need to ser capaz de criar,editar,atualizar,deletar materiais
 
-  Scenario: criar material valido
+  Scenario: criar uma disciplina valida para teste de material
     Given Eu crio um usuario para o teste
+    And Eu estou na pagina de disciplinas
+    And Eu clico em Adicionar
+    Then Eu devo estar na pagina de criar disciplina
+    When Eu preencho o campo nome com "Engenharia de Software"
+    And Eu clico em Adicionar
+    Then Eu devo ver a disciplina "Engenharia de Software" sem professor
+
+  Scenario: criar material valido
+    Given Eu estou logado
     And   Eu abro a pagina de materiais
     And   Eu clico em Adicionar
     Then  Eu devo estar na pagina de criar material
@@ -29,4 +38,10 @@ Feature: material
     And   Eu abro a pagina de materiais
     When  Eu clico em Deletar material com titulo "Material de Engenharia de Software"
     Then  Eu devo ver que o material com titulo "Material de Engenharia de Software" foi removido
+
+  Scenario: deletar uma disciplina de teste com sucesso
+    Given Eu estou logado
+    And Eu estou na pagina de disciplinas
+    And Eu clico em Deletar a disciplina "Engenharia de Software"
+    Then Eu nao vejo a disciplina "Engenharia de Software"
     And Eu deleto o usuario para o teste

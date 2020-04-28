@@ -596,7 +596,7 @@ class AcceptanceTester extends \Codeception\Actor
      */
     public function euDevoEstarNaPaginaDeEditarACategoria()
     {
-        $this->amOnPage('/auth/categoria/editar');
+        $this->seeInCurrentUrl('/auth/categoria/editar');
     }
 
 
@@ -804,5 +804,74 @@ class AcceptanceTester extends \Codeception\Actor
 
 
 
+
+    /**
+    * @When Eu seleciono a categoria :arg1
+    */
+    public function euSelecionoACategoria($arg1)
+    {
+        $this->selectOption(['name' => 'categoria_id'], $arg1);
+    }
+
+    /*==================================== A partir daqui metodos para feature Atla =======================*/
+     /**
+     * @Given Eu estou na pagina de atlas
+     */
+    public function euEstouNaPaginaDeAtlas()
+    {
+        $this->amOnPage('/auth/atlas');
+    }
+
+   /**
+    * @Then Eu devo estar na pagina de criar atla
+    */
+    public function euDevoEstarNaPaginaDeCriarAtla()
+    {
+        $this->amOnPage('/auth/atla/adicionar');
+    }
+
+   /**
+     * @Then Eu devo ver o atlas :arg1
+     */
+    public function euDevoVerOAtlas($arg1)
+    {
+        $this->see($arg1);
+    }
+
+      /**
+     * @Given Eu clico em Editar o atlas :arg1
+     */
+    public function euClicoEmEditarOAtlas($arg1)
+    {
+        $this->click('Editar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[6]');
+    }
+
+   
+   /**
+    * @Then Eu devo ver como descricao do atlas :arg1
+    */
+    public function euDevoVerComoDescricaoDoAtlas($arg1)
+    {
+        $this->see($arg1);
+    }
+
+    /**
+     * @Given Eu clico em Deletar o atlas :arg1
+     */
+    public function euClicoEmDeletarOAtlas($arg1)
+    {
+        $this->click('Deletar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[6]');
+    }
+
+   /**
+    * @Then Eu nao vejo o atlas :arg1
+    */
+    public function euNaoVejoOAtlas($arg1)
+    {
+        $this->dontSee($arg1);
+    }
+
+
+   
 
 }
