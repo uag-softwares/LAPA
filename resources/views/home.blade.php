@@ -14,7 +14,7 @@
         <h2 class="mb-4">Bem-vindo(a), {{ Auth::user()->name }}!</h2>
     <div class="row justify-content-center">
             <a class="clickable-card" href="{{ route('auth.postagens') }}">
-                <div class="card">
+                <div class="card manage">
                     <div class="card-header">
                         <span class="fa fa-newspaper"></span>
                     </div>
@@ -34,7 +34,7 @@
                 </div>
             </a>
             <a class="clickable-card" href="{{ route('auth.atlas') }}">
-                <div class="card">
+                <div class="card manage">
                     <div class="card-header">
                         <span class="fa fa-book-open"></span>
                     </div>
@@ -54,7 +54,7 @@
                 </div>
             </a>
             <a class="clickable-card" href="{{ route('auth.materiais') }}">
-                <div class="card">
+                <div class="card manage">
                     <div class="card-header">
                         <span class="fa fa-file"></span>
                     </div>
@@ -74,7 +74,7 @@
                 </div>
             </a>
             <a class="clickable-card" href="{{ route('auth.visitas') }}">
-                <div class="card">
+                <div class="card manage">
                     <div class="card-header">
                         <span class="fa fa-id-card-alt"></span>
                     </div>
@@ -97,7 +97,7 @@
         <div class="row justify-content-center">
             <h3 class="w-100 mb-4 mt-5">Mais opções</h3>
             <a class="clickable-card" href="{{ route('auth.disciplinas') }}">
-                <div class="card">
+                <div class="card manage">
                     <div class="card-header">
                         <span class="fas fa-bookmark"></span>
                     </div>
@@ -117,7 +117,7 @@
                 </div>
             </a>
             <a class="clickable-card" href="{{ route('auth.categorias') }}">
-                <div class="card">
+                <div class="card manage">
                     <div class="card-header">
                         <span class="fa fa-list-ul"></span>
                     </div>
@@ -137,7 +137,7 @@
                 </div>
             </a>
             <a class="clickable-card" href="#">
-                <div class="card">
+                <div class="card manage">
                     <div class="card-header">
                         <span class="fa fa-info-circle"></span>
                     </div>

@@ -115,9 +115,19 @@ class AtlaController extends Controller
     public function atlasPorCategoria($categoria_id) 
     {
         $categoria = $this->categoria->find($categoria_id);
-        $busca = $this->atla->where('categoria_id', $categoria_id);
+        $busca = $this->atla->where('publicado', true)
+            ->where('categoria_id', $categoria_id);
         $registros = $busca->get();
         $paginas = $busca->paginate(1);
         return view('site.atlas.ver_atlas', compact('paginas', 'registros', 'categoria'));
+    }
+
+    public function atlasPorDisciplina($disciplina_id) 
+    {
+        $disciplina = $this->disciplina->find($disciplina_id);
+        $busca = $this->categoria->where('disciplina_id', $disciplina_id);
+        $registros = $busca->get();
+        $paginas = $busca->paginate(1);
+        return view('site.atlas.ver_disciplinas', compact('paginas', 'registros', 'disciplina'));
     }
 }

@@ -9,9 +9,7 @@
                 <thead>
                     <tr>
                         <th>Título</th>
-                        <th>Descrição</th>
                         <th>Categoria</th>
-                        <th>Anexo</th>
                         <th>Publicado</th>                        
                         <th>Ações</th>
                     </tr>
@@ -20,9 +18,7 @@
                     @foreach ($registros as $registro)
                         <tr>
                             <td>{{ $registro->titulo }}</td>
-                            <td>{{ $registro->descricao }}</td>
                             <td>{{ isset($registro->categoria) ? $registro->categoria->nome : 'Nenhuma categoria' }}</td>
-                            <td>{{ $registro->anexo}}</td>
                             <td>{{ $registro->publicado ? "Sim" : "Não" }}</td>
                             <td>
                                 <a href="{{ route('auth.atla.editar',$registro->id) }}" class="btn">Editar</a>

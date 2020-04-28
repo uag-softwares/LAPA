@@ -18,6 +18,7 @@ Route::get('/gerenciar', ['as' => 'auth.gerenciar', 'uses' => 'HomeController@ho
 
 Route::get('/site/atlas/index', ['as' => 'site.atlas.index', 'uses' => 'AtlaController@siteIndex'], function () {});
 Route::get('/site/atlas/categoria/{id}', ['as' => 'site.atlas.categoria', 'uses' => 'AtlaController@atlasPorCategoria'], function () {});
+Route::get('/site/atlas/disciplina/{id}', ['as' => 'site.atlas.disciplina', 'uses' => 'AtlaController@atlasPorDisciplina'], function () {});
 
 Auth::routes();
 
