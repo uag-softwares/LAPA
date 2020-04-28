@@ -85,7 +85,6 @@ Feature: atla
     And Eu clico em Escolher arquivo editando o anexo para "arquivo.pdf"
     And Eu clico em Editar
     Then Eu devo ver o atlas "Olho esquerdo"
-    And Eu devo ver como descricao do atlas "Olho mamifero na diagonal"
 
   Scenario: deletar um atlas com sucesso
     Given Eu estou logado
