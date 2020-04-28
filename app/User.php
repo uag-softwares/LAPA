@@ -6,7 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 
@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name','cpf','email', 'password',
+        'name','cpf','email', 'password','telephone','surname','user_description','avatar','user_type',
     ];
 
     /**
@@ -40,4 +40,5 @@ class User extends Authenticatable
     public function disciplina() {
         return $this->hasMany('App\Disciplina');
     }
+
 }

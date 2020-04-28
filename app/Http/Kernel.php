@@ -42,7 +42,9 @@ class Kernel extends HttpKernel
             'throttle:60,1',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
-    ];
+       'check.cpf' => [\Illuminate\Auth\Middleware\Authenticate::class,
+                      \App\Http\Middleware\CheckCpfIsVerified::class,]
+        ];
 
     /**
      * The application's route middleware.
@@ -62,5 +64,6 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+	'check.cpf' => \App\Http\Middleware\CheckCpfIsVerified::class,
     ];
 }

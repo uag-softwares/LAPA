@@ -9,6 +9,15 @@
         @enderror
     </div>
     <div class="form-group">
+    <label for="surname">Sobrenome*</label>
+        <input id="surname" type="text" class="form-control form-control-lg @error('surname') is-invalid @enderror" name="surname" value="{{isset($user->surname) ? $user->surname : old('surname')}}" required autocomplete="surname" autofocus>
+        @error('surname')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+    </div>
+    <div class="form-group">
         <label for="cpf">CPF*</label>
         <input id="cpf" type="text" class="form-control form-control-lg @error('cpf') is-invalid @enderror" name="cpf" value="{{isset($user->cpf) ? $user->cpf :old('cpf')}}" required autocomplete="cpf" autofocus
         {{ Auth::user() ? 'readonly' : '' }}>
@@ -23,6 +32,15 @@
         <input id="email" type="text" class="form-control form-control-lg @error('email') is-invalid @enderror" name="email" value="{{isset($user->email) ? $user->email: old('email')}}" required autocomplete="email" autofocus  
         {{ Auth::user() ? 'readonly' : '' }}>
         @error('email')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+    </div>
+    <div class="form-group">
+    <label for="name">Descricao Profissional(opcional)</label>
+        <input id="user_description" type="text" class="form-control form-control-lg @error('user_description') is-invalid @enderror" name="user_description"  value="{{isset($user->user_description) ? $user->user_description: old('user_description')}}" required autocomplete="user_description" autofocus>
+        @error('user_description')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>

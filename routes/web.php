@@ -16,10 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',['as'=> 'site.home','uses'=> 'HomeController@home'],function () {});
 Route::get('/gerenciar', ['as' => 'auth.gerenciar', 'uses' => 'HomeController@home'], function () {});
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth','check.cpf'])->group(function () {
 
 	Route::get('/auth/registros',['as'=> 'auth.registros','uses'=> 'Auth\RegisterController@index'],function () {});
   	Route::get('/auth/registros/editar',['as'=> 'auth.registros.editar','uses'=> 'Auth\RegisterController@editar'],function () {});
@@ -69,6 +69,11 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('/auth/visita/ver/{id}', ['as' => 'auth.visita.ver', 'uses' => 'VisitaController@ver'], function() {});
 	Route::put('/auth/visitas/atualizar/{id}', ['as' => 'auth.visita.atualizar', 'uses' => 'VisitaController@atualizar'], function() {});
 	Route::get('/auth/visitas/deletar/{id}', ['as' => 'auth.visita.deletar', 'uses' => 'VisitaController@deletar'], function() {});
+
+        Route::get('/auth/acesso_gerenciamento', ['as' => 'auth.acesso_gerenciamento', 'uses' => 'Auth\RegisterController@gerenciarSolicitacao'], function () {});
+        Route::get('/auth/acesso_gerenciamento/aceitarSolicitacao/{id}', ['as' => 'auth.acesso_gerenciamento.aceitarSolicitacao', 'uses' => 'Auth\RegisterController@aceitarSolicitacao'], function() {});
+	Route::get('/auth/acesso_gerenciamento/recusarSolicitacao/{id}', ['as' => 'auth.acesso_gerenciamento.recusarSolicitacao', 'uses' => 'Auth\RegisterController@recusarSolicitacao'], function() {});
+
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
