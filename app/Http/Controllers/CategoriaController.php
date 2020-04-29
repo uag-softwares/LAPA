@@ -45,7 +45,7 @@ class CategoriaController extends Controller
 
         $this->categoria->create($dados);
 
-        return redirect()->route('auth.categorias');
+        return redirect()->route('auth.categorias')->with('success', 'Categoria adicionada com sucesso!');;
     }
 
     public function editar($identifier) 
@@ -63,12 +63,12 @@ class CategoriaController extends Controller
         $dados = $request->all();
         $this->categoria->find($identifier)->update($dados);
 
-        return redirect()->route('auth.categorias');
+        return redirect()->route('auth.categorias')->with('success', 'Categoria atualizada com sucesso!');;
     }
 
     public function deletar($identifier)
     {
         $this->categoria->find($identifier)->delete();
-        return redirect()->route('auth.categorias');
+        return redirect()->route('auth.categorias')->with('success', 'Categoria deletada com sucesso!');;
     }
 }

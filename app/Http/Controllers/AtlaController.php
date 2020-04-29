@@ -61,7 +61,8 @@ class AtlaController extends Controller
         }
         $this->atla->create($dados);
 
-        return redirect()->route('auth.atlas');
+        return redirect()->route('auth.atlas')->with('success', 'Página do atlas adicionada com sucesso!');
+        
     }
 
     public function editar($identifier) 
@@ -95,13 +96,13 @@ class AtlaController extends Controller
         }
         $this->atla->find($identifier)->update($dados);
 
-        return redirect()->route('auth.atlas');
+        return redirect()->route('auth.atlas')->with('success', 'Página do atlas atualizada com sucesso!');
     }
 
     public function deletar($identifier)
     {
         $this->atla->find($identifier)->delete();
-        return redirect()->route('auth.atlas');
+        return redirect()->route('auth.atlas')->with('success', 'Página do atlas deletada com sucesso!');
     }
 
     public function siteIndex() 

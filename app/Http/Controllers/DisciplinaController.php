@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Disciplina;
 use App\User;
 use Validator;
-use App\Http\Requests\DisciplinaRequest;
+use App\Http\Requests\CriarDisciplinaRequest;
+use App\Http\Requests\AtualizarDisciplinaRequest;
 
 class DisciplinaController extends Controller
 {
@@ -35,15 +36,17 @@ class DisciplinaController extends Controller
 
     }
 
-    public function salvar(DisciplinaRequest $request) 
+    public function salvar(CriarDisciplinaRequest $request) 
     {
+        $request['nome'] = strtolower($request['nome']);
+
         $request->validated();
 
         $dados = $request->all();
 
         $this->disciplina->create($dados);
 
-        return redirect()->route('auth.disciplinas');
+        return redirect()->route('auth.disciplinas')->with('success', 'Disciplina adicionada com sucesso!');
     }
 
     public function editar($identifier) 
@@ -54,19 +57,26 @@ class DisciplinaController extends Controller
 
     }
 
-    public function atualizar(DisciplinaRequest $request, $identifier)
+    public function atualizar(AtualizarDisciplinaRequest $request, $identifier)
     {
+        $request['nome'] = strtolower($request['nome']);
+    
         $request->validated();
 
         $dados = $request->all();
+
+        if($this->disciplina->find($identifier)->nome != $request['nome']) {
+            return redirect()->back()->withErrors(['nome' => 'O nome da disciplina não pode ser alterado']);
+        }
+
         $this->disciplina->find($identifier)->update($dados);
 
-        return redirect()->route('auth.disciplinas');
+        return redirect()->route('auth.disciplinas')->with('success', 'Disciplina atualizada com sucesso!');
     }
 
     public function deletar($identifier)
     {
         $this->disciplina->find($identifier)->delete();
-        return redirect()->route('auth.disciplinas');
+        return redirect()->route('auth.disciplinas')->with('success', 'Disciplina deletada com sucesso!');
     }
 }

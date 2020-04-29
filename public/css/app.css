@@ -8,6 +8,10 @@ div.container {
     text-align: start;
 }
 
+input[name='nome'] {
+    text-transform: capitalize;
+}
+
 /* Remover o espaçamento da navbar */
 nav.navbar {
     padding: 0;
