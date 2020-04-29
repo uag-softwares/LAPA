@@ -61,7 +61,8 @@ class AtlaController extends Controller
         }
         $this->atla->create($dados);
 
-        return redirect()->route('auth.atlas');
+        return redirect()->route('auth.atlas')->with('success', 'Página do atlas adicionada com sucesso!');
+        
     }
 
     public function editar($identifier) 
@@ -95,13 +96,13 @@ class AtlaController extends Controller
         }
         $this->atla->find($identifier)->update($dados);
 
-        return redirect()->route('auth.atlas');
+        return redirect()->route('auth.atlas')->with('success', 'Página do atlas atualizada com sucesso!');
     }
 
     public function deletar($identifier)
     {
         $this->atla->find($identifier)->delete();
-        return redirect()->route('auth.atlas');
+        return redirect()->route('auth.atlas')->with('success', 'Página do atlas deletada com sucesso!');
     }
 
     public function siteIndex() 
@@ -115,9 +116,19 @@ class AtlaController extends Controller
     public function atlasPorCategoria($categoria_id) 
     {
         $categoria = $this->categoria->find($categoria_id);
-        $busca = $this->atla->where('categoria_id', $categoria_id);
+        $busca = $this->atla->where('publicado', true)
+            ->where('categoria_id', $categoria_id);
         $registros = $busca->get();
         $paginas = $busca->paginate(1);
         return view('site.atlas.ver_atlas', compact('paginas', 'registros', 'categoria'));
+    }
+
+    public function atlasPorDisciplina($disciplina_id) 
+    {
+        $disciplina = $this->disciplina->find($disciplina_id);
+        $busca = $this->categoria->where('disciplina_id', $disciplina_id);
+        $registros = $busca->get();
+        $paginas = $busca->paginate(1);
+        return view('site.atlas.ver_disciplinas', compact('paginas', 'registros', 'disciplina'));
     }
 }

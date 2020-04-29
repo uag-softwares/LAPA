@@ -18,4 +18,8 @@ class Atla extends Model
     public function categoria() {
         return $this->belongsTo('App\Categoria');
     } 
+
+    public function quantidadeAtlasPublicados() {
+        return $this->where('publicado', true)->where('categoria_id', $this->categoria_id)->count();
+    }
 }

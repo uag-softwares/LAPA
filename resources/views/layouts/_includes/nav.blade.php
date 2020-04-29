@@ -7,7 +7,6 @@
                 <img class="my-4" style="height:130px;" src="{{ asset('img/lapa-icon.png') }}" alt="">
                 <div class="title d-none d-md-block">
                     <h3>Laboratório de Anatomia e Patologia Animal</h3>
-                    <h4>Medicina Veterinária</h4>
                     <h4>Universidade Federal do Agreste de Pernambuco</h4>
                 </div>
                 <img class="my-4" style="height:130px;" src="{{ asset('img/logo.png') }}" alt="">
