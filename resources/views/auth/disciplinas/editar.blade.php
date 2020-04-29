@@ -9,7 +9,7 @@
                 <input type="hidden" name="_method" value="put">
                 @include('auth.disciplinas._form')
                 <div class="input-btn">
-                    <button class="btn">Editar</button>
+                    <button class="btn">Salvar alterações</button>
                 </div>
             </form>
         </div>
