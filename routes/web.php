@@ -75,6 +75,8 @@ Route::middleware(['auth','check.cpf'])->group(function () {
 	Route::get('/auth/acesso_gerenciamento/recusarSolicitacao/{id}', ['as' => 'auth.acesso_gerenciamento.recusarSolicitacao', 'uses' => 'Auth\RegisterController@recusarSolicitacao'], function() {});
 
 });
+Route::post('/auth/passwords/reset', ['as' => 'auth.password.resetPassword', 'uses' => 'ContaController@resetPassword'], function () {});
+Route::post('/auth/passwords/email', ['as' => 'auth.password.validatePasswordRequest', 'uses' => 'ContaController@validatePasswordRequest'], function () {});
 
 Route::get('/home', 'HomeController@index')->name('home');
 
