@@ -49,7 +49,7 @@ class MaterialController extends Controller
             $dados['anexo'] = $dir.'/'.$nomeAnexo;
         }
         $this->material->create($dados);
-        return redirect()->route('auth.materiais');
+        return redirect()->route('auth.materiais')->with('success', 'Material adicionado com sucesso!');
     }
 
     public function editar($material_id) 
@@ -75,13 +75,13 @@ class MaterialController extends Controller
         }
 
         $this->material->find($material_id)->update($dados);
-        return redirect()->route('auth.materiais');
+        return redirect()->route('auth.materiais')->with('success', 'Material atualizado com sucesso!');
     }
 
     public function deletar($material_id)
     {
         $this->material->find($material_id)->delete();
-        return redirect()->route('auth.materiais');
+        return redirect()->route('auth.materiais')->with('success', 'Material deletado com sucesso!');
     }
     
 }
