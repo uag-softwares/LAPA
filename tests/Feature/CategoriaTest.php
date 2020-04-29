@@ -15,7 +15,7 @@ class CategoriaTest extends TestCase
     /** @test Adicionar uma categoria valida*/
     public function adicionarUmaCategoriaValida()
     {
-        $categoria = factory(Categoria::class)->create([
+        factory(Categoria::class)->create([
             'nome' => 'Categoria Teste',
         ]);
         $this->assertDatabaseHas('categorias', [

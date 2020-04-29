@@ -8,10 +8,10 @@ Feature: categoria
     And Eu estou na pagina de disciplinas
     And Eu clico em Adicionar
     Then Eu devo estar na pagina de criar disciplina
-    When Eu preencho o campo nome com "Iniciação a Programação"
+    When Eu preencho o campo nome com "Iniciação a programação"
     And Eu seleciono o professor "Rodrigo"
     And Eu clico em Adicionar
-    Then Eu devo ver a disciplina "Iniciação a Programação"
+    Then Eu devo ver a disciplina "Iniciação a programação"
 
   Scenario: criar uma categoria valida
     Given Eu estou logado
@@ -19,7 +19,7 @@ Feature: categoria
     And Eu clico em Adicionar
     Then Eu devo estar na pagina de criar categoria
     When Eu preencho o campo nome com "Sistema nervoso"
-    And Eu seleciono a disciplina "Iniciação a Programação"
+    And Eu seleciono a disciplina "Iniciação a programação"
     And Eu clico em Adicionar
     Then Eu devo ver a categoria "Sistema nervoso"
 
@@ -42,8 +42,8 @@ Feature: categoria
   Scenario: deletar uma disciplina de teste com sucesso
     Given Eu estou logado
     And Eu estou na pagina de disciplinas
-    And Eu clico em Deletar a disciplina "Iniciação a Programação"
-    Then Eu nao vejo a disciplina "Iniciação a Programação"
+    And Eu clico em Deletar a disciplina "Iniciação a programação"
+    Then Eu nao vejo a disciplina "Iniciação a programação"
     And Eu deleto o usuario para o teste
   
 

@@ -19,9 +19,9 @@
                     @foreach($registros as $registro)
                     <tr>
                         <td>{{ $registro->titulo }}</td>
-			<td>{{ $registro->texto}}</td>
-			<td>{{ $registro->anexo}}</td>
-                        <td>{{ isset($registro->disciplina) ? $registro->disciplina->nome : 'Nenhum professor' }}
+                        <td>{{ $registro->texto}}</td>
+                        <td>{{ $registro->anexo}}</td>
+                        <td>{{ isset($registro->disciplina) ? ucfirst($registro->disciplina->nome) : 'Nenhum professor' }}
                         <td>
                             <a href="{{ route('auth.material.editar', $registro->id) }}" class="btn">Editar</a>
                             <a href="{{ route('auth.material.deletar', $registro->id) }}" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar o material?');">Deletar</a>

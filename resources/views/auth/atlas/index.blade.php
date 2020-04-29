@@ -5,13 +5,21 @@
         <div class="container">
             <h2>Gerenciar atlas</h2> 
             <a href="{{ route('auth.atla.adicionar') }}" class="btn mb-2">Adicionar</a>
+
+            @if(Session::has('success'))
+                <div class="alert alert-success alert-dismissible">
+                    {{ Session::get('success') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
+            
             <table class="table">
                 <thead>
                     <tr>
                         <th>Título</th>
-                        <th>Descrição</th>
                         <th>Categoria</th>
-                        <th>Anexo</th>
                         <th>Publicado</th>                        
                         <th>Ações</th>
                     </tr>
@@ -20,9 +28,7 @@
                     @foreach ($registros as $registro)
                         <tr>
                             <td>{{ $registro->titulo }}</td>
-                            <td>{{ $registro->descricao }}</td>
                             <td>{{ isset($registro->categoria) ? $registro->categoria->nome : 'Nenhuma categoria' }}</td>
-                            <td>{{ $registro->anexo}}</td>
                             <td>{{ $registro->publicado ? "Sim" : "Não" }}</td>
                             <td>
                                 <a href="{{ route('auth.atla.editar',$registro->id) }}" class="btn">Editar</a>
