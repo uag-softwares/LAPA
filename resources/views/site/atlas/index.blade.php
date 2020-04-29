@@ -59,7 +59,7 @@
                                     
                                     @if (count($disciplina->categoria) >= 1)
                                         <a class="list-group-item list-group-item-action" href="{{ route('site.atlas.disciplina', $disciplina->id) }}">
-                                            {{ $disciplina->nome }}
+                                            {{ ucfirst($disciplina->nome) }}
                                         </a>
                                     @endif
 

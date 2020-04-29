@@ -106,7 +106,7 @@ class RegisterController extends Controller
        $request = new Request($data);
        $registros= $this->usuario::whereNotNull('cpf_verified_at')->get();
 
-      if($request->hasFile('avatar')) {
+      /*if($request->hasFile('avatar')) {
             $anexo = $request->file('avatar');
             $num = rand(1111,9999);
             $dir = 'img/avatares/';
@@ -115,7 +115,7 @@ class RegisterController extends Controller
             $anexo->move($dir, $nomeAnexo);
             $data['avatar'] = $dir.'/'.$nomeAnexo;
             
-        }
+        }*/
 
        $user= $this->usuario->create([
             'name' =>  $data ['name'],
@@ -123,7 +123,7 @@ class RegisterController extends Controller
 	    'email' =>  $data['email'],
 	    'surname' =>  $data ['surname'],
 	    'user_description' =>  $data ['user_description'],
-	    'avatar' => $data['avatar'],
+	    //'avatar' => $data['avatar'],
 	    'user_type' => 'admin',
         ]);
         Conta::create([

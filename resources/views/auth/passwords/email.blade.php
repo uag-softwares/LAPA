@@ -1,20 +1,23 @@
 @extends('layouts.app')
 
+@section('titulo', 'Redefinir senha')
 @section('content')
 <div class="container">
-   <div class="card-header">{{ __('Redefinir Senha') }}</div>
-   <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+   <h2>{{ __('Redefinir senha') }}</h2>
+
+    @if (session('status'))
+        <div class="alert alert-success alert-dismissible" role="alert">
+            {{ session('status') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
 
     <form method="POST" action="{{ route('auth.password.validatePasswordRequest') }}">
         @csrf
-        
         <div class="form-group">
-          <label for="name"><b>Endereço de e-mail</b></label>
+            <label for="name">Endereço de e-mail</label>
             <input id="email" type="email" class="form-control form-control-lg @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
             @error('email')
                 <span class="invalid-feedback" role="alert">
@@ -23,14 +26,14 @@
             @enderror
         </div>
         <button type="submit" class="btn">
-            {{ __('Enviar Link de Redefinição de Senha') }}
+            {{ __('Enviar link de redefinição de senha') }}
         </button>
-        <br>
         <hr>
+
         @if (Route::has('register'))
             <a class="" href="{{ route('login') }}">{{ __('Voltar') }}</a>
         @endif
-    </div>
+        
     </form>
 </div>
 @endsection

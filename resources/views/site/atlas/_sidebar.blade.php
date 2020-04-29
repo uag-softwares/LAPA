@@ -6,7 +6,7 @@
 
 <div id="leftSidebar" class="col-lg-2 border-right pl-4 d-none d-lg-block shadow-sm">
     <input class="form-control mb-3" id="pesquisa_atlas" type="search" id="form-autocomplete" placeholder="Pesquisar...">
-    <div id="paginasAtlas" class="list-group p-0 text-left" style="padding: 0 0 0 1.5em; overflow:hidden; white-space: nowrap;">
+    <div id="paginasAtlas" class="list-group p-0 text-left">
        
         @for ($i = 0; $i < $paginas->lastPage(); $i++)
             @if($paginas->currentPage() == ($i + 1))
