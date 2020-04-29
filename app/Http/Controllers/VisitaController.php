@@ -34,7 +34,7 @@ class VisitaController extends Controller
 
         $dados = $request->all();
         $this->visita->create($dados);
-        return redirect()->route('auth.visitas');
+        return redirect()->route('auth.visitas')->with('success', 'Visita adicionada com sucesso!');
     }
 
     public function ver($identifier)
@@ -55,13 +55,13 @@ class VisitaController extends Controller
 
         $this->visita->find($identifier)->update($dados);
         
-        return redirect()->route('auth.visitas');
+        return redirect()->route('auth.visitas')->with('success', 'Visita confirmada com sucesso!');
     }
 
     public function deletar($identifier) 
     {
         $this->visita->find($identifier)->delete();
 
-        return redirect()->route('auth.visitas');
+        return redirect()->route('auth.visitas')->with('success', 'Visita cancelada com sucesso!');
     }
 }
