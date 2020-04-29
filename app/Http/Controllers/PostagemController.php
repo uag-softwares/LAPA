@@ -50,7 +50,7 @@ class PostagemController extends Controller
             $dados['anexo'] = $dir.'/'.$nomeAnexo;
         }
         $this->postagem->create($dados);
-        return redirect()->route('auth.postagens');
+        return redirect()->route('auth.postagens')->with('success', 'Postagem adicionada com sucesso!');
     }
 
     public function editar($identifier) 
@@ -75,13 +75,13 @@ class PostagemController extends Controller
         }
 
         $this->postagem->find($identifier)->update($dados);
-        return redirect()->route('auth.postagens');
+        return redirect()->route('auth.postagens')->with('success', 'Postagem atualizada com sucesso!');
     }
 
     public function deletar($identifier)
     {
         $this->postagem->find($identifier)->delete();
-        return redirect()->route('auth.postagens');
+        return redirect()->route('auth.postagens')->with('success', 'Postagem deletada com sucesso!');
     }
     
     
