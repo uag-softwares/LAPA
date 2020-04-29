@@ -8,27 +8,26 @@ Feature: disciplina
     And Eu estou na pagina de disciplinas
     And Eu clico em Adicionar
     Then Eu devo estar na pagina de criar disciplina
-    When Eu preencho o campo nome com "Engenharia de Software"
+    When Eu preencho o campo nome com "Engenharia de software"
     And Eu seleciono o professor "Rodrigo"
     And Eu clico em Adicionar
-    Then Eu devo ver a disciplina "Engenharia de Software"
+    Then Eu devo ver a disciplina "Engenharia de software"
 
-  Scenario: atualizar uma disciplina valida
+  Scenario: atualizar o nome de uma uma disciplina
     Given Eu estou logado
     And Eu estou na pagina de disciplinas
-    And Eu clico em Editar a disciplina "Engenharia de Software"
+    And Eu clico em Editar a disciplina "Engenharia de software"
     Then Eu devo estar na pagina de editar a disciplina
     When Eu edito o nome para "IHC"
     And Eu edito o professor para "Nenhum"
     And Eu clico em Editar
-    Then Eu devo ver a disciplina "IHC"
-    And Eu devo ver o professor "Nenhum professor"
+    Then Eu devo ver o erro "O nome da disciplina não pode ser alterado"
 
   Scenario: deletar uma disciplina com sucesso
     Given Eu estou logado
     And Eu estou na pagina de disciplinas
-    And Eu clico em Deletar a disciplina "IHC"
-    Then Eu nao vejo a disciplina "IHC"
+    And Eu clico em Deletar a disciplina "Engenharia de software"
+    Then Eu nao vejo a disciplina "Engenharia de software"
 
   Scenario: criar uma disciplina sem nome
     Given Eu estou logado
@@ -55,8 +54,8 @@ Feature: disciplina
     And Eu estou na pagina de disciplinas
     And Eu clico em Adicionar
     Then Eu devo estar na pagina de criar disciplina
-    When Eu preencho o campo nome com "Engenharia de Software"
+    When Eu preencho o campo nome com "Engenharia de software"
     And Eu clico em Adicionar
-    Then Eu devo ver a disciplina "Engenharia de Software" sem professor
-    And Eu clico em Deletar a disciplina "Engenharia de Software"
+    Then Eu devo ver a disciplina "Engenharia de software" sem professor
+    And Eu clico em Deletar a disciplina "Engenharia de software"
     And Eu deleto o usuario para o teste

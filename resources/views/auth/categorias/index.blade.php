@@ -27,7 +27,7 @@
                     @foreach($registros as $registro)
                     <tr>
                         <td>{{ $registro->nome }}</td>
-                        <td>{{ isset($registro->disciplina) ? $registro->disciplina->nome : 'Nenhuma disciplina' }}</td>
+                        <td>{{ isset($registro->disciplina) ? ucfirst($registro->disciplina->nome) : 'Nenhuma disciplina' }}</td>
                         <td>
                             <a href="{{ route('auth.categoria.editar', $registro->id) }}" class="btn">Editar</a>
                             <a href="{{ route('auth.categoria.deletar', $registro->id) }}" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar esta categoria?');">Deletar</a>

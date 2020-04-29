@@ -26,7 +26,7 @@
                 <tbody>
                     @foreach($registros as $registro)
                     <tr>
-                        <td style="text-transform: capitalize;">{{ $registro->nome }}</td>
+                        <td>{{ ucfirst($registro->nome) }}</td>
                         <td>{{ isset($registro->user) ? $registro->user->name : 'Nenhum professor' }}</td>
                         <td>
                             <a href="{{ route('auth.disciplina.editar', $registro->id) }}" class="btn">Editar</a>

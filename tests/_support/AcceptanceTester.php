@@ -110,6 +110,14 @@ class AcceptanceTester extends \Codeception\Actor
     }
 
     /**
+    * @Then Eu devo ver o erro :arg1
+    */
+    public function euDevoVerOErro($arg1)
+    {
+        $this->see($arg1);
+    }
+
+    /**
      * @Given Eu clico em Editar a disciplina :arg1
      */
     public function euClicoEmEditarADisciplina($arg1)

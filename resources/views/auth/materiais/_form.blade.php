@@ -31,9 +31,9 @@
         <option hidden disabled selected value>{{ __('Selecione uma disciplina') }}</option>
         @foreach($disciplinas as $disciplina)
             @if(isset($registro->disciplina->id) && $disciplina->id = $registro->disciplina->id)
-                <option value="{{ $disciplina->id }}" selected>{{ $disciplina->nome}}</option>
+                <option value="{{ $disciplina->id }}" selected>{{ ucfirst($disciplina->nome) }}</option>
             @else
-                <option value="{{ $disciplina->id }}">{{ $disciplina->nome}}</option>
+                <option value="{{ $disciplina->id }}">{{ ucfirst($disciplina->nome) }}</option>
             @endif
         @endforeach
     </select>

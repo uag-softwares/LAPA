@@ -8,10 +8,10 @@ Feature: atla
     And Eu estou na pagina de disciplinas
     And Eu clico em Adicionar
     Then Eu devo estar na pagina de criar disciplina
-    When Eu preencho o campo nome com "IHC"
+    When Eu preencho o campo nome com "Ihc"
     And Eu seleciono o professor "Rodrigo"
     And Eu clico em Adicionar
-    Then Eu devo ver a disciplina "IHC"
+    Then Eu devo ver a disciplina "Ihc"
 
   Scenario: criar uma categoria valida para o teste de atla
     Given Eu estou logado
@@ -19,7 +19,7 @@ Feature: atla
     And Eu clico em Adicionar
     Then Eu devo estar na pagina de criar categoria
     When Eu preencho o campo nome com "Sistema nervoso"
-    And Eu seleciono a disciplina "IHC"
+    And Eu seleciono a disciplina "Ihc"
     And Eu clico em Adicionar
     Then Eu devo ver a categoria "Sistema nervoso"
   
@@ -95,6 +95,6 @@ Feature: atla
   Scenario: deletar uma disciplina de teste com sucesso
     Given Eu estou logado
     And Eu estou na pagina de disciplinas
-    And Eu clico em Deletar a disciplina "IHC"
-    Then Eu nao vejo a disciplina "IHC"
+    And Eu clico em Deletar a disciplina "Ihc"
+    Then Eu nao vejo a disciplina "Ihc"
     And Eu deleto o usuario para o teste
