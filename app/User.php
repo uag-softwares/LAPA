@@ -16,18 +16,10 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name','cpf','email', 'password','telephone','surname','user_description','avatar','user_type',
+        'name','cpf','email','telephone','surname','user_description','avatar','user_type',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
-
+    
     /**
      * The attributes that should be cast to native types.
      *
@@ -39,6 +31,10 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function disciplina() {
         return $this->hasMany('App\Disciplina');
+    }
+    public function conta()
+    {
+         return $this->hasOne('App\Conta');
     }
 
 }

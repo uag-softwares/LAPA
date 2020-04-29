@@ -25,7 +25,8 @@ class RegisterRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string','min:3', 'max:255'],
-            'password' => ['required', 'string'],
+	    'surname' => ['required', 'string','min:3', 'max:255'],
+            
 	    
         ];
     }
@@ -34,7 +35,10 @@ class RegisterRequest extends FormRequest
 	    'name.required'=>'Nome deve ser obrigatório',
 	    'name.string'=>'Nome não pode conter números',
 	    'name.min'=>'Nome deve conter no mínimo três caracteres',
-	    'password.required'=>'Senha deve ser obrigatória',
+            'surname.required'=>'Sobrenome deve ser obrigatório',
+	    'surname.string'=>'Sobrenome não pode conter números',
+	    'surname.min'=>'Sobrenome deve conter no mínimo três caracteres',
+	   
 	    
         ];
     }

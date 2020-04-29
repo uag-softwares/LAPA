@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use Illuminate\Support\Facades\Auth;
+use App\User;
 class LoginController extends Controller
 {
     /*
@@ -39,4 +40,24 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
     
+    
+  /**
+     * Handle an authentication attempt.
+     *
+     * @param  \Illuminate\Http\Request $request
+     *
+     * @return void
+     */
+    public function attemptLogin(Request $request) {
+        $usersAdmin=User::where( 'user_type', 'admin')->get();
+	$user= $usersAdmin->where('email',$request['email'])->first();
+        if($user!=null){
+	   if (Auth::guard('conta')->attempt(['user_id' =>$user->id, 'password' => $request['password']])) {
+
+        	Auth::login($user);//lembrar de colocar remember token
+    	   }
+	}
+
+   }
+
 }

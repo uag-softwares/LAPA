@@ -1,4 +1,15 @@
     @php($user = Auth::user())
+   
+   <div class="form-group d-flex flex-column align-items-center">
+       
+       <label for="avatar">
+           <span class="fas fa-user-circle" style="font-size:80px"></span>
+           {{ __('Foto (opcional)') }}
+       </label>
+       <input id="avatar" type="file" name="avatar" class="avatar">
+            
+    </div>
+  
     <div class="form-group">
     <label for="name">Nome*</label>
         <input id="name" type="text" class="form-control form-control-lg @error('name') is-invalid @enderror" name="name" value="{{isset($user->name) ? $user->name : old('name')}}" required autocomplete="name" autofocus>
@@ -38,14 +49,16 @@
         @enderror
     </div>
     <div class="form-group">
-    <label for="name">Descricao Profissional(opcional)</label>
-        <input id="user_description" type="text" class="form-control form-control-lg @error('user_description') is-invalid @enderror" name="user_description"  value="{{isset($user->user_description) ? $user->user_description: old('user_description')}}" required autocomplete="user_description" autofocus>
+    <label for="user_description ">Descricao Profissional(opcional)</label>
+        <textarea class="form-control form-control-lg @error('user_description') is-invalid @enderror" type="text" name="user_description" placeholder="Descreva aqui sobre sua vida profissional">{{ isset($user->user_description ) ? $user->user_description  : old('user_description ') }}</textarea>
+
         @error('user_description')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
         @enderror
     </div>
+   @guest
     <div class="form-group">
         <label for="psw">{{ Auth::user() ? 'Senha Atual*' : 'Senha*' }}</label>
         <input id="password" type="password" class="form-control form-control-lg @error('password') is-invalid @enderror" name="password" value="" required autocomplete="new-password">
@@ -55,7 +68,7 @@
             </span>
         @enderror
     </div>
-    @guest
+    
     <div class="form-group">
         <label for="psw-repeat">Confirme a senha*</label>									
         <input id="password-confirm" type="password" class="form-control form-control-lg" name="password_confirmation" value="{{isset($user->password_confirmation) ? $user->password_confirmation: ''}}" required autocomplete="new-password">

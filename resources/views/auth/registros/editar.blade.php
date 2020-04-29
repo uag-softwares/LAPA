@@ -2,7 +2,7 @@
 
 @section('titulo', 'Editar usuário')
 @section('content')
-<form method="POST" action="{{ route('auth.registros.atualizar')}}">
+<form method="POST" action="{{ route('auth.registros.atualizar')}}" enctype="multipart/form-data">
   @csrf
   <div class="container">
     <h1>Editar Informações</h1>    
