@@ -12,12 +12,14 @@ use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\EmailVisitaRequest;
 use App\Notifications\SolicitacaoAcesso;
 use App\Notifications\SolicitacaoAcesso_aceita;
 use App\Notifications\SolicitacaoAcesso_recusada;
 use \Illuminate\Notifications\Notifiable;
 use Notification;
 use App\Conta;
+use App\Visita;
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
 use Image;
@@ -44,6 +46,7 @@ class RegisterController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
     protected $usuario;
+    protected $visita;
   
     /**
      * Create a new controller instance.
@@ -51,16 +54,20 @@ class RegisterController extends Controller
      * @return void
      */
     
-     public function __construct(User $usuario) 
+     public function __construct(User $usuario, Visita $visita) 
     {
        $this->middleware('auth', ['except' => [
-            'register','showRegistrationForm']]);
+            'register',
+            'showRegistrationForm',
+        ]]);
+
        $this->middleware('guest', ['only' => [
             'register',
             'showRegistrationForm',
         ]]);
       
        $this->usuario=$usuario;
+       $this->visita = $visita;
        
        
     }
@@ -192,5 +199,14 @@ class RegisterController extends Controller
          return redirect()->route('register')->with('sucesso','Conta exluida com sucesso');
     }
   }
+
+    public function buscarUsuarioVisita(EmailVisitaRequest $request)
+    {  
+        $request->validated();
+        $email = $request['email'];
+        $userExiste = $this->usuario->where('email', $email)->first();
+        
+	    return view('site.visitas.adicionar', compact('userExiste', 'email'));
+    }
   
 }

@@ -4,17 +4,31 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Visita;
+use App\User;
 use App\Http\Requests\VisitaRequest;
+use App\Notifications\SolicitacaoVisita;
+use App\Notifications\SolicitacaoVisitaAceita;
+use App\Notifications\SolicitacaoVisitaRecusada;
+use \Illuminate\Notifications\Notifiable;
+use Notification;
 
 class VisitaController extends Controller
 {
 
     protected $visita;
+    protected $usuario;
 
-    public function __construct(Visita $visita) 
+    public function __construct(Visita $visita, User $usuario) 
     {
-        $this->middleware('auth');
         $this->visita = $visita;
+        $this->usuario = $usuario;
+
+        $this->middleware('auth', ['except' => [
+            'adicionar',
+            'salvar',
+            'buscarParaVisita',
+        ]]);
+
     }
 
     public function index()
@@ -25,16 +39,12 @@ class VisitaController extends Controller
 
     public function adicionar() 
     {
-        return view('auth.visitas.adicionar');        
+        return view('site.visitas.adicionar');        
     }
 
-    public function salvar(VisitaRequest $request) 
+    public function salvar($visita) 
     {
-        $request->validated();
-
-        $dados = $request->all();
-        $this->visita->create($dados);
-        return redirect()->route('auth.visitas');
+        return $this->visita->create($visita);
     }
 
     public function ver($identifier)
@@ -54,14 +64,68 @@ class VisitaController extends Controller
         }
 
         $this->visita->find($identifier)->update($dados);
-        
-        return redirect()->route('auth.visitas');
+
+        $visita = $this->visita->where('id', $identifier)->first();
+        $visita->user->notify(new SolicitacaoVisitaAceita($visita->user));
+
+        return redirect()->route('auth.visitas')->with('success', 'Visita confirmada com sucesso, o responsável será avisado por email');
     }
 
     public function deletar($identifier) 
     {
-        $this->visita->find($identifier)->delete();
+        $visita = $this->visita->where('id', $identifier)->first();
+        
+        if(!$this->visita->find($identifier)->delete()) {
+            return redirect()->back()->withErrors('error', 'Erro ao cancelar a visita');
+        }
 
-        return redirect()->route('auth.visitas');
+        $visita->user->notify(new SolicitacaoVisitaRecusada($visita->user));
+
+        return redirect()->route('auth.visitas')->with('success', 'Visita cancelada com sucesso, o responsável será avisado por email');;
+    }
+
+    public function salvarUsuarioVisita(VisitaRequest $request)
+    {
+        $request->validated();
+
+        $email = $request['email'];
+        $userExiste = $this->usuario->where('email', $email)->first();
+
+        if($userExiste == null) {
+            
+            $usuario = [
+                'name' =>  $request['name'],
+                'cpf' =>  $request['cpf'],
+                'email' =>  $request['email'],
+                'telephone' =>  $request['telephone'],
+                'surname' =>  $request['surname'],
+                'user_type' => 'visitant',
+            ];
+
+            $request->validate([
+                'cpf' => 'unique:users',
+            ],[
+                'cpf.unique' => 'O CPF já foi cadastrado, tenta usar o mesmo email vinculado ao cpf'
+            ]);
+
+            $userExiste = $this->usuario->salvarUserVisitante($usuario);
+        }
+
+        $visita = [
+            'data' => $request['data'],
+            'hora_inicial' => $request['hora_inicial'], 
+            'hora_final' => $request['hora_final'], 
+            'descricao' => $request['descricao'], 
+            'confirmada' => $request['confirmada'], 
+            'user_id' => $userExiste->id,
+        ];
+
+        $result = $this->salvar($visita);
+        $admins = $this->usuario->whereNotNull('cpf_verified_at')->get();
+        foreach ($admins as $admin) {
+              $admin->notify(new SolicitacaoVisita($admin));
+        }
+
+        return redirect()->route('site.visita.adicionar')->with('success', 'Visita solicitada com sucesso, você receberá um email quando ela for confirmada.');
     }
 }

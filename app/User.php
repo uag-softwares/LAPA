@@ -41,7 +41,16 @@ class User extends Authenticatable implements MustVerifyEmail
     
     public function conta()
     {
-         return $this->hasOne('App\Conta');
+        return $this->hasOne('App\Conta');
     }
 
+    public function visita()
+    {
+        return $this->hasMany('App\Visita');
+    }
+
+    public function salvarUserVisitante($user) 
+    {
+        return $this->create($user);
+    }
 }
