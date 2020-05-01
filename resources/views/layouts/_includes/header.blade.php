@@ -13,6 +13,7 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/pesquisa_atlas.js') }}" defer></script>
+        <script src="{{ asset('js/pesquisa_materiais.js') }}" defer></script>
 
         <!-- Fonts 
         <link rel="dns-prefetch" href="//fonts.gstatic.com">

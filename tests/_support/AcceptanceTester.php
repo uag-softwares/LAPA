@@ -766,7 +766,7 @@ class AcceptanceTester extends \Codeception\Actor
      */
      public function euClicoEmEditarMaterialComTitulo($arg1)
      {
-         $this->click('Editar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[5]');
+         $this->click('Editar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[3]');
      }
 
     /**
@@ -799,7 +799,7 @@ class AcceptanceTester extends \Codeception\Actor
      */
      public function euClicoEmDeletarMaterialComTitulo($arg1)
      {
-         $this->click('Editar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[5]');
+         $this->click('Deletar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[3]');
      }
 
     /**

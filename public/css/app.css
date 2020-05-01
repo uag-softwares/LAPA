@@ -233,3 +233,30 @@ a:hover.page-link {
 
 /* Sidebar da esquerda */
 
+/* inicio de lista de materiais */
+.list-group-item.material-group {
+    display: flex; 
+    justify-content:space-around; 
+    padding:0;
+  }
+
+  .material-group.header {
+      padding: 1rem;
+  }
+  
+  .material-item {
+    color: #555;
+    text-decoration: none;
+    text-align: center;
+    background-color: transparent;
+    width: 50%;
+    padding: 1rem;
+  }
+  
+  .material-item:hover {
+    color: #000;
+    text-decoration: none;
+    background-color: #eee;
+  }
+  
+  /* fim de lista de materiais */
