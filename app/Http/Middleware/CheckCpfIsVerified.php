@@ -15,11 +15,7 @@ class CheckCpfIsVerified
      */
     public function handle($request, Closure $next)
     {
-/*
-        // Verifica se está logado, se não tiver redireciona
-    if ( !auth()->check() )
-        return redirect()->route('login');
- 
+
     /*
     * Verifica se o cpf foi verificado
     */

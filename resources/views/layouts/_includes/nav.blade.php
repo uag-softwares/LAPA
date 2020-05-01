@@ -16,7 +16,7 @@
                 <div class="container">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a href="{{ route('site.home') }}" class="nav-link">Início</a>
+                            <a href="{{ route('site.postagens.home') }}" class="nav-link">Início</a>
                         </li>
                     </ul>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -42,9 +42,7 @@
                             </li>
                             <!-- Authentication Links -->
                             @guest
-                                <li class="nav-item">
-                                    <a href="{{ route('login') }}" class="nav-link">Acesso</a>
-                                </li>
+                               
                             @else
                                 <li class="nav-item dropdown">
                                     <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

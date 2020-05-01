@@ -13,11 +13,8 @@
     @else
         @if(Auth::user()->cpf_verified_at != null)
              <h2 class="mb-4">Bem-vindo(a), {{ Auth::user()->name }}!</h2>
-        @else
-            <h2 class="mb-4">Sua solicitação está em análise, {{ Auth::user()->name }}!</h2>
-	    <h2 class="mb-4">Você ainda não tem permissão para gerenciar o sistema!</h2>
-        @endif
-    <div class="row justify-content-center">
+        
+        <div class="row justify-content-center">
             <a class="clickable-card" href="{{ route('auth.postagens') }}">
                 <div class="card manage">
                     <div class="card-header">
@@ -177,7 +174,11 @@
                     </div>
                 </div>
             </a>
-        </div>
+         </div>
+         @else
+            <h2 class="mb-4">Sua solicitação está em análise, {{ Auth::user()->name }}!</h2>
+	    <h2 class="mb-4">Você ainda não tem permissão para gerenciar o sistema!</h2>
+        @endif
     @endguest
 </div>
 @endsection
