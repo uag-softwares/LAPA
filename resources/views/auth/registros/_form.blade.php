@@ -1,5 +1,5 @@
     @php($user = Auth::user())
-   
+   <!--
    <div class="form-group d-flex flex-column align-items-center">
        
        <label for="avatar">
@@ -9,7 +9,7 @@
        <input id="avatar" type="file" name="avatar" class="avatar">
             
     </div>
-  
+  -->
     <div class="form-group">
     <label for="name">Nome*</label>
         <input id="name" type="text" class="form-control form-control-lg @error('name') is-invalid @enderror" name="name" value="{{isset($user->name) ? $user->name : old('name')}}" required autocomplete="name" autofocus>

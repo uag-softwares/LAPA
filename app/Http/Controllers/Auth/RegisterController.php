@@ -54,10 +54,10 @@ class RegisterController extends Controller
      public function __construct(User $usuario) 
     {
        $this->middleware('auth', ['except' => [
-            'register','showRegistrationForm']]);
+            'register','showRegistrationForm','siteIndex','siteRegistervizualizar']]);
        $this->middleware('guest', ['only' => [
             'register',
-            'showRegistrationForm',
+            'showRegistrationForm'
         ]]);
       
        $this->usuario=$usuario;
@@ -105,25 +105,25 @@ class RegisterController extends Controller
     { 
        $request = new Request($data);
        $registros= $this->usuario::whereNotNull('cpf_verified_at')->get();
-
+    /*
       if($request->hasFile('avatar')) {
-            $anexo = $request->file('avatar');
+            $anexo = $request->file['avatar'];
             $num = rand(1111,9999);
             $dir = 'img/avatares/';
-            $exAnexo = $anexo;
+            $exAnexo =$anexo->guessClientExtension();
             $nomeAnexo = 'avatar_'.$num.'.'.$exAnexo;
-            $anexo->move($dir, $nomeAnexo);
+            $file->move($dir, $nomeAnexo);
             $data['avatar'] = $dir.'/'.$nomeAnexo;
             
         }
-
+*/
        $user= $this->usuario->create([
             'name' =>  $data ['name'],
 	    'cpf' =>  $data ['cpf'],
 	    'email' =>  $data['email'],
 	    'surname' =>  $data ['surname'],
 	    'user_description' =>  $data ['user_description'],
-	    'avatar' => $data['avatar'],
+	    //'avatar' => $data['avatar'],
 	    'user_type' => 'admin',
         ]);
         Conta::create([
@@ -135,7 +135,6 @@ class RegisterController extends Controller
               $registro->notify(new SolicitacaoAcesso($user));
         }
       return $user;
-
     }
     public function index (){
         
@@ -192,5 +191,15 @@ class RegisterController extends Controller
          return redirect()->route('register')->with('sucesso','Conta exluida com sucesso');
     }
   }
+   public function siteIndex(){
+        $registros= $this->usuario::whereNotNull('cpf_verified_at')->get();
+       
+        return view('site.quemSomos.index', compact('registros'));
+    }
+  public function siteRegistervizualizar($id_user){
+        $registro = $this->usuario->find($id_user);
+       
+        return view('site.quemSomos.vizualizar', compact('registro'));
+    }
   
 }

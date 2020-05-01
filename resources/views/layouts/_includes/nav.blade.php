@@ -38,7 +38,7 @@
                                 <a href="#" class="nav-link">Materiais</a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">Quem somos</a>
+                                <a href="{{ route('site.quemSomos.index') }}" class="nav-link">Quem somos</a>
                             </li>
                             <!-- Authentication Links -->
                             @guest

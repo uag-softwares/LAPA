@@ -40,7 +40,7 @@
             </div>
             <hr>
             @if (Route::has('register'))
-                <a class="" href="{{ route('register') }}">{{ __('Criar conta') }}</a>
+                <a class="" href="{{ route('register') }}">{{ __('Solicitar acesso') }}</a>
             @endif
         </div>
     </form>
