@@ -18,6 +18,7 @@ before_script:
   - php artisan serve &
 
 script:
+  - php artisan db:seed
   - php vendor/bin/codecept run
 
 services:
