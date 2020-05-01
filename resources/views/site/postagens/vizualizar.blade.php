@@ -6,7 +6,7 @@
         <h2>Evento</h2>
         <div class="breadcrumbs d-flex text-left justify-content-sm-start justify-content-between">
             <p>
-                <a href="{{ route('site.home') }}">Início</a> /
+                <a href="{{ route('site.postagens.home') }}">Início</a> /
                 Eventos
             </p>
         </div>
