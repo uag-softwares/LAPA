@@ -35,7 +35,7 @@
                                 <a href="#" class="nav-link">Eventos</a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">Materiais</a>
+                                <a href="{{ route('site.materiais.index') }}" class="nav-link">Materiais</a>
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link">Quem somos</a>
