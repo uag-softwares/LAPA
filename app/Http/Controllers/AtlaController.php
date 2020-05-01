@@ -23,7 +23,13 @@ class AtlaController extends Controller
     {
         $this->atla = $atla;
         $this->categoria = $categoria; 
-        $this->disciplina = $disciplina;       
+        $this->disciplina = $disciplina;
+
+        $this->middleware('auth', ['except' => [
+            'atlasPorCategoria',
+            'atlasPorDisciplina',
+            'siteIndex',
+        ]]);
     }
 
     public function index() 

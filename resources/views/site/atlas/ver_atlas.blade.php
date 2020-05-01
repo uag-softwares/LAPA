@@ -16,7 +16,7 @@
             <p>
                 <a href="{{ route('site.home') }}">Início</a> /
                 <a href="{{ route('site.atlas.index') }}">Atlas interativo</a> /
-                <a href="{{ route('site.atlas.disciplina', $categoria->disciplina->id) }}">{{ $categoria->disciplina->nome }}</a> /
+                <a href="{{ route('site.atlas.disciplina', $categoria->disciplina->id) }}">{{ ucfirst($categoria->disciplina->nome) }}</a> /
                 {{ $categoria->nome ?? '' }} / 
             </p>
         </div>

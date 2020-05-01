@@ -29,16 +29,29 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    public function disciplina() {
+    public function disciplina() 
+    {
         return $this->hasMany('App\Disciplina');
     }
 
-    public function postagem() {
+    public function postagem() 
+    {
         return $this->hasMany('App\Postagem');
     }
+
     public function conta()
     {
          return $this->hasOne('App\Conta');
+
     }
 
+    public function visita()
+    {
+        return $this->hasMany('App\Visita');
+    }
+
+    public function salvarUserVisitante($user) 
+    {
+        return $this->create($user);
+    }
 }

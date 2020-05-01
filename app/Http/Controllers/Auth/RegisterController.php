@@ -12,12 +12,14 @@ use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\EmailVisitaRequest;
 use App\Notifications\SolicitacaoAcesso;
 use App\Notifications\SolicitacaoAcesso_aceita;
 use App\Notifications\SolicitacaoAcesso_recusada;
 use \Illuminate\Notifications\Notifiable;
 use Notification;
 use App\Conta;
+use App\Visita;
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
 use Image;
@@ -44,6 +46,7 @@ class RegisterController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
     protected $usuario;
+    protected $visita;
   
     /**
      * Create a new controller instance.
@@ -51,9 +54,10 @@ class RegisterController extends Controller
      * @return void
      */
     
-     public function __construct(User $usuario) 
+     public function __construct(User $usuario, Visita $visita) 
     {
        $this->middleware('auth', ['except' => [
+
             'register','showRegistrationForm','siteIndex','siteRegistervizualizar']]);
        $this->middleware('guest', ['only' => [
             'register',
@@ -61,6 +65,7 @@ class RegisterController extends Controller
         ]]);
       
        $this->usuario=$usuario;
+       $this->visita = $visita;
        
        
     }
@@ -105,6 +110,7 @@ class RegisterController extends Controller
     { 
        $request = new Request($data);
        $registros= $this->usuario::whereNotNull('cpf_verified_at')->get();
+
     /*
       if($request->hasFile('avatar')) {
             $anexo = $request->file['avatar'];
@@ -114,9 +120,10 @@ class RegisterController extends Controller
             $nomeAnexo = 'avatar_'.$num.'.'.$exAnexo;
             $file->move($dir, $nomeAnexo);
             $data['avatar'] = $dir.'/'.$nomeAnexo;
-            
+           
         }
 */
+
        $user= $this->usuario->create([
             'name' =>  $data ['name'],
 	    'cpf' =>  $data ['cpf'],
@@ -191,6 +198,7 @@ class RegisterController extends Controller
          return redirect()->route('register')->with('sucesso','Conta exluida com sucesso');
     }
   }
+
    public function siteIndex(){
         $registros= $this->usuario::whereNotNull('cpf_verified_at')->get();
        
@@ -200,6 +208,15 @@ class RegisterController extends Controller
         $registro = $this->usuario->find($id_user);
        
         return view('site.quemSomos.vizualizar', compact('registro'));
+
+
+    public function buscarUsuarioVisita(EmailVisitaRequest $request)
+    {  
+        $request->validated();
+        $email = $request['email'];
+        $userExiste = $this->usuario->where('email', $email)->first();
+        
+	    return view('site.visitas.adicionar', compact('userExiste', 'email'));
     }
   
 }

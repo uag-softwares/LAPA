@@ -20,6 +20,172 @@ class AcceptanceTester extends \Codeception\Actor
 {
     use _generated\AcceptanceTesterActions;
 
+
+    /**
+     * Testes revisados
+     */
+
+    /**
+     * @Given Eu estou cadastrado e logado como :arg1
+     */
+    public function euEstouCadastradoELogadoComo($arg1)
+    {
+        $this->amOnPage('/register');
+        $this->fillField(['name' => 'name'], $arg1);
+        $this->fillField(['name' => 'cpf'], '111.111.111-11');
+        $this->fillField(['name' => 'email'], 'admin@admin.com');
+        $this->fillField(['name' => 'password'], '12345678');
+        $this->fillField(['name' => 'password_confirmation'], '12345678');
+        $this->click('Cadastrar');
+        $this->see($arg1, '//button');
+    }
+
+    /**
+     * @Given Eu estou logado como :arg1
+     */
+    public function euEstouLogadoComo($arg1)
+    {
+        $this->amOnPage('/login');
+        $this->fillField(['name' => 'email'], 'admin@admin.com');
+        $this->fillField(['name' => 'password'], '12345678');
+        $this->click('Login');
+        $this->see($arg1, '//button');
+    }
+
+    /**
+     * @Given Eu estou na pagina de adicionar disciplinas
+     */
+    public function euEstouNaPaginaDeAdicionarDisciplinas()
+    {
+        $this->amOnPage('/auth/disciplina/adicionar');
+        $this->see('Adicionar disciplina', '//h2');
+    }
+
+    /**
+    * @Given Eu clico em adicionar disciplina
+    */
+    public function euClicoEmAdicionarDisciplina()
+    {
+        $this->click('Adicionar disciplina');
+    }
+
+    /**
+    * @When Eu preencho o campo nome com :arg1
+    */
+    public function euPreenchoOCampoNomeCom($arg1)
+    {
+        $this->fillField(['name' => 'nome'], $arg1);
+    }
+
+   /**
+    * @When Eu seleciono o professor :arg1
+    */
+    public function euSelecionoOProfessor($arg1)
+    {
+        $this->selectOption(['name' => 'user_id'], $arg1);
+    }
+
+    /**
+     * @Then Eu vejo que a disciplina foi adicionada corretamente
+     */
+    public function euVejoQueADisciplinaFoiAdicionadaCorretamente()
+    {
+        $this->see('Disciplina adicionada com sucesso!');
+    }
+
+    /**
+     * @Given Eu estou na pagina de gerenciar disciplinas
+     */
+    public function euEstouNaPaginaDeGerenciarDisciplinas()
+    {
+        $this->amOnPage('/auth/disciplinas/');
+        $this->see('Gerenciar disciplinas', '//h2');
+    }
+
+    /**
+     * @Given Eu clico em editar a disciplina :arg1
+     */
+    public function euClicoEmEditarADisciplina($arg1)
+    {
+        $this->click('Editar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[3]');        $this->seeInCurrentUrl('/auth/disciplina/editar/');
+        $this->seeInCurrentUrl('/auth/disciplina/editar/');
+    }
+
+    /**
+     * @When Eu altero o professor para :arg1
+     */
+    public function euAlteroOProfessorPara($arg1)
+    {
+        $this->selectOption(['name' => 'user_id'], $arg1);
+    }
+
+    /**
+     * @When Eu clico em salvar alteracoes
+     */
+    public function euClicoEmSalvarAlteracoes()
+    {
+        $this->click('Salvar alterações');
+    }
+
+    /**
+     * @Then Eu vejo que a disciplina foi alterada corretamente
+     */
+    public function euVejoQueADisciplinaFoiAlteradaCorretamente()
+    {
+        $this->see('Disciplina atualizada com sucesso!');
+    }
+
+    /**
+     * @Given Eu clico em deletar a disciplina :arg1
+     */
+    public function euClicoEmDeletarADisciplina($arg1)
+    {
+        $this->click('Deletar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[3]');
+        //$this->seeInPopup('Tem certeza que deseja deletar a disciplina?'); // Para teste no chromedriver
+        //$this->acceptPopup(); // Para teste no chromedriver
+    }
+
+    /**
+     * @Then Eu vejo que a disciplina foi deletada corretamente
+     */
+    public function euVejoQueADisciplinaFoiDeletadaCorretamente()
+    {
+        $this->see('Disciplina deletada com sucesso!');
+    }
+
+    /**
+     * @Then Eu vejo erro ao adicionar disciplina sem nome
+     */
+    public function euVejoErroAoAdicionarDisciplinaSemNome()
+    {
+        $this->see('O nome da disciplina é obrigatório');
+    }
+
+   /**
+    * @Then Eu vejo erro ao adicionar disciplina com nome muito curto
+    */
+    public function euVejoErroAoAdicionarDisciplinaComNomeMuitoCurto()
+    {
+        $this->see('O tamanho mínimo do nome é 3 letras');        
+    }
+
+   /**
+    * @Then Eu deleto o usuario :arg1
+    */
+    public function euDeletoOUsuario($arg1)
+    {
+        $this->amOnPage('/auth/registros');
+        $this->seeInCurrentUrl('/auth/registros');
+        $this->click('Deletar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[4]');
+        //$this->seeInPopup('Tem certeza que deseja excluir a conta?'); // Para teste no chromedriver
+        //$this->acceptPopup(); // Para teste no chromedriver
+        $this->dontSee($arg1);
+    }
+
+    /**
+     * Testes revisados até aqui
+    */
+
     /**
      * @Given Eu crio um usuario para o teste
      */
@@ -33,6 +199,8 @@ class AcceptanceTester extends \Codeception\Actor
         $this->fillField(['name' => 'password_confirmation'], '12345678');
         $this->click('Cadastrar');
     }
+
+    
 
     /**
      * @Given Eu estou logado
@@ -70,14 +238,6 @@ class AcceptanceTester extends \Codeception\Actor
     }
 
    /**
-    * @Given Eu clico em Adicionar
-    */
-    public function euClicoEmAdicionar()
-    {
-        $this->click('Adicionar');
-    }
-
-   /**
     * @Then Eu devo estar na pagina de criar disciplina
     */
     public function euDevoEstarNaPaginaDeCriarDisciplina()
@@ -86,19 +246,12 @@ class AcceptanceTester extends \Codeception\Actor
     }
 
    /**
-    * @When Eu preencho o campo nome com :arg1
+    * @Given Eu clico em Adicionar
     */
-    public function euPreenchoOCampoNomeCom($arg1)
+    public function euClicoEmAdicionar()
     {
-        $this->fillField(['name' => 'nome'], $arg1);
-    }
-
-   /**
-    * @When Eu seleciono o professor :arg1
-    */
-    public function euSelecionoOProfessor($arg1)
-    {
-        $this->selectOption(['name' => 'user_id'], $arg1);
+        $this->click('Adicionar');
+        $this->amOnPage('/auth/disciplina/adicionar');
     }
 
    /**
@@ -115,22 +268,6 @@ class AcceptanceTester extends \Codeception\Actor
     public function euDevoVerOErro($arg1)
     {
         $this->see($arg1);
-    }
-
-    /**
-     * @Given Eu clico em Editar a disciplina :arg1
-     */
-    public function euClicoEmEditarADisciplina($arg1)
-    {
-        $this->click('Editar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[3]');
-    }
-
-   /**
-    * @Then Eu devo estar na pagina de editar a disciplina
-    */
-    public function euDevoEstarNaPaginaDeEditaraDisciplina()
-    {
-        $this->seeInCurrentUrl('/auth/disciplina/editar/');
     }
 
    /**
@@ -163,17 +300,6 @@ class AcceptanceTester extends \Codeception\Actor
     public function euDevoVerOProfessor($arg1)
     {
         $this->see($arg1, '//table/tbody/tr');
-    }
-
-
-    /**
-     * @Given Eu clico em Deletar a disciplina :arg1
-     */
-    public function euClicoEmDeletarADisciplina($arg1)
-    {
-        $this->click('Deletar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[3]');
-        //$this->seeInPopup('Tem certeza que deseja deletar a disciplina?'); // Para teste no chromedriver
-        //$this->acceptPopup(); // Para teste no chromedriver
     }
 
    /**
