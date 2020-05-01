@@ -20,6 +20,11 @@ Route::get('/site/atlas/index', ['as' => 'site.atlas.index', 'uses' => 'AtlaCont
 Route::get('/site/atlas/categoria/{id}', ['as' => 'site.atlas.categoria', 'uses' => 'AtlaController@atlasPorCategoria'], function () {});
 Route::get('/site/atlas/disciplina/{id}', ['as' => 'site.atlas.disciplina', 'uses' => 'AtlaController@atlasPorDisciplina'], function () {});
 
+
+Route::get('/site/materiais/index', ['as' => 'site.materiais.index', 'uses' => 'MaterialController@siteIndex'], function () {});
+Route::get('/site/materiais/disciplina/{id}', ['as' => 'site.materiais.disciplina', 'uses' => 'MaterialController@materiaisPorDisciplina'], function () {});
+Route::get('/site/materiais/ver/{id}', ['as' => 'site.materiais.ver_materiais', 'uses' => 'MaterialController@ver'], function () {});
+
 Auth::routes();
 
 

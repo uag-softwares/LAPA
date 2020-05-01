@@ -18,9 +18,7 @@
                 <thead>
                     <tr>
                         <th>Título</th>
-                        <th>Texto</th>
-			<th>Anexo</th>
-			<th>Disciplina</th>
+            			<th>Disciplina</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
@@ -28,8 +26,6 @@
                     @foreach($registros as $registro)
                     <tr>
                         <td>{{ $registro->titulo }}</td>
-                        <td>{{ $registro->texto}}</td>
-                        <td>{{ $registro->anexo}}</td>
                         <td>{{ isset($registro->disciplina) ? ucfirst($registro->disciplina->nome) : 'Nenhum professor' }}
                         <td>
                             <a href="{{ route('auth.material.editar', $registro->id) }}" class="btn">Editar</a>
