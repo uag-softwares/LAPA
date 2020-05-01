@@ -35,7 +35,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function postagem() {
         return $this->hasMany('App\Postagem');
-
+    }
     public function conta()
     {
          return $this->hasOne('App\Conta');

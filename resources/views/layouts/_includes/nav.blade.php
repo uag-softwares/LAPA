@@ -32,7 +32,7 @@
                                 <a href="#" class="nav-link">Agenda</a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">Eventos</a>
+                                <a href="{{ route('site.postagens.index') }}" class="nav-link">Eventos</a>
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link">Materiais</a>

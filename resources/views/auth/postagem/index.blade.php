@@ -18,7 +18,7 @@
                 <thead>
                     <tr>
                         <th>Título</th>
-                        <th>Descrição</th>
+                        <th>Autor(ª)</th>
                         <th>Data</th>
                         <th>Anexo</th>
                         <th>Ações</th>
@@ -28,7 +28,7 @@
                     @foreach($registros as $registro)
                     <tr>
                         <td>{{ $registro->titulo }}</td>
-                        <td>{{ $registro->descricao }}</td>
+                        <td>{{ isset($registro->user) ? $registro->user->name : 'Nenhum professor' }}</td>
                         <td>{{ $registro->created_at }}
                         <td>{{ $registro->anexo}}</td>
                         <td>
