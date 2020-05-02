@@ -9,9 +9,9 @@ suites:
                     url: http://localhost:8000
                 - \Helper\Acceptance
                 - Db:
-                   dsn: 'pgsql:host=localhost;dbname=lapatest'
-                   user: 'postgres'
-                   password: 'iris'
+                   dsn: 'mysql:host=localhost;dbname=lapa'
+                   user: 'root'
+                   password: '33743637'
         # add Codeception\Step\Retry trait to AcceptanceTester to enable retries
         step_decorators:
             - Codeception\Step\ConditionalAssertion
