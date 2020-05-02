@@ -58,7 +58,7 @@ class RegisterController extends Controller
     {
        $this->middleware('auth', ['except' => [
 
-            'register','showRegistrationForm','siteIndex','siteRegistervizualizar']]);
+            'register','showRegistrationForm','siteIndex','siteRegistervizualizar', 'buscarUsuarioVisita']]);
        $this->middleware('guest', ['only' => [
             'register',
             'showRegistrationForm'
@@ -209,7 +209,7 @@ class RegisterController extends Controller
        
         return view('site.quemSomos.vizualizar', compact('registro'));
 
-
+  }
     public function buscarUsuarioVisita(EmailVisitaRequest $request)
     {  
         $request->validated();

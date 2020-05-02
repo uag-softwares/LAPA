@@ -21,7 +21,15 @@ extensions:
 params: 
     - env
 
-gherkin: []    
+gherkin: 
+    contexts:
+        default:
+            - AcceptanceTester
+            - AdditionalSteps
+            - DisciplinaSteps
+        tag:
+            visita:
+            - VisitaSteps  
 
 # additional paths
 paths:

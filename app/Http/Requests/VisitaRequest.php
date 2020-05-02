@@ -50,7 +50,7 @@ class VisitaRequest extends FormRequest
             'surname.max' => 'O sobrenome responsável deve ter no máximo 255 letras',
             'surname.string' => 'O sobrenome responsável deve ter letras',
             'cpf.required' => 'O CPF é deve ser preenchido',
-            'cpf.regex' => 'O CPF deve ser no formato 123.456.789.10',
+            'cpf.regex' => 'O CPF deve ser no formato 123.456.789-10',
             'data.required' => 'A data da visita é obrigatória',
             'data.date' => 'Data de início da visita inválida',
             'data.after' =>'A data da visita deve ser a partir de amanhã',
