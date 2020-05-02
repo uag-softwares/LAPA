@@ -209,7 +209,7 @@ class RegisterController extends Controller
        
         return view('site.quemSomos.vizualizar', compact('registro'));
 
-
+  }
     public function buscarUsuarioVisita(EmailVisitaRequest $request)
     {  
         $request->validated();
