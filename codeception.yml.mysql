@@ -29,11 +29,10 @@ gherkin:
         default:
             - AcceptanceTester
             - AdditionalSteps
+            - DisciplinaSteps
         tag:
             visita:
-                - VisitaSteps  
-            disciplina:
-                - DisciplinaSteps
+            - VisitaSteps  
 
 # additional paths
 paths:

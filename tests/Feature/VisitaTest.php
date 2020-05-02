@@ -15,7 +15,9 @@ class VisitaTest extends TestCase
     /** @test Agendar uma visita*/
     public function agendarUmaVisita()
     {
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->create([
+            'user_type' => 'visitant',
+        ]);
         
         $visita = factory(Visita::class)->create([
             'user_id' => $user->id,

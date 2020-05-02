@@ -1,3 +1,4 @@
+@disciplina
 Feature: disciplina
   In order to gerenciar o sistema do LAPA
   As a user
@@ -7,7 +8,7 @@ Feature: disciplina
     Given Eu estou logado como "Vinicius" com email "vinicius@admin.com" e senha "12345678"
     And Eu estou na pagina de adicionar disciplinas
     When Eu preencho o campo nome com "Engenharia de software"
-    And Eu seleciono o professor "Rodrigo"
+    And Eu seleciono o professor "Vinicius"
     And Eu clico em adicionar disciplina
     Then Eu vejo que a disciplina foi adicionada corretamente
 
@@ -29,7 +30,7 @@ Feature: disciplina
     Given Eu estou logado como "Vinicius" com email "vinicius@admin.com" e senha "12345678"
     And Eu estou na pagina de adicionar disciplinas
     When Eu preencho o campo nome com ""
-    And Eu seleciono o professor "Rodrigo"
+    And Eu seleciono o professor "Vinicius"
     And Eu clico em adicionar disciplina
     Then Eu vejo erro ao adicionar disciplina sem nome
 
@@ -45,6 +46,6 @@ Feature: disciplina
     Given Eu estou logado como "Daniela" com email "daniela@admin.com" e senha "12345678"
     And Eu estou na pagina de adicionar disciplinas
     When Eu preencho o campo nome com "ES"
-    And Eu seleciono o professor "Rodrigo"
+    And Eu seleciono o professor "Daniela"
     And Eu clico em adicionar disciplina
     Then Eu vejo erro ao adicionar disciplina com nome muito curto
