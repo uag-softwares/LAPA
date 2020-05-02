@@ -582,14 +582,12 @@ class AcceptanceTester extends \Codeception\Actor
      {
           $this->amOnPage('/login');
      }
-
-    /**
-     * @When Eu clico em login
+      /**
+     * @When Eu clico em entrar
      */
-     public function euClicoEmLogin()
+     public function euClicoEmEntrar()
      {
-         
-         $this->click('Login');
+          $this->click('Entrar');
      }
  
     /**
@@ -598,6 +596,21 @@ class AcceptanceTester extends \Codeception\Actor
      public function euVejoQueOUsuarioComNomeNaoFoiSalvo($arg1)
      {
          $this->dontSee($arg1);
+     }
+       /**
+     * @Then Eu estou na pagina de editar registro
+     */
+     public function euEstouNaPaginaDeEditarRegistro()
+     {
+          $this->amOnPage('/auth/registros/editar');
+     }
+
+    /**
+     * @When Eu mudo o nome do registro para :arg1
+     */
+     public function euMudoONomeDoRegistroPara($arg1)
+     {
+          $this->fillField(['name' => 'name'], $arg1);
      }
 
       /**
@@ -613,39 +626,22 @@ class AcceptanceTester extends \Codeception\Actor
      */
      public function euClicoEmEditarRegistroDoUsuario()
      {
-         $this->click('Editar', '//table/tbody/tr/td/ancestor::tr/td[4]');
+         $this->click('Editar', '//table/tbody/tr/td/ancestor::tr/td[5]');
+     }
+  /**
+     * @Then Eu vejo que o nome do usuario foi atualizado para :arg1
+     */
+     public function euVejoQueONomeDoUsuarioFoiAtualizadoPara($arg1)
+     {
+         $this->see($arg1, '//table/tbody/tr');
      }
 
     /**
-     * @Then Eu vejo que o nome do registro do usuario foi atualizado para :arg1
+     * @Then Eu vejo que o nome do usuario nao foi atualizado com sucesso
      */
-     public function euVejoQueONomeDoRegistroDoUsuarioFoiAtualizadoPara($arg1)
+     public function euVejoQueONomeDoUsuarioNaoFoiAtualizadoComSucesso()
      {
-          $this->see($arg1, '//table/tbody/tr');
-     }
-
-    
-    /**
-     * @Then Eu devo estar na pagina de editar registro
-     */
-     public function euDevoEstarNaPaginaDeEditarRegistro()
-     {
-           $this->amOnPage('/auth/registros/editar');
-     }
-
-    /**
-     * @When Eu edito o nome do registro para :arg1
-     */
-     public function euEditoONomeDoRegistroPara($arg1)
-     {
-         $this->fillField(['name' => 'name'], $arg1);
-     }
-      /**
-     * @Then Eu vejo que o nome do registro do usuario nao foi atualizado com sucesso
-     */
-     public function euVejoQueONomeDoRegistroDoUsuarioNaoFoiAtualizadoComSucesso()
-     {
-         $this->see('Senha deve ser obrigatória');
+         $this->see('Nome deve ser obrigatório');
      }
 
       /**
@@ -695,7 +691,7 @@ class AcceptanceTester extends \Codeception\Actor
      public function euComfirmoOEmail($arg1)
      {  
        
-       $this->updateInDatabase('users',array('email' =>$arg1),array('email_verified_at' => now())); 
+       $this->updateInDatabase('users',array('email_verified_at' => now())); 
    
      }
      /**
@@ -704,7 +700,7 @@ class AcceptanceTester extends \Codeception\Actor
      public function euVejoQueASolicitacaoDoUsuarioComEmailFoiAceitaComSucesso($arg1)
      {
         $this->amOnPage('/');
-        $this->updateInDatabase('users',array('email' =>$arg1),array('cpf_verified_at' => now())); 
+        $this->updateInDatabase('users',array('cpf_verified_at' => now())); 
      }
 
    
