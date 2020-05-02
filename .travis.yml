@@ -9,6 +9,7 @@ addons:
 
 install:
   - cp .env.example .env
+  - cp codeception.yml.travis codeception.yml
   - travis_retry composer install --no-interaction --prefer-dist --no-suggest
   - php artisan key:generate
 
