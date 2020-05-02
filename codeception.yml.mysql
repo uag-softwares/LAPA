@@ -31,8 +31,12 @@ gherkin:
             - AdditionalSteps
             - DisciplinaSteps
         tag:
+            postagem:
+                - PostagemSteps
             visita:
-            - VisitaSteps  
+                - VisitaSteps  
+            disciplina:
+                - DisciplinaSteps
 
 # additional paths
 paths:
