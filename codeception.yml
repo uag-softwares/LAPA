@@ -8,7 +8,10 @@ suites:
                 - PhpBrowser:
                     url: http://localhost:8000
                 - \Helper\Acceptance
-                
+                - Db:
+                   dsn: 'pgsql:host=localhost;dbname=lapatest'
+                   user: 'postgres'
+                   password: 'iris'
         # add Codeception\Step\Retry trait to AcceptanceTester to enable retries
         step_decorators:
             - Codeception\Step\ConditionalAssertion

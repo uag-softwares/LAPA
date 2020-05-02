@@ -131,6 +131,7 @@ class RegisterController extends Controller
 	    'surname' =>  $data ['surname'],
 	    'user_description' =>  $data ['user_description'],
 	    //'avatar' => $data['avatar'],
+            // 'email_verified_at'=>now(),
 	    'user_type' => 'admin',
         ]);
         Conta::create([

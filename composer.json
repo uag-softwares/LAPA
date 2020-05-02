@@ -23,6 +23,7 @@
         "spatie/laravel-feed": "^2.6"
     },
     "require-dev": {
+        "codeception/module-db": "^1.0",
         "codeception/module-laravel5": "^1.1",
         "codeception/module-phpbrowser": "^1.0",
         "facade/ignition": "^2.0",
