@@ -26,7 +26,7 @@ class VisitaController extends Controller
         $this->middleware('auth', ['except' => [
             'adicionar',
             'salvar',
-            'buscarParaVisita',
+            'salvarUsuarioVisita'
         ]]);
 
     }
@@ -44,12 +44,7 @@ class VisitaController extends Controller
 
     public function salvar($visita) 
     {
-
-        $request->validated();
-
-        $dados = $request->all();
-        $this->visita->create($dados);
-        return redirect()->route('auth.visitas')->with('success', 'Visita adicionada com sucesso!');
+        return $this->visita->create($visita);
     }
 
     public function ver($identifier)
@@ -70,8 +65,10 @@ class VisitaController extends Controller
 
         $this->visita->find($identifier)->update($dados);
 
-        
-        return redirect()->route('auth.visitas')->with('success', 'Visita confirmada com sucesso!');
+        $visita = $this->visita->where('id', $identifier)->first();
+        $visita->user->notify(new SolicitacaoVisitaAceita($visita->user));
+
+        return redirect()->route('auth.visitas')->with('success', 'Visita confirmada com sucesso, o responsável será avisado por email');
     }
 
     public function deletar($identifier) 
@@ -128,6 +125,7 @@ class VisitaController extends Controller
         foreach ($admins as $admin) {
               $admin->notify(new SolicitacaoVisita($admin));
         }
-        return redirect()->route('auth.visitas')->with('success', 'Visita cancelada com sucesso!');
+
+        return redirect()->route('site.visita.adicionar')->with('success', 'Visita solicitada com sucesso, você receberá um email quando ela for confirmada.');
     }
 }

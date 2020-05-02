@@ -19,7 +19,9 @@ class MaterialController extends Controller
         $this->middleware('auth', ['except' => [
             'materiaisPorDisciplina',
             'ver',
-            'siteIndex']]);
+            'siteIndex',
+        ]]);
+
         $this->material = $material;
         $this->disciplina = $disciplina;
     }

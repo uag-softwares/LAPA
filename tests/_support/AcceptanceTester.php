@@ -74,7 +74,7 @@ class AcceptanceTester extends \Codeception\Actor
     */
     public function euPreenchoOCampoNomeCom($arg1)
     {
-        $this->fillField(['name' => 'nome'], $arg1);
+        $this->fillField(['name' => 'mane'], $arg1);
     }
 
    /**
@@ -780,127 +780,6 @@ class AcceptanceTester extends \Codeception\Actor
         $this->seeInCurrentUrl('/auth/categoria/editar');
     }
 
-
-    /**================ Testes de visita aqui ===========================*/
-    /**
-     * @Given Eu estou na pagina de visitas
-     */
-    public function euEstouNaPaginaDeVisitas()
-    {
-        $this->amOnPage('/auth/visitas');
-    }
-
-   /**
-    * @Then Eu devo estar na pagina de criar visita
-    */
-    public function euDevoEstarNaPaginaDeCriarVisita()
-    {
-        $this->amOnPage('/auth/visita/adicionar');
-    }
-
-    /**
-     * @When Eu preencho o campo responsavel com :arg1
-     */
-    public function euPreenchoOCampoResponsavelCom($arg1)
-    {
-        $this->fillField(['name' => 'responsavel'], $arg1);
-    }
-
-   /**
-    * @When Eu preencho o campo data com :arg1
-    */
-    public function euPreenchoOCampoDataCom($arg1)
-    {
-        $this->fillField(['name' => 'data'], date('Y-m-d', strtotime($arg1)));
-    }
-
-   /**
-    * @When Eu preencho o campo hora inicial com :arg1
-    */
-    public function euPreenchoOCampoHoraInicialCom($arg1)
-    {
-        $this->fillField(['name' => 'hora_inicial'], $arg1);
-    }
-
-   /**
-    * @When Eu preencho o campo hora final com :arg1
-    */
-    public function euPreenchoOCampoHoraFinalCom($arg1)
-    {
-        $this->fillField(['name' => 'hora_final'], $arg1);
-    }
-
-   /**
-    * @When Eu preencho o campo telefone com :arg1
-    */
-    public function euPreenchoOCampoTelefoneCom($arg1)
-    {
-        $this->fillField(['name' => 'telefone'], $arg1);
-    }
-
-   /**
-    * @When Eu clico em Agendar
-    */
-    public function euClicoEmAgendar()
-    {
-        $this->click('Agendar');
-    }
-
-   /**
-    * @Then Eu devo ver a visita de :arg1
-    */
-    public function euDevoVerAVisitaDe($arg1)
-    {
-        $this->see($arg1, '//table/tbody/tr');
-    }
-
-    /**
-     * @Given Eu clico em Ver a visita :arg1
-     */
-    public function euClicoEmVerAVisita($arg1)
-    {
-        $this->click('Ver', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[6]');
-    }
-
-   /**
-    * @Then Eu devo estar na pagina de ver a visita
-    */
-    public function euDevoEstarNaPaginaDeVerAVisita()
-    {
-        $this->seeInCurrentUrl('/auth/visita/ver/');
-    }
-
-   /**
-    * @When Eu clico em Confirmar
-    */
-    public function euClicoEmConfirmar()
-    {
-        $this->click('Confirmar');
-    }
-
-   /**
-    * @Then Eu devo ver a visita :arg1 confirmada
-    */
-    public function euDevoVerAVisitaConfirmada($arg1)
-    {
-        $this->see('Sim', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[5]');
-    }
-
-   /**
-    * @When Eu clico em Cancelar a visita :arg1
-    */
-    public function euClicoEmCancelarAVisita($arg1)
-    {
-        $this->click('Cancelar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[6]');
-    }
-
-   /**
-    * @Then Eu nao devo ver a visita :arg1
-    */
-    public function euNaoDevoVerAVisita($arg1)
-    {
-        $this->dontSee($arg1, '//table/tbody/tr');
-    }
 /**================ Testes de materiais aqui ===========================*/
      
       /**
@@ -939,7 +818,7 @@ class AcceptanceTester extends \Codeception\Actor
      */
      public function euClicoEmEditarMaterialComTitulo($arg1)
      {
-         $this->click('Editar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[3]');
+         $this->click('Editar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[5]');
      }
 
     /**
@@ -972,7 +851,7 @@ class AcceptanceTester extends \Codeception\Actor
      */
      public function euClicoEmDeletarMaterialComTitulo($arg1)
      {
-         $this->click('Deletar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[3]');
+         $this->click('Editar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[5]');
      }
 
     /**

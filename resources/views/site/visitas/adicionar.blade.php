@@ -35,7 +35,7 @@
                         @enderror
                     </div>
                     <div class="input-btn">
-                        <button class="btn">Solicitar</button>
+                        <button class="btn">Iniciar solicitação</button>
                     </div>
                 </form>
             @endif

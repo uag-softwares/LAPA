@@ -22,7 +22,7 @@
     </div>
     <div class="form-group">
         <label for="cpf">CPF*</label>
-        <input id="cpf" type="text" class="form-control form-control-lg @error('cpf') is-invalid @enderror" name="cpf" value="{{isset($userExiste->cpf) ? $userExiste->cpf :old('cpf')}}" required autocomplete="cpf" autofocus placeholder="Ex.: 123.456.789.10"
+        <input id="cpf" type="text" class="cpf form-control form-control-lg @error('cpf') is-invalid @enderror" name="cpf" value="{{isset($userExiste->cpf) ? $userExiste->cpf :old('cpf')}}" required autocomplete="cpf" autofocus placeholder="Ex.: 123.456.789.10"
         {{ isset($userExiste->cpf) ? 'readonly' : ''}}>
             @error('cpf')
             <span class="invalid-feedback" role="alert">
@@ -42,7 +42,7 @@
     </div>
     <div class="form-group">
         <label for="telephone">Telefone*</label>
-        <input id="telephone" type="text" class="form-control form-control-lg @error('telephone') is-invalid @enderror" name="telephone" value="{{isset($userExiste->telephone) ? $$userExiste->telephone: old('telephone')}}" required autofocus placeholder="(99)99999-9999">
+        <input id="telephone" type="text" class=" telefone form-control form-control-lg @error('telephone') is-invalid @enderror" name="telephone" value="{{isset($userExiste->telephone) ? $userExiste->telephone: old('telephone')}}" required autofocus placeholder="(99)99999-9999">
         @error('telephone')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -90,27 +90,10 @@
     @enderror
 </div>
 
-<div class="form-group">
-    <label for="telefone">Telefone</label>
-    <input class="form-control telefone form-control-lg @error('telefone') is-invalid @enderror" type="text" name="telefone" value="{{ isset($registro->telefone) ? $registro->telefone : old('telefone') }}" placeholder="Digite o seu número de telefone">
-    
-    @error('telefone')
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
-    @enderror
-</div>
-<div class="form-group">
-    <label for="email">Email</label>
-    <input class="form-control form-control-lg @error('email') is-invalid @enderror" type="email" name="email" value="{{ isset($registro->email) ? $registro->email : old('email') }}" placeholder="Digite o seu email">
-    @error('email')
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
-    @enderror
-</div>
+@if (Auth::user()) 
 <label class="input-checkbox d-flex justify-content-start" for="confirmada">Confirmar visita?
     <input type="checkbox" name="confirmada" {{ isset($registro->confirmada) && $registro->confirmada == true ? 'checked' : ''}} value="true">
     <span class="checkmark"></span>
 </label>
+@endif
 

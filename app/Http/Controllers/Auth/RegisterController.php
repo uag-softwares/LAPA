@@ -58,7 +58,7 @@ class RegisterController extends Controller
     {
        $this->middleware('auth', ['except' => [
 
-            'register','showRegistrationForm','siteIndex','siteRegistervizualizar']]);
+            'register','showRegistrationForm','siteIndex','siteRegistervizualizar', 'buscarUsuarioVisita']]);
        $this->middleware('guest', ['only' => [
             'register',
             'showRegistrationForm'

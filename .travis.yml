@@ -9,6 +9,7 @@ addons:
 
 install:
   - cp .env.example .env
+  - cp codeception.yml.travis codeception.yml
   - travis_retry composer install --no-interaction --prefer-dist --no-suggest
   - php artisan key:generate
 
@@ -18,7 +19,6 @@ before_script:
   - php artisan serve &
 
 script:
-  - php artisan db:seed
   - php vendor/bin/codecept run
 
 services:

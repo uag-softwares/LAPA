@@ -5,7 +5,7 @@
         <div class="container">
             <h2>Gerenciar solicitações de visitas</h2>
 
-            <a href="{{ route('auth.visita.adicionar') }}" class="btn mb-2">Agendar</a>
+            <a href="{{ route('site.visita.adicionar') }}" class="btn mb-2">Agendar</a>
             
             @if(Session::has('success'))
                 <div class="alert alert-success alert-dismissible">

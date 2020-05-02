@@ -13,30 +13,30 @@ class ContaSeeder extends Seeder
      */
     public function run()
     {
-        $dados = [
-            'name' => 'Rodrigo',
-            'surname' => 'Andrade',
-            'cpf'=>'123.456.789-10',
-            'cpf_verified_at' => now(),
-            'email' => 'admin@admin.com',
-            'email_verified_at' => now(),
-            'telephone' => '(87)99999-9999',
-            'user_type' => 'admin',
-        ];
+        // User Vinicius
+        if(!User::where('email', '=', 'vinicius@admin.com')->count()) {
+            $vinicius = factory(App\User::class)->create([
+                'name' => 'Vinicius',
+                'email' => 'vinicius@admin.com',
+            ]);
 
-        $user = null;
-        if(User::where('email', '=', $dados['email'])->count()) {
-            $user = User::where('email', '=', $dados['email'])->first();
-            $user->update($dados);
-            echo 'Usuario alterado\n';
-        } else {
-            User::create($dados);
-            echo 'Usuario criado\n';
+            factory(App\Conta::class)->create([
+                'password' => bcrypt('12345678'),
+                'user_id' => $vinicius->id,
+            ]);
         }
 
-        $dados = factory(App\Conta::class)->create([
-            'password' => bcrypt('12345678'),
-            'user_id' => $user->id,
-        ]);
+        // User Daniela
+        if(!User::where('email', '=', 'daniela@admin.com')->count()) {
+            $daniela = factory(App\User::class)->create([
+                'name' => 'Daniela',
+                'email' => 'daniela@admin.com',
+            ]);
+
+            factory(App\Conta::class)->create([
+                'password' => bcrypt('12345678'),
+                'user_id' => $daniela->id,
+            ]);
+        }
     }
 }
