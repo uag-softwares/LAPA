@@ -36,6 +36,8 @@ gherkin:
                 - DisciplinaSteps
             material:
                 - MaterialSteps
+            categoria:
+                - CategoriaSteps
 
 # additional paths
 paths:
