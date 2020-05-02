@@ -34,6 +34,8 @@ gherkin:
                 - VisitaSteps  
             disciplina:
                 - DisciplinaSteps
+            material:
+                - MaterialSteps
 
 # additional paths
 paths:
