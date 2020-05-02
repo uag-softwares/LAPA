@@ -13,9 +13,9 @@
  * @method void lookForwardTo($achieveValue)
  * @method void comment($description)
  * @method void pause()
- *
  * @SuppressWarnings(PHPMD)
 */
+
 class AcceptanceTester extends \Codeception\Actor
 {
     use _generated\AcceptanceTesterActions;
@@ -510,7 +510,6 @@ class AcceptanceTester extends \Codeception\Actor
 	$this->fillField(['name' => 'password'], $arg1);
          
      }
-
     /**
      * @When Eu preencho o campo confirmacao de senha :arg1
      */
@@ -656,7 +655,59 @@ class AcceptanceTester extends \Codeception\Actor
      {
          $this->amOnPage('/');
      }
+     /**
+     * @Given Eu estou na pagina de solicitar acesso ao sistema LAPA
+     */
+     public function euEstouNaPaginaDeSolicitarAcessoAoSistemaLAPA()
+     {
+         $this->amOnPage('/register');
+     }
 
+    /**
+     * @When Eu preencho o campo sobrenome :arg1
+     */
+     public function euPreenchoOCampoSobrenome($arg1)
+     {
+         $this->fillField(['name' => 'surname'], $arg1);
+     }
+
+      /**
+     * @When Eu preencho o campo descricao profissional:arg1
+     */
+     public function euPreenchoOCampoDescricaoProfissional($arg1)
+     {
+         $this->fillField(['name' => 'user_description'], $arg1);
+     }
+
+    /**
+     * @When Eu clico em  solicitar acesso
+     */
+     public function euClicoEmSolicitarAcesso()
+     {
+      
+       $this->click('Solicitar');
+      
+     }
+
+    /**
+     * @When Eu comfirmo o email :arg1
+     */
+     public function euComfirmoOEmail($arg1)
+     {  
+       
+       $this->updateInDatabase('users',array('email' =>$arg1),array('email_verified_at' => now())); 
+   
+     }
+     /**
+     * @Then Eu vejo que a solicitacao do usuario com email :arg1 foi aceita com sucesso
+     */
+     public function euVejoQueASolicitacaoDoUsuarioComEmailFoiAceitaComSucesso($arg1)
+     {
+        $this->amOnPage('/');
+        $this->updateInDatabase('users',array('email' =>$arg1),array('cpf_verified_at' => now())); 
+     }
+
+   
 
 /**================ Testes de categoria aqui ===========================*/
    
@@ -1005,6 +1056,7 @@ class AcceptanceTester extends \Codeception\Actor
         $this->dontSee($arg1);
     }
 
+ 
 
    
 
