@@ -74,7 +74,7 @@ class AcceptanceTester extends \Codeception\Actor
     */
     public function euPreenchoOCampoNomeCom($arg1)
     {
-        $this->fillField(['name' => 'mane'], $arg1);
+        $this->fillField(['name' => 'nome'], $arg1);
     }
 
    /**
@@ -220,7 +220,7 @@ class AcceptanceTester extends \Codeception\Actor
     {
         $this->amOnPage('/auth/registros');
         $this->seeInCurrentUrl('/auth/registros');
-        $this->click('Deletar', '//table/tbody/tr/td[text()="Rodrigo"]/ancestor::tr/td[4]');
+        $this->click('Deletar', '//table/tbody/tr/td[text()="Rodrigo"]/ancestor::tr/td[5]');
         //$this->seeInPopup('Tem certeza que deseja excluir a conta?'); // Para teste no chromedriver
         //$this->acceptPopup(); // Para teste no chromedriver
         $this->dontSee('Rodrigo');
@@ -702,84 +702,7 @@ class AcceptanceTester extends \Codeception\Actor
         $this->amOnPage('/');
         $this->updateInDatabase('users',array('cpf_verified_at' => now())); 
      }
-
    
-
-/**================ Testes de categoria aqui ===========================*/
-   
-     /**
-     * @Given Eu estou na pagina de categorias
-     */
-    public function euEstouNaPaginaDeCategorias()
-    {
-        $this->amOnPage('/auth/categorias');   
-    }
-
-     /**
-    * @Then Eu devo estar na pagina de criar categoria
-    */
-    public function euDevoEstarNaPaginaDeCriarCategoria()
-    {
-        $this->amOnPage('/auth/categoria/adicionar');
-    }
-
-    /**
-    * @Then Eu devo ver a categoria :arg1
-    */
-    public function euDevoVerACategoria($arg1)
-    {
-        $this->see($arg1);
-    }
-     
-
-    /**
-     * @Given Eu clico em Editar a categoria :arg1
-     */
-    public function euClicoEmEditarACategoria($arg1)
-    {
-        $this->click('Editar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[3]');
-    }
-
-    /**
-     * @When Eu seleciono a disciplina :arg1
-     */
-    public function euSelecionoADisciplina($arg1)
-    {
-        $this->selectOption(['name' => 'disciplina_id'], $arg1);
-    }
-
-   /**
-    * @When Eu edito a disciplina para :arg1
-    */
-    public function euEditoADisciplinaPara($arg1)
-    {
-        $this->selectOption(['name' => 'disciplina_id'], $arg1);
-    }
-
-    /**
-     * @Given Eu clico em Deletar a categoria :arg1
-     */
-    public function euClicoEmDeletarACategoria($arg1)
-    {
-        $this->click('Deletar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[3]');   
-    }
-
-   /**
-    * @Then Eu nao vejo categoria :arg1
-    */
-    public function euNaoVejoCategoria($arg1)
-    {
-       $this->dontSee($arg1);
-    }
-
-    /**
-     * @Then Eu devo estar na pagina de editar a categoria
-     */
-    public function euDevoEstarNaPaginaDeEditarACategoria()
-    {
-        $this->seeInCurrentUrl('/auth/categoria/editar');
-    }
-
 /**================ Testes de materiais aqui ===========================*/
      
       /**

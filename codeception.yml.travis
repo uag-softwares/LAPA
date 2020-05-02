@@ -32,7 +32,9 @@ gherkin:
             - DisciplinaSteps
         tag:
             visita:
-            - VisitaSteps  
+                - VisitaSteps  
+            categoria:
+                - CategoriaSteps
 
 # additional paths
 paths:

@@ -53,4 +53,27 @@ class AdditionalSteps extends \Codeception\Actor
         $this->click('Entrar');
         $this->see($arg1, '//button');
     }
+
+    /**
+     * @Given A disciplina :arg1 ja exista
+     */
+    public function aDisciplinaJaExista($arg1)
+    {
+        $this->haveInDatabase('disciplinas', [
+            'nome' => $arg1,
+        ]);
+    }
+
+    /**
+    * @Given A categoria :arg1 ja exista
+    */
+    public function aCategoriaJaExista($arg1)
+    {
+        $disciplina = $this->grabFromDatabase('disciplinas', 'id', array('nome' => 'Ihc'));
+
+        $this->haveInDatabase('categorias', [
+            'nome' => $arg1,
+            'disciplina_id' => $disciplina,
+        ]);
+    }
 }
