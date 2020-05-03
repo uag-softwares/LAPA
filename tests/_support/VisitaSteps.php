@@ -130,7 +130,7 @@ class VisitaSteps extends \Codeception\Actor
     */
     public function euClicoEmConfirmar()
     {
-        $this->click('Confirmar');
+        $this->click('Confirmar visita');
     }
 
    /**
