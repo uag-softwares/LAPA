@@ -24,8 +24,7 @@
                                {{$registro->titulo}} </a>
                           </li>
                           <li style="font-size:70%;text-align:left;">Data da publicação: {{ $registro->created_at }}</li>
-                      </dd>
-                                          
+                      </dd>                  
                   @endforeach       
                               
                   

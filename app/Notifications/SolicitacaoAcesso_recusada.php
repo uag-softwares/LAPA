@@ -41,7 +41,7 @@ class SolicitacaoAcesso_recusada extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->from($this->user->email, $this->user->name)
+                    ->from($this->user->email, 'LAPA - UFAPE')
                     ->subject('Solicitação de acesso ao sistema Lapa Recusada')
                     ->line('Você está recebendo este e-mail porque sua solicitação ao sistema foi recusada.');
     }

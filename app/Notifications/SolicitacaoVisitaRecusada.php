@@ -41,10 +41,10 @@ class SolicitacaoVisitaRecusada extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->from($this->user->email, $this->user->name)
-                    ->subject('Solicitação de visita ao LAPA recusada')
-                    ->line('Você está recebendo este e-mail porque sua solicitação de visita ao LAPA foi recusada.')
-                    ->line('Pedimos desculpas pelo inconveniente, e pedimos que tente de novo em outro horário.');
+            ->from($this->user->email, 'LAPA - UFAPE')
+            ->subject('Solicitação de visita ao LAPA recusada')
+            ->line('Você está recebendo este e-mail porque sua solicitação de visita ao LAPA foi recusada.')
+            ->line('Pedimos desculpas pelo inconveniente, e pedimos que tente de novo em outro horário.');
     }
 
     /**
