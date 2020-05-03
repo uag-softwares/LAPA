@@ -15,23 +15,24 @@
                 <p>Ops, ainda não temos nenhum evento</p>
             @else
         
-            <div class="item-list">
+            <div class="item-list px-4">
                    
                   @foreach ($registros as $registro)
-                       <dd style="list-style-type: none;">
-                          <img src="{{ asset($registro->anexo) }}" alt="" width="200" height="100"></img>
-                          <li style= "font-size:90%;list-style-type:disc;text-align:left;"> <a href="{{ route('site.postagens.vizualizar', $registro->id) }}">
-                               {{$registro->titulo}} </a>
-                          </li>
-                          <li style="font-size:70%;text-align:left;">Data da publicação: {{ $registro->created_at }}</li>
-                      </dd>                  
+                       <div class="d-block d-md-flex my-3 shadow-sm rounded" id="postagens">
+                            <div class="img">
+                                <img class="img-fluid rounded" src="{{ asset($registro->anexo) }}" alt="Imagem da postagem">
+                            </div>
+                            <div class="m-4 text-center text-md-left">
+                                <a href="{{ route('site.postagens.vizualizar', $registro->id) }}">
+                                    {{$registro->titulo}} 
+                                </a>
+                                <p>Publicado por {{ $registro->user->name }}, {{ date('d/m/Y', strtotime($registro->created_at)) }} às {{ date('H:m', strtotime($registro->created_at)) }}</p>
+                            </div>
+                        </div>                  
                   @endforeach       
-                              
-                  
+                            
             </div>
             @endif
          </div>
     </div>
 @endsection 
-
-
