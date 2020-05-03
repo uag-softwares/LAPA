@@ -156,6 +156,5 @@ class VisitaSteps extends \Codeception\Actor
     {
         $this->see('Visita cancelada com sucesso, o responsável será avisado por email');
     }
-    
 
 }

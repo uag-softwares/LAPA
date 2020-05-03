@@ -5,7 +5,7 @@ Feature: categoria
   I need to poder criar, ver, atualizar e deletar categorias
   
   Scenario: criar uma categoria valida
-    Given Eu estou logado como "Rodrigo" com email "admin@admin.com" e senha "12345678"
+    Given Eu estou logado como "Raquel" com email "raquel@admin.com" e senha "12345678"
     And A disciplina "Ihc" ja exista
     And Eu estou na pagina de adicionar categorias
     When Eu preencho o campo nome da categoria com "Sistema nervoso"
@@ -15,7 +15,7 @@ Feature: categoria
 
  
   Scenario: atualizar uma categoria valida
-    Given Eu estou logado como "Rodrigo" com email "admin@admin.com" e senha "12345678"
+    Given Eu estou logado como "Daniel" com email "daniel@admin.com" e senha "12345678"
     And A disciplina "Ihc" ja exista
     And A categoria "Sistema nervoso" ja exista
     And Eu estou na pagina de gerenciar categorias
@@ -26,7 +26,7 @@ Feature: categoria
 
  
   Scenario: deletar uma categoria existente com sucesso
-    Given Eu estou logado como "Rodrigo" com email "admin@admin.com" e senha "12345678"
+    Given Eu estou logado como "Daniel" com email "daniel@admin.com" e senha "12345678"
     And A disciplina "Ihc" ja exista
     And A categoria "Sistema linfatico" ja exista
     And Eu estou na pagina de gerenciar categorias

@@ -20,11 +20,6 @@ class AcceptanceTester extends \Codeception\Actor
 {
     use _generated\AcceptanceTesterActions;
 
-
-    /**
-     * Testes revisados
-     */
-
     /**
      * @Given Eu estou cadastrado e logado como :arg1
      */
@@ -51,9 +46,25 @@ class AcceptanceTester extends \Codeception\Actor
         $this->click('Login');
         $this->see($arg1, '//button');
     }
+    
+   /**
+    * @Then Eu deleto o usuario :arg1
+    */
+    public function euDeletoOUsuario($arg1)
+    {
+        $this->amOnPage('/auth/registros');
+        $this->seeInCurrentUrl('/auth/registros');
+        $this->click('Deletar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[4]');
+        //$this->seeInPopup('Tem certeza que deseja excluir a conta?'); // Para teste no chromedriver
+        //$this->acceptPopup(); // Para teste no chromedriver
+        $this->dontSee($arg1);
+    }
 
     /**
+     * Testes revisados até aqui
+    */
 
+    /**
      * @Given Eu crio um usuario para o teste
      */
     public function euCrioUmUsuarioParaOTeste()
@@ -87,15 +98,21 @@ class AcceptanceTester extends \Codeception\Actor
     {
         $this->amOnPage('/auth/registros');
         $this->seeInCurrentUrl('/auth/registros');
-        $this->click('Deletar', '//table/tbody/tr/td[text()="Rodrigo"]/ancestor::tr/td[5]');
+        $this->click('Deletar', '//table/tbody/tr/td[text()="Rodrigo"]/ancestor::tr/td[4]');
         //$this->seeInPopup('Tem certeza que deseja excluir a conta?'); // Para teste no chromedriver
         //$this->acceptPopup(); // Para teste no chromedriver
         $this->dontSee('Rodrigo');
-    }   
+    }
 
-       
-/*==================================== feature usuario =======================
-     */
+
+   /**
+    * @When Eu clico em Editar
+    */
+    public function euClicoEmEditar()
+    {
+        $this->click('Editar');
+    }
+
      /**
      * @Given Eu estou na pagina de registro de usuario
      */
@@ -313,6 +330,47 @@ class AcceptanceTester extends \Codeception\Actor
         $this->amOnPage('/');
         $this->updateInDatabase('users',array('cpf_verified_at' => now())); 
      }
+    
+	/*==================================== A partir daqui metodos para feature Postagem =======================
+     */
+
+     /**
+     * @Given Eu estou na pagina de postagens
+     */
+    public function euEstouNaPaginaDePostagens()
+    {
+        $this->amOnPage('/auth/postagens');
+    }
+
+    
+
+
+   /**
+    * @When Eu preencho o campo titulo com :arg1
+    */
+    public function euPreenchoOCampoTituloCom($arg1)
+    {
+        $this->fillField(['name' => 'titulo'], $arg1);
+    }
+
+    /**
+     * @When Eu preencho o campo descricao com :arg1
+     */
+    public function euPreenchoOCampoDescricaoCom($arg1)
+    {
+        $this->fillField(['name' => 'descricao'], $arg1);
+    }
+
+
+   /**
+    * @When Eu clico em Escolher arquivo e escolho :arg1
+    */
+    public function euClicoEmEscolherArquivoEEscolho($arg1)
+    {
+        $this->attachFile(['name' => 'anexo'], $arg1);
+    }
+
+   
 
    /**
     * @When Eu edito o titulo para :arg1

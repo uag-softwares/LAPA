@@ -62,9 +62,9 @@ class AtlaSteps extends \Codeception\Actor
     }
 
    /**
-    * @Given Eu clico em escolher arquivo editando o anexo para :arg1
-    */
-    public function euClicoEmEscolherArquivoEditandoOAnexoPara($arg1)
+     * @When Eu clico em escolher arquivo e escolho :arg1
+     */
+    public function euClicoEmEscolherArquivoEEscolho($arg1)
     {
         $this->attachFile(['name' => 'anexo'], $arg1);
     }
@@ -99,6 +99,22 @@ class AtlaSteps extends \Codeception\Actor
     public function euEditoOTituloPara($arg1)
     {
         $this->fillField(['name' => 'titulo'], $arg1);
+    }
+
+    /**
+     * @When Eu preencho o campo titulo com :arg1
+     */
+    public function euPreenchoOCampoTituloCom($arg1)
+    {
+        $this->fillField(['name' => 'titulo'], $arg1);
+    }
+
+    /**
+     * @When Eu preencho o campo descricao com :arg1
+     */
+    public function euPreenchoOCampoDescricaoCom($arg1)
+    {
+        $this->fillField(['name' => 'descricao'], $arg1);
     }
 
     /**

@@ -85,6 +85,7 @@ class AdditionalSteps extends \Codeception\Actor
             'titulo' => $arg1,
             'texto' => 'Texto do material',
             'anexo' => 'file.png',
+            'disciplina_id' => $disciplina,
             ]);
     }
     
@@ -93,7 +94,7 @@ class AdditionalSteps extends \Codeception\Actor
     */
     public function aCategoriaJaExista($arg1)
     {
-        $disciplina = $this->grabFromDatabase('disciplinas', 'id', array('nome' => 'Patologia'));
+        $disciplina = $this->grabFromDatabase('disciplinas', 'id', array('nome' => 'Ihc'));
 
         $this->haveInDatabase('categorias', [
             'nome' => $arg1,

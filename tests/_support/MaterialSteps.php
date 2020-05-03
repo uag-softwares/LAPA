@@ -53,12 +53,37 @@ class MaterialSteps extends \Codeception\Actor
        $this->amOnPage('/auth/materiais');
     }   
 
+    /**
+    * @When Eu preencho o campo titulo com :arg1
+    */
+    public function euPreenchoOCampoTituloCom($arg1)
+    {
+         $this->fillField(['name' => 'titulo'], $arg1);
+    }
+
    /**
     * @When Eu preencho o campo texto com :arg1
     */
     public function euPreenchoOCampoTextoCom($arg1)
     {
          $this->fillField(['name' => 'texto'], $arg1);
+    }
+
+
+    /**
+     * @When Eu clico em escolher arquivo e escolho :arg1
+     */
+    public function euClicoEmEscolherArquivoEEscolho($arg1)
+    {
+        $this->attachFile(['name' => 'anexo'], $arg1);
+    }
+
+    /**
+     * @When Eu seleciono a disciplina :arg1
+     */
+    public function euSelecionoADisciplina($arg1)
+    {
+        $this->selectOption(['name' => 'disciplina_id'], $arg1);
     }
 
      /**

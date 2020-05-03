@@ -103,5 +103,21 @@ class CategoriaSteps extends \Codeception\Actor
         $this->see('Categoria deletada com sucesso!');
     }
 
+     /**
+     * @When Eu edito o nome para :arg1
+     */
+    public function euEditoONomePara($arg1)
+    {
+        $this->fillField(['name' => 'nome'], $arg1);
+    }
+
+   /**
+    * @When Eu clico em Editar
+    */
+    public function euClicoEmEditar()
+    {
+        $this->click('Editar');
+    }
+
 
 }
