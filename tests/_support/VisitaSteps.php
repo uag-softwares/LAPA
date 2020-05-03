@@ -154,6 +154,7 @@ class VisitaSteps extends \Codeception\Actor
      */
     public function euVejoQueAVisitaFoiCanceladaCorretamente()
     {
+        $this->seeInCurrentUrl('/auth/visitas');
         $this->see('Visita cancelada com sucesso');
     }
 
