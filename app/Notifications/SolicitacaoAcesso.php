@@ -45,7 +45,7 @@ class SolicitacaoAcesso extends Notification
 		    ->from($this->user->email, $this->user->name)
                     ->subject('Solicitação de acesso ao sistema')
                     ->line('Você está recebendo este e-mail porque recebemos um pedido de solicitação de acesso ao sistema.')
-                    ->action('Verificar solicitação',  'http://lapa-ufape.herokuapp.com/auth/acesso_gerenciamento');
+                    ->action('Verificar solicitação',  'http://lapa-ufape.herokuapp.com/login');
                     
     }
 
