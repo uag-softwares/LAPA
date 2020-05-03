@@ -134,12 +134,12 @@ class VisitaSteps extends \Codeception\Actor
     }
 
    /**
-     * @Then Eu vejo que a visita de :arg1 foi confirmada corretamente
+     * @Then Eu vejo que a visita foi confirmada corretamente
      */
-    public function euVejoQueAsVisitaFoiConfirmadaCorretamente($arg1)
+    public function euVejoQueAsVisitaFoiConfirmadaCorretamente()
     {
         $this->seeInCurrentUrl('/auth/visitas');
-        $this->see($arg1);
+        $this->see('Vinicius', '//table/tbody/tr');
     }
 
     /**
@@ -151,12 +151,12 @@ class VisitaSteps extends \Codeception\Actor
     }
 
     /**
-     * @Then Eu vejo que a visita de :arg1 foi cancelada corretamente
+     * @Then Eu vejo que a visita foi cancelada corretamente
      */
-    public function euVejoQueAVisitaFoiCanceladaCorretamente($arg1)
+    public function euVejoQueAVisitaFoiCanceladaCorretamente()
     {
         $this->seeInCurrentUrl('/auth/visitas');
-        $this->dontSee($arg1);
+        $this->dontSee('Vinicius', '//table/tbody/tr');
     }
 
 }
