@@ -138,7 +138,7 @@ class VisitaSteps extends \Codeception\Actor
      */
     public function euVejoQueAsVisitaFoiConfirmadaCorretamente()
     {
-        $this->see('Visita confirmada com sucesso');
+        $this->seeInCurrentUrl('/auth/visitas');
     }
 
     /**
