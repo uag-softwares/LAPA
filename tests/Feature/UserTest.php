@@ -35,7 +35,7 @@ class UserTest extends TestCase
     public function testDeletarUsuarioCadastrado()
     {
       $user= factory(User::class)->create(['cpf'=>'888.888.888-88',]);
-      $conta = factory(Conta::class)->create(['user_id'=>$user->id,]);
+      factory(Conta::class)->create(['user_id'=>$user->id,]);
       $this->assertDatabaseHas('contas', [
        'user_id' => $user->id,]);
       $user->delete();
@@ -50,7 +50,7 @@ class UserTest extends TestCase
     public function testEditarUsuarioNomeValido()
     {
       $user= factory(User::class)->create(['name'=>'Cecilia',]);
-      $conta = factory(Conta::class)->create(['user_id'=>$user->id,]);
+      factory(Conta::class)->create(['user_id'=>$user->id,]);
       $this->assertDatabaseHas('contas', [
        'user_id' => $user->id,]);
       $this->assertDatabaseHas('users', [
