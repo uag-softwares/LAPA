@@ -93,7 +93,7 @@ class AdditionalSteps extends \Codeception\Actor
     */
     public function aCategoriaJaExista($arg1)
     {
-        $disciplina = $this->grabFromDatabase('disciplinas', 'id', array('nome' => 'Ihc'));
+        $disciplina = $this->grabFromDatabase('disciplinas', 'id', array('nome' => 'Patologia'));
 
         $this->haveInDatabase('categorias', [
             'nome' => $arg1,

@@ -100,4 +100,30 @@ class AtlaSteps extends \Codeception\Actor
     {
         $this->fillField(['name' => 'titulo'], $arg1);
     }
+
+    /**
+    * @Given Eu clico em Adicionar
+    */
+    public function euClicoEmAdicionar()
+    {
+        $this->click('Adicionar');
+        
+    }
+     /**
+     * @Given Eu estou na pagina de adicionar atlas
+     */
+    public function euEstouNaPaginaDeAdicionarAtlas()
+    {
+        $this->amOnPage('/auth/atla/adicionar');
+    }
+
+   /**
+    * @Then Eu vejo que o atlas foi adicionado corretamente
+    */
+    public function euVejoQueOAtlasFoiAdicionadoCorretamente()
+    {
+        $this->see('Página do atlas adicionada com sucesso!');
+    }
+
+
 }

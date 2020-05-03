@@ -40,6 +40,8 @@ gherkin:
                 - MaterialSteps
             categoria:
                 - CategoriaSteps
+            atla:
+                - AtlaSteps
 
 # additional paths
 paths:
