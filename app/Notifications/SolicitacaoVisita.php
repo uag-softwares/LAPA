@@ -45,7 +45,7 @@ class SolicitacaoVisita extends Notification
 		    ->from($this->user->email, $this->user->name)
                 ->subject('Nova solicitação de visita ao LAPA')
                 ->line('Você está recebendo este e-mail porque recebemos um pedido de solicitação de visita ao LAPA.')
-                ->action('Verificar solicitação',  'http://127.0.0.1:8000/auth/visitas');
+                ->action('Verificar solicitação',  'http://lapa-ufape.herokuapp.com/auth/visitas');
                     
     }
 

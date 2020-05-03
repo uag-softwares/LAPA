@@ -43,8 +43,7 @@ class SolicitacaoVisitaAceita extends Notification
         return (new MailMessage)
                     ->from($this->user->email, $this->user->name)
                     ->subject('Solicitação de visita ao LAPA aceita')
-                    ->line('Você está recebendo este e-mail porque sua solicitação de visita ao LAPA foi aceita.')
-                    ->line('Detalhes da visita');
+                    ->line('Você está recebendo este e-mail porque sua solicitação de visita ao LAPA foi aceita.');
     }
 
     /**

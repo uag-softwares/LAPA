@@ -14,10 +14,12 @@ class ContaSeeder extends Seeder
     public function run()
     {
         // User Vinicius
-        if(!User::where('email', '=', 'vinicius@admin.com')->count()) {
+        if(!User::where('email', '=', 'v.santos0406@gmail.com')->count()) {
             $vinicius = factory(App\User::class)->create([
                 'name' => 'Vinicius',
-                'email' => 'vinicius@admin.com',
+                'surname' => 'Santos',
+                'cpf' => '122.433.655-23',
+                'email' => 'v.santos0406@gmail.com',
             ]);
 
             factory(App\Conta::class)->create([
@@ -26,17 +28,35 @@ class ContaSeeder extends Seeder
             ]);
         }
 
-        // User Daniela
-        if(!User::where('email', '=', 'daniela@admin.com')->count()) {
-            $daniela = factory(App\User::class)->create([
-                'name' => 'Daniela',
-                'email' => 'daniela@admin.com',
+        // User Iris
+        if(!User::where('email', '=', 'vianasantana21@gmail.com')->count()) {
+            $iris = factory(App\User::class)->create([
+                'name' => 'Íris',
+                'surname' => 'Viana',
+                'cpf' => '342.453.433-12',
+                'email' => 'vianasantana21@gmail.com',
             ]);
 
             factory(App\Conta::class)->create([
                 'password' => bcrypt('12345678'),
-                'user_id' => $daniela->id,
+                'user_id' => $iris->id,
             ]);
         }
+
+         // User Raquel
+         if(!User::where('email', '=', 'raquellvieiraa@gmail.com')->count()) {
+            $raquel = factory(App\User::class)->create([
+                'name' => 'Raquel',
+                'surname' => 'Vieira',
+                'cpf' => '342.453.433-15',
+                'email' => 'raquellvieiraa@gmail.com',
+            ]);
+
+            factory(App\Conta::class)->create([
+                'password' => bcrypt('12345678'),
+                'user_id' => $raquel->id,
+            ]);
+        }
+
     }
 }

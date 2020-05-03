@@ -44,7 +44,7 @@ class SolicitacaoAcesso_aceita extends Notification
                     ->from($this->user->email, $this->user->name)
                     ->subject('Solicitação de acesso ao sistema Aceita')
                     ->line('Você está recebendo este e-mail porque sua solicitação ao sistema foi aceita.')
-                    ->action('Acessar o Sistema',  'http://127.0.0.1:8000/login');
+                    ->action('Acessar o Sistema',  'http://lapa-ufape.herokuapp.com/login');
     }
 
     /**
