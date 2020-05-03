@@ -28,8 +28,7 @@ class ContaController extends Controller
        //Retrieve the user from the database
        $user = User::where('email',$email)->first();
        //Generate, the password reset link. The token generated is embedded in the link
-       $link = config('base_url') . 'password/reset/' . $token . '?email=' . urlencode($user->email);
-
+      
        try {
          
          Notification::send($user,new ResetPassword($user,$token));
@@ -56,9 +55,9 @@ class ContaController extends Controller
         $tokenData = DB::table('password_resets')->where('email', $request->email)->first();
         if ($this->sendResetEmail($request->email, $tokenData->token)) {
             return redirect()->back()->with('status', trans('Um link de redefinição de senha foi enviado para seu email'));
-        } else {
-            return redirect()->back()->withErrors(['error' => trans('Ocorreu um erro de rede. Por favor, tente novamente.')]);
-        }
+        } 
+       return redirect()->back()->withErrors(['error' => trans('Ocorreu um erro de rede. Por favor, tente novamente.')]);
+      
         
     }
     

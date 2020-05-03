@@ -36,6 +36,8 @@ class UserTest extends TestCase
     {
       $user= factory(User::class)->create(['cpf'=>'888.888.888-88',]);
       $conta = factory(Conta::class)->create(['user_id'=>$user->id,]);
+      $this->assertDatabaseHas('contas', [
+       'user_id' => $user->id,]);
       $user->delete();
       $this->assertDeleted($user);
        
@@ -49,6 +51,8 @@ class UserTest extends TestCase
     {
       $user= factory(User::class)->create(['name'=>'Cecilia',]);
       $conta = factory(Conta::class)->create(['user_id'=>$user->id,]);
+      $this->assertDatabaseHas('contas', [
+       'user_id' => $user->id,]);
       $this->assertDatabaseHas('users', [
         'name' => 'Cecilia',]);
       $user->update(['name'=>'Taylor',]);
