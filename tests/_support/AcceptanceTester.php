@@ -523,8 +523,4 @@ class AcceptanceTester extends \Codeception\Actor
         $this->dontSee($arg1);
     }
 
- 
-
-   
-
 }
