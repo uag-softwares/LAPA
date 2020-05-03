@@ -49,8 +49,8 @@
         @enderror
     </div>
     <div class="form-group">
-    <label for="user_description ">Descricao Profissional(opcional)</label>
-        <textarea class="form-control form-control-lg @error('user_description') is-invalid @enderror" type="text" name="user_description" placeholder="Descreva aqui sobre sua vida profissional">{{ isset($user->user_description ) ? $user->user_description  : old('user_description ') }}</textarea>
+    <label for="user_description ">Descrição Profissional</label>
+        <textarea class="form-control form-control-lg @error('user_description') is-invalid @enderror" type="text" name="user_description" placeholder="Descreva aqui sobre sua vida profissional e área de atuação(etc).">{{ isset($user->user_description ) ? $user->user_description  : old('user_description ') }}</textarea>
 
         @error('user_description')
             <span class="invalid-feedback" role="alert">
