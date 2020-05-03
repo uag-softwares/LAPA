@@ -30,6 +30,8 @@ gherkin:
             - AcceptanceTester
             - AdditionalSteps
         tag:
+            postagem:
+                - PostagemSteps
             visita:
                 - VisitaSteps  
             disciplina:
