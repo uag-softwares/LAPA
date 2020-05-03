@@ -23,7 +23,9 @@ class PostagemTest extends TestCase
         $conta = factory(Conta::class)->create(['user_id'=>$user->id,]);
         $postagem = factory(Postagem::class)->create(['titulo'=>'Postagem teste','user_id'=>$user->id,]);
         $this->assertDatabaseHas('postagems', [
-        'titulo' => 'Postagem teste',]);
+        'titulo' =>$postagem->titulo,]);
+        $this->assertDatabaseHas('contas', [
+        'user_id' =>$user->id,]);
        
     }
     /**
@@ -36,6 +38,8 @@ class PostagemTest extends TestCase
       $user = factory(User::class)->create(['cpf'=>'999.999.999-99',]);
       $conta = factory(Conta::class)->create(['user_id'=>$user->id,]);
       $postagem = factory(Postagem::class)->create(['titulo'=>'Postagem teste para deletar','user_id'=>$user->id,]);
+      $this->assertDatabaseHas('contas', [
+        'user_id' =>$user->id,]);
       $postagem->delete();
       $this->assertDeleted($postagem);
        
@@ -50,6 +54,8 @@ class PostagemTest extends TestCase
       $user = factory(User::class)->create(['cpf'=>'999.999.999-99',]);
       $conta = factory(Conta::class)->create(['user_id'=>$user->id,]);
       $postagem= factory(Postagem::class)->create(['descricao'=>'Essa postagem está sendo criando para teste','user_id'=>$user->id,]);
+      $this->assertDatabaseHas('contas', [
+        'user_id' =>$user->id,]);
       $this->assertDatabaseHas('postagems', [
         'descricao' => 'Essa postagem está sendo criando para teste',]);
       $postagem->update(['descricao'=>'Essa postagem está sendo atualizada para teste',]);
