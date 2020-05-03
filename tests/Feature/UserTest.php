@@ -19,7 +19,7 @@ class UserTest extends TestCase
     public function testCriarUsuarioValido()
     {
         $user = factory(User::class)->create(['cpf'=>'999.999.999-99',]);
-        $conta = factory(Conta::class)->create(['user_id'=>$user->id,]);
+        factory(Conta::class)->create(['user_id'=>$user->id,]);
         $this->assertDatabaseHas('users', [
         'cpf' => '999.999.999-99',]);
         $this->assertDatabaseHas('contas', [

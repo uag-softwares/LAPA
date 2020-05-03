@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
 
-    protected $postagem;
 
     /**
      * Create a new controller instance.
@@ -16,8 +15,7 @@ class HomeController extends Controller
      */
     public function __construct()//lembrar de criar middleware para ativar cpf
     {
-        $this->middleware('auth', ['except' => ['home','login']]);
-        $this->postagem = $postagem;
+        $this->middleware('auth', ['except' => ['index']]);
     }
 
     /**
