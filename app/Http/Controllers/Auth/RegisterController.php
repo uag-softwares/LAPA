@@ -172,7 +172,7 @@ class RegisterController extends Controller
         $user=$this->usuario->find($id_user);
         Notification::send($user,new SolicitacaoAcesso_recusada(Auth::user()));
         if($user->delete()){
-	     return redirect()->route('auth.acesso_gerenciamento')->with('sucesso','Solicitação recusada com sucesso');
+	     return redirect()->route('auth.acesso_gerenciamento')->with('success','Solicitação recusada com sucesso');
         }
     }
 
@@ -189,9 +189,8 @@ class RegisterController extends Controller
         $user=Auth::user();
         $user->update($dados);
         
-	return redirect()->route('auth.registros')->with('sucesso','Conta editada com sucesso');
-          
-
+	return redirect()->route('auth.registros')->with('success','Conta editada com sucesso');
+         
     }
 
   public function deletar($id_user){
@@ -201,7 +200,7 @@ class RegisterController extends Controller
 
     if ($data->delete()) {
 
-         return redirect()->route('register')->with('sucesso','Conta exluida com sucesso');
+         return redirect()->route('register')->with('success','Conta exluida com sucesso');
     }
   }
 
