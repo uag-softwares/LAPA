@@ -313,3 +313,25 @@ article .text {
 article .text-footer {
     font-size: 1rem;
 }
+
+#postagens .img {
+    position: relative;
+    height: 150px;
+    width: 200px;
+    overflow: hidden;
+}
+
+#postagens .img-fluid {
+    position: absolute;
+    width: 100%;
+    left: 0;
+}
+
+/* fim de pagina de postagem */
+
+
+@media only screen and (max-width: 600px) {
+    #postagens .img {
+        width: 100%;
+    }
+}
