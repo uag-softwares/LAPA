@@ -41,7 +41,7 @@ class SolicitacaoAcesso_aceita extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->from($this->user->email, $this->user->name)
+                    ->from($this->user->email, 'LAPA - UFAPE')
                     ->subject('Solicitação de acesso ao sistema Aceita')
                     ->line('Você está recebendo este e-mail porque sua solicitação ao sistema foi aceita.')
                     ->action('Acessar o Sistema',  'http://lapa-ufape.herokuapp.com/login');
