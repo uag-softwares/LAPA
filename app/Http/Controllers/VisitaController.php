@@ -44,7 +44,7 @@ class VisitaController extends Controller
 
     public function salvar($visita) 
     {
-        return $this->visita->create($visita);
+         $this->visita->create($visita);
     }
 
     public function ver($identifier)
@@ -120,7 +120,7 @@ class VisitaController extends Controller
             'user_id' => $userExiste->id,
         ];
 
-        $result = $this->salvar($visita);
+        $this->salvar($visita);
         $admins = $this->usuario->whereNotNull('cpf_verified_at')->get();
         foreach ($admins as $admin) {
               $admin->notify(new SolicitacaoVisita($admin));
