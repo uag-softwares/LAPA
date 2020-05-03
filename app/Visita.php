@@ -13,7 +13,12 @@ class Visita extends Model
      * @var array
      */
     protected $fillable = [
-        'responsavel', 'data', 'hora_inicial', 'hora_final', 'descricao', 'telefone', 'email', 'confirmada', 
+        'data', 'hora_inicial', 'hora_final', 'descricao', 'confirmada', 'user_id'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
     
 }

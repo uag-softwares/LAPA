@@ -4,11 +4,19 @@
 @section('content')
 <div class="container">
     <h2>Configurações do Usuário</h2>
-
+    @if(Session::has('success'))
+                <div class="alert alert-success alert-dismissible">
+                    {{ Session::get('success') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
     <table class="table">
         <thead>
             <tr>
                 <th>Nome</th>
+                <th>Sobrenome</th>
                 <th>Cpf</th>
                 <th>E-mail</th>
                 <th>Ações</th>
@@ -17,6 +25,7 @@
         <tbody>
             <tr>
                 <td>{{ Auth::user()->name }}</td>
+		<td>{{ Auth::user()->surname }}</td>
                 <td>{{Auth::user()->cpf}}</td>
                 <td>{{Auth::user()->email}}</td>
                 <td>

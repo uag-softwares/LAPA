@@ -45,7 +45,7 @@ class CategoriaController extends Controller
 
         $this->categoria->create($dados);
 
-        return redirect()->route('auth.categorias')->with('success', 'Categoria adicionada com sucesso!');;
+        return redirect()->route('auth.categorias')->with('success', 'Categoria adicionada com sucesso!');
     }
 
     public function editar($identifier) 

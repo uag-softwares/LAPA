@@ -16,7 +16,12 @@ class MaterialController extends Controller
 
     public function __construct(Material $material, Disciplina $disciplina)
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => [
+            'materiaisPorDisciplina',
+            'ver',
+            'siteIndex',
+        ]]);
+
         $this->material = $material;
         $this->disciplina = $disciplina;
     }

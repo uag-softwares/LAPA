@@ -8,7 +8,7 @@
                 {{ csrf_field() }}
                 @include('auth.disciplinas._form')
                 <div class="input-btn">
-                    <button class="btn">Adicionar</button>
+                    <button class="btn">Adicionar disciplina</button>
                 </div>
             </form>
         </div>

@@ -16,7 +16,7 @@
                 <div class="container">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a href="{{ route('site.home') }}" class="nav-link">Início</a>
+                            <a href="{{ route('site.postagens.home') }}" class="nav-link">Início</a>
                         </li>
                     </ul>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -29,22 +29,24 @@
                                 <a href="{{ route('site.atlas.index') }}" class="nav-link">Atlas Interativo</a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">Agenda</a>
+                                <a href="{{ route('site.visita.adicionar') }}" class="nav-link">Visitas</a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">Eventos</a>
+                                <a href="{{ route('site.postagens.index') }}" class="nav-link">Eventos</a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('site.materiais.index') }}" class="nav-link">Materiais</a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">Quem somos</a>
+                                <a href="{{ route('site.quemSomos.index') }}" class="nav-link">Quem somos</a>
                             </li>
+                            
+                     
                             <!-- Authentication Links -->
                             @guest
-                                <li class="nav-item">
-                                    <a href="{{ route('login') }}" class="nav-link">Acesso</a>
-                                </li>
+                               <li class="nav-item">
+                                <a href="{{ route('login') }}" class="nav-link">Acesso</a>
+                            </li>
                             @else
                                 <li class="nav-item dropdown">
                                     <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

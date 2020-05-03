@@ -24,13 +24,16 @@ class VisitaRequest extends FormRequest
     public function rules()
     {
         return [
-            'responsavel' => 'required|min:10',
+            'name' => 'required|string|min:3|max:255',
+            'surname' => 'required|string|min:3|max:255',
+            'cpf' => 'required|regex:/\d{3}\.\d{3}\.\d{3}\-\d{2}/',
+            'email' => 'required|email',
+            'telephone' =>  'required|regex:/\(?\d{2}\)?\s?\d{5}\-?\d{4}/',
+            'user_type' => 'in:visitant',
             'data' => 'required|date|after:today',
             'hora_inicial' => 'required|date_format:H:i|before_or_equal:15:00|after_or_equal:09:00',
             'hora_final' => 'required|date_format:H:i|before_or_equal:15:00|after:hora_inicial',
             'descricao' =>'required|min:10',
-            'telefone' => 'required|regex:/\(?\d{2}\)?\s?\d{5}\-?\d{4}/',
-            'email' => 'required|email',
             'confirmada' => 'nullable|boolean',
         ];
     }
@@ -38,8 +41,16 @@ class VisitaRequest extends FormRequest
     public function messages() 
     {
         return [
-            'responsavel.required' => 'O nome completo do responsável é obrigatório',
-            'responsavel.min' => 'O nome completo do responsável deve ter ao menos 10 letras',
+            'name.required' => 'O nome do responsável é obrigatório',
+            'name.min' => 'O nome responsável deve ter ao menos 3 letras',
+            'name.max' => 'O nome responsável deve ter no máximo 255 letras',
+            'name.string' => 'O nome responsável deve ter letras',
+            'surname.required' => 'O sobrenome do responsável é obrigatório',
+            'surname.min' => 'O sobrenome responsável deve ter ao menos 3 letras',
+            'surname.max' => 'O sobrenome responsável deve ter no máximo 255 letras',
+            'surname.string' => 'O sobrenome responsável deve ter letras',
+            'cpf.required' => 'O CPF é deve ser preenchido',
+            'cpf.regex' => 'O CPF deve ser no formato 123.456.789-10',
             'data.required' => 'A data da visita é obrigatória',
             'data.date' => 'Data de início da visita inválida',
             'data.after' =>'A data da visita deve ser a partir de amanhã',
@@ -58,6 +69,7 @@ class VisitaRequest extends FormRequest
             'email.required' => 'O email é obrigatório',
             'email.email' => 'Email inválido',
             'confirmada.boolean' => 'A confirmação deve ser sim ou não',
+            'user_type.in' => 'Você não alterar esse campo',
         ];
     }
 }

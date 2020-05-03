@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('titulo', 'Gerenciar - LAPA')
 
 @section('content')
 <div class="container">
@@ -11,8 +12,10 @@
     @guest
         <h2>Você não está logado</h2>
     @else
-        <h2 class="mb-4">Bem-vindo(a), {{ Auth::user()->name }}!</h2>
-    <div class="row justify-content-center">
+        @if(Auth::user()->cpf_verified_at != null)
+             <h2 class="mb-4">Bem-vindo(a), {{ Auth::user()->name }}!</h2>
+        
+        <div class="row justify-content-center">
             <a class="clickable-card" href="{{ route('auth.postagens') }}">
                 <div class="card manage">
                     <div class="card-header">
@@ -84,7 +87,7 @@
                         </h2>
                     </div>
                     <div class="card-footer">
-                        <a href="{{ route('auth.visita.adicionar') }}" class="btn">
+                        <a href="{{ route('site.visita.adicionar') }}" class="btn">
                             Adicionar
                         </a>
                         <a href="{{ route('auth.visitas') }}" class="btn">
@@ -94,7 +97,7 @@
                 </div>
             </a>
         </div>
-        <div class="row justify-content-center">
+        <div class="row justify-content-center align-items-start">
             <h3 class="w-100 mb-4 mt-5">Mais opções</h3>
             <a class="clickable-card" href="{{ route('auth.disciplinas') }}">
                 <div class="card manage">
@@ -136,6 +139,23 @@
                     </div>
                 </div>
             </a>
+	        <a class="clickable-card" href="{{ route('auth.acesso_gerenciamento') }}">
+                <div class="card manage">
+                    <div class="card-header">
+                        <span class="fa fa-check-circle"></span>
+                    </div>
+                    <div class="card-body">
+                        <h2 class="card-title">
+                            {{ __('Solicitações de Registro') }}
+                        </h2>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{{ route('auth.acesso_gerenciamento') }}" class="btn">
+                            Gerenciar
+                        </a>
+                    </div>
+                </div>
+            </a>
             <a class="clickable-card" href="#">
                 <div class="card manage">
                     <div class="card-header">
@@ -156,7 +176,11 @@
                     </div>
                 </div>
             </a>
-        </div>
+         </div>
+         @else
+            <h2 class="mb-4">Sua solicitação está em análise, {{ Auth::user()->name }}!</h2>
+	    <h2 class="mb-4">Você ainda não tem permissão para gerenciar o sistema!</h2>
+        @endif
     @endguest
 </div>
 @endsection

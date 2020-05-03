@@ -8,7 +8,10 @@ suites:
                 - PhpBrowser:
                     url: http://localhost:8000
                 - \Helper\Acceptance
-                
+                - Db:
+                   dsn: 'mysql:host=localhost;dbname=lapa'
+                   user: 'root'
+                   password: '33743637'
         # add Codeception\Step\Retry trait to AcceptanceTester to enable retries
         step_decorators:
             - Codeception\Step\ConditionalAssertion
@@ -21,7 +24,22 @@ extensions:
 params: 
     - env
 
-gherkin: []    
+gherkin: 
+    contexts:
+        default:
+            - AcceptanceTester
+            - AdditionalSteps
+        tag:
+            visita:
+                - VisitaSteps  
+            disciplina:
+                - DisciplinaSteps
+            material:
+                - MaterialSteps
+            categoria:
+                - CategoriaSteps
+            atla:
+                - AtlaSteps
 
 # additional paths
 paths:

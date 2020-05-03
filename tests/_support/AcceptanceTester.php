@@ -13,12 +13,56 @@
  * @method void lookForwardTo($achieveValue)
  * @method void comment($description)
  * @method void pause()
- *
  * @SuppressWarnings(PHPMD)
 */
+
 class AcceptanceTester extends \Codeception\Actor
 {
     use _generated\AcceptanceTesterActions;
+
+    /**
+     * @Given Eu estou cadastrado e logado como :arg1
+     */
+    public function euEstouCadastradoELogadoComo($arg1)
+    {
+        $this->amOnPage('/register');
+        $this->fillField(['name' => 'name'], $arg1);
+        $this->fillField(['name' => 'cpf'], '111.111.111-11');
+        $this->fillField(['name' => 'email'], 'admin@admin.com');
+        $this->fillField(['name' => 'password'], '12345678');
+        $this->fillField(['name' => 'password_confirmation'], '12345678');
+        $this->click('Cadastrar');
+        $this->see($arg1, '//button');
+    }
+
+    /**
+     * @Given Eu estou logado como :arg1
+     */
+    public function euEstouLogadoComo($arg1)
+    {
+        $this->amOnPage('/login');
+        $this->fillField(['name' => 'email'], 'admin@admin.com');
+        $this->fillField(['name' => 'password'], '12345678');
+        $this->click('Login');
+        $this->see($arg1, '//button');
+    }
+    
+   /**
+    * @Then Eu deleto o usuario :arg1
+    */
+    public function euDeletoOUsuario($arg1)
+    {
+        $this->amOnPage('/auth/registros');
+        $this->seeInCurrentUrl('/auth/registros');
+        $this->click('Deletar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[4]');
+        //$this->seeInPopup('Tem certeza que deseja excluir a conta?'); // Para teste no chromedriver
+        //$this->acceptPopup(); // Para teste no chromedriver
+        $this->dontSee($arg1);
+    }
+
+    /**
+     * Testes revisados até aqui
+    */
 
     /**
      * @Given Eu crio um usuario para o teste
@@ -33,6 +77,8 @@ class AcceptanceTester extends \Codeception\Actor
         $this->fillField(['name' => 'password_confirmation'], '12345678');
         $this->click('Cadastrar');
     }
+
+    
 
     /**
      * @Given Eu estou logado
@@ -58,88 +104,6 @@ class AcceptanceTester extends \Codeception\Actor
         $this->dontSee('Rodrigo');
     }
 
-    /*==================================== A partir daqui metodos para feature Disciplina =======================
-     */
-
-    /**
-     * @Given Eu estou na pagina de disciplinas
-     */
-    public function euEstouNaPaginaDeDisciplinas()
-    {
-        $this->amOnPage('/auth/disciplinas');
-    }
-
-   /**
-    * @Given Eu clico em Adicionar
-    */
-    public function euClicoEmAdicionar()
-    {
-        $this->click('Adicionar');
-    }
-
-   /**
-    * @Then Eu devo estar na pagina de criar disciplina
-    */
-    public function euDevoEstarNaPaginaDeCriarDisciplina()
-    {
-        $this->amOnPage('/auth/disciplina/adicionar');
-    }
-
-   /**
-    * @When Eu preencho o campo nome com :arg1
-    */
-    public function euPreenchoOCampoNomeCom($arg1)
-    {
-        $this->fillField(['name' => 'nome'], $arg1);
-    }
-
-   /**
-    * @When Eu seleciono o professor :arg1
-    */
-    public function euSelecionoOProfessor($arg1)
-    {
-        $this->selectOption(['name' => 'user_id'], $arg1);
-    }
-
-   /**
-    * @Then Eu devo ver a disciplina :arg1
-    */
-    public function euDevoVerADisciplina($arg1)
-    {
-        $this->see($arg1, '//table/tbody/tr');
-    }
-
-    /**
-    * @Then Eu devo ver o erro :arg1
-    */
-    public function euDevoVerOErro($arg1)
-    {
-        $this->see($arg1);
-    }
-
-    /**
-     * @Given Eu clico em Editar a disciplina :arg1
-     */
-    public function euClicoEmEditarADisciplina($arg1)
-    {
-        $this->click('Editar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[3]');
-    }
-
-   /**
-    * @Then Eu devo estar na pagina de editar a disciplina
-    */
-    public function euDevoEstarNaPaginaDeEditaraDisciplina()
-    {
-        $this->seeInCurrentUrl('/auth/disciplina/editar/');
-    }
-
-   /**
-    * @When Eu edito o nome para :arg1
-    */
-    public function euEditoONomePara($arg1)
-    {
-        $this->fillField(['name' => 'nome'], $arg1);
-    }
 
    /**
     * @When Eu clico em Editar
@@ -149,216 +113,6 @@ class AcceptanceTester extends \Codeception\Actor
         $this->click('Editar');
     }
 
-    /**
-     * @When Eu edito o professor para :arg1
-     */
-    public function euEditoOProfessorPara($arg1)
-    {
-        $this->selectOption(['name' => 'user_id'], $arg1);
-    }
-
-   /**
-    * @Then Eu devo ver o professor :arg1
-    */
-    public function euDevoVerOProfessor($arg1)
-    {
-        $this->see($arg1, '//table/tbody/tr');
-    }
-
-
-    /**
-     * @Given Eu clico em Deletar a disciplina :arg1
-     */
-    public function euClicoEmDeletarADisciplina($arg1)
-    {
-        $this->click('Deletar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[3]');
-        //$this->seeInPopup('Tem certeza que deseja deletar a disciplina?'); // Para teste no chromedriver
-        //$this->acceptPopup(); // Para teste no chromedriver
-    }
-
-   /**
-    * @Then Eu nao vejo a disciplina :arg1
-    */
-    public function euNaoVejoADisciplina($arg1)
-    {
-        $this->dontSee($arg1);
-    }
-
-    /**
-     * @Then Eu devo ver que a disciplina com nome invalido não foi adicionada
-     */
-    public function euDevoVerQueADisciplinaComNomeInvalidoNoFoiAdicionada()
-    {
-        $this->see('O tamanho mínimo do nome é 3 letras');
-    }
-
-    /**
-     * @Then Eu devo ver que a disciplina sem nome não foi adicionada
-     */
-    public function euDevoVerQueADisciplinaSemNomeNoFoiAdicionada()
-    {
-        $this->see('O nome da disciplina é obrigatório');
-    }
-
-    /**
-     * @Then Eu devo ver a disciplina :arg1 sem professor
-     */
-    public function euDevoVerADisciplinaSemProfessor($arg1)
-    {
-        $this->see('Nenhum professor', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[2]');
-    }
-
-
-    /*==================================== A partir daqui metodos para feature Postagem =======================
-     */
-
-     /**
-     * @Given Eu estou na pagina de postagens
-     */
-    public function euEstouNaPaginaDePostagens()
-    {
-        $this->amOnPage('/auth/postagens');
-    }
-
-    
-    /**
-    * @Then Eu deve estar na pagina de criar postagem
-    */
-    public function euDeveEstarNaPaginaDeCriarPostagem()
-    {
-        $this->amOnPage('/auth/postagem/adicionar');
-    }
-
-
-   /**
-    * @When Eu preencho o campo titulo com :arg1
-    */
-    public function euPreenchoOCampoTituloCom($arg1)
-    {
-        $this->fillField(['name' => 'titulo'], $arg1);
-    }
-
-    /**
-     * @When Eu preencho o campo descricao com :arg1
-     */
-    public function euPreenchoOCampoDescricaoCom($arg1)
-    {
-        $this->fillField(['name' => 'descricao'], $arg1);
-    }
-
-
-   /**
-    * @When Eu clico em Escolher arquivo e escolho :arg1
-    */
-    public function euClicoEmEscolherArquivoEEscolho($arg1)
-    {
-        $this->attachFile(['name' => 'anexo'], $arg1);
-    }
-
-   /**
-    * @Then Eu devo ver a postagem :arg1
-    */
-    public function euDevoVerAPostagem($arg1)
-    {
-        $this->see($arg1, '//table/tbody/tr');
-    }
-    
-    /**
-     * @Given Eu clico em Editar a postagem :arg1
-     */
-    public function euClicoEmEditarAPostagem($arg1)
-    {
-        $this->click('Editar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[5]');
-    }
-
-   /**
-    * @Then Eu devo estar na pagina de editar a postagem
-    */
-    public function euDevoEstarNaPaginaDeEdicaoDaPostagem()
-    {
-        $this->seeInCurrentUrl('/auth/postagem/editar/');
-    }
-
-   /**
-    * @When Eu edito o titulo para :arg1
-    */
-    public function euEditoOTituloPara($arg1)
-    {
-        $this->fillField(['name' => 'titulo'], $arg1);
-    }
-
-    /**
-     * @When Eu edito a descricao para :arg1
-     */
-    public function euEditoADescricaoPara($arg1)
-    {
-        $this->fillField(['name' => 'descricao'], $arg1);
-    }
-
-    /**
-     * @Then Eu devo ver como descricao da postagem :arg1
-     */
-    public function euDevoVerComoDescricaoDaPostagem($arg1)
-    {
-        $this->see($arg1, '//table/tbody/tr');
-    }
-
-
-    /**
-     * @Given Eu clico em Deletar a postagem :arg1
-     */
-    public function euClicoEmDeletarAPostagem($arg1)
-    {
-        $this->click('Deletar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[5]');
-        //$this->seeInPopup('Tem certeza que deseja deletar essa postagem?'); // Para teste no chromedriver
-        //$this->acceptPopup(); // Para teste no chromedriver
-    }
-
-   /**
-    * @Then Eu nao vejo a postagem :arg1
-    */
-    public function euNaoVejoAPostagem($arg1)
-    {
-        $this->dontSee($arg1);
-    }
-
-
-    /**
-     * @When Eu clico em Escolher arquivo editando o anexo para :arg1
-     */
-    public function euClicoEmEscolherArquivoEditandoOAnexoPara($arg1)
-    {
-        $this->attachFile(['name' => 'anexo'], $arg1);
-    }
-
-
-   /**
-    * @Then Eu vejo que a postagem com titulo :arg1 nao foi adicionada
-    */
-    public function euVejoQueAPostagemComTituloNaoFoiAdicionada($arg1)
-    {
-        $this->dontSee($arg1);
-    }
-
-    /**
-     * @Then Eu vejo a mensagem de erro :arg1
-     */
-    public function euVejoAMensagemDeErro($arg1)
-    {
-        $this->see($arg1);
-    }
-
-    /**
-     * @Then Eu devo ver a mensagem de erro :arg1
-     */
-    public function euDevoVerAMensagemDeErro($arg1)
-    {
-        $this->see($arg1);
-    }
-
-       
-/*==================================== feature usuario =======================
-     */
      /**
      * @Given Eu estou na pagina de registro de usuario
      */
@@ -384,7 +138,6 @@ class AcceptanceTester extends \Codeception\Actor
 	$this->fillField(['name' => 'password'], $arg1);
          
      }
-
     /**
      * @When Eu preencho o campo confirmacao de senha :arg1
      */
@@ -457,14 +210,12 @@ class AcceptanceTester extends \Codeception\Actor
      {
           $this->amOnPage('/login');
      }
-
-    /**
-     * @When Eu clico em login
+      /**
+     * @When Eu clico em entrar
      */
-     public function euClicoEmLogin()
+     public function euClicoEmEntrar()
      {
-         
-         $this->click('Login');
+          $this->click('Entrar');
      }
  
     /**
@@ -473,6 +224,21 @@ class AcceptanceTester extends \Codeception\Actor
      public function euVejoQueOUsuarioComNomeNaoFoiSalvo($arg1)
      {
          $this->dontSee($arg1);
+     }
+       /**
+     * @Then Eu estou na pagina de editar registro
+     */
+     public function euEstouNaPaginaDeEditarRegistro()
+     {
+          $this->amOnPage('/auth/registros/editar');
+     }
+
+    /**
+     * @When Eu mudo o nome do registro para :arg1
+     */
+     public function euMudoONomeDoRegistroPara($arg1)
+     {
+          $this->fillField(['name' => 'name'], $arg1);
      }
 
       /**
@@ -488,39 +254,22 @@ class AcceptanceTester extends \Codeception\Actor
      */
      public function euClicoEmEditarRegistroDoUsuario()
      {
-         $this->click('Editar', '//table/tbody/tr/td/ancestor::tr/td[4]');
+         $this->click('Editar', '//table/tbody/tr/td/ancestor::tr/td[5]');
+     }
+  /**
+     * @Then Eu vejo que o nome do usuario foi atualizado para :arg1
+     */
+     public function euVejoQueONomeDoUsuarioFoiAtualizadoPara($arg1)
+     {
+         $this->see($arg1, '//table/tbody/tr');
      }
 
     /**
-     * @Then Eu vejo que o nome do registro do usuario foi atualizado para :arg1
+     * @Then Eu vejo que o nome do usuario nao foi atualizado com sucesso
      */
-     public function euVejoQueONomeDoRegistroDoUsuarioFoiAtualizadoPara($arg1)
+     public function euVejoQueONomeDoUsuarioNaoFoiAtualizadoComSucesso()
      {
-          $this->see($arg1, '//table/tbody/tr');
-     }
-
-    
-    /**
-     * @Then Eu devo estar na pagina de editar registro
-     */
-     public function euDevoEstarNaPaginaDeEditarRegistro()
-     {
-           $this->amOnPage('/auth/registros/editar');
-     }
-
-    /**
-     * @When Eu edito o nome do registro para :arg1
-     */
-     public function euEditoONomeDoRegistroPara($arg1)
-     {
-         $this->fillField(['name' => 'name'], $arg1);
-     }
-      /**
-     * @Then Eu vejo que o nome do registro do usuario nao foi atualizado com sucesso
-     */
-     public function euVejoQueONomeDoRegistroDoUsuarioNaoFoiAtualizadoComSucesso()
-     {
-         $this->see('Senha deve ser obrigatória');
+         $this->see('Nome deve ser obrigatório');
      }
 
       /**
@@ -530,356 +279,219 @@ class AcceptanceTester extends \Codeception\Actor
      {
          $this->amOnPage('/');
      }
+     /**
+     * @Given Eu estou na pagina de solicitar acesso ao sistema LAPA
+     */
+     public function euEstouNaPaginaDeSolicitarAcessoAoSistemaLAPA()
+     {
+         $this->amOnPage('/register');
+     }
 
+    /**
+     * @When Eu preencho o campo sobrenome :arg1
+     */
+     public function euPreenchoOCampoSobrenome($arg1)
+     {
+         $this->fillField(['name' => 'surname'], $arg1);
+     }
 
-/**================ Testes de categoria aqui ===========================*/
+      /**
+     * @When Eu preencho o campo descricao profissional:arg1
+     */
+     public function euPreenchoOCampoDescricaoProfissional($arg1)
+     {
+         $this->fillField(['name' => 'user_description'], $arg1);
+     }
+
+    /**
+     * @When Eu clico em  solicitar acesso
+     */
+     public function euClicoEmSolicitarAcesso()
+     {
+      
+       $this->click('Solicitar');
+      
+     }
+
+    /**
+     * @When Eu comfirmo o email :arg1
+     */
+     public function euComfirmoOEmail($arg1)
+     {  
+       
+       $this->updateInDatabase('users',array('email_verified_at' => now())); 
    
+     }
      /**
-     * @Given Eu estou na pagina de categorias
+     * @Then Eu vejo que a solicitacao do usuario com email :arg1 foi aceita com sucesso
      */
-    public function euEstouNaPaginaDeCategorias()
-    {
-        $this->amOnPage('/auth/categorias');   
-    }
-
-     /**
-    * @Then Eu devo estar na pagina de criar categoria
-    */
-    public function euDevoEstarNaPaginaDeCriarCategoria()
-    {
-        $this->amOnPage('/auth/categoria/adicionar');
-    }
-
-    /**
-    * @Then Eu devo ver a categoria :arg1
-    */
-    public function euDevoVerACategoria($arg1)
-    {
-        $this->see($arg1);
-    }
-     
-
-    /**
-     * @Given Eu clico em Editar a categoria :arg1
-     */
-    public function euClicoEmEditarACategoria($arg1)
-    {
-        $this->click('Editar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[3]');
-    }
-
-    /**
-     * @When Eu seleciono a disciplina :arg1
-     */
-    public function euSelecionoADisciplina($arg1)
-    {
-        $this->selectOption(['name' => 'disciplina_id'], $arg1);
-    }
-
-   /**
-    * @When Eu edito a disciplina para :arg1
-    */
-    public function euEditoADisciplinaPara($arg1)
-    {
-        $this->selectOption(['name' => 'disciplina_id'], $arg1);
-    }
-
-    /**
-     * @Given Eu clico em Deletar a categoria :arg1
-     */
-    public function euClicoEmDeletarACategoria($arg1)
-    {
-        $this->click('Deletar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[3]');   
-    }
-
-   /**
-    * @Then Eu nao vejo categoria :arg1
-    */
-    public function euNaoVejoCategoria($arg1)
-    {
-       $this->dontSee($arg1);
-    }
-
-    /**
-     * @Then Eu devo estar na pagina de editar a categoria
-     */
-    public function euDevoEstarNaPaginaDeEditarACategoria()
-    {
-        $this->seeInCurrentUrl('/auth/categoria/editar');
-    }
-
-
-    /**================ Testes de visita aqui ===========================*/
-    /**
-     * @Given Eu estou na pagina de visitas
-     */
-    public function euEstouNaPaginaDeVisitas()
-    {
-        $this->amOnPage('/auth/visitas');
-    }
-
-   /**
-    * @Then Eu devo estar na pagina de criar visita
-    */
-    public function euDevoEstarNaPaginaDeCriarVisita()
-    {
-        $this->amOnPage('/auth/visita/adicionar');
-    }
-
-    /**
-     * @When Eu preencho o campo responsavel com :arg1
-     */
-    public function euPreenchoOCampoResponsavelCom($arg1)
-    {
-        $this->fillField(['name' => 'responsavel'], $arg1);
-    }
-
-   /**
-    * @When Eu preencho o campo data com :arg1
-    */
-    public function euPreenchoOCampoDataCom($arg1)
-    {
-        $this->fillField(['name' => 'data'], date('Y-m-d', strtotime($arg1)));
-    }
-
-   /**
-    * @When Eu preencho o campo hora inicial com :arg1
-    */
-    public function euPreenchoOCampoHoraInicialCom($arg1)
-    {
-        $this->fillField(['name' => 'hora_inicial'], $arg1);
-    }
-
-   /**
-    * @When Eu preencho o campo hora final com :arg1
-    */
-    public function euPreenchoOCampoHoraFinalCom($arg1)
-    {
-        $this->fillField(['name' => 'hora_final'], $arg1);
-    }
-
-   /**
-    * @When Eu preencho o campo telefone com :arg1
-    */
-    public function euPreenchoOCampoTelefoneCom($arg1)
-    {
-        $this->fillField(['name' => 'telefone'], $arg1);
-    }
-
-   /**
-    * @When Eu clico em Agendar
-    */
-    public function euClicoEmAgendar()
-    {
-        $this->click('Agendar');
-    }
-
-   /**
-    * @Then Eu devo ver a visita de :arg1
-    */
-    public function euDevoVerAVisitaDe($arg1)
-    {
-        $this->see($arg1, '//table/tbody/tr');
-    }
-
-    /**
-     * @Given Eu clico em Ver a visita :arg1
-     */
-    public function euClicoEmVerAVisita($arg1)
-    {
-        $this->click('Ver', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[6]');
-    }
-
-   /**
-    * @Then Eu devo estar na pagina de ver a visita
-    */
-    public function euDevoEstarNaPaginaDeVerAVisita()
-    {
-        $this->seeInCurrentUrl('/auth/visita/ver/');
-    }
-
-   /**
-    * @When Eu clico em Confirmar
-    */
-    public function euClicoEmConfirmar()
-    {
-        $this->click('Confirmar');
-    }
-
-   /**
-    * @Then Eu devo ver a visita :arg1 confirmada
-    */
-    public function euDevoVerAVisitaConfirmada($arg1)
-    {
-        $this->see('Sim', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[5]');
-    }
-
-   /**
-    * @When Eu clico em Cancelar a visita :arg1
-    */
-    public function euClicoEmCancelarAVisita($arg1)
-    {
-        $this->click('Cancelar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[6]');
-    }
-
-   /**
-    * @Then Eu nao devo ver a visita :arg1
-    */
-    public function euNaoDevoVerAVisita($arg1)
-    {
-        $this->dontSee($arg1, '//table/tbody/tr');
-    }
-/**================ Testes de materiais aqui ===========================*/
-     
-      /**
-     * @Given Eu abro a pagina de materiais
-     */
-     public function euAbroAPaginaDeMateriais()
+     public function euVejoQueASolicitacaoDoUsuarioComEmailFoiAceitaComSucesso($arg1)
      {
-        $this->amOnPage('/auth/materiais');
-     }   
-
-    /**
-     * @Then Eu devo estar na pagina de criar material
-     */
-     public function euDevoEstarNaPaginaDeCriarMaterial()
-     {
-         $this->amOnPage('/auth/materiais/adicionar');
+        $this->amOnPage('/');
+        $this->updateInDatabase('users',array('cpf_verified_at' => now())); 
      }
-
-    /**
-     * @When Eu preencho o campo texto com :arg1
+    
+	/*==================================== A partir daqui metodos para feature Postagem =======================
      */
-     public function euPreenchoOCampoTextoCom($arg1)
-     {
-          $this->fillField(['name' => 'texto'], $arg1);
-     }
-
-    /**
-     * @Then Eu devo ver o material com titulo :arg1 criado com sucesso
-     */
-     public function euDevoVerOMaterialComTituloCriadoComSucesso($arg1)
-     {
-         $this->see($arg1, '//table/tbody/tr');
-     }
-      /**
-     * @Given Eu clico em Editar material com titulo :arg1
-     */
-     public function euClicoEmEditarMaterialComTitulo($arg1)
-     {
-         $this->click('Editar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[3]');
-     }
-
-    /**
-     * @Then Eu devo estar na pagina de editar material
-     */
-     public function euDevoEstarNaPaginaDeEditarMaterial()
-     {
-          $this->seeInCurrentUrl('/auth/materiais/editar/');
-         
-     }
-
-    /**
-     * @When Eu edito o campo titulo para :arg1
-     */
-     public function euEditoOCampoTituloPara($arg1)
-     {
-         $this->fillField(['name' => 'titulo'], $arg1);
-     }
-
-    /**
-     * @Then Eu devo ver uma menssagem de erro :arg1
-     */
-     public function euDevoVerUmaMenssagemDeErro($arg1)
-     {
-         $this->see($arg1);
-     }
 
      /**
-     * @When Eu clico em Deletar material com titulo :arg1
+     * @Given Eu estou na pagina de postagens
      */
-     public function euClicoEmDeletarMaterialComTitulo($arg1)
-     {
-         $this->click('Deletar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[3]');
-     }
-
-    /**
-     * @Then Eu devo ver que o material com titulo :arg1 foi removido
-     */
-     public function euDevoVerQueOMaterialComTituloFoiRemovido($arg1)
-     {
-         $this->dontSee($arg1);
-     }
-
-
-
-
-    /**
-    * @When Eu seleciono a categoria :arg1
-    */
-    public function euSelecionoACategoria($arg1)
+    public function euEstouNaPaginaDePostagens()
     {
-        $this->selectOption(['name' => 'categoria_id'], $arg1);
+        $this->amOnPage('/auth/postagens');
     }
 
-    /*==================================== A partir daqui metodos para feature Atla =======================*/
-     /**
-     * @Given Eu estou na pagina de atlas
-     */
-    public function euEstouNaPaginaDeAtlas()
-    {
-        $this->amOnPage('/auth/atlas');
-    }
+    
+
 
    /**
-    * @Then Eu devo estar na pagina de criar atla
+    * @When Eu preencho o campo titulo com :arg1
     */
-    public function euDevoEstarNaPaginaDeCriarAtla()
+    public function euPreenchoOCampoTituloCom($arg1)
     {
-        $this->amOnPage('/auth/atla/adicionar');
+        $this->fillField(['name' => 'titulo'], $arg1);
     }
+
+    /**
+     * @When Eu preencho o campo descricao com :arg1
+     */
+    public function euPreenchoOCampoDescricaoCom($arg1)
+    {
+        $this->fillField(['name' => 'descricao'], $arg1);
+    }
+
 
    /**
-     * @Then Eu devo ver o atlas :arg1
-     */
-    public function euDevoVerOAtlas($arg1)
+    * @When Eu clico em Escolher arquivo e escolho :arg1
+    */
+    public function euClicoEmEscolherArquivoEEscolho($arg1)
     {
-        $this->see($arg1);
-    }
-
-      /**
-     * @Given Eu clico em Editar o atlas :arg1
-     */
-    public function euClicoEmEditarOAtlas($arg1)
-    {
-        $this->click('Editar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[4]');
+        $this->attachFile(['name' => 'anexo'], $arg1);
     }
 
    
+
    /**
-    * @Then Eu devo ver como descricao do atlas :arg1
+    * @When Eu edito o titulo para :arg1
     */
-    public function euDevoVerComoDescricaoDoAtlas($arg1)
+    public function euEditoOTituloPara($arg1)
     {
-        $this->see($arg1);
+        $this->fillField(['name' => 'titulo'], $arg1);
     }
 
     /**
-     * @Given Eu clico em Deletar o atlas :arg1
+     * @When Eu edito a descricao para :arg1
      */
-    public function euClicoEmDeletarOAtlas($arg1)
+    public function euEditoADescricaoPara($arg1)
     {
-        $this->click('Deletar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[4]');
+        $this->fillField(['name' => 'descricao'], $arg1);
     }
 
    /**
-    * @Then Eu nao vejo o atlas :arg1
+    * @Then Eu nao vejo a postagem :arg1
     */
-    public function euNaoVejoOAtlas($arg1)
+    public function euNaoVejoAPostagem($arg1)
     {
         $this->dontSee($arg1);
     }
 
 
-   
+    /**
+     * @When Eu clico em Escolher arquivo editando o anexo para :arg1
+     */
+    public function euClicoEmEscolherArquivoEditandoOAnexoPara($arg1)
+    {
+        $this->attachFile(['name' => 'anexo'], $arg1);
+    }
+
+
+   /**
+    * @Then Eu vejo que a postagem com titulo :arg1 nao foi adicionada
+    */
+    public function euVejoQueAPostagemComTituloNaoFoiAdicionada($arg1)
+    {
+        $this->dontSee($arg1);
+    }
+
+    /**
+     * @Then Eu vejo a mensagem de erro :arg1
+     */
+    public function euVejoAMensagemDeErro($arg1)
+    {
+        $this->see($arg1);
+    }
+
+    /**
+     * @Then Eu devo ver a mensagem de erro :arg1
+     */
+    public function euDevoVerAMensagemDeErro($arg1)
+    {
+        $this->see($arg1);
+    }
+    
+    /**
+     * @Then Eu abro a pagina de criar postagem
+     */
+     public function euAbroAPaginaDeCriarPostagem()
+     {
+        $this->amOnPage('/auth/postagem/adicionar');
+     }
+
+
+    /**
+     * @Then Eu abro a pagina de editar a postagem
+     */
+     public function euAbroAPaginaDeEditarAPostagem()
+     {
+         $this->seeInCurrentUrl('/auth/postagem/editar/');
+     }
+
+    /**
+     * @Then Eu vejo que a postagem com titulo :arg1 foi salva com sucesso
+     */
+     public function euVejoQueAPostagemComTituloFoiSalvaComSucesso($arg1)
+     {
+         $this->see($arg1, '//table/tbody/tr');
+     }
+      /**
+     * @Then Eu nao vejo a postagem com titulo :arg1
+     */
+     public function euNaoVejoAPostagemComTitulo($arg1)
+     {
+         $this->dontSee($arg1, '//table/tbody/tr');
+     }
+     /**
+     * @Given Eu clico em Editar a postagem com titulo :arg1
+     */
+     public function euClicoEmEditarAPostagemComTitulo($arg1)
+     {
+          $this->click('Editar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[5]');
+     }
+      /**
+     * @Given Eu clico em Deletar a postagem com titulo :arg1
+     */
+     public function euClicoEmDeletarAPostagemComTitulo($arg1)
+     {
+        $this->click('Deletar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[5]');
+     }
+      /**
+     * @When Eu seleciono o professor com email :arg1
+     */
+     public function euSelecionoOProfessorComEmail($arg1)
+     {
+       
+         $user_id= $this->grabFromDatabase('users', 'id', array('email' =>$arg1));
+         $this->selectOption(['name' => 'user_id'],$user_id);
+     }
+      /**
+    * @Given Eu clico em Adicionar
+    */
+    public function euClicoEmAdicionar()
+    {
+        $this->click('Adicionar');
+        
+    }
+
 
 }

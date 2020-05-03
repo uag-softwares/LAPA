@@ -13,28 +13,41 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',['as'=> 'site.home','uses'=> 'HomeController@home'],function () {});
-Route::get('/gerenciar', ['as' => 'auth.gerenciar', 'uses' => 'HomeController@home'], function () {});
+Route::get('/gerenciar', ['as' => 'auth.gerenciar', 'uses' => 'HomeController@gerenciar'], function () {});
+Route::get('/', ['as' => 'site.home', 'uses' => 'PostagemController@siteHome'], function () {});
+
 
 Route::get('/site/atlas/index', ['as' => 'site.atlas.index', 'uses' => 'AtlaController@siteIndex'], function () {});
 Route::get('/site/atlas/categoria/{id}', ['as' => 'site.atlas.categoria', 'uses' => 'AtlaController@atlasPorCategoria'], function () {});
 Route::get('/site/atlas/disciplina/{id}', ['as' => 'site.atlas.disciplina', 'uses' => 'AtlaController@atlasPorDisciplina'], function () {});
 
 
+Route::get('/site/postagens/index', ['as' => 'site.postagens.index', 'uses' => 'PostagemController@siteIndex'], function () {});
+Route::get('/site/postagens/vizualizar/{id}', ['as' => 'site.postagens.vizualizar', 'uses' => 'PostagemController@sitePostagemvizualizar'], function () {});
+Route::get('/site/postagens/home', ['as' => 'site.postagens.home', 'uses' => 'PostagemController@siteHome'], function () {});
+
+Route::get('/site/quemSomos/index', ['as' => 'site.quemSomos.index', 'uses' => 'Auth\RegisterController@siteIndex'], function () {});
+Route::get('/site/quemSomos/vizualizar/{id}', ['as' => 'site.quemSomos.vizualizar', 'uses' => 'Auth\RegisterController@siteRegistervizualizar'], function () {});
+
 Route::get('/site/materiais/index', ['as' => 'site.materiais.index', 'uses' => 'MaterialController@siteIndex'], function () {});
 Route::get('/site/materiais/disciplina/{id}', ['as' => 'site.materiais.disciplina', 'uses' => 'MaterialController@materiaisPorDisciplina'], function () {});
 Route::get('/site/materiais/ver/{id}', ['as' => 'site.materiais.ver_materiais', 'uses' => 'MaterialController@ver'], function () {});
 
-Auth::routes();
+
+Route::post('/site/visita/adicionar',['as'=> 'site.visita.buscar.registro','uses'=> 'Auth\RegisterController@buscarUsuarioVisita'],function () {});
+Route::get('/site/visita/adicionar', ['as' => 'site.visita.adicionar', 'uses' => 'VisitaController@adicionar'], function() {});
+Route::post('/site/visita/salvar', ['as' => 'site.visita.salvar', 'uses' => 'VisitaController@salvarUsuarioVisita'], function() {});
+
+Auth::routes(['verify' => true]);
 
 
-Route::middleware(['auth'])->group(function () {
+
+Route::middleware(['auth','check.cpf'])->group(function () {
 
 	Route::get('/auth/registros',['as'=> 'auth.registros','uses'=> 'Auth\RegisterController@index'],function () {});
   	Route::get('/auth/registros/editar',['as'=> 'auth.registros.editar','uses'=> 'Auth\RegisterController@editar'],function () {});
    	Route::any('/auth/registros/atualizar',['as'=> 'auth.registros.atualizar','uses'=> 'Auth\RegisterController@atualizar'],function () {});
-   	Route::get('/auth/registros/deletar/{id}',['as'=> 'auth.registros.deletar','uses'=> 'Auth\RegisterController@deletar'],function () {});
-
+	Route::get('/auth/registros/deletar/{id}',['as'=> 'auth.registros.deletar','uses'=> 'Auth\RegisterController@deletar'],function () {});
 	
 	Route::get('/auth/disciplinas', ['as' => 'auth.disciplinas', 'uses' => 'DisciplinaController@index'], function () {});
 	Route::get('/auth/disciplina/adicionar', ['as' => 'auth.disciplina.adicionar', 'uses' => 'DisciplinaController@adicionar'],function () {});
@@ -73,12 +86,19 @@ Route::middleware(['auth'])->group(function () {
 
   
 	Route::get('/auth/visitas', ['as' => 'auth.visitas', 'uses' => 'VisitaController@index'], function() {});
-	Route::get('/auth/visita/adicionar', ['as' => 'auth.visita.adicionar', 'uses' => 'VisitaController@adicionar'], function() {});
-	Route::post('/auth/visita/salvar', ['as' => 'auth.visita.salvar', 'uses' => 'VisitaController@salvar'], function() {});
 	Route::get('/auth/visita/ver/{id}', ['as' => 'auth.visita.ver', 'uses' => 'VisitaController@ver'], function() {});
 	Route::put('/auth/visitas/atualizar/{id}', ['as' => 'auth.visita.atualizar', 'uses' => 'VisitaController@atualizar'], function() {});
 	Route::get('/auth/visitas/deletar/{id}', ['as' => 'auth.visita.deletar', 'uses' => 'VisitaController@deletar'], function() {});
+
+	Route::get('/auth/acesso_gerenciamento', ['as' => 'auth.acesso_gerenciamento', 'uses' => 'Auth\RegisterController@gerenciarSolicitacao'], function () {});
+	Route::get('/auth/acesso_gerenciamento/aceitarSolicitacao/{id}', ['as' => 'auth.acesso_gerenciamento.aceitarSolicitacao', 'uses' => 'Auth\RegisterController@aceitarSolicitacao'], function() {});
+	Route::get('/auth/acesso_gerenciamento/recusarSolicitacao/{id}', ['as' => 'auth.acesso_gerenciamento.recusarSolicitacao', 'uses' => 'Auth\RegisterController@recusarSolicitacao'], function() {});
+        
+
 });
+
+Route::post('/auth/passwords/reset', ['as' => 'auth.password.resetPassword', 'uses' => 'ContaController@resetPassword'], function () {});
+Route::post('/auth/passwords/email', ['as' => 'auth.password.validatePasswordRequest', 'uses' => 'ContaController@validatePasswordRequest'], function () {});
 
 Route::get('/home', 'HomeController@index')->name('home');
 

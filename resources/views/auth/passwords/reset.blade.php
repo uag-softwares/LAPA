@@ -4,12 +4,12 @@
 <div class="container">
     <h2>{{ __('Reset Password') }}</h2>
 
-    <form method="POST" action="{{ route('password.update') }}">
+    <form method="POST" action="{{ route('auth.password.resetPassword') }}">
         @csrf
         <input type="hidden" name="token" value="{{ $token }}">
         <div class="form-group">
             <label for="email">{{ __('E-Mail Address') }}</label>
-            <input id="email" type="email" class="form-control form-control-lg @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
+            <input id="email" type="email" class="form-control form-control-lg @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus readonly>
             @error('email')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>

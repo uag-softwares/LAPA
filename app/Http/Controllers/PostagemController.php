@@ -18,7 +18,7 @@ class PostagemController extends Controller
 
     public function __construct(Postagem $postagem, User $user)
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => ['siteIndex','sitePostagemvizualizar','siteHome']]);
         $this->postagem = $postagem;
         $this->user = $user;
     }
@@ -56,7 +56,8 @@ class PostagemController extends Controller
     public function editar($identifier) 
     {
         $registro = $this->postagem->find($identifier);
-        return view('auth.postagem.editar', compact('registro'));        
+         $users = $this->user->all();
+        return view('auth.postagem.editar', compact('registro','users'));        
     }
 
     public function atualizar(PostagemRequest $request, $identifier)
@@ -83,7 +84,19 @@ class PostagemController extends Controller
         $this->postagem->find($identifier)->delete();
         return redirect()->route('auth.postagens')->with('success', 'Postagem deletada com sucesso!');
     }
-    
+    public function siteIndex(){
+        $registros = $this->postagem->all();
+        return view('site.postagens.index', compact('registros'));
+    }
+    public function sitePostagemvizualizar($identifier){
+        $registro = $this->postagem->find($identifier);
+       
+        return view('site.postagens.vizualizar', compact('registro'));
+    }
+     public function siteHome(){//ordenar por data
+        $registros = $this->postagem->all();
+        return view('site.postagens.home', compact('registros'));
+    }
     
     
 }
