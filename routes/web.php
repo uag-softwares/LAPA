@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',['as'=> 'site.home','uses'=> 'HomeController@home'],function () {});
 Route::get('/gerenciar', ['as' => 'auth.gerenciar', 'uses' => 'HomeController@home'], function () {});
 
 
@@ -24,7 +23,7 @@ Route::get('/site/atlas/disciplina/{id}', ['as' => 'site.atlas.disciplina', 'use
 
 Route::get('/site/postagens/index', ['as' => 'site.postagens.index', 'uses' => 'PostagemController@siteIndex'], function () {});
 Route::get('/site/postagens/vizualizar/{id}', ['as' => 'site.postagens.vizualizar', 'uses' => 'PostagemController@sitePostagemvizualizar'], function () {});
-Route::get('/site/postagens/home', ['as' => 'site.postagens.home', 'uses' => 'PostagemController@siteHome'], function () {});
+Route::get('/', ['as' => 'site.postagens.home', 'uses' => 'PostagemController@siteHome'], function () {});
 
 Route::get('/site/quemSomos/index', ['as' => 'site.quemSomos.index', 'uses' => 'Auth\RegisterController@siteIndex'], function () {});
 Route::get('/site/quemSomos/vizualizar/{id}', ['as' => 'site.quemSomos.vizualizar', 'uses' => 'Auth\RegisterController@siteRegistervizualizar'], function () {});
