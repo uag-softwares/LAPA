@@ -69,11 +69,38 @@ class AdditionalSteps extends \Codeception\Actor
     */
     public function aCategoriaJaExista($arg1)
     {
-        $disciplina = $this->grabFromDatabase('disciplinas', 'id', array('nome' => 'Ihc'));
+        $disciplina = $this->grabFromDatabase('disciplinas', 'id', array('nome' => 'Patologia'));
 
         $this->haveInDatabase('categorias', [
             'nome' => $arg1,
             'disciplina_id' => $disciplina,
+        ]);
+    }
+
+
+    /**
+     * @Given O atla :arg1 ja exista
+     */
+    public function oAtlaJExista($arg1)
+    {
+        $this->haveInDatabase('disciplinas', [
+            'nome' => 'teste',
+        ]);
+
+        $disciplina = $this->grabFromDatabase('disciplinas', 'id', array('nome' => 'teste'));
+
+        $this->haveInDatabase('categorias', [
+            'nome' => 'Sistema nervoso',
+            'disciplina_id' => $disciplina,
+        ]);
+
+        $categoria = $this->grabFromDatabase('categorias', 'id', array('nome' => 'Sistema nervoso'));
+
+        $this->haveInDatabase('atlas', [
+            'titulo' => $arg1,
+            'descricao' => 'Texto do atlas',
+            'anexo' => 'anexo.pdf',
+            'categoria_id' => $categoria,
         ]);
     }
 }

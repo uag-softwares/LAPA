@@ -3,8 +3,6 @@ Feature: categoria
   In order to gerenciar o sistema do LAPA
   As a user
   I need to poder criar, ver, atualizar e deletar categorias
-
-
   
   Scenario: criar uma categoria valida
     Given Eu estou logado como "Rodrigo" com email "admin@admin.com" e senha "12345678"

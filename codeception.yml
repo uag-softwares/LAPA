@@ -36,6 +36,8 @@ gherkin:
                 - DisciplinaSteps
             categoria:
                 - CategoriaSteps
+            atla:
+                - AtlaSteps
 
 # additional paths
 paths:

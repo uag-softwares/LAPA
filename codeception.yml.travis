@@ -35,6 +35,8 @@ gherkin:
                 - VisitaSteps  
             categoria:
                 - CategoriaSteps
+            atla:
+                - AtlaSteps
 
 # additional paths
 paths:
