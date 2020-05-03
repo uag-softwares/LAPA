@@ -47,6 +47,7 @@ class RegisterController extends Controller
     protected $redirectTo = RouteServiceProvider::HOME;
     protected $usuario;
     protected $visita;
+    protected $conta;
   
     /**
      * Create a new controller instance.
@@ -54,7 +55,7 @@ class RegisterController extends Controller
      * @return void
      */
     
-     public function __construct(User $usuario, Visita $visita) 
+     public function __construct(User $usuario, Visita $visita,Conta $conta) 
     {
        $this->middleware('auth', ['except' => [
 
@@ -66,6 +67,7 @@ class RegisterController extends Controller
       
        $this->usuario=$usuario;
        $this->visita = $visita;
+       $this->conta=$conta;
        
        
     }
@@ -78,6 +80,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6','confirmed'],
 	    'cpf' => ['required', 'regex:/\d{3}\.\d{3}\.\d{3}\-\d{2}/','string', 'unique:users'],
+            'user_description' => 'required|min:10',
             
         ],[
 	    'name.required'=>'Nome deve ser obrigatório',
@@ -95,6 +98,8 @@ class RegisterController extends Controller
 	    'password.required'=>'Senha deve ser obrigatória',
 	    'password.min'=>'Senha deve conter no mínimo seis caracteres',
 	    'password.confirmed'=>'Senhas não conferem',
+            'user_description.required' => 'A descrição da postagem é obrigatória',
+            'user_description.min' => 'O tamanho mínimo da descrição é 10 letras',
         ]);
        
     }
@@ -108,7 +113,7 @@ class RegisterController extends Controller
      
     protected function create(array $data)
     { 
-       $request = new Request($data);
+       //$request = new Request($data);
        $registros= $this->usuario::whereNotNull('cpf_verified_at')->get();
 
     /*
@@ -134,7 +139,7 @@ class RegisterController extends Controller
             // 'email_verified_at'=>now(),
 	    'user_type' => 'admin',
         ]);
-        Conta::create([
+        $this->conta->create([
 	  'password' => Hash::make( $data ['password']),
 	  'user_id'=>$user->id,  
         ]);
