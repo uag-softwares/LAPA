@@ -40,9 +40,13 @@
                             <li class="nav-item">
                                 <a href="{{ route('site.quemSomos.index') }}" class="nav-link">Quem somos</a>
                             </li>
+                            
+                     
                             <!-- Authentication Links -->
                             @guest
-                               
+                               <li class="nav-item">
+                                <a href="{{ route('login') }}" class="nav-link">Acesso</a>
+                            </li>
                             @else
                                 <li class="nav-item dropdown">
                                     <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
