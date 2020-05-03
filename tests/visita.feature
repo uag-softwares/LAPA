@@ -21,14 +21,14 @@ Feature: visita
     
 
   Scenario: confirmar uma visita existente
-    Given Eu estou logado como "Daniela" com email "daniela@admin.com" e senha "12345678"
+    Given Eu estou logado como "quiteria" com email "quiteria@admin.com" e senha "12345678"
     And Eu estou na pagina de gerenciar visitas
     And Eu clico em ver a visita "Vinicius Santos"
     When Eu clico em confirmar
     Then Eu vejo que as visita foi confirmada corretamente
 
   Scenario: cancelar uma visita existente
-    Given Eu estou logado como "Daniela" com email "daniela@admin.com" e senha "12345678"
+    Given Eu estou logado como "quiteria" com email "quiteria@admin.com" e senha "12345678"
     And Eu estou na pagina de gerenciar visitas
     When Eu clico em cancelar a visita "Vinicius Santos"
     Then Eu vejo que a visita foi cancelada corretamente
