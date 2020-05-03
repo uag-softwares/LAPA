@@ -139,7 +139,6 @@ class VisitaSteps extends \Codeception\Actor
     public function euVejoQueAsVisitaFoiConfirmadaCorretamente()
     {
         $this->seeInCurrentUrl('/auth/visitas');
-        $this->see('Vinicius', '//table/tbody/tr');
     }
 
     /**
@@ -156,7 +155,6 @@ class VisitaSteps extends \Codeception\Actor
     public function euVejoQueAVisitaFoiCanceladaCorretamente()
     {
         $this->seeInCurrentUrl('/auth/visitas');
-        $this->dontSee('Vinicius', '//table/tbody/tr');
     }
 
 }
