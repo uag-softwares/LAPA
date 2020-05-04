@@ -7,9 +7,9 @@
      @else
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
                <ol class="carousel-indicators">
-                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#myCarousel" data-slide-to="1"></li>
-                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                    @for($i = 0; $i < count($registros); $i++)
+                         <li data-target="#myCarousel" data-slide-to="{{ $i }}" class="{{ $i == 0 ? 'active' : ''}}"></li>
+                    @endfor
                </ol>
                <div class="carousel-inner">
 
