@@ -58,6 +58,15 @@
             </span>
         @enderror
     </div>
+   <div class="form-group">
+    <label for="link_lattes">Link do Lattes(Opcional)</label>
+        <input id="link_lattes" type="text" class="form-control form-control-lg @error('link_lattes') is-invalid @enderror" name="link_lattes" value="{{isset($user->link_lattes) ? $user->link_lattes : old('link_lattes')}}"  autofocus placeholder="Adicione aqui o link do seu currículo lattes">
+        @error('link_lattes')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+    </div>
    @guest
     <div class="form-group">
         <label for="psw">{{ Auth::user() ? 'Senha Atual*' : 'Senha*' }}</label>

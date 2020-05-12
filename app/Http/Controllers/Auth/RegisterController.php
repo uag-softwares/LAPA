@@ -81,6 +81,7 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:6','confirmed'],
 	    'cpf' => ['required', 'regex:/\d{3}\.\d{3}\.\d{3}\-\d{2}/','string', 'unique:users'],
             'user_description' => 'required|min:10',
+            'link_lattes' => ['required', 'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/','string', 'unique:users'],
             
         ],[
 	    'name.required'=>'Nome deve ser obrigatório',
@@ -100,6 +101,8 @@ class RegisterController extends Controller
 	    'password.confirmed'=>'Senhas não conferem',
             'user_description.required' => 'A descrição da postagem é obrigatória',
             'user_description.min' => 'O tamanho mínimo da descrição é 10 letras',
+            'link_lattes.unique'=>'Link do currículo lattes já existe',
+	    'link_lattes.regex'=>'link inválido',
         ]);
        
     }
@@ -115,6 +118,7 @@ class RegisterController extends Controller
     { 
        //$request = new Request($data);
        $registros= $this->usuario::whereNotNull('cpf_verified_at')->get();
+       echo $data['link_lattes'];
 
     /*
       if($request->hasFile('avatar')) {
@@ -127,8 +131,8 @@ class RegisterController extends Controller
             $data['avatar'] = $dir.'/'.$nomeAnexo;
            
         }
-*/
 
+*/
        $user= $this->usuario->create([
             'name' =>  $data ['name'],
 	    'cpf' =>  $data ['cpf'],
@@ -138,16 +142,18 @@ class RegisterController extends Controller
 	    //'avatar' => $data['avatar'],
             // 'email_verified_at'=>now(),
 	    'user_type' => 'admin',
+            'link_lattes'=> $data['link_lattes'],
         ]);
         $this->conta->create([
 	  'password' => Hash::make( $data ['password']),
 	  'user_id'=>$user->id,  
         ]);
-
+/*
         foreach ($registros as $registro) {
               $registro->notify(new SolicitacaoAcesso($user));
         }
       return $user;
+*/
     }
     public function index (){
         

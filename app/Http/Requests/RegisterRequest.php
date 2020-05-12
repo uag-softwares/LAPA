@@ -26,6 +26,7 @@ class RegisterRequest extends FormRequest
         return [
             'name' => ['required', 'string','min:3', 'max:255'],
 	    'surname' => ['required', 'string','min:3', 'max:255'],
+            'link_lattes' => ['required', 'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/','string', 'unique:users'],
             
 	    
         ];
@@ -38,6 +39,8 @@ class RegisterRequest extends FormRequest
             'surname.required'=>'Sobrenome deve ser obrigatório',
 	    'surname.string'=>'Sobrenome não pode conter números',
 	    'surname.min'=>'Sobrenome deve conter no mínimo três caracteres',
+            'link_lattes.unique'=>'Link do currículo lattes já existe',
+	    'link_lattes.regex'=>'link inválido',
 	   
 	    
         ];
