@@ -118,8 +118,6 @@ class RegisterController extends Controller
     { 
        //$request = new Request($data);
        $registros= $this->usuario::whereNotNull('cpf_verified_at')->get();
-       echo $data['link_lattes'];
-
     /*
       if($request->hasFile('avatar')) {
             $anexo = $request->file['avatar'];
