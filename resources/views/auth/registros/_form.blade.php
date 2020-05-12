@@ -1,15 +1,19 @@
-    @php($user = Auth::user())
-   <!--
-   <div class="form-group d-flex flex-column align-items-center">
+@php($user = Auth::user())
+   @if(@isset($user->avatar))
+          <div class="input-field">
+             <img src="{{asset($user->avatar) }}" alt="" height="200" width="200">
+          </div>    
+    @endisset
+    <div class="form-group d-flex flex-column align-items-left">
        
-       <label for="avatar">
-           <span class="fas fa-user-circle" style="font-size:80px"></span>
-           {{ __('Foto (opcional)') }}
-       </label>
-       <input id="avatar" type="file" name="avatar" class="avatar">
-            
+       <label for="avatar">{{ __('Foto (opcional)') }}</label>
+           <input class="{{ $errors->has('avatar') ? 'error' : '' }}" id="avatar" type="file" name="avatar" >
+           @error('avatar')
+              <span class="invalid-feedback" role="alert">
+                 <strong>{{ $message }}</strong>
+             </span>
+           @enderror    
     </div>
-  -->
     <div class="form-group">
     <label for="name">Nome*</label>
         <input id="name" type="text" class="form-control form-control-lg @error('name') is-invalid @enderror" name="name" value="{{isset($user->name) ? $user->name : old('name')}}" required autocomplete="name" autofocus placeholder="Ex.:Maria">
@@ -58,6 +62,7 @@
             </span>
         @enderror
     </div>
+
    <div class="form-group">
     <label for="link_lattes">Link do Lattes(Opcional)</label>
         <input id="link_lattes" type="text" class="form-control form-control-lg @error('link_lattes') is-invalid @enderror" name="link_lattes" value="{{isset($user->link_lattes) ? $user->link_lattes : old('link_lattes')}}"  autofocus placeholder="Adicione aqui o link do seu currículo lattes">

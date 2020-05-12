@@ -82,6 +82,7 @@ class RegisterController extends Controller
 	    'cpf' => ['required', 'regex:/\d{3}\.\d{3}\.\d{3}\-\d{2}/','string', 'unique:users'],
             'user_description' => 'required|min:10',
             'link_lattes' => ['required', 'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/','string', 'unique:users'],
+            'avatar' => 'mimes:jpeg,jpg,png,gif|max:2048' 
             
         ],[
 	    'name.required'=>'Nome deve ser obrigatório',
@@ -102,7 +103,9 @@ class RegisterController extends Controller
             'user_description.required' => 'A descrição da postagem é obrigatória',
             'user_description.min' => 'O tamanho mínimo da descrição é 10 letras',
             'link_lattes.unique'=>'Link do currículo lattes já existe',
-	    'link_lattes.regex'=>'link inválido',
+	    'link_lattes.regex'=>'Link inválido',
+            'avatar.mimes'=> 'A imagem deve ser do tipo jpeg,png,gif ou jpg',
+            'avatar.max'=> 'A imagem não pode conter um arquivo com mais de 2048 KB',
         ]);
        
     }
@@ -116,29 +119,28 @@ class RegisterController extends Controller
      
     protected function create(array $data)
     { 
-       //$request = new Request($data);
+       
        $registros= $this->usuario::whereNotNull('cpf_verified_at')->get();
-    /*
-      if($request->hasFile('avatar')) {
-            $anexo = $request->file['avatar'];
+       
+   
+      if($data['avatar']!=null) {
+            $anexo = $data['avatar'];
             $num = rand(1111,9999);
             $dir = 'img/avatares/';
             $exAnexo =$anexo->guessClientExtension();
             $nomeAnexo = 'avatar_'.$num.'.'.$exAnexo;
-            $file->move($dir, $nomeAnexo);
+            $anexo->move($dir, $nomeAnexo);
             $data['avatar'] = $dir.'/'.$nomeAnexo;
            
         }
 
-*/
        $user= $this->usuario->create([
             'name' =>  $data ['name'],
 	    'cpf' =>  $data ['cpf'],
 	    'email' =>  $data['email'],
 	    'surname' =>  $data ['surname'],
 	    'user_description' =>  $data ['user_description'],
-	    //'avatar' => $data['avatar'],
-            // 'email_verified_at'=>now(),
+	    'avatar' => $data['avatar'],
 	    'user_type' => 'admin',
             'link_lattes'=> $data['link_lattes'],
         ]);
@@ -146,12 +148,12 @@ class RegisterController extends Controller
 	  'password' => Hash::make( $data ['password']),
 	  'user_id'=>$user->id,  
         ]);
-/*
+
         foreach ($registros as $registro) {
               $registro->notify(new SolicitacaoAcesso($user));
         }
       return $user;
-*/
+
     }
     public function index (){
         
@@ -189,7 +191,17 @@ class RegisterController extends Controller
     public function atualizar(RegisterRequest $data)//retirar verificação de senha
     {  
         $data->validated();
-	$dados = $data->all();
+        $dados = $data->all();
+        if($dados['avatar']!=null) {
+            $anexo = $dados['avatar'];
+            $num = rand(1111,9999);
+            $dir = 'img/avatares/';
+            $exAnexo =$anexo->guessClientExtension();
+            $nomeAnexo = 'avatar_'.$num.'.'.$exAnexo;
+            $anexo->move($dir, $nomeAnexo);
+            $dados['avatar'] = $dir.'/'.$nomeAnexo;
+           
+        }
         $user=Auth::user();
         $user->update($dados);
         
