@@ -13,10 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/gerenciar', ['as' => 'auth.gerenciar', 'uses' => 'HomeController@gerenciar'], function () {});
+
 Route::get('/', ['as' => 'site.home', 'uses' => 'PostagemController@siteHome'], function () {});
-
-
 Route::get('/site/atlas/index', ['as' => 'site.atlas.index', 'uses' => 'AtlaController@siteIndex'], function () {});
 Route::get('/site/atlas/categoria/{id}', ['as' => 'site.atlas.categoria', 'uses' => 'AtlaController@atlasPorCategoria'], function () {});
 Route::get('/site/atlas/disciplina/{id}', ['as' => 'site.atlas.disciplina', 'uses' => 'AtlaController@atlasPorDisciplina'], function () {});
@@ -43,6 +41,8 @@ Auth::routes(['verify' => true]);
 
 
 Route::middleware(['auth','check.cpf'])->group(function () {
+
+        Route::get('/gerenciar', ['as' => 'auth.gerenciar', 'uses' => 'HomeController@gerenciar'], function () {});
 
 	Route::get('/auth/registros',['as'=> 'auth.registros','uses'=> 'Auth\RegisterController@index'],function () {});
   	Route::get('/auth/registros/editar',['as'=> 'auth.registros.editar','uses'=> 'Auth\RegisterController@editar'],function () {});
