@@ -7,7 +7,7 @@
     <div class="d-flex justify-content-around row">
 
         <div class="col-12 col-md-10 col-lg-8">
-            <div class="card mx-auto">
+            <div class="card mx-auto" style="width: 80%">
                 <div class="card-header">
                     <input class="form-control" id="pesquisa_disciplina" type="search" id="form-autocomplete"
                         placeholder="Pesquisar...">

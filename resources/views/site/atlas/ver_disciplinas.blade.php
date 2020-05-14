@@ -6,7 +6,6 @@
         <h2>Atlas Interativo</h2>
         <div class="breadcrumbs d-flex text-left justify-content-sm-start justify-content-between">
             <p>
-                <a href="{{ route('site.home') }}">Início</a> /
                 <a href="{{ route('site.atlas.index') }}">Atlas interativo</a> /
                 {{ ucfirst($disciplina->nome) }}
             </p>

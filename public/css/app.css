@@ -246,7 +246,6 @@ a:hover.page-link {
 /* inicio de lista de materiais */
 .material-group.list-group-item.list-group-item-action {
     display: flex; 
-    justify-content:space-around; 
     padding:0;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
@@ -254,6 +253,8 @@ a:hover.page-link {
 
 .material-group.list-group-item.list-group-item-action.header {
     padding: 1rem;
+    justify-content: space-around; 
+
 }
 
 .item {
@@ -277,7 +278,8 @@ a:hover.page-link {
 }
  
 .atla-item {
-    width: 100%;
+    align-self: flex-start;
+    width: 50%;
 }
 
   
