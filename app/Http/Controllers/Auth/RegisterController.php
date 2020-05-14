@@ -80,7 +80,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6','confirmed'],
 	    'cpf' => ['required', 'regex:/\d{3}\.\d{3}\.\d{3}\-\d{2}/','string', 'unique:users'],
-            'user_description' => 'required|min:10',
+            'user_description' => 'max:255',
             'link_lattes' => ['required', 'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/','string', 'unique:users'],
             'avatar' => 'mimes:jpeg,jpg,png,gif|max:2048' 
             
@@ -100,8 +100,7 @@ class RegisterController extends Controller
 	    'password.required'=>'Senha deve ser obrigatória',
 	    'password.min'=>'Senha deve conter no mínimo seis caracteres',
 	    'password.confirmed'=>'Senhas não conferem',
-            'user_description.required' => 'A descrição da postagem é obrigatória',
-            'user_description.min' => 'O tamanho mínimo da descrição é 10 letras',
+            'user_description.max' => 'O tamanho máximo da descrição é 255 letras',
             'link_lattes.unique'=>'Link do currículo lattes já existe',
 	    'link_lattes.regex'=>'Link inválido',
             'avatar.mimes'=> 'A imagem deve ser do tipo jpeg,png,gif ou jpg',
@@ -121,16 +120,16 @@ class RegisterController extends Controller
     { 
        
        $registros= $this->usuario::whereNotNull('cpf_verified_at')->get();
-       
-   
-      if($data['avatar']!=null) {
+       $avatar=null;
+       $request = new Request($data);
+       if($request->has('avatar')) {
             $anexo = $data['avatar'];
             $num = rand(1111,9999);
             $dir = 'img/avatares/';
             $exAnexo =$anexo->guessClientExtension();
             $nomeAnexo = 'avatar_'.$num.'.'.$exAnexo;
             $anexo->move($dir, $nomeAnexo);
-            $data['avatar'] = $dir.'/'.$nomeAnexo;
+            $avatar= $dir.'/'.$nomeAnexo;
            
         }
 
@@ -140,7 +139,7 @@ class RegisterController extends Controller
 	    'email' =>  $data['email'],
 	    'surname' =>  $data ['surname'],
 	    'user_description' =>  $data ['user_description'],
-	    'avatar' => $data['avatar'],
+	    'avatar' => $avatar,
 	    'user_type' => 'admin',
             'link_lattes'=> $data['link_lattes'],
         ]);
@@ -152,7 +151,8 @@ class RegisterController extends Controller
         foreach ($registros as $registro) {
               $registro->notify(new SolicitacaoAcesso($user));
         }
-      return $user;
+
+   return $user;
 
     }
     public function index (){
@@ -192,8 +192,8 @@ class RegisterController extends Controller
     {  
         $data->validated();
         $dados = $data->all();
-        if($dados['avatar']!=null) {
-            $anexo = $dados['avatar'];
+        if($data->hasFile('avatar')){
+            $anexo = $data->file('avatar');
             $num = rand(1111,9999);
             $dir = 'img/avatares/';
             $exAnexo =$anexo->guessClientExtension();

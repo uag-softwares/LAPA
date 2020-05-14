@@ -7,7 +7,7 @@
     <div class="form-group d-flex flex-column align-items-left">
        
        <label for="avatar">{{ __('Foto (opcional)') }}</label>
-           <input class="{{ $errors->has('avatar') ? 'error' : '' }}" id="avatar" type="file" name="avatar" >
+           <input class="{{$errors->has('avatar') ? 'error' : '' }}" id="avatar" type="file" name="avatar">
            @error('avatar')
               <span class="invalid-feedback" role="alert">
                  <strong>{{ $message }}</strong>
@@ -53,8 +53,8 @@
         @enderror
     </div>
     <div class="form-group">
-    <label for="user_description ">Descrição Profissional</label>
-        <textarea class="form-control form-control-lg @error('user_description') is-invalid @enderror" type="text" name="user_description" placeholder="Descreva aqui sobre sua vida profissional e área de atuação(etc).">{{ isset($user->user_description ) ? $user->user_description  : old('user_description ') }}</textarea>
+    <label for="user_description">Descrição Profissional</label>
+        <textarea id="user_description" class="form-control form-control-lg @error('user_description') is-invalid @enderror" type="text" name="user_description" autofocus placeholder="Descreva aqui sobre sua vida profissional e área de atuação(etc).">{{ isset($user->user_description ) ? $user->user_description  : old('user_description ') }}</textarea>
 
         @error('user_description')
             <span class="invalid-feedback" role="alert">
