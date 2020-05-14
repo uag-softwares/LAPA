@@ -23,24 +23,22 @@
                             <h3>Navegue por categorias</h3>
                             <input class="form-control" id="pesquisa_categoria" type="search" id="form-autocomplete" placeholder="Pesquisar...">
                         </div>
-
-                        <div class="card-body d-flex flex-column align-items-center">
-                            <div id="categorias" class="list-group">
-
-                                @foreach ($categorias as $categoria)
-
-                                    @if (count($categoria->atla) >= 1)
-                                        <a class="list-group-item list-group-item-action" href="{{ route('site.atlas.categoria', $categoria->id) }}">
-                                            {{ $categoria->nome }}
-                                            <span class="badge badge-primary badge-pill">{{ $categoria->atla[0]->quantidadeAtlasPublicados() }}</span>
-                                        </a>
-                                    @endif
-
-                                @endforeach
+                        <div id="categorias" class="list-group">
                                 
-                            </div>
-                        </div>
+                                @foreach ($categorias as $categoria)
+                                    <div class="material-group list-group-item list-group-item-action">
 
+                                        @if (count($categoria->atla) >= 1)
+                                            <a class="item atla-item" href="{{ route('site.atlas.categoria', $categoria->id) }}">
+                                                {{ $categoria->nome }}
+                                            </a>
+                                        @endif
+
+                                    </div>
+                                @endforeach
+                                    
+                        </div>
+                        
                     </div>
                 </div>
 
@@ -52,20 +50,20 @@
                             <input class="form-control" id="pesquisa_disciplina" type="search" id="form-autocomplete" placeholder="Pesquisar...">
                         </div>
 
-                        <div class="card-body d-flex flex-column align-items-center">
-                            <div id="disciplinas" class="list-group">
-
-                                @foreach ($disciplinas as $disciplina)
+                        <div id="disciplinas" class="list-group">
+                            
+                            @foreach ($disciplinas as $disciplina)
+                                <div class="material-group list-group-item list-group-item-action">
                                     
                                     @if (count($disciplina->categoria) >= 1)
-                                        <a class="list-group-item list-group-item-action" href="{{ route('site.atlas.disciplina', $disciplina->id) }}">
+                                        <a class="item atla-item" href="{{ route('site.atlas.disciplina', $disciplina->id) }}">
                                             {{ ucfirst($disciplina->nome) }}
                                         </a>
                                     @endif
 
-                                @endforeach
+                                </div>
+                            @endforeach
 
-                            </div>
                         </div>
                     </div>
                 </div>
