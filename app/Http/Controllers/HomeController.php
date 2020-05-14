@@ -15,7 +15,9 @@ class HomeController extends Controller
      */
     public function __construct()//lembrar de criar middleware para ativar cpf
     {
-        $this->middleware('auth', ['except' => ['index']]);
+        $this->middleware(['auth','verified'],['except' => ['index']]);
+        //$this->middleware(['check.cpf'],['except' => ['gerenciar']]);
+        
     }
 
     /**
