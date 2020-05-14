@@ -2,12 +2,9 @@
 @section('titulo', 'Professores')
 @section('content')
     <div class="container" >
-        <h2>Professores</h2>
+        
         <div class="breadcrumbs d-flex text-left justify-content-sm-start justify-content-between">
-            <p>
-                <a href="{{ route('site.postagens.home') }}">Início</a> /
-                Eventos
-            </p>
+            <h2>Professores</h2>
         </div>
         <div class="d-flex justify-content-around row">
 

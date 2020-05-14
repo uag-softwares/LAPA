@@ -2,11 +2,10 @@
 @section('titulo', 'Eventos')
 @section('content')
     <div class="container" >
-        <h2>Lista de Eventos</h2>
+       
         <div class="breadcrumbs d-flex text-left justify-content-sm-start justify-content-between">
             <p>
-                <a href="{{ route('site.postagens.home') }}">Início</a> /
-                Eventos
+                 <h2>Lista de Eventos</h2>
             </p>
         </div>
         <div class="d-flex justify-content-around row">

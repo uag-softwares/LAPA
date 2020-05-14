@@ -3,11 +3,10 @@
 @section('titulo', 'Eventos')
 @section('content')
     <div class="container" >
-        <h2>Evento</h2>
+        
         <div class="breadcrumbs d-flex text-left justify-content-sm-start justify-content-between">
             <p>
-                <a href="{{ route('site.postagens.home') }}">Início</a> /
-                Eventos
+                 <h2>Evento</h2>
             </p>
         </div>
         <div class="card-body d-flex flex-column align-items-center">
