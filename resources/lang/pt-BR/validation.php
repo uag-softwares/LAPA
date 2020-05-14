@@ -178,5 +178,8 @@ return [
         'year'                  => 'ano',
         'email'                 => 'e-mail',
         'remember'              => 'lembrar-me',
+        'surname'               => 'sobrenome',
+        'user_description'      => 'descrição profissional',
+        'avatar'                => 'foto',
     ],
 ];

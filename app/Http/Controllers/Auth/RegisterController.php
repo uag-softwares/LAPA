@@ -75,36 +75,15 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string','min:3', 'max:255'],
-	    'surname' => ['required', 'string','min:3', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:6','confirmed'],
-	    'cpf' => ['required', 'regex:/\d{3}\.\d{3}\.\d{3}\-\d{2}/','string', 'unique:users'],
-            'user_description' => 'max:255',
-            'link_lattes' => ['required', 'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/','string', 'unique:users'],
-            'avatar' => 'mimes:jpeg,jpg,png,gif|max:2048' 
+            'name' =>'required|alpha|string|min:3|max:255',
+	    'surname' =>'required|alpha|string|min:3|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+	    'cpf' => 'required|regex:/\d{3}\.\d{3}\.\d{3}\-\d{2}/|string|unique:users',
+            'user_description' => 'max:255|nullable',
+            'link_lattes' => 'url|string|nullable',
+            'avatar' => 'mimes:jpeg,jpg,png,gif|max:2048|nullable' 
             
-        ],[
-	    'name.required'=>'Nome deve ser obrigatório',
-	    'name.string'=>'Nome não pode conter números',
-	    'name.min'=>'Nome deve conter no mínimo três caracteres',
-	    'surname.required'=>'Sobrenome deve ser obrigatório',
-	    'surname.string'=>'Sobrenome não pode conter números',
-	    'surname.min'=>'Sobrenome deve conter no mínimo três caracteres',
-	    'cpf.required'=>'CPF deve ser obrigatório',
-	    'cpf.regex'=>'CPF deve conter formato ddd.ddd.ddd-dd',
-	    'cpf.unique'=>'CPF já existe',
-	    'email.required'=>'Email deve ser obrigatório',
-	    'email.email'=>'Email inválido',
-	    'email.unique'=>'Email já existe',
-	    'password.required'=>'Senha deve ser obrigatória',
-	    'password.min'=>'Senha deve conter no mínimo seis caracteres',
-	    'password.confirmed'=>'Senhas não conferem',
-            'user_description.max' => 'O tamanho máximo da descrição é 255 letras',
-            'link_lattes.unique'=>'Link do currículo lattes já existe',
-	    'link_lattes.regex'=>'Link inválido',
-            'avatar.mimes'=> 'A imagem deve ser do tipo jpeg,png,gif ou jpg',
-            'avatar.max'=> 'A imagem não pode conter um arquivo com mais de 2048 KB',
         ]);
        
     }
