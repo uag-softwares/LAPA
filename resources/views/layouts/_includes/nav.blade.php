@@ -29,7 +29,7 @@
                                 <a href="{{ route('site.atlas.index') }}" class="nav-link">Atlas Interativo</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('site.visita.adicionar') }}" class="nav-link">Visitas</a>
+                                <a href="{{ route('site.visita.busca') }}" class="nav-link">Visitas</a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('site.postagens.index') }}" class="nav-link">Eventos</a>

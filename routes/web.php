@@ -34,8 +34,8 @@ Route::get('/site/materiais/disciplina/{id}', ['as' => 'site.materiais.disciplin
 Route::get('/site/materiais/ver/{id}', ['as' => 'site.materiais.ver_materiais', 'uses' => 'MaterialController@ver'], function () {});
 
 
-Route::post('/site/visita/adicionar',['as'=> 'site.visita.buscar.registro','uses'=> 'Auth\RegisterController@buscarUsuarioVisita'],function () {});
-Route::get('/site/visita/adicionar', ['as' => 'site.visita.adicionar', 'uses' => 'VisitaController@adicionar'], function() {});
+Route::get('/site/visita/busca', ['as' => 'site.visita.busca', 'uses' => 'VisitaController@busca'], function() {});
+Route::get('/site/visita/buscar',['as'=> 'site.visita.buscar.registro','uses'=> 'Auth\RegisterController@buscarUsuarioVisita'],function () {});
 Route::post('/site/visita/salvar', ['as' => 'site.visita.salvar', 'uses' => 'VisitaController@salvarUsuarioVisita'], function() {});
 
 Auth::routes(['verify' => true]);

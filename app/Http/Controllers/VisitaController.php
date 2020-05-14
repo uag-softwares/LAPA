@@ -37,9 +37,9 @@ class VisitaController extends Controller
         return view('auth.visitas.index', compact('registros'));
     }
 
-    public function adicionar() 
+    public function busca() 
     {
-        return view('site.visitas.adicionar');        
+        return view('site.visitas.pesquisar_email');        
     }
 
     public function salvar($visita) 
@@ -126,6 +126,6 @@ class VisitaController extends Controller
               $admin->notify(new SolicitacaoVisita($admin));
         }
 
-        return redirect()->route('site.visita.adicionar')->with('success', 'Visita solicitada com sucesso, você receberá um email quando ela for confirmada.');
+        return redirect()->route('site.visita.busca')->with('success', 'Visita solicitada com sucesso, você receberá um email quando ela for confirmada.');
     }
 }
