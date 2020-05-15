@@ -34,7 +34,7 @@ class AtlaController extends Controller
 
     public function index() 
     {
-        $registros = $this->atla->all();
+        $registros = $this->atla->all()->reverse();
         return view('auth.atlas.index', compact('registros'));
     }
 

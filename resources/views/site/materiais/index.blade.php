@@ -23,9 +23,13 @@
                             <a class="item material-item" href="{{ route('site.materiais.disciplina', $disciplina->id) }}">
                                 {{ ucfirst($disciplina->nome) }}
                             </a>
-                            <a class="item material-item" href="{{ route('site.materiais.disciplina', $disciplina->id) }}">
-                                {{ $disciplina->user->name }}
-                            </a>
+                            
+                            @if(isset($disciplina->user))
+                                <a class="item material-item" href="{{ route('site.materiais.disciplina', $disciplina->id) }}">
+                                    {{ $disciplina->user->name ?? '' }}
+                                </a>
+                            @endif
+
                         </div>
                     @endforeach
                         

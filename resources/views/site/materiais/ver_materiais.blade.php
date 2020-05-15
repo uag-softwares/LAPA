@@ -6,18 +6,23 @@
 
     <div id="page" class="container col-lg-10 atlas">    
         <h2>Material</h2>
-            <div class="row justify-content-between">
-                <div class="col-md-8 col-12 text-center">
-                    <h3 class="title">{{ $registro->titulo }}</h3>
+
+        @foreach ($paginas as $pagina)
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-8 col-lg-8 text-center mb-4">
+                    <h3 class="title">{{ $pagina->titulo }}</h3>
                     <p class="text">
-                        {{ $registro->texto }}
+                        {{ $pagina->texto }}
                     </p>
-                </div>
-                
-                <div class="col-md-4 col-12">
-                    <a href="{{ asset($registro->anexo) }}" alt="" download="baixar">Clique aqui para fazer downaload. </a>
+                    <a class="btn" href="{{ asset($pagina->anexo) }}" alt="" download="baixar">Baixar anexo</a>
                 </div>
             </div>
+
+            <div class="d-flex justify-content-center">
+                {{ $paginas->links() }}
+            </div>
+        @endforeach
+        
     </div>
 </div>
 @endsection

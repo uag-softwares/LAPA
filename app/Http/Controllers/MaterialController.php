@@ -108,6 +108,7 @@ class MaterialController extends Controller
     public function ver($identifier)
     {
         $registro = $this->material->find($identifier);
-        return view('site.materiais.ver_materiais', compact('registro'));
+        $paginas = $this->material->where('disciplina_id', $registro->disciplina_id)->paginate(1);
+        return view('site.materiais.ver_materiais', compact('registro', 'paginas'));
     }
 }
