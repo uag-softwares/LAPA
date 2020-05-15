@@ -15,7 +15,7 @@
             @else
 
                 <div class="col-12 col-md-10 col-lg-8">
-                    <div class="card mx-auto" style="width: 80%">
+                    <div class="card mx-auto" style="width: 90%">
 
                         <div class="card-header">
                             <input class="form-control" id="pesquisa_categoria" type="search" id="form-autocomplete" placeholder="Pesquisar...">
@@ -31,12 +31,12 @@
                                 <div class="material-group list-group-item list-group-item-action">
 
                                     @if ($numero_categorias > $i && count($categorias[$i]->atla) >= 1)
-                                        <a class="item atla-item" href="{{ route('site.atlas.categoria', $categorias[$i]->id) }}">
+                                        <a class="item" href="{{ route('site.atlas.categoria', $categorias[$i]->id) }}">
                                             {{ $categorias[$i]->nome }}
                                         </a>
                                     @endif
                                     @if ($numero_disciplinas > $i && count($disciplinas[$i]->categoria) >= 1)
-                                        <a class="item atla-item" href="{{ route('site.atlas.disciplina', $disciplinas[$i]->id) }}">
+                                        <a class="item" href="{{ route('site.atlas.disciplina', $disciplinas[$i]->id) }}">
                                             {{ ucfirst($disciplinas[$i]->nome) }}
                                         </a>
                                     @endif

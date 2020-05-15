@@ -24,7 +24,7 @@ class VisitaController extends Controller
         $this->usuario = $usuario;
 
         $this->middleware('auth', ['except' => [
-            'adicionar',
+            'busca',
             'salvar',
             'salvarUsuarioVisita'
         ]]);

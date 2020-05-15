@@ -64,10 +64,17 @@ header {
 }
 
 /* Tamanho da fonte de todos os botoes */
+
 a.btn, button.btn {
-    font-size: 22px;
+    font-weight: bold;
     background-color: #00c853;
     color: #FFFFFF;
+}
+
+a.btn.btn-outline, button.btn.btn-outline {
+    background-color: #fff;
+    color: #28a745;
+    border: 1px solid #00c853;
 }
 
 a.btn.btn-danger, button.btn.btn-danger {
@@ -265,6 +272,8 @@ a:hover.page-link {
     background-color: transparent;
     border: none;
     padding: 1rem;
+    align-self: flex-start;
+    width: 50%;
 }
 
 .item:hover {
@@ -272,14 +281,9 @@ a:hover.page-link {
     text-decoration: none;
     background-color: #eee;
 }
-  
-.material-item {
-    width: 50%;
-}
- 
-.atla-item {
-    align-self: flex-start;
-    width: 50%;
+
+.disciplina-atla-item {
+    width: 100%;
 }
 
   
