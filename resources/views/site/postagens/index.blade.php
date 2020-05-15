@@ -26,7 +26,7 @@
                                 <a href="{{ route('site.postagens.vizualizar', $registro->id) }}">
                                     {{$registro->titulo}} 
                                 </a>
-                                <p>Publicado por {{ $registro->user->name }}, {{ date('d/m/Y', strtotime($registro->created_at)) }} às {{ date('H:m', strtotime($registro->created_at)) }}</p>
+                                <p>Publicado por {{ $registro->user->name }}, {{ date('d/m/Y', strtotime($registro->created_at)) }} às {{ date('H:i', strtotime($registro->created_at)) }}</p>
                             </div>
                         </div>                  
                   @endforeach       

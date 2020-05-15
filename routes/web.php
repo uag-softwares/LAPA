@@ -31,8 +31,6 @@ Route::get('/site/quemSomos/vizualizar/{id}', ['as' => 'site.quemSomos.vizualiza
 
 Route::get('/site/materiais/index', ['as' => 'site.materiais.index', 'uses' => 'MaterialController@siteIndex'], function () {});
 Route::get('/site/materiais/disciplina/{id}', ['as' => 'site.materiais.disciplina', 'uses' => 'MaterialController@materiaisPorDisciplina'], function () {});
-Route::get('/site/materiais/ver/{id}', ['as' => 'site.materiais.ver_materiais', 'uses' => 'MaterialController@ver'], function () {});
-
 
 Route::get('/site/visita/busca', ['as' => 'site.visita.busca', 'uses' => 'VisitaController@busca'], function() {});
 Route::get('/site/visita/buscar',['as'=> 'site.visita.buscar.registro','uses'=> 'Auth\RegisterController@buscarUsuarioVisita'],function () {});

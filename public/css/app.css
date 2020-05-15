@@ -217,12 +217,12 @@ a:hover.page-link {
 /* Fim de links ativos do bootstrap */
 
 
-/* Sidebar da esquerda */
-#paginasAtlas {
+/* Sidebar da esquerda de Atlas */
+#paginasAtlas, #paginasMateriais {
     padding: 0 0 0 1.5em; 
 }
 
-#paginasAtlas a {
+#paginasAtlas a, #paginasMateriais a {
     overflow:hidden; 
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -248,7 +248,7 @@ a:hover.page-link {
     left: 270px;
 }
 
-/* Sidebar da esquerda */
+/* Sidebar da esquerda de Atlas */
 
 /* inicio de lista de materiais */
 .material-group.list-group-item.list-group-item-action {
@@ -328,7 +328,7 @@ article .text {
     text-align: justify;
 }
 
-article .text-footer {
+.text-footer {
     font-size: 1rem;
 }
 

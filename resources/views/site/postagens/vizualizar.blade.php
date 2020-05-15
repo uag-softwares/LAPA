@@ -16,7 +16,7 @@
                 <article>
                     <img class="img-fluid mb-4" src="{{ asset($registro->anexo) }}" alt="" style="max-height: 400px">
                     <p class="text">{{ $registro->descricao}}</p>
-                    <p class="text-footer">Publicado por {{ $registro->user->name }}, {{ date('d/m/Y', strtotime($registro->created_at)) }} às {{ date('H:m', strtotime($registro->created_at)) }}</p>
+                    <p class="text-footer">Publicado por {{ $registro->user->name }}, {{ date('d/m/Y', strtotime($registro->created_at)) }} às {{ date('H:i', strtotime($registro->created_at)) }}</p>
                 </article>
             </section>                          
         </div>

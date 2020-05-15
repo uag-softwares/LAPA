@@ -101,14 +101,8 @@ class MaterialController extends Controller
     {
         $disciplina = $this->disciplina->find($disciplina_id);
         $busca = $this->material->where('disciplina_id', $disciplina_id);
-        $registros = $busca->get();        
-        return view('site.materiais.materiaisPorDisciplina', compact('registros', 'disciplina'));
-    }
-
-    public function ver($identifier)
-    {
-        $registro = $this->material->find($identifier);
-        $paginas = $this->material->where('disciplina_id', $registro->disciplina_id)->paginate(1);
-        return view('site.materiais.ver_materiais', compact('registro', 'paginas'));
+        $registros = $busca->latest()->get();
+        $paginas = $busca->latest()->paginate(1);    
+        return view('site.materiais.ver_materiais', compact('registros', 'disciplina', 'paginas'));
     }
 }

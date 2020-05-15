@@ -135,6 +135,6 @@ class AtlaController extends Controller
         $busca = $this->categoria->where('disciplina_id', $disciplina_id);
         $registros = $busca->get();
         $paginas = $busca->paginate(1);
-        return view('site.atlas.ver_disciplinas', compact('paginas', 'registros', 'disciplina'));
+        return view('site.atlas.ver_atlas_disciplinas', compact('paginas', 'registros', 'disciplina'));
     }
 }
