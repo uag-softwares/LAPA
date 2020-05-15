@@ -326,12 +326,27 @@ article .text-footer {
     width: 100%;
     left: 0;
 }
+#usuarios.img {
+    position: relative;
+    height: 200px;
+    width: 200px;
+    overflow: hidden;
+}
 
-/* fim de pagina de postagem */
-
+#usuarios .img-fluid {
+   position: relative;
+    left: 0;
+    
+}
 
 @media only screen and (max-width: 600px) {
     #postagens .img {
         width: 100%;
     }
+    #usuarios .img {
+        width: 100%;
+    }
+    
 }
+
+
