@@ -12,14 +12,7 @@
 
     <div id="page" class="container col-lg-10 atlas">    
         <h2>Atlas Interativo</h2>
-        <div class="breadcrumbs d-flex text-left justify-content-lg-start justify-content-between">
-            <p>
-                <a href="{{ route('site.atlas.index') }}">Atlas interativo</a> /
-                <a href="{{ route('site.atlas.disciplina', $categoria->disciplina->id) }}">{{ ucfirst($categoria->disciplina->nome) }}</a> /
-                {{ $categoria->nome ?? '' }} 
-            </p>
-        </div>
-
+        
         @if (count($paginas) < 1)
             <p>Ops, essa categoria ainda não possui páginas</p>
         @else

@@ -4,17 +4,11 @@
 @section('content')
     <div class="container">
         <h2>Atlas Interativo</h2>
-        <div class="breadcrumbs d-flex text-left justify-content-sm-start justify-content-between">
-            <p>
-                <a href="{{ route('site.atlas.index') }}">Atlas interativo</a> /
-                {{ ucfirst($disciplina->nome) }}
-            </p>
-        </div>
         <div class="d-flex justify-content-around row">
             <div class="col-12 col-md-10 col-lg-8">
                 <div class="card mx-auto" style="width:90%">
                     <div class="card-header">
-                        <h3>Navegue pelas categorias de {{ ucfirst($disciplina->nome) }}</h3>
+                        <h3>Mostrando categorias da disciplina {{ ucfirst($disciplina->nome) }}</h3>
                         <input class="form-control" id="pesquisa_categoria" type="search" id="form-autocomplete" placeholder="Pesquisar...">
                     </div>
                     @if (count($paginas) < 1)
