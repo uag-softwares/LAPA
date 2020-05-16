@@ -21,9 +21,13 @@ Route::get('/site/atlas/categoria/{id}', ['as' => 'site.atlas.categoria', 'uses'
 Route::get('/site/atlas/disciplina/{id}', ['as' => 'site.atlas.disciplina', 'uses' => 'AtlaController@atlasPorDisciplina'], function () {});
 
 
-Route::get('/site/postagens/index', ['as' => 'site.postagens.index', 'uses' => 'PostagemController@siteIndex'], function () {});
-Route::get('/site/postagens/vizualizar/{id}', ['as' => 'site.postagens.vizualizar', 'uses' => 'PostagemController@sitePostagemvizualizar'], function () {});
-//Route::get('/inicio', ['as' => 'site.home', 'uses' => 'PostagemController@siteHome'], function () {});
+Route::get('/site/eventos/index', ['as' => 'site.postagens.indexEvento', 'uses' => 'PostagemController@siteIndexEvento'], function () {});
+Route::get('/site/noticias/index', ['as' => 'site.postagens.indexNoticia', 'uses' => 'PostagemController@siteIndexNoticia'], function () {});
+Route::get('/site/editais/index', ['as' => 'site.postagens.indexEdital', 'uses' => 'PostagemController@siteIndexEdital'], function () {});
+
+Route::get('/site/eventos/vizualizar/{id}', ['as' => 'site.eventos.vizualizar', 'uses' => 'PostagemController@siteVizualizarEvento'], function () {});
+Route::get('/site/editais/vizualizar/{id}', ['as' => 'site.editais.vizualizar', 'uses' => 'PostagemController@siteVizualizarEdital'], function () {});
+Route::get('/site/noticias/vizualizar/{id}', ['as' => 'site.noticias.vizualizar', 'uses' => 'PostagemController@siteVizualizarNoticia'], function () {});
 
 Route::get('/site/quemSomos/index', ['as' => 'site.quemSomos.index', 'uses' => 'Auth\RegisterController@siteIndex'], function () {});
 Route::get('/site/quemSomos/vizualizar/{id}', ['as' => 'site.quemSomos.vizualizar', 'uses' => 'Auth\RegisterController@siteRegistervizualizar'], function () {});

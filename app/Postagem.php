@@ -12,10 +12,15 @@ class Postagem extends Model
     * @var array
     */
     protected $fillable = [
-        'titulo', 'descricao', 'anexo', 'user_id',
+        'titulo', 'descricao', 'anexo', 'user_id','tipo_postagem','publicado','data',
+
     ];
 
     public function user() {
         return $this->belongsTo('App\User');
     }
+    public function getEnumValues(){
+       $listaEnum=['noticia','edital','evento'];
+       return $listaEnum;
+   }
 }

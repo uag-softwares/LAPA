@@ -15,7 +15,7 @@ class PostagemRequest extends FormRequest
     {
         return true;
     }
-
+    
     /**
      * Get the validation rules that apply to the request.
      *
@@ -24,25 +24,18 @@ class PostagemRequest extends FormRequest
     public function rules()
     {
         return [
-            'titulo' => 'required|min:5',
-            'descricao' => 'required|min:10',
+            'titulo' => 'required|min:5|max:255',
+            'descricao' => 'required|min:10|max:255',
+            'data' => 'nullable|date|after:today',
+            'anexo' => 'mimes:jpeg,jpg,png,gif|max:2048|nullable',
+            'tipo_postagem'=>'required'
             
         ];
     }
-
-    /**
-     * Get the validation messages that apply to the request.
-     *
-     * @return array
-     */
-    public function messages()
-    {
-        return [
-            'titulo.required' => 'O título da postagem é obrigatório',
-            'titulo.min' => 'O tamanho mínimo do título é de 5 letras',
-            'descricao.required' => 'A descrição da postagem é obrigatória',
-            'descricao.min' => 'O tamanho mínimo da descrição é 10 letras',
-            
+   public function messages(){
+	return[
+	    'tipo_postagem.required'=>'Selecionar o tipo da postagem é obrigatório',    
         ];
     }
+    
 }
