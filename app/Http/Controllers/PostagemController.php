@@ -94,7 +94,7 @@ class PostagemController extends Controller
         return view('site.postagens.vizualizar', compact('registro'));
     }
      public function siteHome(){//ordenar por data
-        $registros = $this->postagem->all();
+        $registros = $this->postagem->latest()->take(3)->get();
         return view('site.postagens.home', compact('registros'));
     }
     

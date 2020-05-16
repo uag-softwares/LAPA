@@ -10,7 +10,7 @@
 
     @endif
 
-    <div id="page" class="container col-lg-10 atlas">    
+    <div id="page" class="container col-lg-10">    
         <h2>Atlas Interativo</h2>
         
         @if (count($paginas) < 1)
@@ -26,7 +26,7 @@
                         </p>
                     </div>
                     <div id="overlay"></div>
-                    <div class="col-md-4 col-12">
+                    <div class="col-md-4 col-12 mb-4">
                         <img class="img img-fluid" src="{{ asset($pagina->anexo) }}"> 
                     </div>
                 </div>

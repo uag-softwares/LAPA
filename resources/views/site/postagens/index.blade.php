@@ -13,7 +13,7 @@
             <div class="item-list px-4">
                    
                 @foreach ($registros as $registro)
-                    <div class="d-block d-md-flex my-3 shadow-sm rounded" id="postagens">
+                    <div class="d-block d-md-flex my-3 shadow-sm border rounded" id="postagens">
                         <div class="img">
                             <img class="img-fluid rounded" src="{{ asset($registro->anexo) }}" alt="Imagem da postagem">
                         </div>
@@ -21,7 +21,7 @@
                             <a href="{{ route('site.postagens.vizualizar', $registro->id) }}">
                                 {{$registro->titulo}} 
                             </a>
-                            <p>Publicado por {{ $registro->user->name ?? 'Anônimo' }}, {{ date('d/m/Y', strtotime($registro->created_at)) }} às {{ date('H:i', strtotime($registro->created_at)) }}</p>
+                            <p class="text-footer">Publicado por {{ $registro->user->name ?? 'Anônimo' }}, {{ date('d/m/Y', strtotime($registro->created_at)) }} às {{ date('H:i', strtotime($registro->created_at)) }}</p>
                         </div>
                     </div>    
                 @endforeach 

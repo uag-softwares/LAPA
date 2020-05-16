@@ -309,6 +309,7 @@ a:hover.page-link {
     padding: 2em;
     background-color: rgba(0, 0, 0, 0.8);
     color: #fff;
+    cursor: pointer;
 }
 
 .carousel-item a:hover.carousel-caption {
@@ -324,12 +325,13 @@ a:hover.page-link {
 /* fim de carrosel de postagens */
 
 /* pagina de postagem */
-article .text {
+.text {
     text-align: left;
 }
 
 .text-footer {
     font-size: 1rem;
+    text-align: left;
 }
 
 #postagens .img {
@@ -348,7 +350,7 @@ article .text {
 /* fim de pagina de postagem */
 
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 767px) {
     #postagens .img {
         width: 100%;
     }

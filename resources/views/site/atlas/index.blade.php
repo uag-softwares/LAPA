@@ -14,8 +14,8 @@
                 <p>Ops, ainda não temos nenhuma página no atlas</p>
             @else
 
-                <div class="col-12 col-md-10 col-lg-8">
-                    <div class="card mx-auto" style="width: 90%">
+                <div class="col-11 col-md-10 col-lg-8">
+                    <div class="card">
 
                         <div class="card-header">
                             <input class="form-control" id="pesquisa_categoria" type="search" id="form-autocomplete" placeholder="Pesquisar...">

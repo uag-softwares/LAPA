@@ -5,8 +5,8 @@
     <div class="container">
         <h2>Atlas Interativo</h2>
         <div class="d-flex justify-content-around row">
-            <div class="col-12 col-md-10 col-lg-8">
-                <div class="card mx-auto" style="width:90%">
+            <div class="col-11 col-md-10 col-lg-8">
+                <div class="card">
                     <div class="card-header">
                         <h3>Mostrando categorias da disciplina {{ ucfirst($disciplina->nome) }}</h3>
                         <input class="form-control" id="pesquisa_categoria" type="search" id="form-autocomplete" placeholder="Pesquisar...">
