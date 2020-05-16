@@ -31,6 +31,10 @@
         <!-- Icones do Font Awesome -->
         <script src="https://kit.fontawesome.com/8eafe50798.js" defer crossorigin="anonymous"></script>
 
+        <!-- Summernote -->
+        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-lite.min.js"></script>
+
+
         <!-- Mascaras -->
         <script type="text/javascript" src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
         <script type="text/javascript" src="{{ asset('js/jquery/jquery.inputmask.js') }}"></script>      

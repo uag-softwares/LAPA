@@ -12,7 +12,7 @@
 </div>
 <div class="form-group">
     <label for="texto">Texto*</label>
-    <textarea class="form-control form-control-lg @error('texto') is-invalid @enderror" type="text" name="texto" placeholder="Escreva informações sobre seu material">{{ isset($registro->texto) ? $registro->texto : old('texto') }}</textarea>
+    <textarea id="summernote" class="form-control form-control-lg @error('texto') is-invalid @enderror" type="text" name="texto" placeholder="Escreva informações sobre seu material">{{ isset($registro->texto) ? $registro->texto : old('texto') }}</textarea>
     @error('texto')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
