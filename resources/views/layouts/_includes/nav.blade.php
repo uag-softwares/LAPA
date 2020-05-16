@@ -34,7 +34,7 @@
                             </li>
                             <li class="nav-item dropdown">
                                     <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Acesso á informação
+                                        Acesso à informação
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                                         <a href="{{ route('site.postagens.indexEvento') }}" class="dropdown-item">Eventos</a>
