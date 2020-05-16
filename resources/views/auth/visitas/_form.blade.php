@@ -42,7 +42,7 @@
     </div>
     <div class="form-group">
         <label for="telephone">Telefone*</label>
-        <input id="telephone" type="text" class=" telefone form-control form-control-lg @error('telephone') is-invalid @enderror" name="telephone" value="{{isset($userExiste->telephone) ? $userExiste->telephone: old('telephone')}}" required autofocus placeholder="(99)99999-9999">
+        <input id="telephone" type="text" class="telefone form-control form-control-lg @error('telephone') is-invalid @enderror" name="telephone" value="{{isset($userExiste->telephone) ? $userExiste->telephone: old('telephone')}}" required autofocus placeholder="(99)99999-9999">
         @error('telephone')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
