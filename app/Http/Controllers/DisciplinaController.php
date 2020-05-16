@@ -31,7 +31,10 @@ class DisciplinaController extends Controller
 
     public function adicionar() 
     {
-        $users = $this->user->all();
+        $users = $this->user
+            ->where('user_type', 'admin')
+            ->where('cpf_verified_at', '!=', 'null')
+            ->get();
         return view('auth.disciplinas.adicionar', compact('users'));
 
     }

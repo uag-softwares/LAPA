@@ -34,7 +34,7 @@ class VisitaRequest extends FormRequest
             'hora_inicial' => 'required|date_format:H:i|before_or_equal:15:00|after_or_equal:09:00',
             'hora_final' => 'required|date_format:H:i|before_or_equal:15:00|after:hora_inicial',
             'descricao' =>'required|min:10',
-            'confirmada' => 'nullable|boolean',
+            'confirmada' => 'nullable',
         ];
     }
 
@@ -68,7 +68,7 @@ class VisitaRequest extends FormRequest
             'telephone.regex' => 'Número de telefone inválido',
             'email.required' => 'O email é obrigatório',
             'email.email' => 'Email inválido',
-            'confirmada.boolean' => 'A confirmação deve ser sim ou não',
+            'confirmada.nullable' => 'A confirmação pode ser nula',
             'user_type.in' => 'Você não alterar esse campo',
         ];
     }

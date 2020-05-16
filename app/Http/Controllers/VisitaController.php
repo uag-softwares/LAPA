@@ -11,17 +11,20 @@ use App\Notifications\SolicitacaoVisitaAceita;
 use App\Notifications\SolicitacaoVisitaRecusada;
 use \Illuminate\Notifications\Notifiable;
 use Notification;
+use Auth;
 
 class VisitaController extends Controller
 {
 
     protected $visita;
     protected $usuario;
+    protected $auth;
 
-    public function __construct(Visita $visita, User $usuario) 
+    public function __construct(Visita $visita, User $usuario, Auth $auth) 
     {
         $this->visita = $visita;
         $this->usuario = $usuario;
+        $this->auth = $auth;
 
         $this->middleware('auth', ['except' => [
             'busca',
@@ -116,7 +119,7 @@ class VisitaController extends Controller
             'hora_inicial' => $request['hora_inicial'], 
             'hora_final' => $request['hora_final'], 
             'descricao' => $request['descricao'], 
-            'confirmada' => $request['confirmada'], 
+            'confirmada' => (Auth::user() ? ($request['confirmada'] ? 1 : 0) : 0),
             'user_id' => $userExiste->id,
         ];
 

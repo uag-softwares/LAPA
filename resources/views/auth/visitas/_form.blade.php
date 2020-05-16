@@ -1,3 +1,4 @@
+
 <div class="form-group">
     <h4><b>Informações do responsável pela visita</b></h4>
     <div class="form-group">
@@ -95,5 +96,10 @@
     <input type="checkbox" name="confirmada" {{ isset($registro->confirmada) && $registro->confirmada == true ? 'checked' : ''}} value="true">
     <span class="checkmark"></span>
 </label>
+@error('confirmada')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+@enderror
 @endif
 
