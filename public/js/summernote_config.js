@@ -3,7 +3,7 @@ $(document).ready(function() {
         lang: 'pt-BR',
         placeholder: 'Digite aqui o texto',
         tabsize: 2,
-        height: 400,
+        height: 300,
         toolbar: [
             ['view', ['undo', 'redo',]],
             ['style', ['style']],
