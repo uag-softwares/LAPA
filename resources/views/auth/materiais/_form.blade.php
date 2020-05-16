@@ -1,5 +1,8 @@
+@if ($errors->any())
+    <p class="error">Campos com * são obrigatórios!</p>
+@endif
 <div class="form-group">
-    <label for="titulo">Título do Material</label>
+    <label for="titulo">Título do Material*</label>
     <input class="form-control form-control-lg @error('titulo') is-invalid @enderror" type="text" name="titulo" value="{{ isset($registro->titulo) ? $registro->titulo : old('titulo') }}" placeholder="Digite aqui o titulo do material">
     @error('titulo')
         <span class="invalid-feedback" role="alert">
@@ -8,7 +11,7 @@
     @enderror
 </div>
 <div class="form-group">
-    <label for="texto">Texto</label>
+    <label for="texto">Texto*</label>
     <textarea class="form-control form-control-lg @error('texto') is-invalid @enderror" type="text" name="texto" placeholder="Escreva informações sobre seu material">{{ isset($registro->texto) ? $registro->texto : old('texto') }}</textarea>
     @error('texto')
         <span class="invalid-feedback" role="alert">
@@ -26,7 +29,7 @@
 @endisset
 </div>
 <div class="form-group">
-    <label for="user_id">Selecione a disciplina</label>
+    <label for="user_id">Selecione a disciplina*</label>
     <select class="form-control form-control-lg @error('disciplina_id') is-invalid @enderror" name="disciplina_id" id="disciplinas">
         <option hidden disabled selected value>{{ __('Selecione uma disciplina') }}</option>
         @foreach($disciplinas as $disciplina)
