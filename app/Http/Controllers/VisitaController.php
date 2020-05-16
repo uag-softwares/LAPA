@@ -9,9 +9,12 @@ use App\Http\Requests\VisitaRequest;
 use App\Notifications\SolicitacaoVisita;
 use App\Notifications\SolicitacaoVisitaAceita;
 use App\Notifications\SolicitacaoVisitaRecusada;
+use App\Notifications\ConfirmarEmailVisita;
 use \Illuminate\Notifications\Notifiable;
 use Notification;
 use Auth;
+
+use Illuminate\Support\Facades\DB;
 
 class VisitaController extends Controller
 {
@@ -36,7 +39,9 @@ class VisitaController extends Controller
 
     public function index()
     {
-        $registros = $this->visita->all()->reverse();
+        $registros = $this->visita->whereHas('user', function($query) {
+            $query->whereNotNull('email_verified_at');
+            })->get()->reverse();
         return view('auth.visitas.index', compact('registros'));
     }
 
@@ -89,6 +94,8 @@ class VisitaController extends Controller
 
     public function salvarUsuarioVisita(VisitaRequest $request)
     {
+        $msgSucesso = 'Visita solicitada com sucesso, você receberá um email quando ela for confirmada.';
+
         $request->validated();
 
         $email = $request['email'];
@@ -112,6 +119,9 @@ class VisitaController extends Controller
             ]);
 
             $userExiste = $this->usuario->salvarUserVisitante($usuario);
+            
+            Notification::send($userExiste, new ConfirmarEmailVisita($userExiste));
+            $msgSucesso = 'Visita solicitada com sucesso, <strong>você deve verificar seu email para concluir a solicitação.<strong>';
         }
 
         $visita = [
@@ -124,11 +134,7 @@ class VisitaController extends Controller
         ];
 
         $this->salvar($visita);
-        $admins = $this->usuario->whereNotNull('cpf_verified_at')->get();
-        foreach ($admins as $admin) {
-              $admin->notify(new SolicitacaoVisita($admin));
-        }
 
-        return redirect()->route('site.visita.busca')->with('success', 'Visita solicitada com sucesso, você receberá um email quando ela for confirmada.');
+        return redirect()->route('site.visita.busca')->with('success', $msgSucesso);
     }
 }

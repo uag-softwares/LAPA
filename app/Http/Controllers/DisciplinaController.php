@@ -33,7 +33,8 @@ class DisciplinaController extends Controller
     {
         $users = $this->user
             ->where('user_type', 'admin')
-            ->where('cpf_verified_at', '!=', 'null')
+            ->whereNotNull('cpf_verified_at')
+            ->where('user_type', 'admin')
             ->get();
         return view('auth.disciplinas.adicionar', compact('users'));
 
