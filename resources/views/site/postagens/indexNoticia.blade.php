@@ -25,7 +25,7 @@
                                 <a href="{{ route('site.noticias.vizualizar', $registro->id) }}">
                                     {{$registro->titulo}} 
                                 </a>
-                                 <p style="font-size:70%;"> {{ date('d/m/Y', strtotime($registro->created_at)) }} às {{ date('H:m', strtotime($registro->created_at)) }}</p>
+                                 <p style="font-size:70%;"> Publicado {{ date('d/m/Y', strtotime($registro->created_at)) }} às {{ date('H:m', strtotime($registro->created_at)) }}</p>
                             </div>
                         </div>                  
                   @endforeach       

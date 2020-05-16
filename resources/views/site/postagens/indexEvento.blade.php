@@ -26,7 +26,7 @@
                                     {{$registro->titulo}} 
                                 </a>
                                 <p>Data do evento:{{ date('d/m/Y', strtotime($registro->data)) }}</p>
-                                <p style="font-size:70%;"> {{ date('d/m/Y', strtotime($registro->created_at)) }} às {{ date('H:m', strtotime($registro->created_at)) }}</p>
+                                <p style="font-size:70%;">Publicado {{ date('d/m/Y', strtotime($registro->created_at)) }} às {{ date('H:m', strtotime($registro->created_at)) }}</p>
                             </div>
                         </div>                  
                   @endforeach       

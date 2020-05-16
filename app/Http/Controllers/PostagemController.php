@@ -117,7 +117,7 @@ class PostagemController extends Controller
     }
     
      public function siteHome(){//ordenar por data
-        $posts= $this->postagem->getQuery()->orderBy('updated_at', 'DESC')->get();
+        $posts= $this->postagem->where( 'tipo_postagem', 'noticia')->getQuery()->orderBy('updated_at', 'DESC')->get();
         if (count($posts)> 3){
            $registros=[$posts[0],$posts[1],$posts[2]];
         }
@@ -127,17 +127,17 @@ class PostagemController extends Controller
         return view('site.postagens.home', compact('registros'));
     }
     public function siteIndexEvento(){
-        $posts = $this->postagem->where( 'tipo_postagem', 'evento')->get();
+        $posts = $this->postagem->where( 'tipo_postagem', 'evento')->getQuery()->orderBy('updated_at', 'DESC')->get();
         $registros = $posts->where('publicado',true)->all();
         return view('site.postagens.indexEvento', compact('registros'));
     }
    public function siteIndexEdital(){
-       $posts = $this->postagem->where( 'tipo_postagem', 'edital')->get();
+       $posts = $this->postagem->where( 'tipo_postagem', 'edital')->getQuery()->orderBy('updated_at', 'DESC')->get();
        $registros = $posts->where('publicado',true)->all();
        return view('site.postagens.indexEdital', compact('registros'));
    }
    public function siteIndexNoticia(){
-        $posts = $this->postagem->where( 'tipo_postagem', 'noticia')->get();
+        $posts = $this->postagem->where( 'tipo_postagem', 'noticia')->getQuery()->orderBy('updated_at', 'DESC')->get();
         $registros = $posts->where('publicado',true)->all();
         return view('site.postagens.indexNoticia', compact('registros'));
     }
