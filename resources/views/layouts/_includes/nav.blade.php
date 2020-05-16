@@ -19,7 +19,8 @@
                         @if(!Request::is('/')
                             && !Request::is('site/*/index') 
                             && !Request::is('gerenciar')
-                            && !Request::is('site/visita/busca'))
+                            && !Request::is('site/visita/busca')
+                            && !Request::is('login'))
                             <li class="nav-item mr-2 mr-lg-0">
                                 <a title="Voltar" href="#" class="nav-link" type="button" onclick="history.back()">
                                     <span class="fas fa-arrow-left"></span>

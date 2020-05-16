@@ -25,7 +25,7 @@ class VisitaSteps extends \Codeception\Actor
      */
     public function euEstouNaPaginaDeAdicionarVisitas()
     {
-        $this->amOnPage('/site/visita/adicionar');
+        $this->amOnPage('/site/visita/busca');
     }
 
    /**
@@ -97,7 +97,7 @@ class VisitaSteps extends \Codeception\Actor
     */
     public function euVejoQueAVisitaFoiAgendadaCorretamente()
     {
-        $this->see('Visita solicitada com sucesso, você receberá um email quando ela for confirmada.'); 
+        $this->see('Visita solicitada com sucesso'); 
     }
 
     /**
@@ -121,7 +121,7 @@ class VisitaSteps extends \Codeception\Actor
      */
     public function euClicoEmVerAVisita($arg1)
     {
-        $this->click('Ver', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[6]');
+        $this->click('Ver', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[5]');
         $this->seeInCurrentUrl('/auth/visita/ver/');
     }
 
@@ -139,6 +139,7 @@ class VisitaSteps extends \Codeception\Actor
     public function euVejoQueAsVisitaFoiConfirmadaCorretamente()
     {
         $this->seeInCurrentUrl('/auth/visitas');
+        $this->see('Visita confirmada com sucesso');
     }
 
     /**
@@ -155,6 +156,7 @@ class VisitaSteps extends \Codeception\Actor
     public function euVejoQueAVisitaFoiCanceladaCorretamente()
     {
         $this->seeInCurrentUrl('/auth/visitas');
+        $this->see('Visita cancelada com sucesso');
     }
 
 }

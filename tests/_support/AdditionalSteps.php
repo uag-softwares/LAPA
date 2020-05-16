@@ -127,4 +127,21 @@ class AdditionalSteps extends \Codeception\Actor
             'categoria_id' => $categoria,
         ]);
     }
+
+    /**
+    * @Given A visita :arg1 ja exista
+    */
+    public function aVisitaJaExista($arg1)
+    {
+        $user = $this->grabFromDatabase('users', 'id', array('email' => $arg1));
+
+        $this->haveInDatabase('visitas', [
+                'data' => now(),
+                'hora_inicial' => now(),
+                'hora_final' => now(),
+                'descricao' => 'Teste de testo de visita',
+                'confirmada' => false,
+                'user_id' => $user,
+        ]);
+    }
 }

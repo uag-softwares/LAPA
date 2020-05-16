@@ -15,12 +15,14 @@ Feature: atla
 
   Scenario: atualizar um atlas existente
     Given Eu estou logado como "iris" com email "iris@admin.com" e senha "12345678"
+    And A disciplina "Ihc" ja exista
+    And A categoria "Sistema nervoso" ja exista
     And O atla "Olho esquerdo" ja exista
     And Eu estou na pagina de gerenciar atlas
     And Eu clico em editar o atlas "Olho esquerdo"
     When Eu edito o titulo para "Olho esquerdo"
     And Eu edito a descricao para "Olho mamifero na diagonal"
-    And Eu seleciono a categoria "Nenhum"
+    And Eu seleciono a categoria "Sistema nervoso"
     And Eu clico em escolher arquivo e escolho "teste.pdf"
     And Eu clico em editar atlas
     Then Eu vejo que o atlas foi atualizado corretamente
