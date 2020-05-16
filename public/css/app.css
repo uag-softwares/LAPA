@@ -325,7 +325,7 @@ a:hover.page-link {
 
 /* pagina de postagem */
 article .text {
-    text-align: justify;
+    text-align: left;
 }
 
 .text-footer {

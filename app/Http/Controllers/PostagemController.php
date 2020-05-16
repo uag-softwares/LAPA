@@ -25,7 +25,7 @@ class PostagemController extends Controller
 
     public function index() 
     {
-        $registros = $this->postagem->all();
+        $registros = $this->postagem->all()->reverse();
         return view('auth.postagem.index', compact('registros'));
     }
 
@@ -85,7 +85,7 @@ class PostagemController extends Controller
         return redirect()->route('auth.postagens')->with('success', 'Postagem deletada com sucesso!');
     }
     public function siteIndex(){
-        $registros = $this->postagem->all();
+        $registros = $this->postagem->latest()->paginate(5);
         return view('site.postagens.index', compact('registros'));
     }
     public function sitePostagemvizualizar($identifier){

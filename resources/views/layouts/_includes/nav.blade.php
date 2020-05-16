@@ -16,7 +16,10 @@
                 <div class="container">
                     <ul class="navbar-nav d-flex flex-row">
                         
-                        @if(Auth::user() && !Request::is('/') && !Request::is('site/*') && !Request::is('gerenciar'))
+                        @if(!Request::is('/')
+                            && !Request::is('site/*/index') 
+                            && !Request::is('gerenciar')
+                            && !Request::is('site/visita/busca'))
                             <li class="nav-item mr-2 mr-lg-0">
                                 <a title="Voltar" href="#" class="nav-link" type="button" onclick="history.back()">
                                     <span class="fas fa-arrow-left"></span>
