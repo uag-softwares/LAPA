@@ -97,8 +97,8 @@ class RegisterController extends Controller
      
     protected function create(array $data)
     { 
-       
-       $registros= $this->usuario::whereNotNull('cpf_verified_at')->get();
+       $usersAdmin=$this->usuario->where( 'user_type', 'admin')->get();
+       $registros= $usersAdmin->whereNotNull('cpf_verified_at')->all();
        $avatar=null;
        $request = new Request($data);
        if($request->has('avatar')) {
@@ -141,8 +141,8 @@ class RegisterController extends Controller
 	return view('auth.registros.index ');
     }
     public function gerenciarSolicitacao(){
-        
-        $registros= $this->usuario::where('cpf_verified_at',null)->get();
+        $usersAdmin=$this->usuario->where( 'user_type', 'admin')->get();
+        $registros= $usersAdmin->where('cpf_verified_at',null)->all();
         return view('auth.acesso_gerenciamento', compact('registros'));
     }
 
@@ -201,7 +201,8 @@ class RegisterController extends Controller
   }
 
    public function siteIndex(){
-        $registros= $this->usuario::whereNotNull('cpf_verified_at')->get();
+        $usersAdmin=$this->usuario->where( 'user_type', 'admin')->get();
+        $registros= $usersAdmin->whereNotNull('cpf_verified_at')->all();
        
         return view('site.quemSomos.index', compact('registros'));
     }
