@@ -12,7 +12,7 @@ class Postagem extends Model
     * @var array
     */
     protected $fillable = [
-        'titulo', 'descricao', 'anexo', 'user_id','tipo_postagem','publicado','data',
+        'titulo', 'descricao', 'anexo', 'user_id','tipo_postagem','publicado','data','slug',
 
     ];
 
@@ -23,4 +23,13 @@ class Postagem extends Model
        $listaEnum=['noticia','edital','evento'];
        return $listaEnum;
    }
+    /**
+  * Get the route key for the model.
+  *
+  * @return string
+  */
+  public function getRouteKeyName()
+  {
+    return 'slug';
+  }
 }

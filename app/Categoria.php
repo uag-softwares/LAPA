@@ -12,7 +12,7 @@ class categoria extends Model
     * @var array
     */
     protected $fillable = [
-        'nome', 'disciplina_id',
+        'nome', 'disciplina_id','slug',
     ];
 
     public function disciplina() {
@@ -22,5 +22,14 @@ class categoria extends Model
     public function atla() {
         return $this->hasMany('App\Atla');
     }
+      /**
+  * Get the route key for the model.
+  *
+  * @return string
+  */
+  public function getRouteKeyName()
+  {
+    return 'slug';
+  }
 
 }

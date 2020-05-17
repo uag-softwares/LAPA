@@ -22,7 +22,7 @@
                                 <img class="img-fluid rounded" src="{{ asset($registro->anexo) }}" alt="Imagem da postagem">
                             </div>
                             <div class="m-4 text-center text-md-left">
-                                <a href="{{ route('site.noticias.vizualizar', $registro->id) }}">
+                                <a href="{{ route('site.noticias.vizualizar', $registro->slug) }}">
                                     {{$registro->titulo}} 
                                 </a>
                                  <p style="font-size:70%;"> Publicado {{ date('d/m/Y', strtotime($registro->created_at)) }} às {{ date('H:m', strtotime($registro->created_at)) }}</p>

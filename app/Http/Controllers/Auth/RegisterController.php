@@ -126,7 +126,8 @@ class RegisterController extends Controller
 	  'password' => Hash::make( $data ['password']),
 	  'user_id'=>$user->id,  
         ]);
-
+        $user['slug']=str_slug($user->name).'-'.$user->id;
+        $user->update($user->attributesToArray());
         foreach ($registros as $registro) {
               $registro->notify(new SolicitacaoAcesso($user));
         }
@@ -204,8 +205,8 @@ class RegisterController extends Controller
        
         return view('site.quemSomos.index', compact('registros'));
     }
-  public function siteRegistervizualizar($id_user){
-        $registro = $this->usuario->find($id_user);
+  public function siteRegistervizualizar(User $registro){
+       
        
         return view('site.quemSomos.vizualizar', compact('registro'));
 

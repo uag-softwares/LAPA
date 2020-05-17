@@ -22,7 +22,7 @@
                                 <img class="img-fluid rounded" src="{{ asset($registro->anexo) }}" alt="Imagem da postagem">
                             </div>
                             <div class="m-4 text-center text-md-left">
-                                <a href="{{ route('site.eventos.vizualizar', $registro->id) }}">
+                                <a href="{{ route('site.eventos.vizualizar', $registro->slug) }}">
                                     {{$registro->titulo}} 
                                 </a>
                                 <p>Data do evento:{{ date('d/m/Y', strtotime($registro->data)) }}</p>

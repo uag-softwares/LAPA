@@ -32,8 +32,8 @@
                         <td>{{ $registro->tipo_postagem }}
                         <td>{{ $registro->anexo}}</td>
                         <td>
-                            <a href="{{ route('auth.postagem.editar', $registro->id) }}" class="btn">Editar</a>
-                            <a href="{{ route('auth.postagem.deletar', $registro->id) }}" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar essa postagem?');">Deletar</a>
+                            <a href="{{ route('auth.postagem.editar', $registro->slug) }}" class="btn">Editar</a>
+                            <a href="{{ route('auth.postagem.deletar', $registro->slug) }}" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar essa postagem?');">Deletar</a>
                         </td>
                     </tr>
                     @endforeach

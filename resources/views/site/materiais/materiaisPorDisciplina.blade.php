@@ -18,7 +18,7 @@
                         <div id="materiais" class="list-group">
                         
                             @foreach ($registros as $registro)
-                                    <a class="list-group-item list-group-item-action" href="{{ route('site.materiais.ver_materiais', $registro->id) }}">
+                                    <a class="list-group-item list-group-item-action" href="{{ route('site.materiais.ver_materiais', $registro->slug) }}">
                                         {{ $registro->titulo }}
                                     </a>
                             @endforeach

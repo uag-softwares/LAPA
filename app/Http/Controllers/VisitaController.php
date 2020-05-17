@@ -44,12 +44,13 @@ class VisitaController extends Controller
 
     public function salvar($visita) 
     {
-         $this->visita->create($visita);
+         $visita=$this->visita->create($visita);
+         $visita['slug']='visita'.'-'.$visita->id;
+         $visita->update($visita->attributesToArray());
     }
 
-    public function ver($identifier)
+    public function ver(Visita $registro)
     {
-        $registro = $this->visita->find($identifier);
         return view('auth.visitas.ver', compact('registro'));
     }
 

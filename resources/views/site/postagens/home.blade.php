@@ -16,7 +16,7 @@
                     @foreach($registros as $key => $slider)
                          <div class="carousel-item {{$key == 0 ? 'active' : '' }}" data-interval="5000">
                               <img src="{{ asset($slider->anexo) }}" class="d-block w-100" alt="Imagem do banner de postagens">
-                              <a class="carousel-caption" href="{{ route('site.noticias.vizualizar', $slider->id) }}">
+                              <a class="carousel-caption" href="{{ route('site.noticias.vizualizar', $slider->slug) }}">
                                    <h2>{{ $slider->titulo}}</h2>
                               </a>
                          </div>

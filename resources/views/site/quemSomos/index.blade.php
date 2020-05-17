@@ -21,7 +21,7 @@
                                 <img class="img-fluid rounded" src="{{ asset($registro->avatar) }}" alt="Foto do Professor(ª)" height="200" width="200">
                             </div>
                           <div class="m-4 text-center text-md-left">
-                                <a href="{{ route('site.quemSomos.vizualizar', $registro->id) }}">
+                                <a href="{{ route('site.quemSomos.vizualizar', $registro->slug) }}">
                                     {{$registro->name}}
                                 </a>
                                 <p style="font-size:70%;text-align:left;">Email:

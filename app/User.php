@@ -16,7 +16,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name','cpf','email','telephone','surname','user_description','avatar','user_type','email_verified_at','cpf_verified_at','link_lattes',
+        'name','cpf','email','telephone','surname','user_description','avatar','user_type','email_verified_at','cpf_verified_at','link_lattes','slug',
     ];
 
     
@@ -54,4 +54,13 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->create($user);
     }
+         /**
+  * Get the route key for the model.
+  *
+  * @return string
+  */
+  public function getRouteKeyName()
+  {
+    return 'slug';
+  }
 }

@@ -61,7 +61,7 @@ class PostagemController extends Controller
                 return redirect()->back()->withErrors(['data' => 'Selecionar data quando a postagem for um evento é obrigatório']);
              }
         }
-        $this->postagem->create([
+        $post=$this->postagem->create([
             'titulo' => $request ['titulo'],
 	    'descricao' => $request ['descricao'],
 	    'anexo' =>  $anexo,
@@ -71,13 +71,13 @@ class PostagemController extends Controller
             'data'=>$request['data'],
 	    
         ]);
-        
+        $post['slug']=str_slug($post->titulo).'-'.$post->id;
+        $post->update($post->attributesToArray());
         return redirect()->route('auth.postagens')->with('success', 'Postagem adicionada com sucesso!');
     }
    
-    public function editar($identifier) 
+    public function editar(Postagem $registro) 
     {
-        $registro = $this->postagem->find($identifier);
         $tipo_postagens= $this->postagem->getEnumValues();
         return view('auth.postagem.editar', compact('registro','tipo_postagens'));        
     }
@@ -106,13 +106,14 @@ class PostagemController extends Controller
                 return redirect()->back()->withErrors(['data' => 'Selecionar data quando a postagem for um evento é obrigatório']);
              }
         }
+        $dados['slug']=str_slug($dados['titulo']).'-'.$identifier;
         $this->postagem->find($identifier)->update($dados);
         return redirect()->route('auth.postagens')->with('success', 'Postagem atualizada com sucesso!');
     }
 
-    public function deletar($identifier)
+    public function deletar(Postagem $registro)
     {
-        $this->postagem->find($identifier)->delete();
+        $registro->delete();
         return redirect()->route('auth.postagens')->with('success', 'Postagem deletada com sucesso!');
     }
     
@@ -141,20 +142,17 @@ class PostagemController extends Controller
         $registros = $posts->where('publicado',true)->all();
         return view('site.postagens.indexNoticia', compact('registros'));
     }
-   public function siteVizualizarEvento($identifier){
-        $registro = $this->postagem->find($identifier);
+   public function siteVizualizarEvento(Postagem $registro){
         
         return view('site.postagens.vizualizarEvento', compact('registro'));
     }
-  public function siteVizualizarNoticia($identifier){
-        $registro = $this->postagem->find($identifier);
+  public function siteVizualizarNoticia(Postagem $registro){
        
         return view('site.postagens.vizualizarNoticia', compact('registro'));
     }
-  public function siteVizualizarEdital($identifier){
-        $registro = $this->postagem->find($identifier);
+  public function siteVizualizarEdital(Postagem $registro){
        
         return view('site.postagens.vizualizarEdital', compact('registro'));
     }
-    
+
 }

@@ -30,7 +30,7 @@
                                 @foreach ($categorias as $categoria)
 
                                     @if (count($categoria->atla) >= 1)
-                                        <a class="list-group-item list-group-item-action" href="{{ route('site.atlas.categoria', $categoria->id) }}">
+                                        <a class="list-group-item list-group-item-action" href="{{ route('site.atlas.categoria', $categoria->slug) }}">
                                             {{ $categoria->nome }}
                                             <span class="badge badge-primary badge-pill">{{ $categoria->atla[0]->quantidadeAtlasPublicados() }}</span>
                                         </a>
@@ -58,7 +58,7 @@
                                 @foreach ($disciplinas as $disciplina)
                                     
                                     @if (count($disciplina->categoria) >= 1)
-                                        <a class="list-group-item list-group-item-action" href="{{ route('site.atlas.disciplina', $disciplina->id) }}">
+                                        <a class="list-group-item list-group-item-action" href="{{ route('site.atlas.disciplina', $disciplina->slug) }}">
                                             {{ ucfirst($disciplina->nome) }}
                                         </a>
                                     @endif

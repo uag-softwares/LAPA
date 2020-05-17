@@ -26,7 +26,7 @@
                             @foreach ($registros as $registro)
                                 
                                 @if (count($registro->atla) >= 1)
-                                    <a class="list-group-item list-group-item-action" href="{{ route('site.atlas.categoria', $registro->id) }}">
+                                    <a class="list-group-item list-group-item-action" href="{{ route('site.atlas.categoria', $registro->slug) }}">
                                         {{ $registro->nome }}
                                         <span class="badge badge-primary badge-pill">{{ $registro->atla[0]->quantidadeAtlasPublicados() }}</span>
                                     </a>

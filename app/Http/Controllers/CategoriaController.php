@@ -43,14 +43,14 @@ class CategoriaController extends Controller
 
         $dados = $request->all();
 
-        $this->categoria->create($dados);
-
+        $categotia= $this->categoria->create($dados);
+        $categotia['slug']=str_slug($categotia->nome).'-'.$categotia->id;
+        $categotia->update($categotia->attributesToArray());
         return redirect()->route('auth.categorias')->with('success', 'Categoria adicionada com sucesso!');
     }
 
-    public function editar($identifier) 
+    public function editar(Categoria $registro) 
     {
-        $registro = $this->categoria->find($identifier);
         $disciplinas = $this->disciplina->all();
         return view('auth.categorias.editar', compact('registro', 'disciplinas'));        
 
@@ -61,14 +61,15 @@ class CategoriaController extends Controller
         $request->validated();
 
         $dados = $request->all();
+        $dados['slug']=str_slug($dados['nome']).'-'.$identifier;
         $this->categoria->find($identifier)->update($dados);
 
         return redirect()->route('auth.categorias')->with('success', 'Categoria atualizada com sucesso!');;
     }
 
-    public function deletar($identifier)
+    public function deletar(Categoria $registro)
     {
-        $this->categoria->find($identifier)->delete();
+        $registro->delete();
         return redirect()->route('auth.categorias')->with('success', 'Categoria deletada com sucesso!');;
     }
 }

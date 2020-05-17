@@ -19,10 +19,10 @@
                     </div>
                         @foreach ($disciplinas as $disciplina)
                             <div id="disciplinas" class="material-group list-group-item list-group-item-action">
-                                <a class="material-item" href="{{ route('site.materiais.disciplina', $disciplina->id) }}">
+                                <a class="material-item" href="{{ route('site.materiais.disciplina', $disciplina->slug) }}">
                                     {{ ucfirst($disciplina->nome) }}
                                 </a>
-                                <a class="material-item" href="{{ route('site.materiais.disciplina', $disciplina->id) }}">
+                                <a class="material-item" href="{{ route('site.materiais.disciplina', $disciplina->slug) }}">
                                     {{ $disciplina->user->name }}
                                 </a>
                             </div>
