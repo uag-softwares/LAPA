@@ -60,6 +60,9 @@ class PostagemController extends Controller
              if($request['data']==null){
                 return redirect()->back()->withErrors(['data' => 'Selecionar data quando a postagem for um evento é obrigatório']);
              }
+            else if($request['hora']==null){
+                return redirect()->back()->withErrors(['hora' => 'Selecionar á hora quando a postagem for um evento é obrigatório']);
+             }
         }
         $post=$this->postagem->create([
             'titulo' => $request ['titulo'],
@@ -69,6 +72,7 @@ class PostagemController extends Controller
 	    'user_id' =>$this->user->id,
             'publicado'=>$request['publicado'],
             'data'=>$request['data'],
+            'hora'=>$request['hora'],
 	    
         ]);
         $post['slug']=str_slug($post->titulo).'-'.$post->id;
@@ -104,6 +108,9 @@ class PostagemController extends Controller
          if($request['tipo_postagem']=='evento'){
              if($request['data']==null){
                 return redirect()->back()->withErrors(['data' => 'Selecionar data quando a postagem for um evento é obrigatório']);
+             }
+             else if($request['hora']==null){
+                return redirect()->back()->withErrors(['hora' => 'Selecionar á hora quando a postagem for um evento é obrigatório']);
              }
         }
         $dados['slug']=str_slug($dados['titulo']).'-'.$identifier;

@@ -12,7 +12,7 @@ class Postagem extends Model
     * @var array
     */
     protected $fillable = [
-        'titulo', 'descricao', 'anexo', 'user_id','tipo_postagem','publicado','data','slug',
+        'titulo', 'descricao', 'anexo', 'user_id','tipo_postagem','publicado','data','slug','hora',
 
     ];
 

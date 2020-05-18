@@ -63,6 +63,17 @@
         @enderror
     </div>
 </div>
+<div class="d-flex flex-row">
+     <div class="form-group">
+        <label for="hora">Hora(obrigatório para evento)</label>
+        <input min="{{ date('H:i', strtotime('00:00')) }}" class="form-control form-control-lg @error('hora') is-invalid @enderror" type="time" name="hora" value="{{ isset($registro->hora) ? $registro->hora : old('hora') }}" placeholder="Digite a hora do evento">
+        @error('hora')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+        @enderror
+    </div>
+</div>
 <label class="input-checkbox" for="publicado">Publicar agora?
     <input type="checkbox" name="publicado" autocomplete="publicado" {{ isset($registro->publicado) && $registro->publicado == true ? 'checked' : ''}} value="true">
     <span class="checkmark"></span>
