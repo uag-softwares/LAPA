@@ -42,6 +42,7 @@ class PostagemController extends Controller
         $request->validated();
         $this->user=Auth::user();
         $anexo=null;
+        $publicado=false; 
         if($request->hasFile('anexo')) {
             $anexo = $request->file('anexo');
             $num = rand(1111,9999);
@@ -52,9 +53,7 @@ class PostagemController extends Controller
             $anexo = $dir.'/'.$nomeAnexo;
         }
         if(isset($request['publicado'])) {
-            $request['publicado'] = true;
-        } else {
-            $request['publicado'] = false;    
+            $publicado = true;
         }
          if($request['tipo_postagem']=='evento'){
              if($request['data']==null){
@@ -70,7 +69,7 @@ class PostagemController extends Controller
 	    'anexo' =>  $anexo,
 	    'tipo_postagem' => $request['tipo_postagem'],
 	    'user_id' =>$this->user->id,
-            'publicado'=>$request['publicado'],
+            'publicado'=>$publicado,
             'data'=>$request['data'],
             'hora'=>$request['hora'],
 	    
@@ -90,7 +89,7 @@ class PostagemController extends Controller
     {
         $request->validated();
         $dados = $request->all();
-
+        $dados['publicado'] = false; 
         if($request->hasFile('anexo')) {
             $anexo = $request->file('anexo');
             $num = rand(1111,9999);
@@ -100,11 +99,9 @@ class PostagemController extends Controller
             $anexo->move($dir, $nomeAnexo);
             $dados['anexo'] = $dir.'/'.$nomeAnexo;
         }
-        if(isset($dados['publicado'])) {
+        if(isset($request['publicado'])) {
             $dados['publicado'] = true;
-        } else {
-            $dados['publicado'] = false;    
-        }
+        } 
          if($request['tipo_postagem']=='evento'){
              if($request['data']==null){
                 return redirect()->back()->withErrors(['data' => 'Selecionar data quando a postagem for um evento é obrigatório']);
@@ -126,11 +123,9 @@ class PostagemController extends Controller
     
      public function siteHome(){//ordenar por data
         $posts= $this->postagem->where( 'tipo_postagem', 'noticia')->getQuery()->orderBy('updated_at', 'DESC')->get();
+        $registros=$posts;
         if (count($posts)> 3){
            $registros=[$posts[0],$posts[1],$posts[2]];
-        }
-        else{
-           $registros=$posts;
         }
         return view('site.postagens.home', compact('registros'));
     }
