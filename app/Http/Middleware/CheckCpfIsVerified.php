@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
-
+use App\Providers\RouteServiceProvider;
 class CheckCpfIsVerified
 {
     /**
@@ -25,11 +25,11 @@ class CheckCpfIsVerified
     
  
     // Verifica se o cpf foi verificado
-    if ( $cpf_verified == null )
+    if ( $cpf_verified == null ){
         
-        return redirect('/');
+        return redirect('/gerenciar');
  
- 
+   }
     // Permite que continue (Caso não entre em nenhum dos if acima)...
     return $next($request);
     }

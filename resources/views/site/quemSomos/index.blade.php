@@ -2,12 +2,9 @@
 @section('titulo', 'Professores')
 @section('content')
     <div class="container" >
-        <h2>Professores</h2>
+        
         <div class="breadcrumbs d-flex text-left justify-content-sm-start justify-content-between">
-            <p>
-                <a href="{{ route('site.postagens.home') }}">Início</a> /
-                Eventos
-            </p>
+            <h2>Professores</h2>
         </div>
         <div class="d-flex justify-content-around row">
 
@@ -15,17 +12,25 @@
                 <p>Ops, ainda não temos professores cadastrados</p>
             @else
         
-            <div class="item-list">
+            <div class="item-list px-4">
                    
                   @foreach ($registros as $registro)
-                       <dd style="list-style-type: none;">
+                      <div class="d-block d-md-flex my-3 shadow-sm rounded" id="usuarios">
                           <!--<img src="{{ asset($registro->anexo) }}" alt="" width="200" height="100"></img> -->
-                          <li style= "font-size:90%;list-style-type:disc;text-align:left;"> <a href="{{ route('site.quemSomos.vizualizar', $registro->id) }}">
-                               {{$registro->name}}</a>
-                          </li>
-                           <li style="font-size:70%;text-align:left;">E-mail: {{$registro->email}}</li>
+                          <div class="img">
+                                <img class="img-fluid rounded" src="{{ asset($registro->avatar) }}" alt="Foto do Professor(ª)" height="200" width="200">
+                            </div>
+                          <div class="m-4 text-center text-md-left">
+                                <a href="{{ route('site.quemSomos.vizualizar', $registro->slug) }}">
+                                    {{$registro->name}}
+                                </a>
+                                <p style="font-size:70%;text-align:left;">Email:
+                                     <a href = "mailto:{{ $registro->email}}">{{ $registro->email}}</a> 
+                                </p>
+                            </div>
                           
-                      </dd>
+                          
+                      </div>
                                           
                   @endforeach       
                               

@@ -12,7 +12,7 @@ class Atla extends Model
      * @var array
      */
     protected $fillable = [
-        'titulo', 'descricao', 'anexo', 'publicado', 'categoria_id',
+        'titulo', 'descricao', 'anexo', 'publicado', 'categoria_id','slug',
     ];
 
     public function categoria() {
@@ -22,4 +22,13 @@ class Atla extends Model
     public function quantidadeAtlasPublicados() {
         return $this->where('publicado', true)->where('categoria_id', $this->categoria_id)->count();
     }
+      /**
+  * Get the route key for the model.
+  *
+  * @return string
+  */
+  public function getRouteKeyName()
+  {
+    return 'slug';
+  }
 }

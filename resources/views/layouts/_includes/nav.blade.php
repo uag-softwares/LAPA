@@ -16,7 +16,7 @@
                 <div class="container">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a href="{{ route('site.postagens.home') }}" class="nav-link">Início</a>
+                            <a href="{{ route('site.home') }}" class="nav-link">Início</a>
                         </li>
                     </ul>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -28,11 +28,19 @@
                             <li class="nav-item">
                                 <a href="{{ route('site.atlas.index') }}" class="nav-link">Atlas Interativo</a>
                             </li>
+                            
                             <li class="nav-item">
                                 <a href="{{ route('site.visita.adicionar') }}" class="nav-link">Visitas</a>
                             </li>
-                            <li class="nav-item">
-                                <a href="{{ route('site.postagens.index') }}" class="nav-link">Eventos</a>
+                            <li class="nav-item dropdown">
+                                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Acesso à informação
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                        <a href="{{ route('site.postagens.indexEvento') }}" class="dropdown-item">Eventos</a>
+                                        <a href="{{ route('site.postagens.indexNoticia') }}" class="dropdown-item">Notícias</a>
+                                        <a href="{{ route('site.postagens.indexEdital') }}" class="dropdown-item">Editais e seleções</a>
+                                    </div>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('site.materiais.index') }}" class="nav-link">Materiais</a>
