@@ -1,20 +1,34 @@
-<div class="item">
-            <div class="social-icons">
-                <a class="social-icon" href="{{ isset($sobre->twitter) ? $sobre->twitter : '#' }}" target="_blank">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a class="social-icon" href="{{ isset($sobre->instagram) ? $sobre->instagram : '#' }}" target="_blank">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a class="social-icon" href="{{ isset($sobre->facebook) ? $sobre->facebook : '#' }}" target="_blank">
-                    <i class="fab fa-facebook"></i>
-                </a>
-            </div>
-            <p>© 2020 Todos os direitos reservados.</p>
-        </div>
+<!-- Footer -->
+<footer class="page-footer font-small cyan darken-3">
 
-        <script src="{{ asset('js/summernote_config.js') }}"></script>
-        @yield('scripts')
-    </footer>
-    </body>
-</html>
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-12 py-5">
+        <div class="mb-5 flex-center">
+
+          <!-- Facebook -->
+          <a class="fb-ic">
+            <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+          </a>
+          <!-- Twitter -->
+          <a class="tw-ic">
+            <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+          </a>
+          <!--Instagram-->
+          <a class="ins-ic">
+            <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+          </a>
+          <!--Pinterest-->
+          <a class="pin-ic">
+            <i class="fab fa-pinterest fa-lg white-text fa-2x"> </i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">
+        <p>© 2020 Todos os direitos reservados.</p>
+  </div>
+</footer>
