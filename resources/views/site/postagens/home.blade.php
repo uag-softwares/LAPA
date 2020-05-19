@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('titulo', 'Eventos')
+@section('titulo', 'Principais Notícias')
 @section('content')
   <div class="container" >
      @if (count($registros) < 1)
@@ -16,7 +16,7 @@
                     @for($i = 0; $i < ( count($registros) < 3 ? count($registros) : 3); $i++)
                          <div class="carousel-item {{$i == 0 ? 'active' : '' }}" data-interval="5000">
                               <img src="{{ asset($registros[$i]->anexo) }}" class="d-block w-100" alt="Imagem do banner de postagens">
-                              <a class="carousel-caption" href="{{ route('site.postagens.vizualizar', $registros[$i]->id) }}">
+                              <a class="carousel-caption" href="{{ route('site.noticias.vizualizar', $registros[$i]->slug) }}">
                                    <h2>{{ $registros[$i]->titulo}}</h2>
                               </a>
                          </div>

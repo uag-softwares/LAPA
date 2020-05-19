@@ -18,11 +18,11 @@
                             <img class="img-fluid rounded" src="{{ asset($registro->anexo) }}" alt="Imagem da postagem">
                         </div>
                         <div class="m-4 text-center text-md-left">
-                            <a href="{{ route('site.postagens.vizualizar', $registro->id) }}">
+                            <a href="{{ route('site.eventos.vizualizar', $registro->slug) }}">
                                 {{$registro->titulo}} 
                             </a>
-                            <p class="text-footer">Publicado por {{ $registro->user->name ?? 'Anônimo' }}, {{ date('d/m/Y', strtotime($registro->created_at)) }} às {{ date('H:i', strtotime($registro->created_at)) }}</p>
-                        </div>
+                            <p>Data do evento:{{ date('d/m/Y', strtotime($registro->data)) }} às {{ date('H:i', strtotime($registro->hora)) }}</p>
+                            <p class="text-footer">Publicado {{ date('d/m/Y', strtotime($registro->created_at)) }} às {{ date('H:i', strtotime($registro->created_at)) }}</p>                        </div>
                     </div>    
                 @endforeach 
 

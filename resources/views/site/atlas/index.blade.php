@@ -31,12 +31,12 @@
                                 <div class="material-group list-group-item list-group-item-action">
 
                                     @if ($numero_categorias > $i && count($categorias[$i]->atla) >= 1)
-                                        <a class="item" href="{{ route('site.atlas.categoria', $categorias[$i]->id) }}">
+                                        <a class="item" href="{{ route('site.atlas.categoria', $categorias[$i]->slug) }}">
                                             {{ $categorias[$i]->nome }}
                                         </a>
                                     @endif
                                     @if ($numero_disciplinas > $i && count($disciplinas[$i]->categoria) >= 1)
-                                        <a class="item" href="{{ route('site.atlas.disciplina', $disciplinas[$i]->id) }}">
+                                        <a class="item" href="{{ route('site.atlas.disciplina', $disciplinas[$i]->slug) }}">
                                             {{ ucfirst($disciplinas[$i]->nome) }}
                                         </a>
                                     @endif

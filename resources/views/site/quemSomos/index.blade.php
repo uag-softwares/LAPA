@@ -13,15 +13,19 @@
             <div class="row col-12 justify-content-center">
                    
                   @foreach ($registros as $registro)
-                       <div class="col-11 col-md-5 col-lg-4 m-2 px-5 shadow-sm border rounded">
-                            <!--<img src="{{ asset($registro->anexo) }}" alt="" width="200" height="100"></img> -->
-                            <p class="text mt-3 mb-0"> 
-                                <a href="{{ route('site.quemSomos.vizualizar', $registro->id) }}">
+                      <div class="col-11 col-md-5 col-lg-4 m-2 px-5 shadow-sm border rounded" id="usuarios">
+                            <div class="img">
+                                <img class="img-fluid rounded" src="{{ asset($registro->avatar) }}" alt="Foto do Professor(ª)" height="200" width="200">
+                            </div>
+                            <div class="m-4 text-center text-md-left">
+                                <a href="{{ route('site.quemSomos.vizualizar', $registro->slug) }}">
                                     {{$registro->name}}
                                 </a>
-                            </p>
-                            <p class="text-footer">E-mail: {{$registro->email}}</li>
-                        </div>
+                                <p style="font-size:70%;text-align:left;">Email:
+                                     <a href = "mailto:{{ $registro->email}}">{{ $registro->email}}</a> 
+                                </p>
+                            </div>
+                      </div>
                   @endforeach       
                               
                   

@@ -65,15 +65,15 @@ class AtlaController extends Controller
         } else {
             $dados['publicado'] = false;    
         }
-        $this->atla->create($dados);
-
+        $atla=$this->atla->create($dados);
+        $atla['slug']=str_slug($atla->titulo).'-'.$atla->id;
+        $atla->update($atla->attributesToArray());
         return redirect()->route('auth.atlas')->with('success', 'Página do atlas adicionada com sucesso!');
         
     }
 
-    public function editar($identifier) 
+    public function editar(Atla $registro) 
     {
-        $registro = $this->atla->find($identifier);
         $categorias = $this->categoria->all();
         return view('auth.atlas.editar', compact('registro', 'categorias'));        
 
@@ -100,14 +100,14 @@ class AtlaController extends Controller
         } else {
             $dados['publicado'] = false;    
         }
+        $dados['slug']=str_slug($dados['titulo']).'-'.$identifier;
         $this->atla->find($identifier)->update($dados);
-
         return redirect()->route('auth.atlas')->with('success', 'Página do atlas atualizada com sucesso!');
     }
 
-    public function deletar($identifier)
+    public function deletar(Atla $registro)
     {
-        $this->atla->find($identifier)->delete();
+        $registro->delete();
         return redirect()->route('auth.atlas')->with('success', 'Página do atlas deletada com sucesso!');
     }
 
@@ -119,20 +119,20 @@ class AtlaController extends Controller
         return view('site.atlas.index', compact('registros', 'categorias', 'disciplinas'));
     }
 
-    public function atlasPorCategoria($categoria_id) 
+    public function atlasPorCategoria(Categoria $categoria) 
     {
-        $categoria = $this->categoria->find($categoria_id);
+       
         $busca = $this->atla->where('publicado', true)
-            ->where('categoria_id', $categoria_id);
+            ->where('categoria_id', $categoria->id);
         $registros = $busca->get();
         $paginas = $busca->paginate(1);
         return view('site.atlas.ver_atlas', compact('paginas', 'registros', 'categoria'));
     }
 
-    public function atlasPorDisciplina($disciplina_id) 
+    public function atlasPorDisciplina(Disciplina $disciplina) 
     {
-        $disciplina = $this->disciplina->find($disciplina_id);
-        $busca = $this->categoria->where('disciplina_id', $disciplina_id);
+        
+        $busca = $this->categoria->where('disciplina_id', $disciplina->id);
         $registros = $busca->get();
         $paginas = $busca->paginate(1);
         return view('site.atlas.ver_atlas_disciplinas', compact('paginas', 'registros', 'disciplina'));

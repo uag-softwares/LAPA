@@ -24,22 +24,13 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string','min:3', 'max:255'],
-	    'surname' => ['required', 'string','min:3', 'max:255'],
-            
+            'name' =>'required|alpha|string|min:3|max:255',
+	    'surname' =>'required|alpha|string|min:3|max:255',
+            'user_description' => 'max:255|nullable',
+            'link_lattes' => 'url|string|nullable',
+            'avatar' => 'mimes:jpeg,jpg,png,gif|max:2048|nullable' 
 	    
         ];
     }
-    public function messages(){
-	return[
-	    'name.required'=>'Nome deve ser obrigatório',
-	    'name.string'=>'Nome não pode conter números',
-	    'name.min'=>'Nome deve conter no mínimo três caracteres',
-            'surname.required'=>'Sobrenome deve ser obrigatório',
-	    'surname.string'=>'Sobrenome não pode conter números',
-	    'surname.min'=>'Sobrenome deve conter no mínimo três caracteres',
-	   
-	    
-        ];
-    }
+    
 }

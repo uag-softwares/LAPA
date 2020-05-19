@@ -269,7 +269,7 @@ class AcceptanceTester extends \Codeception\Actor
      */
      public function euVejoQueONomeDoUsuarioNaoFoiAtualizadoComSucesso()
      {
-         $this->see('Nome deve ser obrigatório');
+         $this->see('O campo nome é obrigatório.');
      }
 
       /**
@@ -435,6 +435,7 @@ class AcceptanceTester extends \Codeception\Actor
      */
      public function euAbroAPaginaDeCriarPostagem()
      {
+        $this->click('Adicionar');
         $this->amOnPage('/auth/postagem/adicionar');
      }
 
@@ -475,15 +476,7 @@ class AcceptanceTester extends \Codeception\Actor
      {
         $this->click('Deletar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[5]');
      }
-      /**
-     * @When Eu seleciono o professor com email :arg1
-     */
-     public function euSelecionoOProfessorComEmail($arg1)
-     {
-       
-         $user_id= $this->grabFromDatabase('users', 'id', array('email' =>$arg1));
-         $this->selectOption(['name' => 'user_id'],$user_id);
-     }
+      
       /**
     * @Given Eu clico em Adicionar
     */
@@ -492,6 +485,15 @@ class AcceptanceTester extends \Codeception\Actor
         $this->click('Adicionar');
         
     }
+     /**
+     * @When Eu seleciono o campo tipo da postagem :arg1
+     */
+     public function euSelecionoOCampoTipoDaPostagem($arg1)
+     {
+         $this->selectOption(['name' => 'tipo_postagem'],$arg1);
+     }
+
+
 
 
 }

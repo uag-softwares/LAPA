@@ -12,7 +12,7 @@ class Disciplina extends Model
      * @var array
      */
     protected $fillable = [
-        'nome', 'user_id',
+        'nome', 'user_id','slug',
     ];
 
     public function user() {
@@ -27,4 +27,13 @@ class Disciplina extends Model
         return $this->hasMany('App\Material');
 
     }
+      /**
+  * Get the route key for the model.
+  *
+  * @return string
+  */
+  public function getRouteKeyName()
+  {
+    return 'slug';
+  }
 }

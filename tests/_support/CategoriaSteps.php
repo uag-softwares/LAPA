@@ -77,6 +77,7 @@ class CategoriaSteps extends \Codeception\Actor
     public function euClicoEmEditarACategoria($arg1)
     {
         $this->click('Editar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[3]');
+        $this->seeInCurrentUrl('/auth/categoria/editar/');
     }
 
    /**

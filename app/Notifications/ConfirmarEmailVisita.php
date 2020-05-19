@@ -56,6 +56,7 @@ class ConfirmarEmailVisita extends Notification
         );
 
         return (new MailMessage)
+                    ->from(env('MAIL_FROM_ADDRESS', 'lapaufape@gmail.com'), env('APP_NAME', 'LAPA - UFAPE'))
                     ->subject('Verifique o endereço de e-mail para visita')
                     ->greeting(sprintf('Olá, %s', $this->user->name))
                     ->line('Por favor, clique no botão abaixo para verificar seu endereço de e-mail para concluir a solicitação de visita.')

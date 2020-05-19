@@ -12,10 +12,24 @@ class Postagem extends Model
     * @var array
     */
     protected $fillable = [
-        'titulo', 'descricao', 'anexo', 'user_id',
+        'titulo', 'descricao', 'anexo', 'user_id','tipo_postagem','publicado','data','slug','hora',
+
     ];
 
     public function user() {
         return $this->belongsTo('App\User');
     }
+    public function getEnumValues(){
+       $listaEnum=['noticia','edital','evento'];
+       return $listaEnum;
+   }
+    /**
+  * Get the route key for the model.
+  *
+  * @return string
+  */
+  public function getRouteKeyName()
+  {
+    return 'slug';
+  }
 }

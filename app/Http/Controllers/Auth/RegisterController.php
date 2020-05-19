@@ -75,31 +75,15 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string','min:3', 'max:255'],
-	    'surname' => ['required', 'string','min:3', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:6','confirmed'],
-	    'cpf' => ['required', 'regex:/\d{3}\.\d{3}\.\d{3}\-\d{2}/','string', 'unique:users'],
-            'user_description' => 'required|min:10',
+            'name' =>'required|alpha|string|min:3|max:255',
+	        'surname' =>'required|alpha|string|min:3|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+	        'cpf' => 'required|regex:/\d{3}\.\d{3}\.\d{3}\-\d{2}/|string|unique:users',
+            'user_description' => 'max:255|nullable',
+            'link_lattes' => 'url|string|nullable',
+            'avatar' => 'mimes:jpeg,jpg,png,gif|max:2048|nullable' 
             
-        ],[
-	    'name.required'=>'Nome deve ser obrigatório',
-	    'name.string'=>'Nome não pode conter números',
-	    'name.min'=>'Nome deve conter no mínimo três caracteres',
-	    'surname.required'=>'Sobrenome deve ser obrigatório',
-	    'surname.string'=>'Sobrenome não pode conter números',
-	    'surname.min'=>'Sobrenome deve conter no mínimo três caracteres',
-	    'cpf.required'=>'CPF deve ser obrigatório',
-	    'cpf.regex'=>'CPF deve conter formato ddd.ddd.ddd-dd',
-	    'cpf.unique'=>'CPF já existe',
-	    'email.required'=>'Email deve ser obrigatório',
-	    'email.email'=>'Email inválido',
-	    'email.unique'=>'Email já existe',
-	    'password.required'=>'Senha deve ser obrigatória',
-	    'password.min'=>'Senha deve conter no mínimo seis caracteres',
-	    'password.confirmed'=>'Senhas não conferem',
-            'user_description.required' => 'A descrição da postagem é obrigatória',
-            'user_description.min' => 'O tamanho mínimo da descrição é 10 letras',
         ]);
        
     }
@@ -113,50 +97,54 @@ class RegisterController extends Controller
      
     protected function create(array $data)
     { 
-       //$request = new Request($data);
-       $registros= $this->usuario::whereNotNull('cpf_verified_at')->get();
-
-    /*
-      if($request->hasFile('avatar')) {
-            $anexo = $request->file['avatar'];
+       $usersAdmin=$this->usuario->where( 'user_type', 'admin')->get();
+       $registros= $usersAdmin->whereNotNull('cpf_verified_at')->all();
+       $avatar=null;
+       $request = new Request($data);
+       if($request->has('avatar')) {
+            $anexo = $data['avatar'];
             $num = rand(1111,9999);
             $dir = 'img/avatares/';
             $exAnexo =$anexo->guessClientExtension();
             $nomeAnexo = 'avatar_'.$num.'.'.$exAnexo;
-            $file->move($dir, $nomeAnexo);
-            $data['avatar'] = $dir.'/'.$nomeAnexo;
+            $anexo->move($dir, $nomeAnexo);
+            $avatar= $dir.'/'.$nomeAnexo;
            
         }
-*/
 
        $user= $this->usuario->create([
             'name' =>  $data ['name'],
-	    'cpf' =>  $data ['cpf'],
-	    'email' =>  $data['email'],
-	    'surname' =>  $data ['surname'],
-	    'user_description' =>  $data ['user_description'],
-	    //'avatar' => $data['avatar'],
-            // 'email_verified_at'=>now(),
-	    'user_type' => 'admin',
-        ]);
-        $this->conta->create([
-	  'password' => Hash::make( $data ['password']),
-	  'user_id'=>$user->id,  
+            'cpf' =>  $data ['cpf'],
+            'email' =>  $data['email'],
+            'surname' =>  $data ['surname'],
+            'user_description' =>  $data ['user_description'],
+            'avatar' => $avatar,
+            'user_type' => 'admin',
+            'link_lattes'=> $data['link_lattes'],
         ]);
 
+        $this->conta->create([
+            'password' => Hash::make( $data ['password']),
+            'user_id'=>$user->id,  
+        ]);
+
+        $user['slug']=str_slug($user->name).'-'.$user->id;
+        $user->update($user->attributesToArray());
+
         foreach ($registros as $registro) {
-              $registro->notify(new SolicitacaoAcesso($user));
+            $registro->notify(new SolicitacaoAcesso($user));
         }
-      return $user;
+
+        return $user;
     }
+
     public function index (){
-        
-       
-	return view('auth.registros.index ');
+    	return view('auth.registros.index ');
     }
+
     public function gerenciarSolicitacao(){
-        
-        $registros= $this->usuario::where('cpf_verified_at',null)->get();
+        $usersAdmin=$this->usuario->where( 'user_type', 'admin')->get();
+        $registros= $usersAdmin->where('cpf_verified_at',null)->all();
         return view('auth.acesso_gerenciamento', compact('registros'));
     }
 
@@ -164,57 +152,65 @@ class RegisterController extends Controller
         $user=$this->usuario->find($id_user);
         $user['cpf_verified_at']=now();
         $dados=[$user];
-	$user->update($dados);
+	    $user->update($dados);
         Notification::send($user,new SolicitacaoAcesso_aceita(Auth::user()));
         return redirect()->route('auth.acesso_gerenciamento')->with('success','Solicitação confrimada com sucesso'); 
     }
-     public function recusarSolicitacao($id_user){
+
+    public function recusarSolicitacao($id_user){
         $user=$this->usuario->find($id_user);
         Notification::send($user,new SolicitacaoAcesso_recusada(Auth::user()));
         if($user->delete()){
-	     return redirect()->route('auth.acesso_gerenciamento')->with('success','Solicitação recusada com sucesso');
+	        return redirect()->route('auth.acesso_gerenciamento')->with('success','Solicitação recusada com sucesso');
         }
     }
 
     public function editar(){
-	
-	
-	return view('auth.registros.editar');
+	    return view('auth.registros.editar');
     }
    
     public function atualizar(RegisterRequest $data)//retirar verificação de senha
     {  
         $data->validated();
-	$dados = $data->all();
+        $dados = $data->all();
+        if($data->hasFile('avatar')){
+            $anexo = $data->file('avatar');
+            $num = rand(1111,9999);
+            $dir = 'img/avatares/';
+            $exAnexo =$anexo->guessClientExtension();
+            $nomeAnexo = 'avatar_'.$num.'.'.$exAnexo;
+            $anexo->move($dir, $nomeAnexo);
+            $dados['avatar'] = $dir.'/'.$nomeAnexo;
+           
+        }
         $user=Auth::user();
         $user->update($dados);
         
-	return redirect()->route('auth.registros')->with('success','Conta editada com sucesso');
+	    return redirect()->route('auth.registros')->with('success','Conta editada com sucesso');
          
     }
 
-  public function deletar($id_user){
-	$data=$this->usuario->find($id_user);
+    public function deletar($id_user){
+        $data=$this->usuario->find($id_user);
 
         Auth::logout();
 
-    if ($data->delete()) {
-
-         return redirect()->route('register')->with('success','Conta exluida com sucesso');
+        if ($data->delete()) {
+            return redirect()->route('register')->with('success','Conta exluida com sucesso');
+        }
     }
-  }
 
-   public function siteIndex(){
-        $registros= $this->usuario::whereNotNull('cpf_verified_at')->get();
+    public function siteIndex(){
+        $usersAdmin=$this->usuario->where( 'user_type', 'admin')->get();
+        $registros= $usersAdmin->whereNotNull('cpf_verified_at')->all();
        
         return view('site.quemSomos.index', compact('registros'));
     }
-  public function siteRegistervizualizar($id_user){
-        $registro = $this->usuario->find($id_user);
-       
-        return view('site.quemSomos.vizualizar', compact('registro'));
 
-  }
+    public function siteRegistervizualizar(User $registro){
+        return view('site.quemSomos.vizualizar', compact('registro'));
+    }
+
     public function buscarUsuarioVisita(EmailVisitaRequest $request)
     {  
         $request->validated();

@@ -53,14 +53,15 @@ class MaterialController extends Controller
             $anexo->move($dir, $nomeAnexo);
             $dados['anexo'] = $dir.'/'.$nomeAnexo;
         }
-        $this->material->create($dados);
+        $material=$this->material->create($dados);
+        $material['slug']=str_slug($material->titulo).'-'.$material->id;
+        $material->update($material->attributesToArray());
         return redirect()->route('auth.materiais')->with('success', 'Material adicionado com sucesso!');
     }
 
-    public function editar($material_id) 
+    public function editar(Material $registro) 
     {
-        $registro = $this->material->find($material_id);
-	    $disciplinas=$this->disciplina->all();
+	$disciplinas=$this->disciplina->all();
         return view('auth.materiais.editar', compact('registro','disciplinas'));        
     }
 
@@ -78,14 +79,14 @@ class MaterialController extends Controller
             $anexo->move($dir, $nomeAnexo);
             $dados['anexo'] = $dir.'/'.$nomeAnexo;
         }
-
+        $dados['slug']=str_slug($dados['titulo']).'-'.$material_id;
         $this->material->find($material_id)->update($dados);
         return redirect()->route('auth.materiais')->with('success', 'Material atualizado com sucesso!');
     }
 
-    public function deletar($material_id)
+    public function deletar(Material $registro)
     {
-        $this->material->find($material_id)->delete();
+        $registro->delete();
         return redirect()->route('auth.materiais')->with('success', 'Material deletado com sucesso!');
     }
 
@@ -97,10 +98,9 @@ class MaterialController extends Controller
         return view('site.materiais.index', compact('registros', 'disciplinas'));
     }
     
-    public function materiaisPorDisciplina($disciplina_id) 
+    public function materiaisPorDisciplina(Disciplina $disciplina) 
     {
-        $disciplina = $this->disciplina->find($disciplina_id);
-        $busca = $this->material->where('disciplina_id', $disciplina_id);
+        $busca = $this->material->where('disciplina_id', $disciplina->id);
         $registros = $busca->latest()->get();
         $paginas = $busca->latest()->paginate(1);    
         return view('site.materiais.ver_materiais', compact('registros', 'disciplina', 'paginas'));
