@@ -10,8 +10,8 @@
 				<div class="col-xs-12 col-sm-4 col-md-4">
                     <h5>LAPA</h5>
                     <p>Laboratório de Anatomia<br/>e Patologia Animal</p>
-                    <p>Avenida Bom Pastor, s/n.º<br />Bairro Boa Vista - CEP:<br />
-                        55292-270 - Garanhuns - PE</p>
+                    <p>Avenida Bom Pastor, s/n.º<br />Bairro: Boa Vista<br/>
+						CEP: 55292-270<br/>Garanhuns - PE</p>
 				</div>
 				<div class="border-left col-xs-12 col-sm-4 col-md-4">
 					<h5>Navegação</h5>

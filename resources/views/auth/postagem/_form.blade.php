@@ -40,9 +40,9 @@
     <label for="nome">Anexo</label>
     <input class="form-control form-control-lg @error('anexo') is-invalid @enderror" id="anexo" type="file" name="anexo"  autocomplete="anexo">
     @error('anexo')
-              <span class="invalid-feedback" role="alert">
-                 <strong>{{ $message }}</strong>
-             </span>
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
     @enderror
 </div>
 
