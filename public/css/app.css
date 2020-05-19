@@ -5,9 +5,9 @@
   --main-white: #f8f9fa;
 }
 
-
 /* tamanho de fonte padrão dentro da classe container */
-div.container, header {
+div.container,
+header {
   font-family: 'Noto Sans HK', sans-serif;
 }
 
@@ -51,7 +51,7 @@ header {
 
 /* Muda a cor e fonte dos links da navbar */
 .navbar-custom .navbar-nav .nav-link, .nav-item.dropdown button {
-  color:   var(--main-white);
+  color: var(--main-white);
   font-size: 22px;
   font-style: normal;
   font-weight: bold;
@@ -72,7 +72,7 @@ header {
 
 /* Muda a cor do botao de expandir a navbar no celular */
 .navbar .fas {
-  color:   var(--main-white);
+  color: var(--main-white);
 }
 
 /* Tamanho da fonte de todos os botoes */
@@ -80,7 +80,7 @@ header {
 a.btn, button.btn {
   font-weight: bold;
   background-color: var(--main-green);
-  color:   var(--main-white);
+  color: var(--main-white);
 }
 
 a.btn.btn-outline, button.btn.btn-outline {
@@ -97,7 +97,7 @@ a.btn:hover, button.btn:hover, .navbar-custom .nav-item.active .nav-link,
 .navbar-custom .nav-item:hover .nav-link, 
 .nav-item.dropdown button:hover {
   background-color: var(--main-dark-green);
-  color:   var(--main-white);
+  color: var(--main-white);
 }
 
 .nav-item.dropdown button:hover {
@@ -232,11 +232,11 @@ a:hover.page-link {
 
 /* Sidebar da esquerda de Atlas */
 #paginasAtlas, #paginasMateriais {
-  padding: 0 0 0 1.5em; 
+  padding: 0 0 0 1.5em;
 }
 
 #paginasAtlas a, #paginasMateriais a {
-  overflow:hidden; 
+  overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
@@ -253,7 +253,7 @@ a:hover.page-link {
 }
 
 #toggleLeftSidebar .btn {
-  border-radius: 0 5px 5px 0; 
+  border-radius: 0 5px 5px 0;
   color: var(--main-white);
 }
 
@@ -265,15 +265,15 @@ a:hover.page-link {
 
 /* inicio de lista de materiais */
 .material-group.list-group-item.list-group-item-action {
-  display: flex; 
-  padding:0;
+  display: flex;
+  padding: 0;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
 
 .material-group.list-group-item.list-group-item-action.header {
   padding: 1rem;
-  justify-content: space-around; 
+  justify-content: space-around;
 
 }
 
@@ -388,13 +388,13 @@ section .section-title {
 }
 
 #footer p{
-  color:   var(--main-white);
+  color: var(--main-white);
   text-decoration: none;
   background-color: transparent;
 }
 
 #footer h5{
-	padding-left: 10px;
+  padding-left: 10px;
   border-left: 3px solid #eeeeee;
   padding-bottom: 6px;
   margin-bottom: 20px;
@@ -402,7 +402,7 @@ section .section-title {
 }
 
 #footer a {
-  color:   var(--main-white);
+  color: var(--main-white);
   text-decoration: none;
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
