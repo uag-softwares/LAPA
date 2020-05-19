@@ -26,7 +26,8 @@ class MaterialRequest extends FormRequest
         return [
            'titulo' =>['required','min:5'],
            'texto' => ['required','min:10'],
-	   'disciplina_id' =>['required'],
+           'disciplina_id' =>['required'],
+           'anexo' => ['max:2048']
         ];
     }
     public function messages(){
@@ -34,7 +35,8 @@ class MaterialRequest extends FormRequest
 	    'titulo.required'=>'Título do material é obrigatório',
 	    'titulo.min'=>'Título deve conter no mínimo três letras',
 	    'texto.required' => 'Escrever sobre o texto é obrigatório',
-	    'texto.min' => 'O tamanho mínimo é de 10 letras',
+        'texto.min' => 'O tamanho mínimo é de 10 letras',
+        'anexo.max' => 'O tamanho máximo do anexo deve ser 2MB',
 	    'disciplina_id.required' => 'Escolher disciplina é obrigátorio',
 	   
 	    
