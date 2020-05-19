@@ -40,6 +40,8 @@
         <script type="text/javascript" src="{{ asset('js/jquery/jquery.inputmask.js') }}"></script>      
         <script type="text/javascript" src="{{ asset('js/jquery/jquery.maskMoney.min.js') }}"></script>
         <script defer="true" src="{{ asset('js/masks.js') }}"></script>
+
+        
     </head>
     <body>
     @include('layouts._includes.nav')

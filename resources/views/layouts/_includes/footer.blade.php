@@ -52,7 +52,7 @@
             <i class="fab fa-pinterest fa-lg white-text fa-2x"> </i>
           </a>
         </div>
-        <p>© 2020 Todos os direitos reservados.</p>
+      <p>© 2020 Todos os direitos reservados.</p>
     </div>
  </section>
 <!-- ./Footer -->
