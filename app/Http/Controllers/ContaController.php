@@ -66,37 +66,37 @@ class ContaController extends Controller
         //Validate input
         $validator = Validator::make($request->all(), [
         'email' => 'required|exists:users,email',
-        'password' => 'required|confirmed'
+        'password' => 'required|string|min:6|confirmed'
        ]);
 
        //check if input is valid before moving on
        if ($validator->fails()) {
-          return redirect()->back()->withErrors(['email' => 'Porfavor preeencha o formulário']);
+          return redirect()->back()->withErrors($validator);
        }
 
        
        // Validate the token
        $tokenData = DB::table('password_resets')->where('token', $request->token)->first();
        // Redirect the user back to the password reset request form if the token is invalid
-       if (!$tokenData) return view('auth.passwords.email');
+       if (!$tokenData) return redirect()->back()->with('success','Link expirado!');
 
-           $user = User::where('email', $tokenData->email)->first();
+       $user = User::where('email', $tokenData->email)->first();
        // Redirect the user back if the email is invalid
        if (!$user) return redirect()->back()->withErrors(['email' => 'Email não encontrado']);
-           //Hash and update the new password
-           $conta=Conta::where('user_id',$user->id)->first();
-           $conta->password =Hash::make($request->password);
-           $conta->update(); 
+       //Hash and update the new password
+       $conta=Conta::where('user_id',$user->id)->first();
+       $conta->password =Hash::make($request->password);
+       $conta->update(); 
 
-           //login the user immediately they change password successfully
-           Auth::login($user);
+       //login the user immediately they change password successfully
+       Auth::login($user);
 
-           //Delete the token
-           DB::table('password_resets')->where('email', $user->email)->delete();
+       //Delete the token
+       DB::table('password_resets')->where('email', $user->email)->delete();
        
-           return redirect()->route('auth.gerenciar');
+      return redirect()->route('auth.gerenciar')->with('success','Senha alterada com sucesso');
            
 
-}
+   }
 
 }
