@@ -48,7 +48,7 @@
 
 @if(@isset($registro->anexo))
     <div class="form-group">
-        <img src="{{ asset($registro->anexo) }}" alt="">
+        <img class="w-50" src="{{ asset($registro->anexo) }}" alt="">
     </div>    
 @endisset
 
@@ -66,7 +66,7 @@
 <div class="d-flex flex-row">
      <div class="form-group">
         <label for="hora">Hora(obrigatório para evento)</label>
-        <input min="{{ date('H:i', strtotime('00:00')) }}" class="form-control form-control-lg @error('hora') is-invalid @enderror" type="time" name="hora" value="{{ isset($registro->hora) ? $registro->hora : old('hora') }}" placeholder="Digite a hora do evento">
+        <input min="{{ date('H:i', strtotime('00:00')) }}" class="form-control form-control-lg @error('hora') is-invalid @enderror" type="time" name="hora" value="{{ isset($registro->hora) ? date('H:i', strtotime($registro->hora)) : old('hora') }}" placeholder="Digite a hora do evento">
         @error('hora')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
