@@ -87,7 +87,7 @@
                         </h2>
                     </div>
                     <div class="card-footer">
-                        <a href="{{ route('site.visita.adicionar') }}" class="btn">
+                        <a href="{{ route('site.visita.busca') }}" class="btn">
                             Adicionar
                         </a>
                         <a href="{{ route('auth.visitas') }}" class="btn">
@@ -179,7 +179,7 @@
          </div>
          @else
             <h2 class="mb-4">Sua solicitação está em análise, {{ Auth::user()->name }}!</h2>
-	    <h2 class="mb-4">Você ainda não tem permissão para gerenciar o sistema!</h2>
+-           <h2 class="mb-4">Você ainda não tem permissão para gerenciar o sistema!</h2>   
         @endif
     @endguest
 </div>

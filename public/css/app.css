@@ -64,10 +64,17 @@ header {
 }
 
 /* Tamanho da fonte de todos os botoes */
+
 a.btn, button.btn {
-    font-size: 22px;
+    font-weight: bold;
     background-color: #00c853;
     color: #FFFFFF;
+}
+
+a.btn.btn-outline, button.btn.btn-outline {
+    background-color: #fff;
+    color: #28a745;
+    border: 1px solid #00c853;
 }
 
 a.btn.btn-danger, button.btn.btn-danger {
@@ -210,12 +217,12 @@ a:hover.page-link {
 /* Fim de links ativos do bootstrap */
 
 
-/* Sidebar da esquerda */
-#paginasAtlas {
+/* Sidebar da esquerda de Atlas */
+#paginasAtlas, #paginasMateriais {
     padding: 0 0 0 1.5em; 
 }
 
-#paginasAtlas a {
+#paginasAtlas a, #paginasMateriais a {
     overflow:hidden; 
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -241,33 +248,44 @@ a:hover.page-link {
     left: 270px;
 }
 
-/* Sidebar da esquerda */
+/* Sidebar da esquerda de Atlas */
 
 /* inicio de lista de materiais */
-.list-group-item.material-group {
+.material-group.list-group-item.list-group-item-action {
     display: flex; 
-    justify-content:space-around; 
     padding:0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }
 
-.material-group.header {
+.material-group.list-group-item.list-group-item-action.header {
     padding: 1rem;
+    justify-content: space-around; 
+
 }
-  
-.material-item {
+
+.item {
+    display: block;
     color: #555;
     text-decoration: none;
     text-align: center;
     background-color: transparent;
-    width: 50%;
+    border: none;
     padding: 1rem;
+    align-self: flex-start;
+    width: 50%;
 }
-  
-.material-item:hover {
+
+.item:hover {
     color: #000;
     text-decoration: none;
     background-color: #eee;
 }
+
+.disciplina-atla-item {
+    width: 100%;
+}
+
   
 /* fim de lista de materiais */
 
@@ -291,6 +309,7 @@ a:hover.page-link {
     padding: 2em;
     background-color: rgba(0, 0, 0, 0.8);
     color: #fff;
+    cursor: pointer;
 }
 
 .carousel-item a:hover.carousel-caption {
@@ -306,12 +325,13 @@ a:hover.page-link {
 /* fim de carrosel de postagens */
 
 /* pagina de postagem */
-article .text {
-    text-align: justify;
+.text {
+    text-align: left;
 }
 
-article .text-footer {
+.text-footer {
     font-size: 1rem;
+    text-align: left;
 }
 
 #postagens .img {
@@ -326,16 +346,18 @@ article .text-footer {
     width: 100%;
     left: 0;
 }
-
-/* fim de pagina de postagem */
-
-
-@media only screen and (max-width: 600px) {
-    #postagens .img {
-        width: 100%;
-    }
+#usuarios.img {
+    position: relative;
+    height: 200px;
+    width: 200px;
+    overflow: hidden;
 }
-/* footer */
+
+#usuarios .img-fluid {
+   position: relative;
+    left: 0;
+    
+}
 
 /* Footer */
 @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
@@ -382,4 +404,15 @@ section .section-title {
 }
 #footer ul.quick-links li:hover a i {
     font-weight: 700;
+}
+
+@media only screen and (max-width: 767px) {
+  #postagens .img {
+      width: 100%;
+  }
+
+#usuarios .img {
+  width: 100%;
+}
+    
 }

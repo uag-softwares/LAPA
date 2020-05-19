@@ -31,7 +31,11 @@ class DisciplinaController extends Controller
 
     public function adicionar() 
     {
-        $users = $this->user->all();
+        $users = $this->user
+            ->where('user_type', 'admin')
+            ->whereNotNull('cpf_verified_at')
+            ->where('user_type', 'admin')
+            ->get();
         return view('auth.disciplinas.adicionar', compact('users'));
 
     }
@@ -43,15 +47,14 @@ class DisciplinaController extends Controller
         $request->validated();
 
         $dados = $request->all();
-
-        $this->disciplina->create($dados);
-
+        $disciplina=$this->disciplina->create($dados);
+        $disciplina['slug']=str_slug( $disciplina->nome).'-'. $disciplina->id;
+        $disciplina->update($disciplina->attributesToArray());
         return redirect()->route('auth.disciplinas')->with('success', 'Disciplina adicionada com sucesso!');
     }
 
-    public function editar($identifier) 
+    public function editar(Disciplina $registro) 
     {
-        $registro = $this->disciplina->find($identifier);
         $users = $this->user->all();
         return view('auth.disciplinas.editar', compact('registro', 'users'));        
 
@@ -64,7 +67,7 @@ class DisciplinaController extends Controller
         $request->validated();
 
         $dados = $request->all();
-
+        $dados['slug']=str_slug($dados['nome']).'-'.$identifier;
         if($this->disciplina->find($identifier)->nome != $request['nome']) {
             return redirect()->back()->withErrors(['nome' => 'O nome da disciplina não pode ser alterado']);
         }
@@ -74,9 +77,9 @@ class DisciplinaController extends Controller
         return redirect()->route('auth.disciplinas')->with('success', 'Disciplina atualizada com sucesso!');
     }
 
-    public function deletar($identifier)
+    public function deletar(Disciplina $registro)
     {
-        $this->disciplina->find($identifier)->delete();
+        $registro->delete();
         return redirect()->route('auth.disciplinas')->with('success', 'Disciplina deletada com sucesso!');
     }
 }

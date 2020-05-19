@@ -1,18 +1,17 @@
 @extends('layouts.app')
-@section('titulo', 'Eventos')
+@section('titulo', 'Noticias')
 @section('content')
     <div class="container" >
-        <h2>Lista de Eventos</h2>
+       
         <div class="breadcrumbs d-flex text-left justify-content-sm-start justify-content-between">
             <p>
-                <a href="{{ route('site.postagens.home') }}">Início</a> /
-                Eventos
+                 <h2>Lista de Notícias</h2>
             </p>
         </div>
         <div class="d-flex justify-content-around row">
 
             @if (count($registros) < 1)
-                <p>Ops, ainda não temos nenhum evento</p>
+                <p>Ops, ainda não temos nenhuma notícia</p>
             @else
         
             <div class="item-list px-4">
@@ -23,13 +22,17 @@
                                 <img class="img-fluid rounded" src="{{ asset($registro->anexo) }}" alt="Imagem da postagem">
                             </div>
                             <div class="m-4 text-center text-md-left">
-                                <a href="{{ route('site.postagens.vizualizar', $registro->id) }}">
+                                <a href="{{ route('site.noticias.vizualizar', $registro->slug) }}">
                                     {{$registro->titulo}} 
                                 </a>
-                                <p>Publicado por {{ $registro->user->name }}, {{ date('d/m/Y', strtotime($registro->created_at)) }} às {{ date('H:m', strtotime($registro->created_at)) }}</p>
+                                 <p style="font-size:70%;"> Publicado {{ date('d/m/Y', strtotime($registro->created_at)) }} às {{ date('H:i', strtotime($registro->created_at)) }}</p>
                             </div>
                         </div>                  
-                  @endforeach       
+                  @endforeach   
+                  
+                <div class="d-flex justify-content-center">
+                    {{ $registros->links() }}
+                </div> 
                             
             </div>
             @endif
