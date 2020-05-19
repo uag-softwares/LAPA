@@ -27,7 +27,7 @@ class MaterialRequest extends FormRequest
            'titulo' =>'required|min:5',
            'texto' => 'required|min:10',
            'disciplina_id' =>'required',
-           'anexo' => 'uploaded|mimes:jpeg,jpg,png,gif|max:2048|nullable',
+           'anexo' => 'mimes:jpeg,jpg,png,gif|max:2048',
         ];
     }
     public function messages(){
