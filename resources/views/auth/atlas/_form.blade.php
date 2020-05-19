@@ -36,8 +36,13 @@
 </div>
 
 <div class="form-group">
-    <label for="nome">Anexo</label>
-    <input class="form-control form-control-lg" type="file" name="anexo">
+    <label for="nome">Anexo*</label>
+    <input class="form-control form-control-lg @error('anexo') is-invalid @enderror" type="file" name="anexo">
+    @error('anexo')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+    @enderror
 </div>
 
 @if(@isset($registro->anexo))

@@ -35,7 +35,7 @@ class PostagemRequest extends FormRequest
     }
    public function messages(){
 	return[
-	    'tipo_postagem.required'=>'Selecionar o tipo da postagem é obrigatório',    
+            'tipo_postagem.required'=>'Selecionar o tipo da postagem é obrigatório',  
         ];
     }
     

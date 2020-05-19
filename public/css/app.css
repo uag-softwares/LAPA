@@ -46,7 +46,7 @@ header {
 /* change the brand and text color */
 .navbar-custom .navbar-brand,
 .navbar-custom .navbar-text {
-  color: rgba(255,255,255,.8);
+  color: var(--main-white);
 }
 
 /* Muda a cor e fonte dos links da navbar */
@@ -187,7 +187,7 @@ ul {
   left:0;
   width:100%;
   height:100%;
-  background: rgba(0,0,0,0.8) none 50% / contain no-repeat;
+  background: rgba(0, 0, 0, 0.8) none 50% / contain no-repeat;
   cursor: pointer;
   transition: 0.3s;
   
@@ -333,7 +333,7 @@ a:hover.page-link {
 
 .carousel-control-next span, .carousel-control-prev span{
   padding: 1rem;
-  background-color: rgba(0,0,0,0.8);
+  background-color: rgba(0, 0, 0, 0.8);
 }
 /* fim de carrosel de postagens */
 
@@ -367,7 +367,7 @@ a:hover.page-link {
 }
 
 #usuarios .img-fluid {
-   position: relative;
+  position: relative;
   left: 0;
   
 }
@@ -395,10 +395,10 @@ section .section-title {
 
 #footer h5{
   padding-left: 10px;
-  border-left: 3px solid #eeeeee;
+  border-left: 3px solid var(--main-white);
   padding-bottom: 6px;
   margin-bottom: 20px;
-  color:  var(--main-white);
+  color: var(--main-white);
 }
 
 #footer a {

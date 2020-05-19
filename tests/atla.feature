@@ -10,6 +10,7 @@ Feature: atla
     And Eu estou na pagina de gerenciar atlas
     And Eu clico em editar o atlas "Olho mamifero"
     When Eu edito a descricao para ""
+    And Eu clico em escolher arquivo e escolho "anexo.png"
     And Eu clico em editar atlas
     Then Eu vejo erro ao atualizar o atlas com descricao invalida
 
@@ -23,7 +24,7 @@ Feature: atla
     When Eu edito o titulo para "Olho esquerdo"
     And Eu edito a descricao para "Olho mamifero na diagonal"
     And Eu seleciono a categoria "Sistema nervoso"
-    And Eu clico em escolher arquivo e escolho "teste.pdf"
+    And Eu clico em escolher arquivo e escolho "anexo.png"
     And Eu clico em editar atlas
     Then Eu vejo que o atlas foi atualizado corretamente
 
@@ -42,7 +43,7 @@ Feature: atla
     When Eu preencho o campo titulo com "Olho mamifero"
     And Eu preencho o campo descricao com "foto do olho do mamifero"
     And Eu seleciono a categoria "Sistema nervoso"
-    And Eu clico em escolher arquivo e escolho "teste.pdf"
+    And Eu clico em escolher arquivo e escolho "anexo.png"
     And Eu clico em Adicionar
     Then Eu vejo que o atlas foi adicionado corretamente
   
