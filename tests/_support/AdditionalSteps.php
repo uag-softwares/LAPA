@@ -59,9 +59,11 @@ class AdditionalSteps extends \Codeception\Actor
      */
     public function euCrioADisciplinaParaTeste($arg1)
     {
-        $this->haveInDatabase('disciplinas', [
+        $disciplina=$this->haveInDatabase('disciplinas', [
             'nome' => $arg1,
+            'slug'=> $arg1,
         ]);
+       
     }
 
     /**
@@ -71,6 +73,7 @@ class AdditionalSteps extends \Codeception\Actor
     {
         $this->haveInDatabase('disciplinas', [
             'nome' => $arg1,
+            'slug'=> $arg1,
         ]);
     }
 
@@ -86,6 +89,7 @@ class AdditionalSteps extends \Codeception\Actor
             'texto' => 'Texto do material',
             'anexo' => 'file.png',
             'disciplina_id' => $disciplina,
+            'slug'=> $arg1,
             ]);
     }
     
@@ -97,8 +101,9 @@ class AdditionalSteps extends \Codeception\Actor
         $disciplina = $this->grabFromDatabase('disciplinas', 'id', array('nome' => 'Ihc'));
 
         $this->haveInDatabase('categorias', [
-            'nome' => $arg1,
+            'nome' =>$arg1,
             'disciplina_id' => $disciplina,
+            'slug'=>$arg1,
         ]);
     }
 
@@ -109,6 +114,7 @@ class AdditionalSteps extends \Codeception\Actor
     {
         $this->haveInDatabase('disciplinas', [
             'nome' => 'teste',
+            'slug'=> 'teste',
         ]);
 
         $disciplina = $this->grabFromDatabase('disciplinas', 'id', array('nome' => 'teste'));
@@ -116,6 +122,7 @@ class AdditionalSteps extends \Codeception\Actor
         $this->haveInDatabase('categorias', [
             'nome' => 'Sistema nervoso',
             'disciplina_id' => $disciplina,
+            'slug'=> 'Sistema nervoso',
         ]);
 
         $categoria = $this->grabFromDatabase('categorias', 'id', array('nome' => 'Sistema nervoso'));
@@ -125,6 +132,24 @@ class AdditionalSteps extends \Codeception\Actor
             'descricao' => 'Texto do atlas',
             'anexo' => 'anexo.pdf',
             'categoria_id' => $categoria,
+            'slug'=> $arg1,
+        ]);
+    }
+
+    /**
+    * @Given A visita :arg1 ja exista
+    */
+    public function aVisitaJaExista($arg1)
+    {
+        $user = $this->grabFromDatabase('users', 'id', array('email' => $arg1));
+
+        $this->haveInDatabase('visitas', [
+                'data' => now(),
+                'hora_inicial' => now(),
+                'hora_final' => now(),
+                'descricao' => 'Teste de testo de visita',
+                'confirmada' => false,
+                'user_id' => $user,
         ]);
     }
 }

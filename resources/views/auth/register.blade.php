@@ -5,7 +5,7 @@
         <div class="container">
             <h2>Cadastro</h2>
             <p>Por favor preencha o formulário para Solicitar acesso ao sistema.</p>
-            <form  action="{{ route('register') }}" method="POST" >
+            <form  action="{{ route('register') }}" method="POST" enctype="multipart/form-data">
                  {{ csrf_field() }}
                  @include('auth.registros._form')
                  <p>Criando uma conta você concorda com nossos <a href="#">Termos & Privacidade</a>.</p>

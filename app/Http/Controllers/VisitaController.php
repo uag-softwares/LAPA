@@ -9,22 +9,28 @@ use App\Http\Requests\VisitaRequest;
 use App\Notifications\SolicitacaoVisita;
 use App\Notifications\SolicitacaoVisitaAceita;
 use App\Notifications\SolicitacaoVisitaRecusada;
+use App\Notifications\ConfirmarEmailVisita;
 use \Illuminate\Notifications\Notifiable;
 use Notification;
+use Auth;
+
+use Illuminate\Support\Facades\DB;
 
 class VisitaController extends Controller
 {
 
     protected $visita;
     protected $usuario;
+    protected $auth;
 
-    public function __construct(Visita $visita, User $usuario) 
+    public function __construct(Visita $visita, User $usuario, Auth $auth) 
     {
         $this->visita = $visita;
         $this->usuario = $usuario;
+        $this->auth = $auth;
 
         $this->middleware('auth', ['except' => [
-            'adicionar',
+            'busca',
             'salvar',
             'salvarUsuarioVisita'
         ]]);
@@ -33,23 +39,26 @@ class VisitaController extends Controller
 
     public function index()
     {
-        $registros = $this->visita->all()->reverse();
+        $registros = $this->visita->whereHas('user', function($query) {
+            $query->whereNotNull('email_verified_at');
+            })->get()->reverse();
         return view('auth.visitas.index', compact('registros'));
     }
 
-    public function adicionar() 
+    public function busca() 
     {
-        return view('site.visitas.adicionar');        
+        return view('site.visitas.pesquisar_email');        
     }
 
     public function salvar($visita) 
     {
-         $this->visita->create($visita);
+         $visita=$this->visita->create($visita);
+         $visita['slug']='visita'.'-'.$visita->id;
+         $visita->update($visita->attributesToArray());
     }
 
-    public function ver($identifier)
+    public function ver(Visita $registro)
     {
-        $registro = $this->visita->find($identifier);
         return view('auth.visitas.ver', compact('registro'));
     }
 
@@ -86,6 +95,8 @@ class VisitaController extends Controller
 
     public function salvarUsuarioVisita(VisitaRequest $request)
     {
+        $msgSucesso = 'Visita solicitada com sucesso, você receberá um email quando ela for confirmada.';
+
         $request->validated();
 
         $email = $request['email'];
@@ -109,6 +120,9 @@ class VisitaController extends Controller
             ]);
 
             $userExiste = $this->usuario->salvarUserVisitante($usuario);
+            
+            Notification::send($userExiste, new ConfirmarEmailVisita($userExiste));
+            $msgSucesso = 'Visita solicitada com sucesso, <strong>você deve verificar seu email para concluir a solicitação.<strong>';
         }
 
         $visita = [
@@ -116,16 +130,12 @@ class VisitaController extends Controller
             'hora_inicial' => $request['hora_inicial'], 
             'hora_final' => $request['hora_final'], 
             'descricao' => $request['descricao'], 
-            'confirmada' => $request['confirmada'], 
+            'confirmada' => (Auth::user() ? ($request['confirmada'] ? 1 : 0) : 0),
             'user_id' => $userExiste->id,
         ];
 
         $this->salvar($visita);
-        $admins = $this->usuario->whereNotNull('cpf_verified_at')->get();
-        foreach ($admins as $admin) {
-              $admin->notify(new SolicitacaoVisita($admin));
-        }
 
-        return redirect()->route('site.visita.adicionar')->with('success', 'Visita solicitada com sucesso, você receberá um email quando ela for confirmada.');
+        return redirect()->route('site.visita.busca')->with('success', $msgSucesso);
     }
 }

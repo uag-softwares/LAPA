@@ -29,8 +29,8 @@
                         <td>{{ ucfirst($registro->nome) }}</td>
                         <td>{{ isset($registro->user) ? $registro->user->name : 'Nenhum professor' }}</td>
                         <td>
-                            <a href="{{ route('auth.disciplina.editar', $registro->id) }}" class="btn">Editar</a>
-                            <a href="{{ route('auth.disciplina.deletar', $registro->id) }}" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar a disciplina?');">Deletar</a>
+                            <a href="{{ route('auth.disciplina.editar', $registro->slug) }}" class="btn">Editar</a>
+                            <a href="{{ route('auth.disciplina.deletar', $registro->slug) }}" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar a disciplina?');">Deletar</a>
                         </td>
                     </tr>
                     @endforeach

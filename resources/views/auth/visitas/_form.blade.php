@@ -1,3 +1,4 @@
+
 <div class="form-group">
     <h4><b>Informações do responsável pela visita</b></h4>
     <div class="form-group">
@@ -42,7 +43,7 @@
     </div>
     <div class="form-group">
         <label for="telephone">Telefone*</label>
-        <input id="telephone" type="text" class=" telefone form-control form-control-lg @error('telephone') is-invalid @enderror" name="telephone" value="{{isset($userExiste->telephone) ? $userExiste->telephone: old('telephone')}}" required autofocus placeholder="(99)99999-9999">
+        <input id="telephone" type="text" class="telefone form-control form-control-lg @error('telephone') is-invalid @enderror" name="telephone" value="{{isset($userExiste->telephone) ? $userExiste->telephone: old('telephone')}}" required autofocus placeholder="(99)99999-9999">
         @error('telephone')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -51,17 +52,17 @@
     </div>
     <h4><b>Informações da visita</b></h4>
 </div>
+<div class="form-group">
+    <label for="data">Data*</label>
+    <input min="{{ date('Y-m-d', strtotime('tomorrow')) }}" class="form-control form-control-lg @error('data') is-invalid @enderror" type="date" name="data" value="{{ isset($registro->data) ? $registro->data : old('data') }}" placeholder="Digite a data da visita" required>
+    @error('data')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+    @enderror
+</div>
 <div class="d-flex flex-row">
-    <div class="form-group mr-5">
-        <label for="data">Data*</label>
-        <input min="{{ date('Y-m-d', strtotime('tomorrow')) }}" class="form-control form-control-lg @error('data') is-invalid @enderror" type="date" name="data" value="{{ isset($registro->data) ? $registro->data : old('data') }}" placeholder="Digite a data da visita" required>
-        @error('data')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
-    </div>
-    <div class="form-group mr-5">
+    <div class="form-group mr-5 w-100">
         <label for="hora">Hora de início*</label>
         <input min="{{ date('H:i', strtotime('09:00')) }}" max="{{ date('H:i', strtotime('15:00')) }}" class="form-control form-control-lg @error('hora_inicial') is-invalid @enderror" type="time" name="hora_inicial" value="{{ isset($registro->hora_inicial) ? $registro->hora_inicial : old('hora_inicial') }}" placeholder="Digite a hora do início da visita" required>
         @error('hora_inicial')
@@ -70,7 +71,7 @@
         </span>
         @enderror
     </div>
-    <div class="form-group mr-5">
+    <div class="form-group w-100">
         <label for="hora">Hora de fim*</label>
         <input min="{{ date('H:i', strtotime('09:00')) }}" max="{{ date('H:i', strtotime('15:00')) }}" class="form-control form-control-lg @error('hora_final') is-invalid @enderror" type="time" name="hora_final" value="{{ isset($registro->hora_final) ? $registro->hora_final : old('hora_final') }}" placeholder="Digite a hora do fim da visita" required>
         @error('hora_final')
@@ -95,5 +96,10 @@
     <input type="checkbox" name="confirmada" {{ isset($registro->confirmada) && $registro->confirmada == true ? 'checked' : ''}} value="true">
     <span class="checkmark"></span>
 </label>
+@error('confirmada')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+@enderror
 @endif
 
