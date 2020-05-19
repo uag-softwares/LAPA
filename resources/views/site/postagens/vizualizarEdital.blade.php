@@ -5,15 +5,15 @@
     <div class="container" >
         <h2>Evento</h2>
 
-        <div class="card-body d-flex flex-column align-items-center">
-            <section>
+        <div class="d-flex justify-content-around row text-left">
+            <div class="col-11 col-md-10 col-lg-8">
                 <h1 class="mb-4">{{ $registro->titulo}}</h1>
-                <article>
+                <div class="text-center">
                     <img class="img-fluid mb-4" src="{{ asset($registro->anexo) }}" alt="" style="max-height: 400px">
-                    <p class="text">{{ $registro->descricao}}</p>
-                    <p class="text-footer">Publicado {{ date('d/m/Y', strtotime($registro->created_at)) }} às {{ date('H:i', strtotime($registro->created_at)) }}</p>
-                </article>
-            </section>                          
+                </div>
+                <p class="text">{!! $registro->toArray()['descricao'] !!}</p>
+                <p class="text-footer">Publicado {{ date('d/m/Y', strtotime($registro->created_at)) }} às {{ date('H:i', strtotime($registro->created_at)) }}</p>
+            </div>
         </div>
            
     </div>

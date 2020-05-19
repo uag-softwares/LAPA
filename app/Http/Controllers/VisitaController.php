@@ -123,6 +123,16 @@ class VisitaController extends Controller
             
             Notification::send($userExiste, new ConfirmarEmailVisita($userExiste));
             $msgSucesso = 'Visita solicitada com sucesso, <strong>você deve verificar seu email para concluir a solicitação.<strong>';
+        
+        } else {
+
+            $admins = $this->usuario
+                ->whereNotNull('cpf_verified_at')
+                ->where('user_type', 'admin')
+                ->get();
+            foreach ($admins as $admin) {
+                    $admin->notify(new SolicitacaoVisita($admin));
+            }
         }
 
         $visita = [
