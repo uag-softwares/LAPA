@@ -1,8 +1,17 @@
+:root {
+    --main-green: #00AD50;
+    --main-dark-green: #009444;
+    --main-black: #212529;
+    --main-white: #f8f9fa;
+    
+}
+
+
+/* tamanho de fonte padrão dentro da classe container */
 div.container, header {
     font-family: 'Noto Sans HK', sans-serif;
 }
 
-/* tamanho de fonte padrão dentro da classe container */
 div.container {
     text-align: center;
     font-size: 22px;
@@ -32,7 +41,7 @@ header {
 
 /* Barra de navegação do site */
 .navbar-custom {
-    background-color: #00c853;
+    background-color: var(--main-green);
 }
 
 /* change the brand and text color */
@@ -43,7 +52,7 @@ header {
 
 /* Muda a cor e fonte dos links da navbar */
 .navbar-custom .navbar-nav .nav-link, .nav-item.dropdown button {
-    color: #FFFFFF;
+    color:   var(--main-white);
     font-size: 22px;
     font-style: normal;
     font-weight: bold;
@@ -51,7 +60,7 @@ header {
 
 /* Muda a cor e fonte dos links da dropdown de acesso */ 
 .dropdown-menu a {
-    color: #000000;
+    color: var(--main-black);
     font-size: 22px;
     font-style: normal;
 
@@ -64,21 +73,21 @@ header {
 
 /* Muda a cor do botao de expandir a navbar no celular */
 .navbar .fas {
-    color: #FFFFFF;
+    color:   var(--main-white);
 }
 
 /* Tamanho da fonte de todos os botoes */
 
 a.btn, button.btn {
     font-weight: bold;
-    background-color: #00c853;
-    color: #FFFFFF;
+    background-color: var(--main-green);
+    color:   var(--main-white);
 }
 
 a.btn.btn-outline, button.btn.btn-outline {
-    background-color: #fff;
-    color: #28a745;
-    border: 1px solid #00c853;
+    background-color: var(--main-white);
+    color: var(--main-dark-green);
+    border: 1px solid var(--main-green);
 }
 
 a.btn.btn-danger, button.btn.btn-danger {
@@ -88,8 +97,8 @@ a.btn.btn-danger, button.btn.btn-danger {
 a.btn:hover, button.btn:hover, .navbar-custom .nav-item.active .nav-link,
 .navbar-custom .nav-item:hover .nav-link, 
 .nav-item.dropdown button:hover {
-    background-color: #28a745;
-    color: #FFFFFF;
+    background-color: var(--main-dark-green);
+    color:   var(--main-white);
 }
 
 .nav-item.dropdown button:hover {
@@ -103,13 +112,13 @@ a.btn.btn-danger:hover, button.btn.btn-danger:hover {
 .btn.btn-link {
     all: unset;
     font-size: 22px;
-    background-color: #ffffff00;
+    background-color: var(--main-white);
     color: #007bff;
     padding: 0 0.5rem;
 }
 
 .btn.btn-link:hover {
-    background-color: #ffffff00;
+    background-color: var(--main-white);
     color: #0056b3;
     text-decoration: underline;
 }
@@ -124,7 +133,7 @@ div.container div.visita-detalhes {
 div.container div.visita-msg {
     padding: 1em;
     text-align: start;
-    border: 1px solid #00c853;
+    border: 1px solid var(--main-green);
     border-radius: 10px;
 }
 
@@ -133,6 +142,7 @@ div.container div.visita-msg {
     cursor: pointer;
     width: 10em;
     margin: 0 0.5rem 0.5rem;
+    background-color: var(--main-white);
 }
 
 .card.manage:hover {
@@ -149,7 +159,7 @@ div.container div.visita-msg {
 }
 
 .card.manage div.card-header, .card div.card-footer {
-    background-color: #ffffff00;
+    background-color: var(--main-white);
     border: 0;
     padding: 0.5em 0;
 }
@@ -159,7 +169,7 @@ div.container div.visita-msg {
 }
 
 a.clickable-card, a:hover.clickable-card {
-    color: #000;
+    color: var(--main-black);
     text-decoration: none;
 }
 /* Fim de cards da pagina logado */
@@ -194,7 +204,7 @@ ul {
 #overlay:after { /* X button icon */
   content: "\2715";
   position: absolute;
-  color:#fff;
+  color:var(--main-white);
   top: 10px;
   right:20px;
   font-size: 2em;
@@ -212,10 +222,10 @@ a:hover.page-link {
 }
 
 .list-group .list-group-item.active, li.page-item.active .page-link, span.badge-primary {
-    color: #fff;
+    color: var(--main-white);
     font-weight: bold;
-    background-color: #00c853;
-    border: 1px solid #00c853;
+    background-color: var(--main-green);
+    border: 1px solid var(--main-green);
 }
 
 /* Fim de links ativos do bootstrap */
@@ -235,7 +245,7 @@ a:hover.page-link {
 #leftSidebar.show {
     height: 100%;
     width: 270px;
-    background-color: #fff;
+    background-color: var(--main-white);
     z-index: 998;
 }
 
@@ -245,7 +255,7 @@ a:hover.page-link {
 
 #toggleLeftSidebar .btn {
     border-radius: 0 5px 5px 0; 
-    color: #fff;
+    color: var(--main-white);
 }
 
 #toggleLeftSidebar.push {
@@ -281,7 +291,7 @@ a:hover.page-link {
 }
 
 .item:hover {
-    color: #000;
+    color: var(--main-black);
     text-decoration: none;
     background-color: #eee;
 }
@@ -312,7 +322,7 @@ a:hover.page-link {
     left: 0%;
     padding: 2em;
     background-color: rgba(0, 0, 0, 0.8);
-    color: #fff;
+    color: var(--main-white);
     cursor: pointer;
 }
 
@@ -375,11 +385,11 @@ section .section-title {
     text-transform: uppercase;
 }
 #footer {
-    background: #28a745;
+    background: var(--main-green);
 }
 
 #footer p{
-    color: #ffffff;
+    color:   var(--main-white);
     text-decoration: none;
     background-color: transparent;
 }
@@ -389,11 +399,11 @@ section .section-title {
     border-left: 3px solid #eeeeee;
     padding-bottom: 6px;
     margin-bottom: 20px;
-    color:#ffffff;
+    color:  var(--main-white);
 }
 
 #footer a {
-    color: #ffffff;
+    color:   var(--main-white);
     text-decoration: none;
     background-color: transparent;
     -webkit-text-decoration-skip: objects;
