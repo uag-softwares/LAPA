@@ -1,3 +1,7 @@
+div.container, header {
+    font-family: 'Noto Sans HK', sans-serif;
+}
+
 /* tamanho de fonte padrão dentro da classe container */
 div.container {
     text-align: center;

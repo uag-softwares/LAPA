@@ -15,10 +15,9 @@
         <script src="{{ asset('js/pesquisa_atlas.js') }}" defer></script>
         <script src="{{ asset('js/pesquisa_materiais.js') }}" defer></script>
 
-        <!-- Fonts 
-        <link rel="dns-prefetch" href="//fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">-->
-
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+HK&display=swap" rel="stylesheet"> 
+        
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 

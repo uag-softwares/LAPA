@@ -3,6 +3,7 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+HK&display=swap" rel="stylesheet">
 </head>
 <body>
 <style>
@@ -30,20 +31,22 @@ width: 100% !important;
 {{ $header ?? '' }}
 
 <!-- Email Body -->
-<tr>
-<td class="body" width="100%" cellpadding="0" cellspacing="0">
-<table class="inner-body" align="center" width="570" cellpadding="0" cellspacing="0" role="presentation">
-<!-- Body content -->
-<tr>
-<td class="content-cell">
-{{ Illuminate\Mail\Markdown::parse($slot) }}
+    <tr>
+        <td class="body" width="100%" cellpadding="0" cellspacing="0">
+            <div>
+                <table class="inner-body" align="center" width="570" cellpadding="0" cellspacing="0" role="presentation">
+                <!-- Body content -->
+                    <tr>
+                        <td class="content-cell">
+                        {{ Illuminate\Mail\Markdown::parse($slot) }}
 
-{{ $subcopy ?? '' }}
-</td>
-</tr>
-</table>
-</td>
-</tr>
+                        {{ $subcopy ?? '' }}
+                        </td>
+                    </tr>
+                </table>
+            <div>
+        </td>
+    </tr>
 
 {{ $footer ?? '' }}
 </table>
