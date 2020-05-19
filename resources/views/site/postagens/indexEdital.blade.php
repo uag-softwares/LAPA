@@ -25,10 +25,14 @@
                                 <a href="{{ route('site.editais.vizualizar', $registro->slug) }}">
                                     {{$registro->titulo}} 
                                 </a>
-                                <p style="font-size:70%;">Publicado {{ date('d/m/Y', strtotime($registro->created_at)) }} às {{ date('H:m', strtotime($registro->created_at)) }}</p>
+                                <p style="font-size:70%;">Publicado {{ date('d/m/Y', strtotime($registro->created_at)) }} às {{ date('H:i', strtotime($registro->created_at)) }}</p>
                             </div>
                         </div>                  
-                  @endforeach       
+                  @endforeach   
+                  
+                <div class="d-flex justify-content-center">
+                    {{ $registros->links() }}
+                </div> 
                             
             </div>
             @endif

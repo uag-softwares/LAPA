@@ -42,10 +42,9 @@ class SolicitacaoVisita extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-		    ->from($this->user->email, $this->user->name)
                 ->subject('Nova solicitação de visita ao LAPA')
                 ->line('Você está recebendo este e-mail porque recebemos um pedido de solicitação de visita ao LAPA.')
-                ->action('Verificar solicitação',  'http://lapa-ufape.herokuapp.com/login');
+                ->action('Verificar solicitação',  url('/login'));
                     
     }
 

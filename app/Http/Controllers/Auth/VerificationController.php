@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\VerifiesEmails;
+use Illuminate\Auth\Events\Verified;
+use App\Notifications\SolicitacaoVisita;
+use App\User;
 
 class VerificationController extends Controller
 {
@@ -27,16 +31,41 @@ class VerificationController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
+    protected $user;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(User $user)
     {
-        $this->middleware('auth');
+        $this->user = $user;
+
+        $this->middleware('auth')->except('verificarVisita');
         $this->middleware('signed')->only('verify');
         $this->middleware('throttle:6,1')->only('verify', 'resend');
+    }
+
+    public function verificarVisita(Request $request)
+    {
+        $user = $this->user->find($request->route('id'));
+
+        if (!hash_equals((string) $request->route('hash'), sha1($user->getEmailForVerification()))) {
+            throw new AuthorizationException;
+        }
+
+        if ($user->markEmailAsVerified())
+            event(new Verified($user));
+
+        $admins = $this->user
+            ->whereNotNull('cpf_verified_at')
+            ->where('user_type', 'admin')
+            ->get();
+        foreach ($admins as $admin) {
+                $admin->notify(new SolicitacaoVisita($admin));
+        }
+
+        return redirect()->route('site.visita.busca')->with('success', 'Email verificado com sucesso! Agora é só aguardar nossa confirmação.');
     }
 }

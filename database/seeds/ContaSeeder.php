@@ -22,6 +22,9 @@ class ContaSeeder extends Seeder
                 'email' => 'v.santos0406@gmail.com',
             ]);
 
+            $vinicius['slug']=str_slug($vinicius->name).'-'.$vinicius->id;
+            $vinicius->update($vinicius->attributesToArray());
+
             factory(App\Conta::class)->create([
                 'password' => bcrypt('12345678'),
                 'user_id' => $vinicius->id,
@@ -37,6 +40,9 @@ class ContaSeeder extends Seeder
                 'email' => 'vianasantana21@gmail.com',
             ]);
 
+            $iris['slug']=str_slug($iris->name).'-'.$iris->id;
+            $iris->update($iris->attributesToArray());
+
             factory(App\Conta::class)->create([
                 'password' => bcrypt('12345678'),
                 'user_id' => $iris->id,
@@ -51,6 +57,9 @@ class ContaSeeder extends Seeder
                 'cpf' => '342.453.433-15',
                 'email' => 'raquellvieiraa@gmail.com',
             ]);
+
+            $raquel['slug']=str_slug($raquel->name).'-'.$raquel->id;
+            $raquel->update($raquel->attributesToArray());
 
             factory(App\Conta::class)->create([
                 'password' => bcrypt('12345678'),

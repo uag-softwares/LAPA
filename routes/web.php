@@ -39,12 +39,11 @@ Route::get('/site/quemSomos/vizualizar/{registro:slug}', ['as' => 'site.quemSomo
 
 Route::get('/site/materiais/index', ['as' => 'site.materiais.index', 'uses' => 'MaterialController@siteIndex'], function () {});
 Route::get('/site/materiais/disciplina/{disciplina:slug}', ['as' => 'site.materiais.disciplina', 'uses' => 'MaterialController@materiaisPorDisciplina'],function (App\Disciplina $disciplina) {return $disciplina;});
-Route::get('/site/materiais/ver/{registro:slug}', ['as' => 'site.materiais.ver_materiais', 'uses' => 'MaterialController@ver'], function (App\Postagem $registro) {return $registro;});
 
-
-Route::post('/site/visita/adicionar',['as'=> 'site.visita.buscar.registro','uses'=> 'Auth\RegisterController@buscarUsuarioVisita'],function () {});
-Route::get('/site/visita/adicionar', ['as' => 'site.visita.adicionar', 'uses' => 'VisitaController@adicionar'], function() {});
+Route::get('/site/visita/busca', ['as' => 'site.visita.busca', 'uses' => 'VisitaController@busca'], function() {});
+Route::get('/site/visita/buscar',['as'=> 'site.visita.buscar.registro','uses'=> 'Auth\RegisterController@buscarUsuarioVisita'],function () {});
 Route::post('/site/visita/salvar', ['as' => 'site.visita.salvar', 'uses' => 'VisitaController@salvarUsuarioVisita'], function() {});
+Route::get('/site/visita/verificar/{id}/{hash}', ['as' => 'site.verificar.visita', 'uses' => 'Auth\VerificationController@verificarVisita'], function() {});
 
 Auth::routes(['verify' => true]);
 

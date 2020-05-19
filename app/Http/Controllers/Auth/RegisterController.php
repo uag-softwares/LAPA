@@ -76,10 +76,10 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' =>'required|alpha|string|min:3|max:255',
-	    'surname' =>'required|alpha|string|min:3|max:255',
+	        'surname' =>'required|alpha|string|min:3|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
-	    'cpf' => 'required|regex:/\d{3}\.\d{3}\.\d{3}\-\d{2}/|string|unique:users',
+	        'cpf' => 'required|regex:/\d{3}\.\d{3}\.\d{3}\-\d{2}/|string|unique:users',
             'user_description' => 'max:255|nullable',
             'link_lattes' => 'url|string|nullable',
             'avatar' => 'mimes:jpeg,jpg,png,gif|max:2048|nullable' 
@@ -114,32 +114,34 @@ class RegisterController extends Controller
 
        $user= $this->usuario->create([
             'name' =>  $data ['name'],
-	    'cpf' =>  $data ['cpf'],
-	    'email' =>  $data['email'],
-	    'surname' =>  $data ['surname'],
-	    'user_description' =>  $data ['user_description'],
-	    'avatar' => $avatar,
-	    'user_type' => 'admin',
+            'cpf' =>  $data ['cpf'],
+            'email' =>  $data['email'],
+            'surname' =>  $data ['surname'],
+            'user_description' =>  $data ['user_description'],
+            'avatar' => $avatar,
+            'user_type' => 'admin',
             'link_lattes'=> $data['link_lattes'],
         ]);
+
         $this->conta->create([
-	  'password' => Hash::make( $data ['password']),
-	  'user_id'=>$user->id,  
+            'password' => Hash::make( $data ['password']),
+            'user_id'=>$user->id,  
         ]);
+
         $user['slug']=str_slug($user->name).'-'.$user->id;
         $user->update($user->attributesToArray());
+
         foreach ($registros as $registro) {
-              $registro->notify(new SolicitacaoAcesso($user));
+            $registro->notify(new SolicitacaoAcesso($user));
         }
 
-   return $user;
+        return $user;
+    }
 
-    }
     public function index (){
-        
-       
-	return view('auth.registros.index ');
+    	return view('auth.registros.index ');
     }
+
     public function gerenciarSolicitacao(){
         $usersAdmin=$this->usuario->where( 'user_type', 'admin')->get();
         $registros= $usersAdmin->where('cpf_verified_at',null)->all();
@@ -150,22 +152,21 @@ class RegisterController extends Controller
         $user=$this->usuario->find($id_user);
         $user['cpf_verified_at']=now();
         $dados=[$user];
-	$user->update($dados);
+	    $user->update($dados);
         Notification::send($user,new SolicitacaoAcesso_aceita(Auth::user()));
         return redirect()->route('auth.acesso_gerenciamento')->with('success','Solicitação confrimada com sucesso'); 
     }
-     public function recusarSolicitacao($id_user){
+
+    public function recusarSolicitacao($id_user){
         $user=$this->usuario->find($id_user);
         Notification::send($user,new SolicitacaoAcesso_recusada(Auth::user()));
         if($user->delete()){
-	     return redirect()->route('auth.acesso_gerenciamento')->with('success','Solicitação recusada com sucesso');
+	        return redirect()->route('auth.acesso_gerenciamento')->with('success','Solicitação recusada com sucesso');
         }
     }
 
     public function editar(){
-	
-	
-	return view('auth.registros.editar');
+	    return view('auth.registros.editar');
     }
    
     public function atualizar(RegisterRequest $data)//retirar verificação de senha
@@ -185,33 +186,31 @@ class RegisterController extends Controller
         $user=Auth::user();
         $user->update($dados);
         
-	return redirect()->route('auth.registros')->with('success','Conta editada com sucesso');
+	    return redirect()->route('auth.registros')->with('success','Conta editada com sucesso');
          
     }
 
-  public function deletar($id_user){
-	$data=$this->usuario->find($id_user);
+    public function deletar($id_user){
+        $data=$this->usuario->find($id_user);
 
         Auth::logout();
 
-    if ($data->delete()) {
-
-         return redirect()->route('register')->with('success','Conta exluida com sucesso');
+        if ($data->delete()) {
+            return redirect()->route('register')->with('success','Conta exluida com sucesso');
+        }
     }
-  }
 
-   public function siteIndex(){
+    public function siteIndex(){
         $usersAdmin=$this->usuario->where( 'user_type', 'admin')->get();
         $registros= $usersAdmin->whereNotNull('cpf_verified_at')->all();
        
         return view('site.quemSomos.index', compact('registros'));
     }
-  public function siteRegistervizualizar(User $registro){
-       
-       
-        return view('site.quemSomos.vizualizar', compact('registro'));
 
-  }
+    public function siteRegistervizualizar(User $registro){
+        return view('site.quemSomos.vizualizar', compact('registro'));
+    }
+
     public function buscarUsuarioVisita(EmailVisitaRequest $request)
     {  
         $request->validated();

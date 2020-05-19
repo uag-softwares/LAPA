@@ -27,7 +27,7 @@ class PostagemController extends Controller
 
     public function index() 
     {
-        $registros = $this->postagem->all();
+        $registros = $this->postagem->all()->reverse();
         return view('auth.postagem.index', compact('registros'));
     }
 
@@ -57,10 +57,10 @@ class PostagemController extends Controller
         }
          if($request['tipo_postagem']=='evento'){
              if($request['data']==null){
-                return redirect()->back()->withErrors(['data' => 'Selecionar data quando a postagem for um evento é obrigatório']);
+                return redirect()->back()->withErrors(['data' => 'Selecionar data quando a postagem for um evento é obrigatório'])->withInput();
              }
             else if($request['hora']==null){
-                return redirect()->back()->withErrors(['hora' => 'Selecionar á hora quando a postagem for um evento é obrigatório']);
+                return redirect()->back()->withErrors(['hora' => 'Selecionar á hora quando a postagem for um evento é obrigatório'])->withInput();
              }
         }
         $post=$this->postagem->create([
@@ -122,38 +122,42 @@ class PostagemController extends Controller
     }
     
      public function siteHome(){//ordenar por data
-        $posts= $this->postagem->where( 'tipo_postagem', 'noticia')->getQuery()->orderBy('updated_at', 'DESC')->get();
-        $registros=$posts;
+        //$posts= $this->postagem->where( 'tipo_postagem', 'noticia')->getQuery()->orderBy('updated_at', 'DESC')->get();
+        /*$registros=$posts;
         if (count($posts)> 3){
            $registros=[$posts[0],$posts[1],$posts[2]];
-        }
+        }*/
+        $registros = $this->postagem->where( 'tipo_postagem', 'noticia')->latest()->take(3)->get();
         return view('site.postagens.home', compact('registros'));
     }
+
     public function siteIndexEvento(){
-        $posts = $this->postagem->where( 'tipo_postagem', 'evento')->getQuery()->orderBy('updated_at', 'DESC')->get();
-        $registros = $posts->where('publicado',true)->all();
+        $posts = $this->postagem->where( 'tipo_postagem', 'evento')->latest();
+        $registros = $posts->where('publicado',true)->paginate(5);
         return view('site.postagens.indexEvento', compact('registros'));
     }
-   public function siteIndexEdital(){
-       $posts = $this->postagem->where( 'tipo_postagem', 'edital')->getQuery()->orderBy('updated_at', 'DESC')->get();
-       $registros = $posts->where('publicado',true)->all();
+
+    public function siteIndexEdital(){
+       $posts = $this->postagem->where( 'tipo_postagem', 'edital')->latest();
+       $registros = $posts->where('publicado',true)->paginate(5);
        return view('site.postagens.indexEdital', compact('registros'));
-   }
-   public function siteIndexNoticia(){
-        $posts = $this->postagem->where( 'tipo_postagem', 'noticia')->getQuery()->orderBy('updated_at', 'DESC')->get();
-        $registros = $posts->where('publicado',true)->all();
+    }
+
+    public function siteIndexNoticia(){
+        $posts = $this->postagem->where( 'tipo_postagem', 'noticia')->latest();
+        $registros = $posts->where('publicado',true)->paginate(5);
         return view('site.postagens.indexNoticia', compact('registros'));
     }
-   public function siteVizualizarEvento(Postagem $registro){
-        
+
+    public function siteVizualizarEvento(Postagem $registro){
         return view('site.postagens.vizualizarEvento', compact('registro'));
     }
-  public function siteVizualizarNoticia(Postagem $registro){
-       
-        return view('site.postagens.vizualizarNoticia', compact('registro'));
+
+    public function siteVizualizarNoticia(Postagem $registro){
+       return view('site.postagens.vizualizarNoticia', compact('registro'));
     }
-  public function siteVizualizarEdital(Postagem $registro){
-       
+    
+    public function siteVizualizarEdital(Postagem $registro){
         return view('site.postagens.vizualizarEdital', compact('registro'));
     }
 

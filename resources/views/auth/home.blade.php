@@ -87,7 +87,7 @@
                         </h2>
                     </div>
                     <div class="card-footer">
-                        <a href="{{ route('site.visita.adicionar') }}" class="btn">
+                        <a href="{{ route('site.visita.busca') }}" class="btn">
                             Adicionar
                         </a>
                         <a href="{{ route('auth.visitas') }}" class="btn">

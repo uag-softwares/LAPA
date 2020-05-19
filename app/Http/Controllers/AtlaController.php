@@ -34,7 +34,7 @@ class AtlaController extends Controller
 
     public function index() 
     {
-        $registros = $this->atla->all();
+        $registros = $this->atla->all()->reverse();
         return view('auth.atlas.index', compact('registros'));
     }
 
@@ -135,6 +135,6 @@ class AtlaController extends Controller
         $busca = $this->categoria->where('disciplina_id', $disciplina->id);
         $registros = $busca->get();
         $paginas = $busca->paginate(1);
-        return view('site.atlas.ver_disciplinas', compact('paginas', 'registros', 'disciplina'));
+        return view('site.atlas.ver_atlas_disciplinas', compact('paginas', 'registros', 'disciplina'));
     }
 }

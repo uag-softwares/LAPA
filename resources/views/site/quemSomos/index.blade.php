@@ -2,25 +2,22 @@
 @section('titulo', 'Professores')
 @section('content')
     <div class="container" >
-        
-        <div class="breadcrumbs d-flex text-left justify-content-sm-start justify-content-between">
-            <h2>Professores</h2>
-        </div>
+        <h2>Professores</h2>
+
         <div class="d-flex justify-content-around row">
 
             @if (count($registros) < 1)
                 <p>Ops, ainda não temos professores cadastrados</p>
             @else
         
-            <div class="item-list px-4">
+            <div class="row col-12 justify-content-center">
                    
                   @foreach ($registros as $registro)
-                      <div class="d-block d-md-flex my-3 shadow-sm rounded" id="usuarios">
-                          <!--<img src="{{ asset($registro->anexo) }}" alt="" width="200" height="100"></img> -->
-                          <div class="img">
+                      <div class="col-11 col-md-5 col-lg-4 m-2 px-5 shadow-sm border rounded" id="usuarios">
+                            <div class="img">
                                 <img class="img-fluid rounded" src="{{ asset($registro->avatar) }}" alt="Foto do Professor(ª)" height="200" width="200">
                             </div>
-                          <div class="m-4 text-center text-md-left">
+                            <div class="m-4 text-center text-md-left">
                                 <a href="{{ route('site.quemSomos.vizualizar', $registro->slug) }}">
                                     {{$registro->name}}
                                 </a>
@@ -28,10 +25,7 @@
                                      <a href = "mailto:{{ $registro->email}}">{{ $registro->email}}</a> 
                                 </p>
                             </div>
-                          
-                          
                       </div>
-                                          
                   @endforeach       
                               
                   
