@@ -335,3 +335,17 @@ article .text-footer {
         width: 100%;
     }
 }
+/* footer */
+
+footer {
+    background-color: #00c853;       
+}
+
+
+footer div.item-green {
+    background-color:  #00c853;    
+    color: #fff;
+    padding: 1em;
+}
+
+
