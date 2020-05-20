@@ -6,8 +6,8 @@
                 </div>
                 <img class="my-4" style="height:130px;" src="{{ asset('img/lapa-uag.png') }}" alt="">
                 <div class="title d-none d-md-block">
-                    <h3>Laboratório de Anatomia e Patologia Animal</h3>
                     <h4>Universidade Federal do Agreste de Pernambuco</h4>
+                    <h3>Laboratório de Anatomia e Patologia Animal</h3>
                 </div>
                 <img class="my-4" style="height:130px;" src="{{ asset('img/logo-uag.png') }}" alt="">
             </header>
