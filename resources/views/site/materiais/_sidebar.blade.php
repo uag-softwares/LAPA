@@ -13,7 +13,7 @@
             @if($paginas->currentPage() == ($i + 1))
                 <a class="list-group-item active" title="{{ $registros[$i]->titulo }}">{{ $registros[$i]->titulo }}</a>
             @else
-                <a class="list-group-item list-group-item-action" title="{{ $registros[$i]->titulo }}" href="{{ route('site.materiais.disciplina', $disciplina->id).'?page='.($i + 1) }}">{{ $registros[$i]->titulo }}</a>
+                <a class="list-group-item list-group-item-action" title="{{ $registros[$i]->titulo }}" href="{{ route('site.materiais.disciplina', $disciplina->slug).'?page='.($i + 1) }}">{{ $registros[$i]->titulo }}</a>
             @endif
         @endfor
 

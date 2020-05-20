@@ -10,7 +10,7 @@ Feature: material
     And   Eu estou na pagina de adicionar materiais
     When  Eu preencho o campo titulo com "Material de Ihc"
     And   Eu preencho o campo texto com "Esse material e referente a disciplina ES"
-    And Eu clico em escolher arquivo e escolho "teste.pdf"
+    And   Eu clico em escolher arquivo e escolho "arquivo.pdf"
     And   Eu seleciono a disciplina "Ihc"
     And   Eu clico em adicionar material
     Then  Eu vejo que o material foi adicionado corretamente

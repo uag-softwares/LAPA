@@ -9,9 +9,9 @@ suites:
                     url: http://localhost:8000
                 - \Helper\Acceptance
                 - Db:
-                   dsn: 'mysql:host=localhost;dbname=lapa'
+                   dsn: 'mysql:host=localhost;dbname=laravel'
                    user: 'root'
-                   password: '33743637'
+                   password: '12345678'
         # add Codeception\Step\Retry trait to AcceptanceTester to enable retries
         step_decorators:
             - Codeception\Step\ConditionalAssertion
