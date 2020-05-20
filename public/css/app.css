@@ -429,12 +429,25 @@ section .section-title {
   font-weight: 200;
 }
 
+#footer .container .row div + div {
+  border-left: 1px solid var(--main-white);
+}
+
 @media only screen and (max-width: 767px) {
   #postagens .img {
     width: 100%;
   }
+
   #usuarios .img {
     width: 100%;
   }
   
+}
+
+@media only screen and (max-width: 575px) {
+
+  #footer .container .row div + div {
+    border-left: none;
+  }
+
 }

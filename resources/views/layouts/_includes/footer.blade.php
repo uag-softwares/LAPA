@@ -11,7 +11,7 @@
                     <p>Avenida Bom Pastor, s/n.º<br />Bairro: Boa Vista<br/>
 						CEP: 55292-270<br/>Garanhuns - PE</p>
 				</div>
-				<div class="border-left col-xs-12 col-sm-4 col-md-4">
+				<div class="col-xs-12 col-sm-4 col-md-4">
 					<h5>Navegação</h5>
 					<ul class="list-unstyled quick-links">
 						<li><a href="{{ route('site.atlas.index') }}">Atlas Iterativo</a>
@@ -22,7 +22,7 @@
 						<li><a href="{{ route('site.quemSomos.index') }}">Quem somos</a>
 					</ul>
 				</div>
-				<div class="border-left col-xs-12 col-sm-4 col-md-4">
+				<div class="col-xs-12 col-sm-4 col-md-4">
 					<h5>Contatos</h5>
 					
             <!-- Facebook -->
