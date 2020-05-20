@@ -22,7 +22,7 @@
                     <div class="col-12 col-md-10 col-lg-9 text-left mb-4">
                         <h3 class="title">{{ $pagina->titulo }}</h3>
                         <p class="text">
-                            {{ $pagina->texto }}
+                            <p class="text">{!! $pagina->toArray()['texto'] !!}</p>
                         </p>
                         <p class="text-footer">
                             Publicado em {{ date('d/m/Y', strtotime($pagina->created_at)) }} às {{ date('H:i', strtotime($pagina->created_at)) }}

@@ -10,7 +10,7 @@ Feature: postagem
     When Eu preencho o campo titulo com "Visita ao LAPA"
     And Eu preencho o campo descricao com "Recebemos alunos da escola EREMG"
     And Eu seleciono o campo tipo da postagem "noticia"
-    And Eu clico em Escolher arquivo e escolho "anexo.pgn"
+    And Eu clico em Escolher arquivo e escolho "anexo.png"
     And Eu clico em Adicionar
     Then Eu vejo que a postagem com titulo "Visita ao LAPA" foi salva com sucesso
 
@@ -20,7 +20,7 @@ Feature: postagem
     And Eu clico em Editar a postagem com titulo "Visita ao LAPA"
     When Eu edito o titulo para "Entrega de peças ao acervo"
     And Eu edito a descricao para "Chegaram novas peças no nosso acervo"
-    And Eu clico em Escolher arquivo e escolho "anexo2.pgn"
+    And Eu clico em Escolher arquivo e escolho "anexo2.png"
     And Eu clico em Editar
     Then Eu vejo que a postagem com titulo "Entrega de peças ao acervo" foi salva com sucesso
 
@@ -48,7 +48,7 @@ Scenario: criar postagem com tamanho do titulo invalido
     When Eu preencho o campo titulo com "aa"
     And Eu preencho o campo descricao com "Recebemos alunos da escola EREMG"
     And Eu seleciono o campo tipo da postagem "noticia"
-    And Eu clico em Escolher arquivo e escolho "anexo.pgn"
+    And Eu clico em Escolher arquivo e escolho "anexo.png"
     And Eu clico em Adicionar
     Then Eu vejo a mensagem de erro "O campo titulo deve conter no mínimo 5 caracteres."
 
@@ -60,7 +60,7 @@ Scenario: criar postagem com tamanho da descricao invalida
     When Eu preencho o campo titulo com "Visita ao LAPA"
     And Eu preencho o campo descricao com "hwh"
     And Eu seleciono o campo tipo da postagem "noticia"
-    And Eu clico em Escolher arquivo e escolho "anexo.pgn"
+    And Eu clico em Escolher arquivo e escolho "anexo.png"
     And Eu clico em Adicionar
     Then Eu vejo a mensagem de erro "O campo descricao deve conter no mínimo 10 caracteres."
 

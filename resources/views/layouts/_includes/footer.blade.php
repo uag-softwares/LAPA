@@ -1,6 +1,4 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="{{ asset('js/summernote_config.js') }}"></script>
 <!------ Include the above in your HEAD tag ---------->
 
 <!-- Footer -->
@@ -19,7 +17,7 @@
 						<li><a href="{{ route('site.atlas.index') }}"><i class="fa fa-angle-double-right"></i>Atlas Iterativo</a></li>
 						<li><a href="{{ route('site.visita.busca') }}"><i class="fa fa-angle-double-right"></i>Visitas</a></li>
 						<li><a href="{{ route('site.postagens.indexNoticia') }}"><i class="fa fa-angle-double-right"></i>Notícias</a></li>
-            <li><a href="{{ route('site.postagens.indexEvento') }}"><i class="fa fa-angle-double-right"></i>Eventos</a></li>
+            			<li><a href="{{ route('site.postagens.indexEvento') }}"><i class="fa fa-angle-double-right"></i>Eventos</a></li>
 						<li><a href="{{ route('site.materiais.index') }}"><i class="fa fa-angle-double-right"></i>Materiais</a></li>
 						<li><a href="{{ route('site.quemSomos.index') }}"><i class="fa fa-angle-double-right"></i>Quem somos</a></li>
 					</ul>
@@ -40,9 +38,8 @@
             <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
           </a>
 					
-				</div>
-			</div>
-      <p>© 2020 Todos os direitos reservados.</p>
-
+		</div>
+	</div>
+  <p>© 2020 Todos os direitos reservados.</p>
  </section>
 <!-- ./Footer -->

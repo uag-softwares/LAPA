@@ -24,10 +24,10 @@ class AtlaRequest extends FormRequest
     public function rules()
     {
         return [
-            'titulo' => 'required|min:5', 'string',
-            'descricao' => 'required|min:10', 'string',
+            'titulo' => 'required|min:5|string',
+            'descricao' => 'required|min:10|string',
             'categoria_id' => 'required|integer|exists:categorias,id',
-            
+            'anexo' => 'mimes:jpeg,jpg,png,gif|max:2048',
         ];
     }
 
@@ -45,7 +45,6 @@ class AtlaRequest extends FormRequest
             'descricao.min' => 'O tamanho mínimo da descrição é 10 letras',
             'categoria_id.exists' => 'A categoria deve estar cadastrada',
             'categoria_id.required' => 'A categoria é obrigatória',
-            
         ];
     }
 }

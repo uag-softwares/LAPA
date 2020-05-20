@@ -47,7 +47,7 @@ class ResetPassword extends Notification
                    ->from($this->user->email, 'LAPA - UFAPE')
                     ->subject('Alterar Senha')
                     ->line('Você está recebendo este e-mail porque recebemos um pedido de redefinição de senha para sua conta.')
-                    ->action('Resetar Senha',  'http://lapa-ufape.herokuapp.com/password/reset/'.$this->token. '?email=' . urlencode($this->user->email));
+                    ->action('Resetar Senha',  url('/password/reset/'.$this->token. '?email=' . urlencode($this->user->email)));
     }
     /**
      * Get the array representation of the notification.
