@@ -396,8 +396,6 @@ section .section-title {
 #footer h5 {
   padding-left: 10px;
   padding-bottom: 6px;
-  margin-bottom: 20px;
-  padding-left: 10px;
   color: var(--main-white);
 }
 
@@ -410,8 +408,8 @@ section .section-title {
 
 #footer ul.quick-links li:hover{
   padding: 3px 0;
-  margin-left:5px;
-  font-weight:400;
+  margin-left: 5px;
+  font-weight: 400;
 }
 
 #footer ul.quick-links li a i{
