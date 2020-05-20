@@ -393,10 +393,11 @@ section .section-title {
   background-color: transparent;
 }
 
-#footer h5{
+#footer h5 {
   padding-left: 10px;
   padding-bottom: 6px;
   margin-bottom: 20px;
+  padding-left: 10px;
   color: var(--main-white);
 }
 
