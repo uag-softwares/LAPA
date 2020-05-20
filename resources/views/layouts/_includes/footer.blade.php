@@ -14,12 +14,12 @@
 				<div class="border-left col-xs-12 col-sm-4 col-md-4">
 					<h5>Navegação</h5>
 					<ul class="list-unstyled quick-links">
-						<li><a href="{{ route('site.atlas.index') }}"><i class="fa fa-angle-double-right"></i>Atlas Iterativo</a></li>
-						<li><a href="{{ route('site.visita.busca') }}"><i class="fa fa-angle-double-right"></i>Visitas</a></li>
-						<li><a href="{{ route('site.postagens.indexNoticia') }}"><i class="fa fa-angle-double-right"></i>Notícias</a></li>
-            			<li><a href="{{ route('site.postagens.indexEvento') }}"><i class="fa fa-angle-double-right"></i>Eventos</a></li>
-						<li><a href="{{ route('site.materiais.index') }}"><i class="fa fa-angle-double-right"></i>Materiais</a></li>
-						<li><a href="{{ route('site.quemSomos.index') }}"><i class="fa fa-angle-double-right"></i>Quem somos</a></li>
+						<li><a href="{{ route('site.atlas.index') }}">Atlas Iterativo</a>
+						<li><a href="{{ route('site.visita.busca') }}">Visitas</a>
+						<li><a href="{{ route('site.postagens.indexNoticia') }}">Notícias</a>
+            			<li><a href="{{ route('site.postagens.indexEvento') }}">Eventos</a>
+						<li><a href="{{ route('site.materiais.index') }}">Materiais</a>
+						<li><a href="{{ route('site.quemSomos.index') }}">Quem somos</a>
 					</ul>
 				</div>
 				<div class="border-left col-xs-12 col-sm-4 col-md-4">
@@ -27,15 +27,15 @@
 					
             <!-- Facebook -->
           <a href="#" class="facebook-icone">
-            <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+            <i class="fab fa-facebook-f fa-lg white-text"> </i>
           </a>
           <!-- Twitter -->
           <a href="#" class="twitter-icone">
-            <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+            <i class="fab fa-twitter fa-lg white-text"> </i>
           </a>
           <!--Instagram-->
           <a href="#" class="instagran-icone">
-            <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+            <i class="fab fa-instagram fa-lg white-text"> </i>
           </a>
 					
 		</div>

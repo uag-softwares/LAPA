@@ -388,28 +388,37 @@ section .section-title {
 }
 
 #footer p{
+  padding: 0 0 1em 0;
+  margin: 0;
+  font-size: 1rem;
   color: var(--main-white);
   text-decoration: none;
   background-color: transparent;
 }
 
 #footer h5 {
-  padding-left: 10px;
-  padding-bottom: 6px;
+  margin: 0 0 0.75em 0;
+  font-size: 1.5rem;
+  font-weight: bold;
   color: var(--main-white);
 }
 
 #footer a {
+  font-size: 1rem;
   color: var(--main-white);
   text-decoration: none;
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
 }
 
+#footer i {
+  font-size: 2rem;
+  padding: 0.5em 1em;
+}
+
 #footer ul.quick-links li:hover{
-  padding: 3px 0;
-  margin-left: 5px;
-  font-weight: 400;
+  text-decoration: underline;
+  color: var(--main-white);
 }
 
 #footer ul.quick-links li a i{
