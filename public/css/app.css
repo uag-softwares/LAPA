@@ -3,6 +3,7 @@
   --main-dark-green: #009444;
   --main-black: #212529;
   --main-white: #f8f9fa;
+  --main-light: #e8e8ee;
 }
 
 /* tamanho de fonte padrão dentro da classe container */
@@ -441,13 +442,10 @@ section .section-title {
   #usuarios .img {
     width: 100%;
   }
-  
 }
 
 @media only screen and (max-width: 575px) {
-
   #footer .container .row div + div {
     border-left: none;
   }
-
 }
