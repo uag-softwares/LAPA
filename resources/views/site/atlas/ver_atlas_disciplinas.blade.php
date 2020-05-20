@@ -20,7 +20,7 @@
                             <div class="material-group list-group-item list-group-item-action">
                                     
                                 @if (count($registro->atla) >= 1)
-                                    <a class="item disciplina-atla-item" href="{{ route('site.atlas.categoria', $registro->id) }}">
+                                    <a class="item disciplina-atla-item" href="{{ route('site.atlas.categoria', $registro->slug) }}">
                                         {{ $registro->nome }}
                                     </a>
                                 @endif
