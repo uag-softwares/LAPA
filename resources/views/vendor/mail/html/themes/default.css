@@ -15,12 +15,6 @@ body {
   border-radius: 10px;
 }
 
-.d-flex {
-  display: flex;
-  padding: 2em;
-  justify-content: center;
-}
-
 .logo + .logo {
   margin-left: 1.5em;
 }
