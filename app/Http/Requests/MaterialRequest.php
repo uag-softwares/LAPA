@@ -24,10 +24,10 @@ class MaterialRequest extends FormRequest
     public function rules()
     {
         return [
-           'titulo' =>['required','min:5'],
-           'texto' => ['required','min:10'],
-           'disciplina_id' =>['required'],
-           'anexo' => ['max:2048']
+           'titulo' =>'required|min:5',
+           'texto' => 'required|min:10',
+           'disciplina_id' =>'required',
+           'anexo' => 'required|mimes:jpeg,jpg,png,gif,pdf,doc,txt,docx,odt,xls,csv,xlsx,ppt,pptx,rtf|max:2048',
         ];
     }
     public function messages(){
@@ -36,10 +36,7 @@ class MaterialRequest extends FormRequest
 	    'titulo.min'=>'Título deve conter no mínimo três letras',
 	    'texto.required' => 'Escrever sobre o texto é obrigatório',
         'texto.min' => 'O tamanho mínimo é de 10 letras',
-        'anexo.max' => 'O tamanho máximo do anexo deve ser 2MB',
 	    'disciplina_id.required' => 'Escolher disciplina é obrigátorio',
-	   
-	    
         ];
     }
 }
