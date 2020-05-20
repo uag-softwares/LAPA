@@ -370,6 +370,7 @@ section .section-title {
     margin-bottom: 50px;
     text-transform: uppercase;
 }
+
 #footer {
     background: #28a745;
 }
@@ -393,6 +394,7 @@ section .section-title {
     background-color: transparent;
     -webkit-text-decoration-skip: objects;
 }
+
 #footer ul.quick-links li:hover{
 	padding: 3px 0;
 	margin-left:5px;
