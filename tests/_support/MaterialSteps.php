@@ -41,7 +41,8 @@ class MaterialSteps extends \Codeception\Actor
     */
     public function euVejoQueOMaterialFoiAdicionadoCorretamente()
     {
-        $this->see('Material adicionado com sucesso!');
+        $this->seeInCurrentUrl('/auth/materiais');
+        
     }
 
 
