@@ -4,12 +4,12 @@
                 <div class="title d-md-none">
                     <h3>Laboratório de Anatomia e Patologia Animal</h3>
                 </div>
-                <img class="my-4" style="height:130px;" src="{{ asset('img/lapa-icon.png') }}" alt="">
+                <img class="my-4" style="height:130px;" src="{{ asset('img/lapa-uag.png') }}" alt="">
                 <div class="title d-none d-md-block">
                     <h3>Laboratório de Anatomia e Patologia Animal</h3>
                     <h4>Universidade Federal do Agreste de Pernambuco</h4>
                 </div>
-                <img class="my-4" style="height:130px;" src="{{ asset('img/logo.png') }}" alt="">
+                <img class="my-4" style="height:130px;" src="{{ asset('img/logo-uag.png') }}" alt="">
             </header>
 
             <nav class="navbar navbar-expand-lg navbar-custom px-4">
@@ -46,7 +46,7 @@
                             </li>
                             <li class="nav-item dropdown">
                                 <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Acesso à informação
+                                    Postagens
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                                     <a href="{{ route('site.postagens.indexEvento') }}" class="dropdown-item">Eventos</a>

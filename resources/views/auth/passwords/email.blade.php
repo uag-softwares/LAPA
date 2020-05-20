@@ -17,7 +17,7 @@
     <form method="POST" action="{{ route('auth.password.validatePasswordRequest') }}">
         @csrf
         <div class="form-group">
-            <label for="name">Endereço de e-mail</label>
+            <label for="name">Endereço de e-mail*</label>
             <input id="email" type="email" class="form-control form-control-lg @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
             @error('email')
                 <span class="invalid-feedback" role="alert">

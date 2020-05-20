@@ -9,7 +9,7 @@
 </div>
 <div class="form-group">
     <label for="descricao">Descrição*</label>
-    <textarea  id="summernote" class="form-control form-control-lg @error('descricao') is-invalid @enderror" type="text" name="descricao" placeholder="Descreva aqui a descrição deste atla">{{ isset($registro->descricao) ? $registro->descricao : old('descricao') }}</textarea>
+    <textarea class="form-control form-control-lg @error('descricao') is-invalid @enderror" type="text" name="descricao" placeholder="Descreva aqui a descrição deste atla">{{ isset($registro->descricao) ? $registro->descricao : old('descricao') }}</textarea>
     @error('descricao')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -36,8 +36,13 @@
 </div>
 
 <div class="form-group">
-    <label for="nome">Anexo</label>
-    <input class="form-control form-control-lg" type="file" name="anexo">
+    <label for="nome">Anexo*</label>
+    <input class="form-control form-control-lg @error('anexo') is-invalid @enderror" type="file" name="anexo">
+    @error('anexo')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+    @enderror
 </div>
 
 @if(@isset($registro->anexo))

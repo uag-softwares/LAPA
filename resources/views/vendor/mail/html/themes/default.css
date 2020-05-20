@@ -1,0 +1,72 @@
+body {
+  background-color: #00c853;
+  font-family: 'Noto Sans HK', sans-serif;
+}
+
+.body {
+  text-align: center;
+}
+
+.body div {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.d-flex {
+  display: flex;
+  padding: 2em;
+}
+
+.logo + .logo {
+  margin-left: 1.5em;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.align-self-center {
+  align-self: center;
+}
+
+.align-self-end {
+  align-self: flex-end;
+}
+
+.footer {
+  color: #fff;
+  font-weight: bold;
+}
+
+.button {
+  padding: 0.75em 1.5em;
+  background-color: #00c853;
+  border-radius: 5px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.button:hover {
+  background-color: #28a745;
+}
+
+.accessibility {
+  width: 100%;
+  max-width: 550px;
+  margin: 0 auto;
+  text-align: center;
+  overflow: hidden;
+}
+
+.accessibility p {
+  overflow-wrap: anywhere;
+  margin: 1em;
+}
+
+.content-cell {
+  padding: 1em;
+}
