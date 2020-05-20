@@ -18,22 +18,11 @@ body {
 .d-flex {
   display: flex;
   padding: 2em;
+  justify-content: center;
 }
 
 .logo + .logo {
   margin-left: 1.5em;
-}
-
-.justify-content-center {
-  justify-content: center;
-}
-
-.align-self-center {
-  align-self: center;
-}
-
-.align-self-end {
-  align-self: flex-end;
 }
 
 .footer {
