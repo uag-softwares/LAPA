@@ -12,7 +12,8 @@
                     </button>
                 </div>
             @endif
-    <table class="table">
+    <div class="table-responsive">
+      <table class="table">
         <thead>
             <tr>
                 <th>Nome</th>
@@ -34,6 +35,7 @@
                 </td>
             </tr>
         </tbody>
-    </table>
+      </table>
+   </div>
 </div>
 @endsection

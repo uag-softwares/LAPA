@@ -2,7 +2,7 @@
 
 @section('titulo', 'Gerenciar Solicitações de Registros')
 @section('content')
-        <div class="container">
+       <div class="container">
             <h2>Gerenciar Solicitações de Registros</h2>
             @if(Session::has('success'))
                 <div class="alert alert-success alert-dismissible">
@@ -12,7 +12,8 @@
                     </button>
                 </div>
             @endif
-            <table class="table">
+            <div class="table-responsive">
+              <table class="table">
                 <thead>
                     <tr>
                         <th>Nome</th>
@@ -36,9 +37,10 @@
                     </tr>
                     @endforeach
                 </tbody>
-            </table>
-            <div class="d-flex justify-content-center">
+             </table>
+             <div class="d-flex justify-content-center">
                     {{ $registros->links() }}
-            </div> 
-        </div>
+             </div>
+         </div> 
+       </div>
 @endsection
