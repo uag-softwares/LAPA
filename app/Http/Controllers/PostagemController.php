@@ -27,7 +27,7 @@ class PostagemController extends Controller
 
     public function index() 
     {
-        $registros = $this->postagem->all()->reverse();
+        $registros = $this->postagem->latest()->paginate(5);
         return view('auth.postagem.index', compact('registros'));
     }
 

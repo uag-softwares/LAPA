@@ -25,7 +25,7 @@ class DisciplinaController extends Controller
 
     public function index() 
     {
-        $registros = $this->disciplina->all();
+        $registros = $this->disciplina->latest()->paginate(5);
         return view('auth.disciplinas.index', compact('registros'));
     }
 
