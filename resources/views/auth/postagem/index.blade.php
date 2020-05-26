@@ -20,7 +20,7 @@
                         <th>Título</th>
                         <th>Autor(ª)</th>
                         <th>Tipo da postagem</th>
-                        <th>Anexo</th>
+                        <th>Publicado</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
@@ -30,7 +30,7 @@
                         <td>{{ $registro->titulo }}</td>
                         <td>{{ isset($registro->user) ? $registro->user->name : 'Nenhum professor' }}</td>
                         <td>{{ $registro->tipo_postagem }}
-                        <td>{{ $registro->anexo}}</td>
+                        <td>{{$registro->publicado ? 'Sim' : 'Não'}}</td>
                         <td>
                             <a href="{{ route('auth.postagem.editar', $registro->slug) }}" class="btn">Editar</a>
                             <a href="{{ route('auth.postagem.deletar', $registro->slug) }}" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar essa postagem?');">Deletar</a>
