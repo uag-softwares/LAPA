@@ -76,15 +76,17 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' =>'required|alpha|string|min:3|max:255',
-	        'surname' =>'required|alpha|string|min:3|max:255',
+	    'surname' =>'required|alpha|string|min:3|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-	        'cpf' => 'required|regex:/\d{3}\.\d{3}\.\d{3}\-\d{2}/|string|unique:users',
+            'password' => 'required|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/|string|min:6|confirmed',
+	    'cpf' => 'required|regex:/\d{3}\.\d{3}\.\d{3}\-\d{2}/|string|unique:users',
             'user_description' => 'max:255|nullable',
             'link_lattes' => 'url|string|nullable',
             'avatar' => 'mimes:jpeg,jpg,png,gif|max:2048|nullable' 
             
-        ]);
+        ],[
+       'password.regex'=>'Sua senha deve conter no mínimo de 6 caractéres,deve conter pelo menos uma letra maiúscula,uma minúscula,um número e um caratere especial',
+       ]);
        
     }
    
