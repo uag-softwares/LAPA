@@ -1,0 +1,139 @@
+#full-clndr {
+  width: 100%;
+  background-color: #f8f9fa;
+  font-weight: 700;
+}
+#full-clndr .clndr-controls {
+  padding: 14px;
+  background-color: #009444;
+  color: #f8f9fa;
+  text-align: center;
+}
+#full-clndr .clndr-controls .clndr-previous-button {
+  float: left;
+  text-align: left;
+}
+#full-clndr .clndr-controls .clndr-next-button {
+  float: right;
+  text-align: right;
+}
+#full-clndr .clndr-controls .clndr-previous-button,
+#full-clndr .clndr-controls .clndr-next-button {
+  width: 30px;
+  cursor: pointer;
+}
+#full-clndr .clndr-controls .clndr-previous-button .noselect,
+#full-clndr .clndr-controls .clndr-next-button .noselect,
+#full-clndr .clndr-controls .clndr-previous-button:hover,
+#full-clndr .clndr-controls .clndr-next-button:hover {
+  opacity: 0.5;
+}
+#full-clndr .calendar {
+  position: relative;
+  height: 460px;
+  overflow-y: hidden;
+}
+#full-clndr .calendar .clndr-grid {
+  position: absolute;
+  top: 0;
+  height: 460px;
+  width: 100%;
+  border: 1px solid #e8e8ee;
+  border-top: 0px;
+  transition: top 500ms ease-in-out;
+}
+#full-clndr .calendar .clndr-grid .days-of-the-week {
+  width: 100%;
+  background-color: #00ad50;
+}
+#full-clndr .calendar .clndr-grid .days-of-the-week .header-day {
+  float: left;
+  width: 14.2857%;
+  padding: 14px;
+  text-align: center;
+  color: #f8f9fa;
+}
+#full-clndr .calendar .clndr-grid .days {
+  width: 100%;
+}
+#full-clndr .calendar .clndr-grid .days .day,
+#full-clndr .calendar .clndr-grid .days .empty {
+  float: left;
+  width: 14.2857%;
+  height: 66px;
+  padding: 24px 0;
+  text-align: center;
+  color: #4f4f4f;
+  background-color: #f8f9fa;
+  border-bottom: 2px solid #f8f9fa;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#full-clndr .calendar .clndr-grid .days .day.event,
+#full-clndr .calendar .clndr-grid .days .empty.event {
+  cursor: pointer;
+  padding: 4px;
+  border: 4px solid #009444;
+}
+#full-clndr .calendar .clndr-grid .days .day.event:hover,
+#full-clndr .calendar .clndr-grid .days .empty.event:hover {
+  background-color: #efefef;
+}
+#full-clndr .calendar .clndr-grid .days .day.adjacent-month .day-number,
+#full-clndr .calendar .clndr-grid .days .empty.adjacent-month .day-number {
+  opacity: 0.3;
+}
+#full-clndr .calendar .clndr-grid .days .today {
+  padding: 8px;
+  background-color: #e8e8ee;
+  background-image: none;
+}
+#full-clndr .calendar .event-listing {
+  position: absolute;
+  top: 460px;
+  background-color: #f8f9fa;
+  border-right: 1px solid #e8e8ee;
+  border-bottom: 1px solid #e8e8ee;
+  max-height: 460px;
+  width: 100%;
+  overflow-y: scroll;
+  transition: top 500ms ease-in-out;
+}
+#full-clndr .calendar .event-listing .event-listing-title {
+  position: absolute;
+  padding: 14px;
+  background-color: #00ad50;
+  text-align: center;
+  color: #f8f9fa;
+  letter-spacing: 1px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+#full-clndr .calendar .event-listing .event-listing-title .x-button {
+  cursor: pointer;
+}
+#full-clndr .calendar .event-listing .event-listing-title .x-button:hover {
+  opacity: 0.8;
+}
+#full-clndr .calendar .event-listing .event-item {
+  padding: 14px;
+  color: #4f4f4f;
+  border-top: 1px solid #e8e8ee;
+  border-bottom: 1px solid #e8e8ee;
+}
+#full-clndr .calendar .event-listing .event-item + .event-item {
+  border-top: 0px;
+}
+#full-clndr .calendar .event-listing .event-item-location {
+  font-weight: 400;
+}
+#full-clndr .calendar.show-events .clndr-grid {
+  top: -460px;
+}
+#full-clndr .calendar.show-events .event-listing {
+  top: 0;
+}

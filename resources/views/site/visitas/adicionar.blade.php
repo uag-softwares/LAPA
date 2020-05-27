@@ -22,4 +22,5 @@
                 </div>
             </form>
         </div>
+        <div id="full-clndr" class="clearfix"></div>
 @endsection
