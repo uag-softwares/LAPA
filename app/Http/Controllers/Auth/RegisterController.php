@@ -85,7 +85,7 @@ class RegisterController extends Controller
             'avatar' => 'mimes:jpeg,jpg,png,gif|max:2048|nullable' 
             
         ],[
-       'password.regex'=>'Sua senha deve conter no mínimo de 6 caractéres,deve conter pelo menos uma letra maiúscula,uma minúscula,um número e um caratere especial',
+       'password.regex'=>'Sua senha deve conter no mínimo de 6 caracteres,deve conter pelo menos uma letra maiúscula,uma minúscula,um número e um símbolo',
        ]);
        
     }
