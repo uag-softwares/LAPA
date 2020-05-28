@@ -65,10 +65,10 @@ class PostagemController extends Controller
         }
         $post=$this->postagem->create([
             'titulo' => $request ['titulo'],
-	    'descricao' => $request ['descricao'],
-	    'anexo' =>  $anexo,
-	    'tipo_postagem' => $request['tipo_postagem'],
-	    'user_id' =>$this->user->id,
+            'descricao' => $request ['descricao'],
+            'anexo' =>  $anexo,
+            'tipo_postagem' => $request['tipo_postagem'],
+            'user_id' =>$this->user->id,
             'publicado'=>$publicado,
             'data'=>$request['data'],
             'hora'=>$request['hora'],
