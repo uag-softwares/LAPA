@@ -59,7 +59,7 @@ class RegisterController extends Controller
     {
        $this->middleware('auth', ['except' => [
 
-            'register','showRegistrationForm','siteIndex','siteRegistervizualizar', 'buscarUsuarioVisita']]);
+            'register','showRegistrationForm','siteIndex','siteRegistervizualizar', 'buscarUsuarioVisita','vizualizarTermosPrivacidade']]);
        $this->middleware('guest', ['only' => [
             'register',
             'showRegistrationForm'
@@ -221,5 +221,7 @@ class RegisterController extends Controller
         
 	    return view('site.visitas.adicionar', compact('userExiste', 'email'));
     }
-  
+    public function vizualizarTermosPrivacidade (){
+    	return view('auth.privacidade_termos');
+    }
 }

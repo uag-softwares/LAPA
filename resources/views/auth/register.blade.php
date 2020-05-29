@@ -8,7 +8,7 @@
             <form  action="{{ route('register') }}" method="POST" enctype="multipart/form-data">
                  {{ csrf_field() }}
                  @include('auth.registros._form')
-                 <p>Criando uma conta você concorda com nossos <a href="#">Termos & Privacidade</a>.</p>
+                 <p>Criando uma conta você concorda com nossos <a href="{{ route('termo.privacidade') }}">Termos & Privacidade</a>.</p>
                  <button type="submit" class="registerbtn btn">Solicitar</button>
                  <hr>
                  @if (Route::has('register'))
