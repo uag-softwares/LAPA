@@ -89,17 +89,19 @@
         </div>
     </script>
     <script>
-        $('#full-clndr').clndr({
-            template: $('#calendar-template').html(),
-            daysOfTheWeek: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+        $("#full-clndr").clndr({
+            template: $("#calendar-template").html(),
+            daysOfTheWeek: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"],
+            showAdjacentMonths: true,
+            adjacentDaysChangeMonth: true,
             events: agenda,
             clickEvents: {
             click: function(target) {
                 if(target.events.length) {
-                    var eventListing = $('#full-clndr').find('.calendar');
-                    eventListing.toggleClass('show-events', true);
-                    $('#full-clndr').find('.x-button').click( function() {
-                        eventListing.toggleClass('show-events', false);
+                    var eventListing = $("#full-clndr").find(".calendar");
+                    eventListing.toggleClass("show-events", true);
+                    $("#full-clndr").find(".x-button").click( function() {
+                        eventListing.toggleClass("show-events", false);
                     });
                     }
                 }
