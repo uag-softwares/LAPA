@@ -28,10 +28,9 @@
         </span>
     @enderror
 </div>
-
 @if(@isset($registro->anexo))
     <div class="form-group">
-        <img src="{{ asset($registro->anexo) }}" alt="">
+        <img class="w-50" src="{{ asset($registro->anexo) }}" alt="">
     </div>    
 @endisset
 
