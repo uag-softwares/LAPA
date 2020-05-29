@@ -38,3 +38,6 @@ window.moment.locale('pt-br');
 console.log(moment().calendar());
 
 const clndr = require('clndr');
+
+const bootstrapDatepicker = require('bootstrap-datepicker');
+require('bootstrap-datepicker/js/locales/bootstrap-datepicker.pt-BR');

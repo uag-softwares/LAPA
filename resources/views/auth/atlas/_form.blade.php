@@ -18,7 +18,7 @@
 </div>
 <div class="form-group">
     <label for="categoria_id">Selecione a categoria*</label>
-    <select class="form-control form-control-lg @error('categoria_id') is-invalid @enderror" name="categoria_id" id="categorias">
+    <select class="custom-select custom-select-lg @error('categoria_id') is-invalid @enderror" name="categoria_id" id="categorias">
         <option hidden disabled selected value>{{ __('Selecione uma categoria') }}</option>
         @foreach($categorias as $categoria)
             @if(isset($registro->categoria->id) && $categoria->id == $registro->categoria->id)

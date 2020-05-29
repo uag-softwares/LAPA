@@ -12,7 +12,7 @@
         </title>
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+HK&display=swap" rel="stylesheet"> 
+        <link defer href="https://fonts.googleapis.com/css2?family=Noto+Sans+HK&display=swap" rel="stylesheet"> 
         
         <!-- Styles -->
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">
@@ -20,24 +20,26 @@
         <link href="{{ asset('css/clndr.css') }}" rel="stylesheet">
         
         <!-- Scripts -->
-        <script src="{{ asset('js/pesquisa_atlas.js') }}" defer></script>
-        <script src="{{ asset('js/pesquisa_materiais.js') }}" defer></script>
+        <script src="{{ asset('js/pesquisa_atlas.js') }}"></script>
+        <script src="{{ asset('js/pesquisa_materiais.js') }}"></script>
 
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <script src="{{ asset('js/app.js') }}"></script>
         
         <!-- Icones do Font Awesome -->
-        <script src="https://kit.fontawesome.com/8eafe50798.js" defer crossorigin="anonymous"></script>
+        <script defer src="https://kit.fontawesome.com/8eafe50798.js" crossorigin="anonymous"></script>
         
         <!-- include summernote css/js -->
-        <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>
+        <link defer href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
+        <script defer src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>
         <script src="{{ asset('js/summernote_config.js') }}"></script>
 
+        <link defer rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.standalone.min.css">
+
         <!-- Mascaras -->
-        <script type="text/javascript" src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
-        <script type="text/javascript" src="{{ asset('js/jquery/jquery.inputmask.js') }}"></script>      
-        <script type="text/javascript" src="{{ asset('js/jquery/jquery.maskMoney.min.js') }}"></script>
+        <script defer type="text/javascript" src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
+        <script defer type="text/javascript" src="{{ asset('js/jquery/jquery.inputmask.js') }}"></script>      
+        <script defer type="text/javascript" src="{{ asset('js/jquery/jquery.maskMoney.min.js') }}"></script>
         <script defer="true" src="{{ asset('js/masks.js') }}"></script>
     </head>
     <body>

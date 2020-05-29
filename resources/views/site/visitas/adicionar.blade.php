@@ -22,5 +22,19 @@
                 </div>
             </form>
         </div>
-        <div id="full-clndr" class="clearfix"></div>
+@endsection
+@section('scripts')
+
+    <script>
+        // Bloquear feriados
+        var feriados = {!! json_encode($feriados) !!};
+        
+        // Todas as horas possíveis
+        var $horas = {!! json_encode($horas) !!};
+        
+        // Todas as visitas agendadas
+        var $visitas = {!! json_encode($visitas) !!};
+    </script>
+    <script src="{{ asset('js/visitas.js') }}"></script>
+
 @endsection

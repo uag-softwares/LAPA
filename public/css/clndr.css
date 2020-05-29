@@ -122,8 +122,7 @@
 #full-clndr .calendar .event-listing .event-item {
   padding: 14px;
   color: #4f4f4f;
-  border-top: 1px solid #e8e8ee;
-  border-bottom: 1px solid #e8e8ee;
+  border: 1px solid #e8e8ee;
 }
 #full-clndr .calendar .event-listing .event-item + .event-item {
   border-top: 0px;

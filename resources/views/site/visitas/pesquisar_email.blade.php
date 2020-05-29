@@ -20,7 +20,7 @@
                 <form class="col-12 col-md-4 col-lg-3" id="form-busca" action="{{ route('site.visita.buscar.registro') }}" method="GET" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="form-group">
-                        <label for="email"><strong>Deseja marcar um visita?</strong> Digite o email abaixo para começar</label>
+                        <label for="email"><strong>Deseja marcar um visita?</strong> Digite seu email abaixo para começar</label>
                         <input id="email" type="text" class="form-control form-control-lg @error('email') is-invalid @enderror" name="email" value="{{isset($user->email) ? $user->email: old('email')}}" required autocomplete="email" autofocus placeholder="exemplo@exemplo.com">
                         @error('email')
                             <span class="invalid-feedback" role="alert">
@@ -36,6 +36,9 @@
         </div>
 @endsection
 @section('scripts')
+    <script>
+        var agenda = {!! json_encode($agenda) !!};
+    </script>
     <script id="calendar-template" type="text/template">
             <div class="clndr-controls">
                 <div class="clndr-previous-button">
@@ -74,12 +77,11 @@
                     </div>
                     <% _.each(eventsThisMonth, function(event) { %>
                     <div class="event-item">
-                            <div class="event-item-name">
-                                <p><%= moment(event.date).format('ddd, DD [de] MMMM, [das] h:mm [às] h:mm') %> <%= event.title %></p>
-                            </div>
-                            <div class="event-item-location">
-                                <%= event.location %>
-                            </div>
+                        <div class="event-item-location text-left">
+                            <%= event.title + ' - ' + moment(event.date).format('ddd, DD [de] MMMM') + ' - ' + ((event.hora_final == null) ? 'às ' + event.hora_inicial : 'das ' + event.hora_inicial + ' às ' + event.hora_final) %>
+                            <br>
+                            <strong><%= event.location %></strong>
+                        </div>
                     </div>
                     <% }); %>
                 </div>
@@ -87,51 +89,17 @@
         </div>
     </script>
     <script>
-        var eventos = [
-            {
-                date: moment("2020-05-26"),
-                title: "Vinicius",
-                location: "Visita de estudantes da 4 serie."
-            }, {
-                date: moment("2020-05-04"),
-                title: "Daniela",
-                location: "Visita de professores."
-            }, {
-                date: moment("2020-05-04"),
-                title: "Daniela",
-                location: "Visita de professores."
-            }, {
-                date: moment("2020-05-04"),
-                title: "Daniela",
-                location: "Visita de professores."
-            }, {
-                date: moment("2020-05-04"),
-                title: "Daniela",
-                location: "Visita de professores."
-            }, {
-                date: moment("2020-05-04"),
-                title: "Daniela",
-                location: "Visita de professores."
-            }, {
-                date: moment("2020-05-04"),
-                title: "Daniela",
-                location: "Visita de professores."
-            }
-        ];
         $('#full-clndr').clndr({
             template: $('#calendar-template').html(),
             daysOfTheWeek: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
-            events: eventos,
+            events: agenda,
             clickEvents: {
             click: function(target) {
                 if(target.events.length) {
                     var eventListing = $('#full-clndr').find('.calendar');
-                    //var calendarDays = $('#full-clndr').find('.calendar-days');
                     eventListing.toggleClass('show-events', true);
-                    //calendarDays.toggleClass('d-none', true);
                     $('#full-clndr').find('.x-button').click( function() {
                         eventListing.toggleClass('show-events', false);
-                        //calendarDays.toggleClass('d-none', false);
                     });
                     }
                 }
