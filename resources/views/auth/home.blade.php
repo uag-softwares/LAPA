@@ -154,7 +154,7 @@
                     <div class="card-body">
                         <h3 class="card-title">
                             {{ __('Solicitações') }}
-                        </h3>
+                        </>
                     </div>
                     <div class="card-footer">
                         <a href="{{ route('auth.acesso_gerenciamento') }}" class="btn">

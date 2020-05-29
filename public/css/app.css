@@ -449,3 +449,9 @@ section .section-title {
     border-left: none;
   }
 }
+
+/* Summernote background dos botoes */
+.note-editor .btn {
+  background-color:var(--main-white);
+  color: var(--main-black);
+}
