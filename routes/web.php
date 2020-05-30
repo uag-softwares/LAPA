@@ -103,7 +103,13 @@ Route::middleware(['auth','check.cpf'])->group(function () {
 	Route::get('/auth/acesso_gerenciamento', ['as' => 'auth.acesso_gerenciamento', 'uses' => 'Auth\RegisterController@gerenciarSolicitacao'], function () {});
 	Route::get('/auth/acesso_gerenciamento/aceitarSolicitacao/{id}', ['as' => 'auth.acesso_gerenciamento.aceitarSolicitacao', 'uses' => 'Auth\RegisterController@aceitarSolicitacao'], function() {});
 	Route::get('/auth/acesso_gerenciamento/recusarSolicitacao/{id}', ['as' => 'auth.acesso_gerenciamento.recusarSolicitacao', 'uses' => 'Auth\RegisterController@recusarSolicitacao'], function() {});
-        
+	
+	Route::get('/auth/contatos', ['as' => 'auth.contatos', 'uses' => 'ContatoController@index'], function () {});
+	Route::get('/auth/contato/adicionar', ['as' => 'auth.contato.adicionar', 'uses' => 'ContatoController@adicionar'], function () {});
+	Route::post('/auth/contato/salvar', ['as' => 'auth.contato.salvar', 'uses' => 'ContatoController@salvar'], function () {});
+	Route::get('/auth/contato/editar/{registro:slug}', ['as' => 'auth.contato.editar', 'uses' => 'ContatoController@editar'], function (App\Contato $registro) {return $registro;});
+	Route::put('/auth/contato/atualizar/{id}', ['as' => 'auth.contato.atualizar', 'uses' => 'ContatoController@atualizar'], function () {});
+	Route::get('/auth/contato/deletar/{registro:slug}', ['as' => 'auth.contato.deletar', 'uses' => 'ContatoController@deletar'],function (App\Contato $registro) {return $registro;});
 
 });
 
