@@ -28,7 +28,9 @@
                             Publicado em {{ date('d/m/Y', strtotime($pagina->created_at)) }} às {{ date('H:i', strtotime($pagina->created_at)) }}
                         </p>
                         <div class="text-center">
-                            <a class="btn" href="{{ asset($pagina->anexo) }}" alt="" download="baixar">Baixar anexo</a>
+                            @if(isset($pagina->anexo))
+                                <a class="btn" href="{{ asset($pagina->anexo) }}" alt="" download="baixar">Baixar anexo</a>
+                            @endif
                         </div>
                     </div>
                 </div>

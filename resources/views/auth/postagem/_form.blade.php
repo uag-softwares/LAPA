@@ -48,7 +48,7 @@
 
 @if(@isset($registro->anexo))
     <div class="form-group">
-        <img class="w-50" src="{{ asset($registro->anexo) }}" alt="">
+        <img class="w-50" src="{{ asset($registro->anexo) }}" alt="{{ $registro->titulo ?? '' }}">
     </div>    
 @endisset
 
