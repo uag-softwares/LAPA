@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('titulo', 'Registrar-se')
 @section('content')
         <div class="container">
@@ -8,13 +7,22 @@
             <form  action="{{ route('register') }}" method="POST" enctype="multipart/form-data">
                  {{ csrf_field() }}
                  @include('auth.registros._form')
-                 <p>Criando uma conta você concorda com nossos <a href="{{ route('termo.privacidade') }}">Termos & Privacidade</a>.</p>
+                 <div class="form-group{{$errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
+                                {!! app('captcha')->display() !!}
+                                @if ($errors->has('g-recaptcha-response'))
+                                    <span class="invalid-feedback" style="display: block;">
+                                        <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                                    </span>
+                                @endif
+                 </div>
+	         <p>Criando uma conta você concorda com nossos <a href="{{ route('termo.privacidade') }}">Termos & Privacidade</a>.</p>
                  <button type="submit" class="registerbtn btn">Solicitar</button>
                  <hr>
                  @if (Route::has('register'))
                      <p>Já possui acesso ao sistema? <a class="" href="{{ route('login') }}">{{ __('Acessar conta') }}</a>.</p>                    
                 @endif
             </form>
+        {!! NoCaptcha::renderJs() !!}
         </div>
     
 @endsection

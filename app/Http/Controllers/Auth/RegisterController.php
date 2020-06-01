@@ -83,11 +83,13 @@ class RegisterController extends Controller
 	    'cpf' => 'required|regex:/\d{3}\.\d{3}\.\d{3}\-\d{2}/|string|unique:users',
             'user_description' => 'max:255|nullable',
             'link_lattes' => 'url|string|nullable',
-            'avatar' => 'mimes:jpeg,jpg,png,gif|max:2048|nullable' 
+            'avatar' => 'mimes:jpeg,jpg,png,gif|max:2048|nullable',
+	    'g-recaptcha-response' => 'required|captcha',
             
         ],[
        'password.regex'=>'Sua senha deve conter no mínimo de 6 caracteres,deve conter pelo menos uma letra maiúscula,uma minúscula,um número e um símbolo',
        'email.unique'=>'O valor informado para o campo e-mail já está em uso em uma conta de administrador',
+       'g-recaptcha-response.required'=>'O campo reCaptcha é obrigatório',
        ]);
        
     }
