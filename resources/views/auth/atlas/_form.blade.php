@@ -22,9 +22,9 @@
         <option hidden disabled selected value>{{ __('Selecione uma categoria') }}</option>
         @foreach($categorias as $categoria)
             @if(isset($registro->categoria->id) && $categoria->id == $registro->categoria->id)
-                <option value="{{ $categoria->id }}" selected>{{ $categoria->nome }}</option>
+                <option value="{{ $categoria->id }}" selected>{{ ucfirst($categoria->nome) }}</option>
             @else
-                <option value="{{ $categoria->id }}">{{ $categoria->nome }}</option>
+                <option value="{{ $categoria->id }}">{{ ucfirst($categoria->nome) }}</option>
             @endif
         @endforeach
     </select>

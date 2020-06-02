@@ -39,9 +39,14 @@ class CategoriaController extends Controller
 
     public function salvar(CategoriaRequest $request) 
     {
+        $request['nome'] = strtolower($request['nome']);
         $request->validated();
 
         $dados = $request->all();
+        
+        if($this->buscarCategoriaDisciplina($dados['nome'], $dados['disciplina_id']) != 0) {
+            return redirect()->back()->withErrors(['nome' => 'Essa categoria já existe nessa disciplina'])->withInput();
+        }
 
         $categotia= $this->categoria->create($dados);
         $categotia['slug']=str_slug($categotia->nome).'-'.$categotia->id;
@@ -58,9 +63,15 @@ class CategoriaController extends Controller
 
     public function atualizar(CategoriaRequest $request, $identifier)
     {
+        $request['nome'] = strtolower($request['nome']);
         $request->validated();
 
         $dados = $request->all();
+
+        if($this->buscarCategoriaDisciplina($dados['nome'], $dados['disciplina_id']) != 0) {
+            return redirect()->back()->withErrors(['nome' => 'Essa categoria já existe nessa disciplina ou você está tentando colocar o mesmo nome'])->withInput();
+        }
+
         $dados['slug']=str_slug($dados['nome']).'-'.$identifier;
         $this->categoria->find($identifier)->update($dados);
 
@@ -71,5 +82,11 @@ class CategoriaController extends Controller
     {
         $registro->delete();
         return redirect()->route('auth.categorias')->with('success', 'Categoria deletada com sucesso!');;
+    }
+
+    public function buscarCategoriaDisciplina($nome, $disciplina_id) {
+        return $this->categoria->where('nome', $nome)
+                    ->where('disciplina_id', $disciplina_id)
+                    ->count();
     }
 }
