@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Inherited Methods
  * @method void wantToTest($text)
@@ -20,91 +19,6 @@ class AcceptanceTester extends \Codeception\Actor
 {
     use _generated\AcceptanceTesterActions;
 
-    /**
-     * @Given Eu estou cadastrado e logado como :arg1
-     */
-    public function euEstouCadastradoELogadoComo($arg1)
-    {
-        $this->amOnPage('/register');
-        $this->fillField(['name' => 'name'], $arg1);
-        $this->fillField(['name' => 'cpf'], '111.111.111-11');
-        $this->fillField(['name' => 'email'], 'admin@admin.com');
-        $this->fillField(['name' => 'password'], '12345678');
-        $this->fillField(['name' => 'password_confirmation'], '12345678');
-        $this->click('Cadastrar');
-        $this->see($arg1, '//button');
-    }
-
-    /**
-     * @Given Eu estou logado como :arg1
-     */
-    public function euEstouLogadoComo($arg1)
-    {
-        $this->amOnPage('/login');
-        $this->fillField(['name' => 'email'], 'admin@admin.com');
-        $this->fillField(['name' => 'password'], '12345678');
-        $this->click('Login');
-        $this->see($arg1, '//button');
-    }
-    
-   /**
-    * @Then Eu deleto o usuario :arg1
-    */
-    public function euDeletoOUsuario($arg1)
-    {
-        $this->amOnPage('/auth/registros');
-        $this->seeInCurrentUrl('/auth/registros');
-        $this->click('Deletar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[4]');
-        //$this->seeInPopup('Tem certeza que deseja excluir a conta?'); // Para teste no chromedriver
-        //$this->acceptPopup(); // Para teste no chromedriver
-        $this->dontSee($arg1);
-    }
-
-    /**
-     * Testes revisados até aqui
-    */
-
-    /**
-     * @Given Eu crio um usuario para o teste
-     */
-    public function euCrioUmUsuarioParaOTeste()
-    {
-        $this->amOnPage('/register');
-        $this->fillField(['name' => 'name'], 'Rodrigo');
-        $this->fillField(['name' => 'cpf'], '111.111.111-11');
-        $this->fillField(['name' => 'email'], 'admin@admin.com');
-        $this->fillField(['name' => 'password'], '12345678');
-        $this->fillField(['name' => 'password_confirmation'], '12345678');
-        $this->click('Cadastrar');
-    }
-
-    
-
-    /**
-     * @Given Eu estou logado
-     */
-    public function euEstouLogado()
-    {
-        $this->amOnPage('/login');
-        $this->fillField(['name' => 'email'], 'admin@admin.com');
-        $this->fillField(['name' => 'password'], '12345678');
-        $this->click('Login');
-    }
-
-    /**
-     * @Then Eu deleto o usuario para o teste
-     */
-    public function euDeletoOUsuarioParaOTeste()
-    {
-        $this->amOnPage('/auth/registros');
-        $this->seeInCurrentUrl('/auth/registros');
-        $this->click('Deletar', '//table/tbody/tr/td[text()="Rodrigo"]/ancestor::tr/td[4]');
-        //$this->seeInPopup('Tem certeza que deseja excluir a conta?'); // Para teste no chromedriver
-        //$this->acceptPopup(); // Para teste no chromedriver
-        $this->dontSee('Rodrigo');
-    }
-
-
    /**
     * @When Eu clico em Editar
     */
@@ -112,15 +26,6 @@ class AcceptanceTester extends \Codeception\Actor
     {
         $this->click('Editar');
     }
-
-     /**
-     * @Given Eu estou na pagina de registro de usuario
-     */
-     public function euEstouNaPaginaDeRegistroDeUsuario()
-     {
-         $this->amOnPage('/register');
-     }
-
     /**
      * @When Eu preencho o campo email com :arg1
      */
@@ -160,15 +65,6 @@ class AcceptanceTester extends \Codeception\Actor
      public function euPreenchoOCampoCpf($arg1)
      {
          $this->fillField(['name' => 'cpf'], $arg1);
-     }
-    
-
-    /**
-     * @When Eu clico em  criar registro de usuario
-     */
-     public function euClicoEmCriarRegistroDeUsuario()
-     {
-         $this->click('Cadastrar');
      }
 
        /**
@@ -277,7 +173,7 @@ class AcceptanceTester extends \Codeception\Actor
      */
      public function euVejoQueOUsuarioEstaLogado()
      {
-         $this->amOnPage('/');
+          $this->seeInCurrentUrl('/gerenciar');
      }
      /**
      * @Given Eu estou na pagina de solicitar acesso ao sistema LAPA
@@ -318,7 +214,7 @@ class AcceptanceTester extends \Codeception\Actor
      */
      public function euComfirmoOEmail($arg1)
      {  
-       
+       $this->seeInCurrentUrl('/email/verify');
        $this->updateInDatabase('users',array('email_verified_at' => now())); 
    
      }
@@ -330,7 +226,25 @@ class AcceptanceTester extends \Codeception\Actor
         $this->amOnPage('/');
         $this->updateInDatabase('users',array('cpf_verified_at' => now())); 
      }
-    
+     /**
+     * @When Eu comfirmo o reCaptcha
+     */
+     public function euComfirmoOReCaptcha()
+     {
+        
+            $no_captcha = \Mockery::mock(Anhskohbo\NoCaptcha\NoCaptcha::class);
+            // prevent validation error on captcha
+            $no_captcha->shouldReceive('verifyResponse')
+                ->andReturn(true);
+            // provide hidden input for your 'required' validation
+            $no_captcha->shouldReceive('display')
+                ->zeroOrMoreTimes()
+                ->andReturn('<input type="hidden" name="g-recaptcha-response" value="1" />');
+        
+         $this->haveBinding('captcha', $no_captcha);
+
+     }
+
 	/*==================================== A partir daqui metodos para feature Postagem =======================
      */
 
