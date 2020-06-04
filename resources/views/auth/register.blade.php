@@ -8,7 +8,6 @@
                 {{ csrf_field() }}
                 @include('auth.registros._form')
                 <div class="form-group">
-    		    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   		
       		    <div class="g-recaptcha{{$errors->has('g-recaptcha-response') ? ' has-error' : '' }}" data-sitekey="{{ env('NOCAPTCHA_SITEKEY') }}"></div>
 		     	@if ($errors->has('g-recaptcha-response'))

@@ -90,9 +90,7 @@
         </span>
     @enderror
 </div>
-<div class="form-group">
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-  		
+<div class="form-group">	
     <div class="g-recaptcha{{$errors->has('g-recaptcha-response') ? ' has-error' : '' }}" data-sitekey="{{ env('NOCAPTCHA_SITEKEY') }}"></div>
          @if ($errors->has('g-recaptcha-response'))
             		    
