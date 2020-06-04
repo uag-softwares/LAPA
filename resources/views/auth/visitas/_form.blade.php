@@ -90,14 +90,17 @@
         </span>
     @enderror
 </div>
-<div class="form-group{{$errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
-     {!! app('captcha')->display() !!}
-     @if ($errors->has('g-recaptcha-response'))
-         <span class="invalid-feedback" style="display: block;">
-              <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
-         </span>
-    @endif
-    {!! NoCaptcha::renderJs() !!}
+<div class="form-group">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  		
+    <div class="g-recaptcha{{$errors->has('g-recaptcha-response') ? ' has-error' : '' }}" data-sitekey="{{ env('NOCAPTCHA_SITEKEY') }}"></div>
+         @if ($errors->has('g-recaptcha-response'))
+            		    
+              <span class="invalid-feedback" style="display: block;">
+                    <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+              </span>
+                          
+        @endif
 </div>
 <div class="justify-content-center">
  <p>Agendando uma visita você concorda com nossos <a href="{{ route('termo.privacidade') }}">Termos & Privacidade</a>.</p>

@@ -35,7 +35,7 @@ class VisitaRequest extends FormRequest
             'hora_final' => 'required|date_format:H:i|before_or_equal:15:00|after:hora_inicial',
             'descricao' =>'required|min:10',
             'confirmada' => 'nullable',
-	    'g-recaptcha-response' => 'required|captcha',
+	    'g-recaptcha-response' => 'captcha',
         ];
     }
 
@@ -71,7 +71,7 @@ class VisitaRequest extends FormRequest
             'email.email' => 'Email inválido',
             'confirmada.nullable' => 'A confirmação pode ser nula',
             'user_type.in' => 'Você não alterar esse campo',
-	    'g-recaptcha-response.required'=>'O campo reCaptcha é obrigatório',
+	    'g-recaptcha-response.captcha'=>'O campo reCaptcha é obrigatório',
         ];
     }
 }
