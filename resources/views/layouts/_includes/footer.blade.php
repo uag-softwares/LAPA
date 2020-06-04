@@ -19,7 +19,7 @@
 						<li><a href="{{ route('site.postagens.indexEvento') }}">Eventos</a>
 						<li><a href="{{ route('site.materiais.index') }}">Materiais</a>
 						<li><a href="{{ route('site.postagens.indexNoticia') }}">Notícias</a>
-						<li><a href="{{ route('site.quemSomos.index') }}">Quem somos</a>
+						<li><a href="#">Contato</a>
 						<li><a href="{{ route('site.visita.busca') }}">Visitas</a>
 					</ul>
 				</div>

@@ -7,6 +7,7 @@ use App\Categoria;
 use App\Atla;
 use App\Material;
 use App\Visita;
+use App\Contato;
 /*
 |--------------------------------------------------------------------------
 | Web Routes

@@ -58,7 +58,7 @@
                                 <a href="{{ route('site.materiais.index') }}" class="nav-link">Materiais</a>
                             </li>
                             <li class="nav-item {{ Request::is('site/quemSomos/*') ? 'active' : '' }}">
-                                <a href="{{ route('site.quemSomos.index') }}" class="nav-link">Quem somos</a>
+                                <a href="#" class="nav-link">Contato</a>
                             </li>
                             
                      
