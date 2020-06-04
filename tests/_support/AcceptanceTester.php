@@ -226,24 +226,7 @@ class AcceptanceTester extends \Codeception\Actor
         $this->amOnPage('/');
         $this->updateInDatabase('users',array('cpf_verified_at' => now())); 
      }
-     /**
-     * @When Eu comfirmo o reCaptcha
-     */
-     public function euComfirmoOReCaptcha()
-     {
         
-            $no_captcha = \Mockery::mock(Anhskohbo\NoCaptcha\NoCaptcha::class);
-            // prevent validation error on captcha
-            $no_captcha->shouldReceive('verifyResponse')
-                ->andReturn(true);
-            // provide hidden input for your 'required' validation
-            $no_captcha->shouldReceive('display')
-                ->zeroOrMoreTimes()
-                ->andReturn('<input type="hidden" name="g-recaptcha-response" value="1" />');
-        
-         $this->haveBinding('captcha', $no_captcha);
-
-     }
 
 	/*==================================== A partir daqui metodos para feature Postagem =======================
      */
