@@ -8,7 +8,7 @@ addons:
   chrome: stable
 
 install:
-  - cp .env.example .env .env.testing
+  - cp .env.example .env
   - cp codeception.yml.travis codeception.yml
   - travis_retry composer install --no-interaction --prefer-dist --no-suggest
   - php artisan key:generate
