@@ -391,7 +391,36 @@ class AcceptanceTester extends \Codeception\Actor
          $this->selectOption(['name' => 'tipo_postagem'],$arg1);
      }
 
+     /**
+     * @When Eu preencho o campo data com :arg1
+     */
+     public function euPreenchoOCampoDataCom($arg1)
+     {
+         $this->fillField(['name' => 'data'], $arg1);
+     }
 
+    /**
+     * @When Eu preencho o campo hora com :arg1
+     */
+     public function euPreenchoOCampoHoraCom($arg1)
+     {
+         $this->fillField(['name' => 'hora'], $arg1);
+     }
+     /**
+     * @When Eu edito a hora para :arg1
+     */
+     public function euEditoAHoraPara($arg1)
+     {
+         $this->fillField(['name' => 'hora'], $arg1);
+     }
+
+      /**
+     * @When Eu edito a data para :arg1
+     */
+     public function euEditoADataPara($arg1)
+     {
+         $this->fillField(['name' => 'data'], $arg1);
+     }
 
 
 }
