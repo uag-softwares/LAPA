@@ -211,6 +211,7 @@ class RegisterController extends Controller
            
         }
         $user=Auth::user();
+        $dados['slug']=str_slug($dados['name']).'-'.$user->id;
         $user->update($dados);
         
 	    return redirect()->route('auth.registros')->with('success','Conta editada com sucesso');
