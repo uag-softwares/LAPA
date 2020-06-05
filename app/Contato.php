@@ -13,7 +13,7 @@ class Contato extends Model
      * @var array
      */
     protected $fillable = [
-        'email', 'texto', 'telefone', 'facebook', 'twitter', 'instagran', 'user_id','slug',
+        'email', 'texto', 'telefone', 'facebook', 'twitter', 'instagram', 'user_id','slug',
     ];
 
     public function user() {

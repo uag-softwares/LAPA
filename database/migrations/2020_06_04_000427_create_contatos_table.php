@@ -16,7 +16,7 @@ class CreateContatosTable extends Migration
         Schema::create('contatos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('email')->nullable();
-            $table->string('texto');
+            $table->longText('texto')->nullable();
             $table->string('telefone')->nullable();
             $table->string('instagram')->nullable();
             $table->string('twitter')->nullable();

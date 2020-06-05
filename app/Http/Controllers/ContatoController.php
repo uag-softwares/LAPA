@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Contato;
 use App\User;
 use Validator;
-
+use Auth;
 
 class ContatoController extends Controller
 {
@@ -34,19 +34,16 @@ class ContatoController extends Controller
     public function adicionar() 
     {
         return view('auth.contato.adicionar');
-
     }
 
     public function salvar(Request $request) 
     {
-       
-        $request->validated();
-
         $dados = $request->all();
+        $dados["user_id"] = Auth::user()->id;
         $contato=$this->contato->create($dados);
-        $contato['slug']=str_slug( $contato->email).'-'. $contato->id;
+        $contato['slug']=str_slug($contato->email).'-'.$contato->id;
         $contato->update($contato->attributesToArray());
-        return redirect()->route('auth.contatos')->with('success', 'Informações do Contato adicionadas com sucesso!');
+        return redirect()->route('site.contato.index')->with('success', 'Informações do Contato adicionadas com sucesso!');
     }
 
     public function editar(Contato $contato) 
@@ -59,7 +56,6 @@ class ContatoController extends Controller
     public function atualizar(Request $request, $identifier)
     {
     
-        $request->validated();
         $dados = $request->all();
         $dados['slug']=str_slug($dados['emai']).'-'.$identifier;
         $this->contato->find($identifier)->update($dados);

@@ -57,8 +57,8 @@
                             <li class="nav-item {{ Request::is('site/materiais/*') ? 'active' : '' }}">
                                 <a href="{{ route('site.materiais.index') }}" class="nav-link">Materiais</a>
                             </li>
-                            <li class="nav-item {{ Request::is('site/quemSomos/*') ? 'active' : '' }}">
-                                <a href="#" class="nav-link">Contato</a>
+                            <li class="nav-item {{ Request::is('site/contato/*') ? 'active' : '' }}">
+                                <a href="{{ route('site.contato.index') }}" class="nav-link">Contato</a>
                             </li>
                             
                      

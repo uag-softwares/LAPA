@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use App\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Auth;
@@ -20,6 +19,8 @@ use \Illuminate\Notifications\Notifiable;
 use Notification;
 use App\Conta;
 use App\Visita;
+use App\Contato;
+use App\User;
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
 use Image;
@@ -48,6 +49,7 @@ class RegisterController extends Controller
     protected $usuario;
     protected $visita;
     protected $conta;
+    protected $contato;
   
     /**
      * Create a new controller instance.
@@ -55,7 +57,7 @@ class RegisterController extends Controller
      * @return void
      */
     
-     public function __construct(User $usuario, Visita $visita,Conta $conta) 
+     public function __construct(User $usuario, Visita $visita,Conta $conta, Contato $contato) 
     {
        $this->middleware('auth', ['except' => [
 
@@ -65,10 +67,10 @@ class RegisterController extends Controller
             'showRegistrationForm'
         ]]);
       
-       $this->usuario=$usuario;
+       $this->usuario = $usuario;
        $this->visita = $visita;
-       $this->conta=$conta;
-       
+       $this->conta = $conta;
+       $this->contato = $contato;
        
     }
 
@@ -203,12 +205,14 @@ class RegisterController extends Controller
     public function siteIndex(){
         $usersAdmin=$this->usuario->where( 'user_type', 'admin')->get();
         $registros= $usersAdmin->whereNotNull('cpf_verified_at')->all();
-       
-        return view('site.quemSomos.index', compact('registros'));
+
+        $contato = $this->contato->latest('updated_at')->first();
+
+        return view('site.contato.index', compact('registros', 'contato'));
     }
 
     public function siteRegistervizualizar(User $registro){
-        return view('site.quemSomos.vizualizar', compact('registro'));
+        return view('site.contato.vizualizar', compact('registro'));
     }
 
     public function buscarUsuarioVisita(EmailVisitaRequest $request)

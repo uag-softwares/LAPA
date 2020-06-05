@@ -2,6 +2,9 @@
 @section('titulo', 'Professores')
 @section('content')
     <div class="container" >
+        <h2>Quem Somos </h2>
+            <p> {{ $contato->texto ?? '' }}</p>
+
         <h2>Professores</h2>
             @if (count($registros) < 1)
                 <p>Ops, ainda não temos professores cadastrados</p>
@@ -10,7 +13,7 @@
                     <div class="d-flex mx-auto text-left shadow-sm mb-3" id="usuarios" style="max-width: 500px;">
                         <div class="d-block my-auto mx-4 w-75" style="overflow: hidden;">
                             <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                                <a href="{{ route('site.quemSomos.vizualizar', $registro->slug) }}">
+                                <a href="{{ route('site.contato.vizualizar', $registro->slug) }}">
                                     {{$registro->name.' '.$registro->surname}}
                                 </a>
                             </p>
