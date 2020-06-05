@@ -9,7 +9,7 @@
 </div>
 <div class="form-group">
     <label for="user_id">Selecione o professor</label>
-    <select class="form-control form-control-lg" name="user_id" id="professores">
+    <select class="custom-select custom-select-lg" name="user_id" id="professores">
         <option hidden disabled selected value>{{ __('Selecione um professor') }}</option>
         <option value>{{ __('Nenhum') }}</option>
         @foreach($users as $user)

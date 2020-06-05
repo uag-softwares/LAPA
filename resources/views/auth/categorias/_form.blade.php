@@ -3,7 +3,7 @@
 @endif
 <div class="form-group">
     <label for="nome">Nome da categoria*</label>
-    <input class="form-control form-control-lg @error('nome') is-invalid @enderror" type="text" name="nome" value="{{ isset($registro->nome) ? $registro->nome : old('nome') }}" placeholder="Digite aqui o nome da categoria">
+    <input {{ isset($registro->nome) ? 'readonly' : '' }} class="form-control form-control-lg @error('nome') is-invalid @enderror" type="text" name="nome" value="{{ isset($registro->nome) ? $registro->nome : old('nome') }}" placeholder="Digite aqui o nome da categoria">
     @error('nome')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -12,7 +12,7 @@
 </div>
 <div class="form-group">
     <label for="disciplina_id">Selecione a disciplina*</label>
-    <select class="form-control form-control-lg @error('disciplina_id') is-invalid @enderror" name="disciplina_id" id="disciplinas">
+    <select class="custom-select custom-select-lg @error('disciplina_id') is-invalid @enderror" name="disciplina_id" id="disciplinas">
         <option disabled selected value>{{ __('Selecione uma disciplina') }}</option>
         @foreach($disciplinas as $disciplina)
             @if(isset($registro->disciplina->id) && $disciplina->id == $registro->disciplina->id)

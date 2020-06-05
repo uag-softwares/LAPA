@@ -11,37 +11,36 @@
             @yield('titulo')    
         </title>
 
-        <!-- Scripts -->
-        <script src="{{ asset('js/pesquisa_atlas.js') }}" defer></script>
-        <script src="{{ asset('js/pesquisa_materiais.js') }}" defer></script>
-
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+HK&display=swap" rel="stylesheet"> 
+        <link defer href="https://fonts.googleapis.com/css2?family=Noto+Sans+HK&display=swap" rel="stylesheet"> 
         
         <!-- Styles -->
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/clndr.css') }}" rel="stylesheet">
+        
+        <!-- Scripts -->
+        <script src="{{ asset('js/pesquisa_atlas.js') }}"></script>
+        <script src="{{ asset('js/pesquisa_materiais.js') }}"></script>
 
-        <!-- JQuery -->
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-
-        <!-- BootstrapCDN -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <script src="{{ asset('js/app.js') }}"></script>
+        
         <!-- Icones do Font Awesome -->
-        <script src="https://kit.fontawesome.com/8eafe50798.js" defer crossorigin="anonymous"></script>
+        <script defer src="https://kit.fontawesome.com/8eafe50798.js" crossorigin="anonymous"></script>
         
         <!-- include summernote css/js -->
-        <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>
-        
-        <!-- Mascaras -->
-        <script type="text/javascript" src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
-        <script type="text/javascript" src="{{ asset('js/jquery/jquery.inputmask.js') }}"></script>      
-        <script type="text/javascript" src="{{ asset('js/jquery/jquery.maskMoney.min.js') }}"></script>
-        <script defer="true" src="{{ asset('js/masks.js') }}"></script>
+        <link defer href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
+        <script defer src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>
+        <script src="{{ asset('js/summernote_config.js') }}"></script>
 
-        
+        <link defer rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.standalone.min.css">
+
+        <!-- Mascaras -->
+        <script defer type="text/javascript" src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
+        <script defer type="text/javascript" src="{{ asset('js/jquery/jquery.inputmask.js') }}"></script>      
+        <script defer type="text/javascript" src="{{ asset('js/jquery/jquery.maskMoney.min.js') }}"></script>
+        <script defer="true" src="{{ asset('js/masks.js') }}"></script>
     </head>
     <body>
     @include('layouts._includes.nav')

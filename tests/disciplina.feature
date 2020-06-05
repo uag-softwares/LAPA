@@ -4,7 +4,7 @@ Feature: disciplina
   As a user
   I need to poder criar, ver, atualizar e deletar disciplinas
 
-   Scenario: criar uma nova disciplina valida
+  Scenario: criar uma nova disciplina valida
     Given Eu estou logado como "Vinicius" com email "vinicius@admin.com" e senha "12345678"
     And Eu estou na pagina de adicionar disciplinas
     When Eu preencho o campo nome com "Engenharia de software"
@@ -49,3 +49,12 @@ Feature: disciplina
     And Eu seleciono o professor "Daniela"
     And Eu clico em adicionar disciplina
     Then Eu vejo erro ao adicionar disciplina com nome muito curto
+
+  Scenario: criar uma nova disciplina com nome ja existente
+    Given Eu estou logado como "Daniela" com email "daniela@admin.com" e senha "12345678"
+    And A disciplina "Estrutura de dados" ja exista
+    And Eu estou na pagina de adicionar disciplinas
+    When Eu preencho o campo nome com "Estrutura de dados"
+    And Eu seleciono o professor "Daniela"
+    And Eu clico em adicionar disciplina
+    Then Eu vejo a mensagem de erro "Essa disciplina já existe"

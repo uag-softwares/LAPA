@@ -1,6 +1,3 @@
-<script src="{{ asset('js/summernote_config.js') }}"></script>
-<!------ Include the above in your HEAD tag ---------->
-
 <!-- Footer -->
 	<section id="footer">
 		<div class="container">

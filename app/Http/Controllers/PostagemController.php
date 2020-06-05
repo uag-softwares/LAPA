@@ -65,10 +65,10 @@ class PostagemController extends Controller
         }
         $post=$this->postagem->create([
             'titulo' => $request ['titulo'],
-	    'descricao' => $request ['descricao'],
-	    'anexo' =>  $anexo,
-	    'tipo_postagem' => $request['tipo_postagem'],
-	    'user_id' =>$this->user->id,
+            'descricao' => $request ['descricao'],
+            'anexo' =>  $anexo,
+            'tipo_postagem' => $request['tipo_postagem'],
+            'user_id' =>$this->user->id,
             'publicado'=>$publicado,
             'data'=>$request['data'],
             'hora'=>$request['hora'],
@@ -122,13 +122,13 @@ class PostagemController extends Controller
     }
     
      public function siteHome(){//ordenar por data
-        //$posts= $this->postagem->where( 'tipo_postagem', 'noticia')->getQuery()->orderBy('updated_at', 'DESC')->get();
-        /*$registros=$posts;
-        if (count($posts)> 3){
-           $registros=[$posts[0],$posts[1],$posts[2]];
-        }*/
-        $registros = $this->postagem->where( 'tipo_postagem', 'noticia')->latest()->take(3)->get();
-        return view('site.postagens.home', compact('registros'));
+
+        $registros = $this->postagem->latest()->take(3)->get();
+        $noticias = $this->postagem->where( 'tipo_postagem', 'noticia')->latest()->take(4)->get();
+        $eventos = $this->postagem->where( 'tipo_postagem', 'evento')->latest()->take(3)->get();
+        $editais = $this->postagem->where( 'tipo_postagem', 'edital')->latest()->take(3)->get();
+
+        return view('site.postagens.home', compact('registros', 'noticias', 'eventos', 'editais'));
     }
 
     public function siteIndexEvento(){
@@ -145,7 +145,7 @@ class PostagemController extends Controller
 
     public function siteIndexNoticia(){
         $posts = $this->postagem->where( 'tipo_postagem', 'noticia')->latest();
-        $registros = $posts->where('publicado',true)->paginate(5);
+        $registros = $posts->where('publicado',true)->paginate(8);
         return view('site.postagens.indexNoticia', compact('registros'));
     }
 

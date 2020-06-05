@@ -3,35 +3,27 @@
 @section('content')
     <div class="container" >
         <h2>Professores</h2>
-
-        <div class="d-flex justify-content-around row">
-
             @if (count($registros) < 1)
                 <p>Ops, ainda não temos professores cadastrados</p>
             @else
-        
-            <div class="row col-12 justify-content-center">
-                   
-                  @foreach ($registros as $registro)
-                      <div class="col-11 col-md-5 col-lg-4 m-2 px-5 shadow-sm border rounded" id="usuarios">
-                            <div class="img">
-                                <img class="img-fluid rounded" src="{{ asset($registro->avatar) }}" alt="Foto do Professor(ª)" height="200" width="200">
-                            </div>
-                            <div class="m-4 text-center text-md-left">
+                @foreach ($registros as $registro)
+                    <div class="d-flex mx-auto text-left shadow-sm mb-3" id="usuarios" style="max-width: 500px;">
+                        <div class="d-block my-auto mx-4 w-75" style="overflow: hidden;">
+                            <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                 <a href="{{ route('site.quemSomos.vizualizar', $registro->slug) }}">
-                                    {{$registro->name}}
+                                    {{$registro->name.' '.$registro->surname}}
                                 </a>
-                                <p style="font-size:70%;text-align:left;">Email:
-                                     <a href = "mailto:{{ $registro->email}}">{{ $registro->email}}</a> 
-                                </p>
-                            </div>
-                      </div>
-                  @endforeach       
-                              
-                  
-            </div>
+                            </p>
+                            <p class="m-0 mt-auto" style="white-space: nowrap; font-size: 12px; overflow: hidden; text-overflow: ellipsis;">
+                                E-mail: <a href = "mailto:{{ $registro->email}}">{{ $registro->email}}</a> 
+                            </p>
+                        </div>
+                        <div class="rounded-right" style="display: flex; justify-content: center; align-items: center; width: 5em; height: 5em; background-image: url('{{ asset($registro->avatar) }}'); background-position: center; background-size: cover;">
+                            {!! isset($registro->avatar) ? '' : '<div class="fas fa-user" style="color: #00ad50; font-size: 5rem;"></div>' !!}
+                        </div>
+                    </div>
+                @endforeach
             @endif
-         </div>
     </div>
 @endsection 
 
