@@ -22,9 +22,21 @@
 				</div>
 				<div class="col-xs-12 col-sm-4 col-md-4">
 					<h5>Contatos</h5>
-				
-				<!-- Facebook -->
+				<!-- Email -->
 				@php($contato = App\Contato::latest('updated_at')->first())
+				@if (isset($contato->email))
+					<p><b>Email:</b> 
+						<a href="mailto:{{ $contato->email ?? '' }}">{{ $contato->email ?? '' }}</a>
+					</p>
+				@endif
+
+				@if (isset($contato->telefone))
+					<p><b>Telefone:</b>
+						<a href="tel:{{ $contato->telefone ?? ''}}">{{ $contato->telefone ?? ''}}</a>	
+					</p>	
+				@endif
+
+				<!-- Facebook -->
                 @if(isset($contato->facebook))
                     <a class="facebook-icone" href="{{ isset($contato->facebook) ? $contato->facebook : '#' }}" target="_blank">
                         <i class="fab fa-facebook-f fa-lg white-text"></i>
@@ -32,7 +44,6 @@
                 @endif	
 
 				<!-- Twitter -->
-				@php($contato = App\Contato::latest('updated_at')->first())
                 @if(isset($contato->twitter))
                     <a class="twitter-icone" href="{{ isset($contato->twitter) ? $contato->twitter : '#' }}" target="_blank">
                         <i class="fab fa-twitter fa-lg white-text"></i>
@@ -40,7 +51,6 @@
                 @endif	
        
 				<!-- Instagram -->
-				@php($contato = App\Contato::latest('updated_at')->first())
 				@if(isset($contato->instagram))
 					<a class="instagram-icone" href="{{ isset($contato->instagram) ? $contato->instagram : '#' }}" target="_blank">
 						<i class="fab fa-instagram fa-lg white-text"></i>
