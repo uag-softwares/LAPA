@@ -10,7 +10,7 @@ $(document).ready(function() {
 function encontrarVisitaNaData($visitas, $data) {
     var $horasDoDia = [];
 
-    $visitas.forEach($visita => {
+    $visitas.forEach(($visita) => {
         if($visita.data === $data) {
             $horasDoDia.push([
                 $visita.hora_inicial,
@@ -26,7 +26,7 @@ $(".datepicker").datepicker({
     format: "dd/mm/yyyy",
     startDate: "+1d",
     language: "pt-BR",
-    datesDisabled: feriados,
+    datesDisabled: $feriados,
     daysOfWeekDisabled: [0,6],
 });
 
@@ -37,7 +37,7 @@ $("#data").change( function() {
     var $horaInicial = $("#hora_inicial");
     $horaInicial.empty();
 
-    $horas.forEach($hora => {
+    $horas.forEach(($hora) => {
         $horaInicial.append("<option value=" + $hora[1] + ">" + $hora[0] + "</option>")
         $horaInicial.removeAttr("disabled");
     });
@@ -63,7 +63,7 @@ $("#hora_inicial").change( function() {
 
     $horas.forEach($hora => {
         if(parseFloat($hora[1]) > $horaInicialSelecionada) {
-            $horaFinal.append("<option value=" + $hora[1] + ">" + $hora[0] + "</option>")
+            $horaFinal.append("<option value=" + $hora[1] + ">" + $hora[0] + "</option>");
             $horaFinal.removeAttr("disabled");
         }
     });
