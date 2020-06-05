@@ -26,7 +26,7 @@ class CategoriaController extends Controller
 
     public function index() 
     {
-        $registros = $this->categoria->all();
+        $registros = $this->categoria->latest()->paginate(5);
         return view('auth.categorias.index', compact('registros'));
     }
 

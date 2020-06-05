@@ -52,9 +52,9 @@ class LoginController extends Controller
         $usersAdmin=User::where( 'user_type', 'admin')->get();
 	$user= $usersAdmin->where('email',$request['email'])->first();
         if($user!=null){
-	   if (Auth::guard('conta')->attempt(['user_id' =>$user->id, 'password' => $request['password']])) {
+	   if (Auth::guard('conta')->attempt(['user_id' =>$user->id, 'password' => $request['password']],$request['remember'])) {
 
-        	Auth::login($user);//lembrar de colocar remember token
+        	Auth::login($user);
     	   }
 	}
 

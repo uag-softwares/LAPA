@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Inherited Methods
  * @method void wantToTest($text)
@@ -20,91 +19,6 @@ class AcceptanceTester extends \Codeception\Actor
 {
     use _generated\AcceptanceTesterActions;
 
-    /**
-     * @Given Eu estou cadastrado e logado como :arg1
-     */
-    public function euEstouCadastradoELogadoComo($arg1)
-    {
-        $this->amOnPage('/register');
-        $this->fillField(['name' => 'name'], $arg1);
-        $this->fillField(['name' => 'cpf'], '111.111.111-11');
-        $this->fillField(['name' => 'email'], 'admin@admin.com');
-        $this->fillField(['name' => 'password'], '12345678');
-        $this->fillField(['name' => 'password_confirmation'], '12345678');
-        $this->click('Cadastrar');
-        $this->see($arg1, '//button');
-    }
-
-    /**
-     * @Given Eu estou logado como :arg1
-     */
-    public function euEstouLogadoComo($arg1)
-    {
-        $this->amOnPage('/login');
-        $this->fillField(['name' => 'email'], 'admin@admin.com');
-        $this->fillField(['name' => 'password'], '12345678');
-        $this->click('Login');
-        $this->see($arg1, '//button');
-    }
-    
-   /**
-    * @Then Eu deleto o usuario :arg1
-    */
-    public function euDeletoOUsuario($arg1)
-    {
-        $this->amOnPage('/auth/registros');
-        $this->seeInCurrentUrl('/auth/registros');
-        $this->click('Deletar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[4]');
-        //$this->seeInPopup('Tem certeza que deseja excluir a conta?'); // Para teste no chromedriver
-        //$this->acceptPopup(); // Para teste no chromedriver
-        $this->dontSee($arg1);
-    }
-
-    /**
-     * Testes revisados até aqui
-    */
-
-    /**
-     * @Given Eu crio um usuario para o teste
-     */
-    public function euCrioUmUsuarioParaOTeste()
-    {
-        $this->amOnPage('/register');
-        $this->fillField(['name' => 'name'], 'Rodrigo');
-        $this->fillField(['name' => 'cpf'], '111.111.111-11');
-        $this->fillField(['name' => 'email'], 'admin@admin.com');
-        $this->fillField(['name' => 'password'], '12345678');
-        $this->fillField(['name' => 'password_confirmation'], '12345678');
-        $this->click('Cadastrar');
-    }
-
-    
-
-    /**
-     * @Given Eu estou logado
-     */
-    public function euEstouLogado()
-    {
-        $this->amOnPage('/login');
-        $this->fillField(['name' => 'email'], 'admin@admin.com');
-        $this->fillField(['name' => 'password'], '12345678');
-        $this->click('Login');
-    }
-
-    /**
-     * @Then Eu deleto o usuario para o teste
-     */
-    public function euDeletoOUsuarioParaOTeste()
-    {
-        $this->amOnPage('/auth/registros');
-        $this->seeInCurrentUrl('/auth/registros');
-        $this->click('Deletar', '//table/tbody/tr/td[text()="Rodrigo"]/ancestor::tr/td[4]');
-        //$this->seeInPopup('Tem certeza que deseja excluir a conta?'); // Para teste no chromedriver
-        //$this->acceptPopup(); // Para teste no chromedriver
-        $this->dontSee('Rodrigo');
-    }
-
-
    /**
     * @When Eu clico em Editar
     */
@@ -112,15 +26,6 @@ class AcceptanceTester extends \Codeception\Actor
     {
         $this->click('Editar');
     }
-
-     /**
-     * @Given Eu estou na pagina de registro de usuario
-     */
-     public function euEstouNaPaginaDeRegistroDeUsuario()
-     {
-         $this->amOnPage('/register');
-     }
-
     /**
      * @When Eu preencho o campo email com :arg1
      */
@@ -160,15 +65,6 @@ class AcceptanceTester extends \Codeception\Actor
      public function euPreenchoOCampoCpf($arg1)
      {
          $this->fillField(['name' => 'cpf'], $arg1);
-     }
-    
-
-    /**
-     * @When Eu clico em  criar registro de usuario
-     */
-     public function euClicoEmCriarRegistroDeUsuario()
-     {
-         $this->click('Cadastrar');
      }
 
        /**
@@ -277,7 +173,7 @@ class AcceptanceTester extends \Codeception\Actor
      */
      public function euVejoQueOUsuarioEstaLogado()
      {
-         $this->amOnPage('/');
+          $this->seeInCurrentUrl('/gerenciar');
      }
      /**
      * @Given Eu estou na pagina de solicitar acesso ao sistema LAPA
@@ -318,7 +214,7 @@ class AcceptanceTester extends \Codeception\Actor
      */
      public function euComfirmoOEmail($arg1)
      {  
-       
+       $this->seeInCurrentUrl('/email/verify');
        $this->updateInDatabase('users',array('email_verified_at' => now())); 
    
      }
@@ -330,7 +226,98 @@ class AcceptanceTester extends \Codeception\Actor
         $this->amOnPage('/');
         $this->updateInDatabase('users',array('cpf_verified_at' => now())); 
      }
+     /**
+     * @Given A solicitao de acesso ao sistema do usuario :arg1 e email :arg2 existe
+     */
+     public function aSolicitaoDeAcessoAoSistemaDoUsuarioEEmailExiste($arg1, $arg2)
+     {
+         $this->haveInDatabase('users', [
+            'name' => $arg1,
+            'surname' => "Santos",
+            'cpf' =>  "123.456.789-11",
+            'email' => $arg2,
+            'email_verified_at' => now(),
+            'telephone' => "(81)98181-8181",
+            'user_type' => 'admin',
+        ]);
+
+        $user = $this->grabFromDatabase('users', 'id', array('email' => $arg2));
+
+        $this->haveInDatabase('contas', [
+            'password' => '$2y$10$4fSjqJsdiTwWChNwuxoYteEqPQEaF6Z87YLtX9Jh5UbZT9jtPPMha',
+            'user_id' => $user,
+        ]);
+
+     }
+
+    /**
+     * @Then Eu abro a pagina de gerenciar solicitacao
+     */
+     public function euAbroAPaginaDeGerenciarSolicitacao()
+     {
+         $this->amOnPage('/auth/acesso_gerenciamento');
+         $this->seeInCurrentUrl('/auth/acesso_gerenciamento');
+     }
+
+    /**
+     * @When Eu clico em aceitar solicitacao do usuario com email :arg1
+     */
+     public function euClicoEmAceitarSolicitacaoDoUsuarioComEmail($arg1)
+     {
+         $this->click('Aceitar');
+     }
+
+    /**
+     * @Then Eu vejo que a solicitacao foi aceita com sucesso
+     */
+     public function euVejoQueASolicitacaoFoiAceitaComSucesso()
+     {
+         $this->see('Solicitação confirmada com sucesso');
+     }
+
+      /**
+     * @When Eu clico em recusar solicitacao do usuario com email :arg1
+     */
+     public function euClicoEmRecusarSolicitacaoDoUsuarioComEmail($arg1)
+     {
+         $this->click('Recusar');
+     }
+
+    /**
+     * @Then Eu vejo que a solicitacao foi recusada com sucesso
+     */
+     public function euVejoQueASolicitacaoFoiRecusadaComSucesso()
+     {
+         $this->see('Solicitação recusada com sucesso');
+     }
+      /**
+     * @When Eu mudo o link lattes do registro para :arg1
+     */
+     public function euMudoOLinkLattesDoRegistroPara($arg1)
+     {
+         $this->fillField(['name' => 'link_lattes'], $arg1);
+     }
+
     
+
+    /**
+     * @When Eu mudo a foto de perfil do registro para :arg1
+     */
+     public function euMudoAFotoDePerfilDoRegistroPara($arg1)
+     {
+         $this->attachFile(['name' => 'avatar'], $arg1);
+     }
+
+    /**
+     * @Then Eu vejo uma menssagem de sucesso
+     */
+     public function euVejoUmaMenssagemDeSucesso()
+     {
+         $this->see('Conta editada com sucesso');
+     }
+
+
+     
 	/*==================================== A partir daqui metodos para feature Postagem =======================
      */
 
@@ -427,6 +414,7 @@ class AcceptanceTester extends \Codeception\Actor
      */
     public function euDevoVerAMensagemDeErro($arg1)
     {
+	$this->seeInCurrentUrl('/auth/postagem/adicionar');
         $this->see($arg1);
     }
     
@@ -435,8 +423,8 @@ class AcceptanceTester extends \Codeception\Actor
      */
      public function euAbroAPaginaDeCriarPostagem()
      {
-        $this->click('Adicionar');
         $this->amOnPage('/auth/postagem/adicionar');
+        $this->click('Adicionar');
      }
 
 
@@ -493,7 +481,36 @@ class AcceptanceTester extends \Codeception\Actor
          $this->selectOption(['name' => 'tipo_postagem'],$arg1);
      }
 
+     /**
+     * @When Eu preencho o campo data com :arg1
+     */
+     public function euPreenchoOCampoDataCom($arg1)
+     {
+         $this->fillField(['name' => 'data'], $arg1);
+     }
 
+    /**
+     * @When Eu preencho o campo hora com :arg1
+     */
+     public function euPreenchoOCampoHoraCom($arg1)
+     {
+         $this->fillField(['name' => 'hora'], $arg1);
+     }
+     /**
+     * @When Eu edito a hora para :arg1
+     */
+     public function euEditoAHoraPara($arg1)
+     {
+         $this->fillField(['name' => 'hora'], $arg1);
+     }
+
+      /**
+     * @When Eu edito a data para :arg1
+     */
+     public function euEditoADataPara($arg1)
+     {
+         $this->fillField(['name' => 'data'], $arg1);
+     }
 
 
 }

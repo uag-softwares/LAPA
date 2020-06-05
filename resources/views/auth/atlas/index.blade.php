@@ -14,8 +14,8 @@
                     </button>
                 </div>
             @endif
-            
-            <table class="table">
+            <div class="table-responsive">
+              <table class="table">
                 <thead>
                     <tr>
                         <th>Título</th>
@@ -37,6 +37,11 @@
                         </tr>
                     @endforeach
                 </tbody>
-            </table>
-        </div>
+              </table>
+          
+              <div class="d-flex justify-content-center">
+                    {{ $registros->links() }}
+              </div> 
+           </div>
+       </div>
 @endsection 
