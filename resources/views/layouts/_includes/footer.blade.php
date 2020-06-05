@@ -22,20 +22,30 @@
 				</div>
 				<div class="col-xs-12 col-sm-4 col-md-4">
 					<h5>Contatos</h5>
-					
-            <!-- Facebook -->
-          <a href="#" class="facebook-icone">
-            <i class="fab fa-facebook-f fa-lg white-text"> </i>
-          </a>
-          <!-- Twitter -->
-          <a href="#" class="twitter-icone">
-            <i class="fab fa-twitter fa-lg white-text"> </i>
-          </a>
-          <!--Instagram-->
-          <a href="#" class="instagran-icone">
-            <i class="fab fa-instagram fa-lg white-text"> </i>
-          </a>
-					
+				
+				<!-- Facebook -->
+				@php($contato = App\Contato::latest('updated_at')->first())
+                @if(isset($contato->facebook))
+                    <a class="facebook-icone" href="{{ isset($contato->facebook) ? $contato->facebook : '#' }}" target="_blank">
+                        <i class="fab fa-facebook-f fa-lg white-text"></i>
+                    </a>
+                @endif	
+
+				<!-- Twitter -->
+				@php($contato = App\Contato::latest('updated_at')->first())
+                @if(isset($contato->twitter))
+                    <a class="twitter-icone" href="{{ isset($contato->twitter) ? $contato->twitter : '#' }}" target="_blank">
+                        <i class="fab fa-twitter fa-lg white-text"></i>
+                    </a>
+                @endif	
+       
+				<!-- Instagram -->
+				@php($contato = App\Contato::latest('updated_at')->first())
+				@if(isset($contato->instagram))
+					<a class="instagram-icone" href="{{ isset($contato->instagram) ? $contato->instagram : '#' }}" target="_blank">
+						<i class="fab fa-instagram fa-lg white-text"></i>
+					</a>
+				@endif	
 		</div>
 	</div>
   <p>© 2020 Todos os direitos reservados.</p>
