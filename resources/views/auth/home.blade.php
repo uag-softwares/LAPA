@@ -29,9 +29,9 @@
                         <span class="fa fa-newspaper"></span>
                     </div>
                     <div class="card-body">
-                        <h2 class="card-title">
+                        <h3 class="card-title">
                             {{ __('Postagens') }}
-                        </h2>
+                        </h3>
                     </div>
                     <div class="card-footer">
                         <a href="{{ route('auth.postagem.adicionar') }}" class="btn">
@@ -49,9 +49,9 @@
                         <span class="fa fa-book-open"></span>
                     </div>
                     <div class="card-body">
-                        <h2 class="card-title">
+                        <h3 class="card-title">
                             {{ __('Atlas') }}
-                        </h2>
+                        </h3>
                     </div>
                     <div class="card-footer">
                         <a href="{{ route('auth.atla.adicionar') }}" class="btn">
@@ -69,9 +69,9 @@
                         <span class="fa fa-file"></span>
                     </div>
                     <div class="card-body">
-                        <h2 class="card-title">
+                        <h3 class="card-title">
                             {{ __('Materiais') }}
-                        </h2>
+                        </h3>
                     </div>
                     <div class="card-footer">
                         <a href="{{ route('auth.material.adicionar') }}" class="btn">
@@ -89,9 +89,9 @@
                         <span class="fa fa-id-card-alt"></span>
                     </div>
                     <div class="card-body">
-                        <h2 class="card-title">
+                        <h3 class="card-title">
                             {{ __('Visitas') }}
-                        </h2>
+                        </h3>
                     </div>
                     <div class="card-footer">
                         <a href="{{ route('site.visita.busca') }}" class="btn">
@@ -112,9 +112,9 @@
                         <span class="fas fa-bookmark"></span>
                     </div>
                     <div class="card-body">
-                        <h2 class="card-title">
+                        <h3 class="card-title">
                             {{ __('Disciplinas') }}
-                        </h2>
+                        </h3>
                     </div>
                     <div class="card-footer">
                         <a href="{{ route('auth.disciplina.adicionar') }}" class="btn">
@@ -132,9 +132,9 @@
                         <span class="fa fa-list-ul"></span>
                     </div>
                     <div class="card-body">
-                        <h2 class="card-title">
+                        <h3 class="card-title">
                             {{ __('Categorias') }}
-                        </h2>
+                        </h3>
                     </div>
                     <div class="card-footer">
                         <a href="{{ route('auth.categoria.adicionar') }}" class="btn">
@@ -152,9 +152,9 @@
                         <span class="fa fa-check-circle"></span>
                     </div>
                     <div class="card-body">
-                        <h2 class="card-title">
-                            {{ __('Solicitações de Registro') }}
-                        </h2>
+                        <h3 class="card-title">
+                            {{ __('Solicitações') }}
+                        </>
                     </div>
                     <div class="card-footer">
                         <a href="{{ route('auth.acesso_gerenciamento') }}" class="btn">
@@ -169,15 +169,12 @@
                         <span class="fa fa-info-circle"></span>
                     </div>
                     <div class="card-body">
-                        <h2 class="card-title">
-                            {{ __('Quem somos') }}
-                        </h2>
+                        <h3 class="card-title">
+                            {{ __('Contato') }}
+                        </h3>
                     </div>
                     <div class="card-footer">
-                        <a href="#" class="btn">
-                            Adicionar
-                        </a>
-                        <a href="#" class="btn">
+                        <a href="{{ route('auth.contatos') }}" class="btn">
                             Gerenciar
                         </a>
                     </div>

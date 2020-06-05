@@ -63,4 +63,8 @@ class User extends Authenticatable implements MustVerifyEmail
   {
     return 'slug';
   }
+
+    public function contato() {
+        return $this->hasMany('App\Sobre');
+    }
 }

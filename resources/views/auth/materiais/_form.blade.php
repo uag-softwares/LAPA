@@ -28,10 +28,9 @@
         </span>
     @enderror
 </div>
-
 @if(@isset($registro->anexo))
     <div class="form-group">
-        <img src="{{ asset($registro->anexo) }}" alt="">
+        <img class="w-50" src="{{ asset($registro->anexo) }}" alt="">
     </div>    
 @endisset
 
@@ -53,6 +52,10 @@
         </span>
     @enderror
 </div>
+<label class="input-checkbox" for="publicado">Publicar agora?
+    <input type="checkbox" name="publicado" autocomplete="publicado" {{ isset($registro->publicado) && $registro->publicado == true ? 'checked' : ''}} value="true">
+    <span class="checkmark"></span>
+</label>
 <div class="form-group">
      <hr>
       <p>Disciplina não cadastrada? <a class="" href="{{ route('auth.disciplina.adicionar') }}">{{ __('Cadastrar Disciplina') }}</a>.</p>
