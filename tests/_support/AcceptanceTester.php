@@ -226,8 +226,98 @@ class AcceptanceTester extends \Codeception\Actor
         $this->amOnPage('/');
         $this->updateInDatabase('users',array('cpf_verified_at' => now())); 
      }
-        
+     /**
+     * @Given A solicitao de acesso ao sistema do usuario :arg1 e email :arg2 existe
+     */
+     public function aSolicitaoDeAcessoAoSistemaDoUsuarioEEmailExiste($arg1, $arg2)
+     {
+         $this->haveInDatabase('users', [
+            'name' => $arg1,
+            'surname' => "Santos",
+            'cpf' =>  "123.456.789-11",
+            'email' => $arg2,
+            'email_verified_at' => now(),
+            'telephone' => "(81)98181-8181",
+            'user_type' => 'admin',
+        ]);
 
+        $user = $this->grabFromDatabase('users', 'id', array('email' => $arg2));
+
+        $this->haveInDatabase('contas', [
+            'password' => '$2y$10$4fSjqJsdiTwWChNwuxoYteEqPQEaF6Z87YLtX9Jh5UbZT9jtPPMha',
+            'user_id' => $user,
+        ]);
+
+     }
+
+    /**
+     * @Then Eu abro a pagina de gerenciar solicitacao
+     */
+     public function euAbroAPaginaDeGerenciarSolicitacao()
+     {
+         $this->amOnPage('/auth/acesso_gerenciamento');
+         $this->seeInCurrentUrl('/auth/acesso_gerenciamento');
+     }
+
+    /**
+     * @When Eu clico em aceitar solicitacao do usuario com email :arg1
+     */
+     public function euClicoEmAceitarSolicitacaoDoUsuarioComEmail($arg1)
+     {
+         $this->click('Aceitar');
+     }
+
+    /**
+     * @Then Eu vejo que a solicitacao foi aceita com sucesso
+     */
+     public function euVejoQueASolicitacaoFoiAceitaComSucesso()
+     {
+         $this->see('Solicitação confirmada com sucesso');
+     }
+
+      /**
+     * @When Eu clico em recusar solicitacao do usuario com email :arg1
+     */
+     public function euClicoEmRecusarSolicitacaoDoUsuarioComEmail($arg1)
+     {
+         $this->click('Recusar');
+     }
+
+    /**
+     * @Then Eu vejo que a solicitacao foi recusada com sucesso
+     */
+     public function euVejoQueASolicitacaoFoiRecusadaComSucesso()
+     {
+         $this->see('Solicitação recusada com sucesso');
+     }
+      /**
+     * @When Eu mudo o link lattes do registro para :arg1
+     */
+     public function euMudoOLinkLattesDoRegistroPara($arg1)
+     {
+         $this->fillField(['name' => 'link_lattes'], $arg1);
+     }
+
+    
+
+    /**
+     * @When Eu mudo a foto de perfil do registro para :arg1
+     */
+     public function euMudoAFotoDePerfilDoRegistroPara($arg1)
+     {
+         $this->attachFile(['name' => 'avatar'], $arg1);
+     }
+
+    /**
+     * @Then Eu vejo uma menssagem de sucesso
+     */
+     public function euVejoUmaMenssagemDeSucesso()
+     {
+         $this->see('Conta editada com sucesso');
+     }
+
+
+     
 	/*==================================== A partir daqui metodos para feature Postagem =======================
      */
 

@@ -53,7 +53,7 @@ class AdditionalSteps extends \Codeception\Actor
         $this->click('Entrar');
         $this->see($arg1, '//button');
     }
-
+    
     /**
      * @Given Eu crio a disciplina :arg1 para teste
      */
@@ -152,4 +152,30 @@ class AdditionalSteps extends \Codeception\Actor
                 'user_id' => $user,
         ]);
     }
+     /**
+     * @Given O usuario administrador com nome :arg1,email :arg2 e senha :arg3 existe
+     */
+     public function oUsuarioAdministradorComNomeemailESenhaExiste($arg1, $arg2, $arg3)
+     {
+         $this->haveInDatabase('users', [
+            'name' => $arg1,
+            'surname' => "Santos",
+            'cpf' =>  "123.456.789-10",
+            'cpf_verified_at' => now(),
+            'email' => $arg2,
+            'email_verified_at' => now(),
+            'telephone' => "(81)98181-8181",
+            'user_type' => 'admin',
+        ]);
+
+        $user = $this->grabFromDatabase('users', 'id', array('email' => $arg2));
+
+        $this->haveInDatabase('contas', [
+            'password' => '$2y$10$4fSjqJsdiTwWChNwuxoYteEqPQEaF6Z87YLtX9Jh5UbZT9jtPPMha',
+            'user_id' => $user,
+        ]);
+
+     }
+
+
 }

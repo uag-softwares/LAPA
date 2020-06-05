@@ -165,7 +165,7 @@ class RegisterController extends Controller
         $dados=[$user];
 	    $user->update($dados);
         Notification::send($user,new SolicitacaoAcesso_aceita(Auth::user()));
-        return redirect()->route('auth.acesso_gerenciamento')->with('success','Solicitação confrimada com sucesso'); 
+        return redirect()->route('auth.acesso_gerenciamento')->with('success','Solicitação confirmada com sucesso'); 
     }
 
     public function recusarSolicitacao($id_user){
