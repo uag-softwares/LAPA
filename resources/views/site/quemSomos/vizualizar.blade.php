@@ -14,9 +14,8 @@
                             <p class="text">Email:
                             <a href = "mailto:{{ $registro->email}}">{{ $registro->email}}</a> 
                             </p>
-                            <p class="text">Lattes:
-                                <a href = "{{ $registro->link_lattes}}"target="_blank" rel="noopener noreferrer">{{$registro->link_lattes}}</a></p>
-                            <p class="text">Perfil Profissional: {{ $registro->user_description}}</p> 
+                            {!! isset($registro->link_lattes) ? '<p class="text">Lattes: <a href = "{{ $registro->link_lattes }}" target="_blank" rel="noopener noreferrer">{{$registro->link_lattes}}</a></p>' : '' !!}
+                            <p class="text">Perfil profissional: {{ $registro->user_description}}</p> 
                         </article>  
                     </section>                          
                 </div>

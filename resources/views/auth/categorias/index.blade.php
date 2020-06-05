@@ -26,7 +26,7 @@
                 <tbody>
                     @foreach($registros as $registro)
                     <tr>
-                        <td>{{ $registro->nome }}</td>
+                        <td>{{ ucfirst($registro->nome) }}</td>
                         <td>{{ isset($registro->disciplina) ? ucfirst($registro->disciplina->nome) : 'Nenhuma disciplina' }}</td>
                         <td>
                             <a href="{{ route('auth.categoria.editar', $registro->slug) }}" class="btn">Editar</a>

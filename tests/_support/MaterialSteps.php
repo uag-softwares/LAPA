@@ -105,6 +105,14 @@ class MaterialSteps extends \Codeception\Actor
         $this->fillField(['name' => 'titulo'], $arg1);
     }
 
+    /**
+    * @When Eu edito o campo texto para :arg1
+    */
+    public function euEditoOCampoTextoPara($arg1)
+    {
+        $this->fillField(['name' => 'texto'], $arg1);
+    }
+
 
    /**
     * @Then Eu vejo erro ao adicionar material em branco

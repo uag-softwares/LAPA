@@ -2,7 +2,7 @@
 @include('layouts._includes.header')
     <main class="py-4">
         @yield('content')
-        @yield('scripts')
     </main>
+    @yield('scripts')
 @include('layouts._includes.footer')
 

@@ -54,26 +54,32 @@
 </div>
 <div class="form-group">
     <label for="data">Data*</label>
-    <input min="{{ date('Y-m-d', strtotime('tomorrow')) }}" class="form-control form-control-lg @error('data') is-invalid @enderror" type="date" name="data" value="{{ isset($registro->data) ? $registro->data : old('data') }}" placeholder="Digite a data da visita" required>
+    <input id="data" type="text" name="data" class="datepicker form-control form-control-lg @error('data') is-invalid @enderror" data-provide="datepicker" value="{{ isset($registro->data) ? $registro->data : old('data') }}" placeholder="Digite a data da visita" required>
     @error('data')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
         </span>
     @enderror
 </div>
-<div class="d-flex flex-row">
+<div class="form-group d-flex flex-row">
     <div class="form-group mr-5 w-100">
-        <label for="hora">Hora de início*</label>
-        <input min="{{ date('H:i', strtotime('09:00')) }}" max="{{ date('H:i', strtotime('15:00')) }}" class="form-control form-control-lg @error('hora_inicial') is-invalid @enderror" type="time" name="hora_inicial" value="{{ isset($registro->hora_inicial) ? $registro->hora_inicial : old('hora_inicial') }}" placeholder="Digite a hora do início da visita" required>
+        <label for="hora_inicial">Hora de início*</label>
+        <select disabled name="hora_inicial" id="hora_inicial" class="custom-select custom-select-lg @error('hora_inicial') is-invalid @enderror @error('hora') is-invalid @enderror"></select>
         @error('hora_inicial')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
         </span>
         @enderror
+        @error('hora')
+            <input type="hidden" class="is-invalid">
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
     </div>
     <div class="form-group w-100">
-        <label for="hora">Hora de fim*</label>
-        <input min="{{ date('H:i', strtotime('09:00')) }}" max="{{ date('H:i', strtotime('15:00')) }}" class="form-control form-control-lg @error('hora_final') is-invalid @enderror" type="time" name="hora_final" value="{{ isset($registro->hora_final) ? $registro->hora_final : old('hora_final') }}" placeholder="Digite a hora do fim da visita" required>
+        <label for="hora_final">Hora de fim*</label>
+        <select disabled name="hora_final" id="hora_final" class="custom-select custom-select-lg @error('hora_final') is-invalid @enderror @error('hora') is-invalid @enderror"></select>
         @error('hora_final')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -81,6 +87,7 @@
         @enderror
     </div>
 </div>
+
 <div class="form-group">
     <label for="descricao">Descrição*</label>
     <textarea name="descricao" class="form-control form-control-lg @error('descricao') is-invalid @enderror" type="text" placeholder="Descreva aqui a sua visita" required>{{ isset($registro->descricao) ? $registro->descricao : old('descricao') }}</textarea>

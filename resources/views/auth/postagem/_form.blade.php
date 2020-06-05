@@ -18,7 +18,7 @@
 </div>
 <div class="form-group">
     <label for="tipo_postagem">Selecione o tipo da postagem*</label>
-    <select class="form-control form-control-lg @error('tipo_postagem') is-invalid @enderror" name="tipo_postagem" id="tipo_postagem" required autocomplete="tipo_postagem">
+    <select class="custom-select custom-select-lg @error('tipo_postagem') is-invalid @enderror" name="tipo_postagem" id="tipo_postagem" required autocomplete="tipo_postagem">
         @if(isset($registro->tipo_postagem))
                 <option value="{{ $registro->tipo_postagem }}" selected>{{$registro->tipo_postagem}}</option>
         @else
@@ -48,7 +48,7 @@
 
 @if(@isset($registro->anexo))
     <div class="form-group">
-        <img class="w-50" src="{{ asset($registro->anexo) }}" alt="">
+        <img class="w-50" src="{{ asset($registro->anexo) }}" alt="{{ $registro->titulo ?? '' }}">
     </div>    
 @endisset
 

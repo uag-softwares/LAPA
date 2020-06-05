@@ -2,33 +2,35 @@
 @section('titulo', 'Editais')
 @section('content')
     <div class="container" >
-       
-        <div class="breadcrumbs d-flex text-left justify-content-sm-start justify-content-between">
-            <p>
-                 <h2>Lista de Editais</h2>
-            </p>
-        </div>
+        <h2>Todos os editais</h2>
         <div class="d-flex justify-content-around row">
 
             @if (count($registros) < 1)
                 <p>Ops, ainda não temos nenhum edital</p>
             @else
         
-            <div class="item-list px-4">
+            <div class="d-flex flex-wrap justify-content-center">
                    
-                  @foreach ($registros as $registro)
-                       <div class="d-block d-md-flex my-3 shadow-sm rounded" id="postagens">
-                            <div class="img">
-                                <img class="img-fluid rounded" src="{{ asset($registro->anexo) }}" alt="Imagem da postagem">
+                @foreach ($registros as $registro)
+                    <div class="col-10 col-md-5 col-lg-3 mb-2">
+                        <div class="card home">
+                            <div class="card-header">
+                                    <img src="{{ asset($registro->anexo ?? '/img/lapa-logo.png') }}" alt="{{ $registro->titulo }}">
                             </div>
-                            <div class="m-4 text-center text-md-left">
-                                <a href="{{ route('site.editais.vizualizar', $registro->slug) }}">
-                                    {{$registro->titulo}} 
-                                </a>
-                                <p style="font-size:70%;">Publicado {{ date('d/m/Y', strtotime($registro->created_at)) }} às {{ date('H:i', strtotime($registro->created_at)) }}</p>
+                            <div class="card-body">
+                                    <h5>
+                                        <a href="{{ route('site.noticias.vizualizar', $registro->slug) }}">
+                                            {{$registro->titulo}} 
+                                        </a>
+                                    </h5>
+                                    {!! strip_tags($registro->descricao) !!}
                             </div>
-                        </div>                  
-                  @endforeach   
+                            <div class="card-footer">
+                                Publicado {{ date('d/m/Y', strtotime($registro->created_at)) }} às {{ date('H:i', strtotime($registro->created_at)) }}
+                            </div>
+                        </div>
+                    </div>
+                @endforeach 
                   
                 <div class="d-flex justify-content-center">
                     {{ $registros->links() }}
