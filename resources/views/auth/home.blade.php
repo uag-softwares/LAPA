@@ -174,10 +174,7 @@
                         </h3>
                     </div>
                     <div class="card-footer">
-                        <a href="{{ route('auth.contato.adicionar') }}" class="btn">
-                            Adicionar
-                        </a>
-                        <a href="#" class="btn">
+                        <a href="{{ route('auth.contatos') }}" class="btn">
                             Gerenciar
                         </a>
                     </div>

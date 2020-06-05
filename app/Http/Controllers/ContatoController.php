@@ -22,13 +22,14 @@ class ContatoController extends Controller
 
     public function index() 
     {
-        $registros = $this->contato->latest('updated_at')->first();
+        $registro = $this->contato->latest('updated_at')->first();
 
         if(!isset($registro)) {
             return view('auth.contato.adicionar');
+
         }
 
-        return view('auth.contato.editar', compact('registros'));
+        return view('auth.contato.editar', compact('registro'));
     }
 
     public function adicionar() 
@@ -48,14 +49,11 @@ class ContatoController extends Controller
 
     public function editar(Contato $contato) 
     {
-       
-        return view('auth.contatos.editar', compact('registro', 'users'));        
-
+        return view('auth.contato.editar', compact('registro'));        
     }
 
     public function atualizar(Request $request, $identifier)
     {
-    
         $dados = $request->all();
         $dados['slug']=str_slug($dados['emai']).'-'.$identifier;
         $this->contato->find($identifier)->update($dados);

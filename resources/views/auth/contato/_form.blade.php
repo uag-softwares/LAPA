@@ -1,6 +1,6 @@
 <div class="form-group">
     <label for="email">Email do laboratório*</label>
-    <input class=" form-control form-control-lg {{ $errors->has('email') ? 'error' : '' }}" type="text" name="email" value="{{ isset($registro->email) ? $registro->email : old('email') }}" placeholder="Digite aqui o email da organização">
+    <input class="form-control form-control-lg {{ $errors->has('email') ? 'error' : '' }}" type="text" name="email" value="{{ isset($registro->email) ? $registro->email : old('email') }}" placeholder="Digite aqui o email da organização">
     @error('email')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -9,7 +9,7 @@
 </div>
 <div class="form-group">
     <label for="texto">Descrição - Quem Somos*</label>
-    <textarea type="text" name="texto" placeholder="Escreve aqui uma breve descrição sobre o laboratório">{{ isset($registro->texto) ? $registro->texto : old('texto') }}</textarea>
+    <textarea rows="7" class="form-control form-control-lg {{ $errors->has('texto') ? 'error' : '' }}" type="text" name="texto" placeholder="Escreva aqui uma breve descrição sobre o laboratório">{{ isset($registro->texto) ? $registro->texto : old('texto') }}</textarea>
     @error('texto')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
