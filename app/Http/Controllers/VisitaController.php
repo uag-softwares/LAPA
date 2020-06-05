@@ -44,8 +44,8 @@ class VisitaController extends Controller
     public function index()
     {
         $registros = $this->visita->whereHas('user', function($query) {
-                $query->whereNotNull('email_verified_at');
-            })->get()->reverse();
+            $query->whereNotNull('email_verified_at');
+            })->latest()->paginate(5);
         return view('auth.visitas.index', compact('registros'));
     }
 

@@ -71,5 +71,50 @@ class UserTest extends TestCase
      
        
     }
+    /**
+     * Teste criar usuário administrador valido com link lattes
+     *
+     * @return void
+     */
+    public function testCriarUsuarioValidoComLinkLattes()
+    {
+        $user = factory(User::class)->create(['cpf'=>'999.999.999-99','link_lattes'=>'http://lattes.cnpq.br/3151296501932443']);
+        factory(Conta::class)->create(['user_id'=>$user->id,]);
+        $this->assertDatabaseHas('users', [
+        'cpf' => '999.999.999-99',]);
+        $this->assertDatabaseHas('contas', [
+       'user_id' => $user->id,]);
+        
+    }
+    /**
+     * Teste criar usuário administrador valido com foto de perfil
+     *
+     * @return void
+     */
+    public function testCriarUsuarioValidoComFotoPerfil()
+    {
+        $user =factory(User::class)->create(['cpf'=>'999.999.999-99','avatar'=>'public/img/avatares/imag1']);
+        factory(Conta::class)->create(['user_id'=>$user->id,]);
+        $this->assertDatabaseHas('users', [
+        'cpf' => '999.999.999-99',]);
+        $this->assertDatabaseHas('contas', [
+       'user_id' => $user->id,]);
+        
+    }
+     /**
+     * Teste criar usuário administrador valido ser descrição 
+     *
+     * @return void
+     */
+    public function testCriarUsuarioValidoSemDescricao()
+    {
+        $user =factory(User::class)->create(['cpf'=>'999.999.999-99','user_description'=>null]);
+        factory(Conta::class)->create(['user_id'=>$user->id,]);
+        $this->assertDatabaseHas('users', [
+        'cpf' => '999.999.999-99','user_description'=>null]);
+        $this->assertDatabaseHas('contas', [
+       'user_id' => $user->id,]);
+        
+    }
 
 }

@@ -8,12 +8,14 @@ addons:
   chrome: stable
 
 install:
-  - cp .env.example .env
+  - ls -a
   - cp codeception.yml.travis codeception.yml
   - travis_retry composer install --no-interaction --prefer-dist --no-suggest
-  - php artisan key:generate
 
 before_script:
+  - cp .env.example .env
+  - cat .env
+  - php artisan key:generate
   - mysql -e 'CREATE DATABASE laravel;'
   - php artisan migrate
   - php artisan serve &

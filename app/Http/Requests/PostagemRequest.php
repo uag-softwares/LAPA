@@ -35,7 +35,9 @@ class PostagemRequest extends FormRequest
     }
    public function messages(){
 	return[
-            'tipo_postagem.required'=>'Selecionar o tipo da postagem é obrigatório',  
+            'tipo_postagem.required'=>'Selecionar o tipo da postagem é obrigatório', 
+	    'hora.date_format'=>" A hora selecionada não está no formato H:i",
+            'data.after'=>'A data selecionada tem que ser posterior a hoje',
         ];
     }
     

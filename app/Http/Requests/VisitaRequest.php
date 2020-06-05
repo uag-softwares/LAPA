@@ -35,6 +35,7 @@ class VisitaRequest extends FormRequest
             'hora_final' => 'required',
             'descricao' =>'required|min:10',
             'confirmada' => 'nullable',
+	    'g-recaptcha-response' => 'captcha',
         ];
     }
 
@@ -64,6 +65,7 @@ class VisitaRequest extends FormRequest
             'email.email' => 'Email inválido',
             'confirmada.nullable' => 'A confirmação pode ser nula',
             'user_type.in' => 'Você não alterar esse campo',
+	    'g-recaptcha-response.captcha'=>'O campo reCaptcha é obrigatório',
         ];
     }
 }

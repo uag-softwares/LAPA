@@ -29,7 +29,7 @@ class MaterialController extends Controller
     public function index() 
     { 
 	
-        $registros = $this->material->all();
+        $registros = $this->material->latest()->paginate(5);
         return view('auth.materiais.index', compact('registros'));
     }
 

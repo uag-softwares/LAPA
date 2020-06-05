@@ -24,6 +24,7 @@ use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
 use Image;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Illuminate\Validation\Rule;
 class RegisterController extends Controller
 {
     /*
@@ -59,7 +60,7 @@ class RegisterController extends Controller
     {
        $this->middleware('auth', ['except' => [
 
-            'register','showRegistrationForm','siteIndex','siteRegistervizualizar', 'buscarUsuarioVisita']]);
+            'register','showRegistrationForm','siteIndex','siteRegistervizualizar', 'buscarUsuarioVisita','vizualizarTermosPrivacidade']]);
        $this->middleware('guest', ['only' => [
             'register',
             'showRegistrationForm'
@@ -76,18 +77,23 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' =>'required|alpha|string|min:3|max:255',
-	        'surname' =>'required|alpha|string|min:3|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-	        'cpf' => 'required|regex:/\d{3}\.\d{3}\.\d{3}\-\d{2}/|string|unique:users',
+	    'surname' =>'required|alpha|string|min:3|max:255',
+            'email' => ['required', 'string', 'email', 'max:255',Rule::unique('users')->where(function ($query){return $query->where('user_type','admin');})],
+            'password' => 'required|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/|string|min:6|confirmed',
+	    'cpf' => 'required|regex:/\d{3}\.\d{3}\.\d{3}\-\d{2}/|string|unique:users',
             'user_description' => 'max:255|nullable',
             'link_lattes' => 'url|string|nullable',
-            'avatar' => 'mimes:jpeg,jpg,png,gif|max:2048|nullable' 
+            'avatar' => 'mimes:jpeg,jpg,png,gif|max:2048|nullable',
+	    'g-recaptcha-response' => 'captcha',
             
-        ]);
+        ],[
+       'password.regex'=>'Sua senha deve conter no mínimo de 6 caracteres,deve conter pelo menos uma letra maiúscula,uma minúscula,um número e um símbolo',
+       'email.unique'=>'O valor informado para o campo e-mail já está em uso em uma conta de administrador',
+       'g-recaptcha-response.captcha'=>'O campo reCaptcha é obrigatório',
+       ]);
        
     }
-   
+    
     /**
      * Create a new user instance after a valid registration.
      *
@@ -96,9 +102,8 @@ class RegisterController extends Controller
      */
      
     protected function create(array $data)
-    { 
-       $usersAdmin=$this->usuario->where( 'user_type', 'admin')->get();
-       $registros= $usersAdmin->whereNotNull('cpf_verified_at')->all();
+    {  $registros=$this->usuario->where( 'user_type', 'admin')->get()->whereNotNull('cpf_verified_at')->all();
+       $findUser=$this->usuario->where('email',$data['email'])->first();
        $avatar=null;
        $request = new Request($data);
        if($request->has('avatar')) {
@@ -111,18 +116,25 @@ class RegisterController extends Controller
             $avatar= $dir.'/'.$nomeAnexo;
            
         }
-
-       $user= $this->usuario->create([
+       $dados=[
             'name' =>  $data ['name'],
             'cpf' =>  $data ['cpf'],
             'email' =>  $data['email'],
             'surname' =>  $data ['surname'],
-            'user_description' =>  $data ['user_description'],
+            'user_description' =>$data ['user_description'],
             'avatar' => $avatar,
             'user_type' => 'admin',
             'link_lattes'=> $data['link_lattes'],
-        ]);
+        ];
 
+       if($findUser==null){//se não existe usuário cadastrado
+       $user= $this->usuario->create($dados);
+       }
+       else if($findUser!=null){//se já existe usuário visitante cadastrado
+          $findUser->update($dados);
+          $user=$findUser;
+       }
+       
         $this->conta->create([
             'password' => Hash::make( $data ['password']),
             'user_id'=>$user->id,  
@@ -131,10 +143,9 @@ class RegisterController extends Controller
         $user['slug']=str_slug($user->name).'-'.$user->id;
         $user->update($user->attributesToArray());
 
-        foreach ($registros as $registro) {
+	foreach ($registros as $registro) {
             $registro->notify(new SolicitacaoAcesso($user));
         }
-
         return $user;
     }
 
@@ -143,8 +154,8 @@ class RegisterController extends Controller
     }
 
     public function gerenciarSolicitacao(){
-        $usersAdmin=$this->usuario->where( 'user_type', 'admin')->get();
-        $registros= $usersAdmin->where('cpf_verified_at',null)->all();
+        $usersAdmin=$this->usuario->where( 'user_type', 'admin')->latest();
+        $registros= $usersAdmin->where('cpf_verified_at',null)->paginate(5);
         return view('auth.acesso_gerenciamento', compact('registros'));
     }
 
@@ -159,10 +170,26 @@ class RegisterController extends Controller
 
     public function recusarSolicitacao($id_user){
         $user=$this->usuario->find($id_user);
+        $visitas=$this->visita->where('user_id',$user->id)->get();
+        $conta=$this->conta->where('user_id',$user->id)->first();
+        $dados=$user->getAttributes();
         Notification::send($user,new SolicitacaoAcesso_recusada(Auth::user()));
-        if($user->delete()){
-	        return redirect()->route('auth.acesso_gerenciamento')->with('success','Solicitação recusada com sucesso');
+        if($visitas->isEmpty()){//se o usuário não tem visita cadastrada,deleta ele e a conta
+	   if($user->delete()){
+	      return redirect()->route('auth.acesso_gerenciamento')->with('success','Solicitação recusada com sucesso');
+           }
         }
+        //se o usuário tem visitas cadastradas no sistema,só atualiza ele novamente como visitante e deleta a conta 
+        $dados=[
+            'user_description' =>null,
+            'avatar' => null,
+            'user_type' => 'visitant',
+            'link_lattes'=>null,
+            'slug'=>null,
+        ];
+        $user->update($dados);
+        $conta->delete();
+	return redirect()->route('auth.acesso_gerenciamento')->with('success','Solicitação recusada com sucesso');
     }
 
     public function editar(){
@@ -228,5 +255,7 @@ class RegisterController extends Controller
         
 	    return view('site.visitas.adicionar', compact('userExiste', 'email', 'feriados', 'horas', 'visitas'));
     }
-  
+    public function vizualizarTermosPrivacidade (){
+    	return view('auth.privacidade_termos');
+    }
 }

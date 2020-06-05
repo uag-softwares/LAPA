@@ -41,6 +41,9 @@
         <script defer type="text/javascript" src="{{ asset('js/jquery/jquery.inputmask.js') }}"></script>      
         <script defer type="text/javascript" src="{{ asset('js/jquery/jquery.maskMoney.min.js') }}"></script>
         <script defer="true" src="{{ asset('js/masks.js') }}"></script>
+        
+        <!-- reCAPTCHA-->
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     </head>
     <body>
     @include('layouts._includes.nav')
