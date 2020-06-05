@@ -78,20 +78,6 @@ Feature: usuario
     	 And   Eu clico em  solicitar acesso
     	 Then  Eu vejo a mensagem de erro "O campo sobrenome é obrigatório."
 
-  Scenario: aceitar solicitacao de acesso ao sistema
-	 Given A solicitao de acesso ao sistema do usuario "Laiz" e email "laiz@gmail.com" existe
-         And   Eu estou logado como "Izadora" com email "Izadora@admin.com" e senha "12345678"
-    	 Then  Eu abro a pagina de gerenciar solicitacao
-         When  Eu clico em aceitar solicitacao do usuario com email "laiz@gmail.com"
-    	 Then  Eu vejo que a solicitacao foi aceita com sucesso 
-
-  Scenario: recusar solicitacao de acesso ao sistema
-	 Given A solicitao de acesso ao sistema do usuario "Rner" e email "rner@gmail.com" existe
-         And   Eu estou logado como "Izabela" com email "Izabela@admin.com" e senha "12345678"
-    	 Then  Eu abro a pagina de gerenciar solicitacao
-         When  Eu clico em recusar solicitacao do usuario com email "rner@gmail.com"
-    	 Then  Eu vejo que a solicitacao foi recusada com sucesso 
-  
   Scenario: atualizar link lattes valido do usuario administrador cadastrado 
          Given O usuario administrador com nome "Roberta",email "roberta@gmail.com" e senha "Brasil2020@" existe
          And   Eu estou na pagina de login
