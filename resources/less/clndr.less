@@ -1,0 +1,185 @@
+@main-green: #00ad50;
+@main-dark-green: #009444;
+@main-black: #212529;
+@main-white: #f8f9fa;
+@main-light: #e8e8ee;
+@main-lighter: #efefef;
+
+#full-clndr
+{
+  width: 100%;
+  background-color: @main-white;
+  font-weight: 700;
+
+  .clndr-controls
+  {
+    padding: 14px;
+    background-color: @main-dark-green;
+    color: @main-white;
+    text-align: center;
+
+    .clndr-previous-button
+    {
+      float: left;
+      text-align: left;
+    }
+
+    .clndr-next-button
+    {
+      float: right;
+      text-align: right;
+    }
+
+    .clndr-previous-button, .clndr-next-button
+    {
+      width: 30px;
+      cursor: pointer;
+      .noselect,
+      &:hover
+      {
+        opacity: 0.5;
+      }
+    }
+  }
+  
+  .calendar {
+    position: relative;
+    height: 460px;
+    overflow-y: hidden;
+
+    .clndr-grid
+    {
+      position: absolute;
+      top: 0;
+      height: 460px;
+      width: 100%;
+      border: 1px solid @main-light;
+      border-top: 0px;
+      transition: top 500ms ease-in-out;
+
+      .days-of-the-week
+      {
+        width: 100%;
+        background-color: @main-green;
+
+        .header-day
+        {
+          float: left;
+          width: 14.2857%;
+          padding: 14px;
+          text-align: center;
+          color: @main-white;
+        }
+      }
+
+      .days
+      {
+        width: 100%;
+
+        .day, .empty
+        {
+          float: left;
+          width: 14.2857%;
+          height: 66px;
+          padding: 24px 0;
+
+          text-align: center;
+          color: #4f4f4f;
+          background-color: @main-white;
+          border-bottom: 2px solid @main-white;
+
+          background-size: cover;
+          background-position: center;
+
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          
+          &.event
+          {
+            cursor: pointer;
+            padding: 4px;
+            border: 4px solid @main-dark-green;
+          }
+
+          &.event:hover {
+            background-color: @main-lighter;
+          }
+
+          &.adjacent-month
+          {
+            .day-number
+            {
+              opacity: 0.3;
+            }
+          }
+        }
+
+        .today
+        {
+          padding: 8px;
+          background-color: @main-light;
+          background-image: none;
+        }
+
+      }
+    }
+
+
+    .event-listing
+    {
+      position: absolute;
+      top: 460px;
+      background-color: @main-white;
+      border-right: 1px solid @main-light;
+      border-bottom: 1px solid @main-light;
+      max-height: 460px;
+      width: 100%;
+      overflow-y: scroll;
+      transition: top 500ms ease-in-out;
+
+      .event-listing-title
+      {
+        position: absolute;
+        padding: 14px;
+        background-color: @main-green;
+        text-align: center;
+        color: @main-white;
+        letter-spacing: 1px;
+        position: sticky;
+        top: 0;
+
+        .x-button {
+          cursor: pointer
+        }
+
+        .x-button:hover {
+          opacity: 0.8;
+        }
+      }
+      .event-item
+      {
+        padding: 14px;
+        color: #4f4f4f;
+        border: 1px solid @main-light;
+      }
+      .event-item + .event-item {
+        border-top: 0px;
+      }
+      .event-item-location
+      {
+        font-weight: 400;
+      }
+    }  
+    &.show-events {
+      
+      .clndr-grid {
+        top: -460px;
+      }
+      .event-listing {
+        top: 0;
+      }
+    }
+  }
+} 

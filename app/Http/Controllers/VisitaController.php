@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Visita;
 use App\User;
+use App\Postagem;
 use App\Http\Requests\VisitaRequest;
 use App\Notifications\SolicitacaoVisita;
 use App\Notifications\SolicitacaoVisitaAceita;
@@ -21,12 +22,14 @@ class VisitaController extends Controller
 
     protected $visita;
     protected $usuario;
+    protected $postagem;
     protected $auth;
 
-    public function __construct(Visita $visita, User $usuario, Auth $auth) 
+    public function __construct(Visita $visita, User $usuario, Postagem $postagem, Auth $auth) 
     {
         $this->visita = $visita;
         $this->usuario = $usuario;
+        $this->postagem = $postagem;
         $this->auth = $auth;
 
         $this->middleware('auth', ['except' => [
@@ -40,14 +43,43 @@ class VisitaController extends Controller
     public function index()
     {
         $registros = $this->visita->whereHas('user', function($query) {
-            $query->whereNotNull('email_verified_at');
+                $query->whereNotNull('email_verified_at');
             })->get()->reverse();
         return view('auth.visitas.index', compact('registros'));
     }
 
     public function busca() 
     {
-        return view('site.visitas.pesquisar_email');        
+        $visitas = $this->visita->where('confirmada', true)->get();
+        $eventos = $this->postagem->where('tipo_postagem', 'evento')->get();
+
+        $agenda = [];
+
+        foreach($visitas as $visita) {
+            $item = [
+                'location' => $visita->user->name,
+                'date' => $visita->data,
+                'hora_inicial' => date('H:i', strtotime($visita->hora_inicial)),
+                'hora_final' => date('H:i', strtotime($visita->hora_final)),
+                'title' => 'visita',
+            ];
+            array_push($agenda, $item);
+        }
+
+        foreach($eventos as $evento) {
+            $item = [
+                'location' => $evento->titulo,
+                'date' => $evento->data,
+                'hora_inicial' => date('H:i', strtotime($evento->hora)),
+                'hora_final' => null,
+                'title' => 'evento',
+            ];
+            array_push($agenda, $item);
+        }
+
+        //dd($agenda);
+
+        return view('site.visitas.pesquisar_email', compact('agenda'));        
     }
 
     public function salvar($visita) 
@@ -85,7 +117,7 @@ class VisitaController extends Controller
         $visita = $this->visita->where('id', $identifier)->first();
         
         if(!$this->visita->find($identifier)->delete()) {
-            return redirect()->back()->withErrors('error', 'Erro ao cancelar a visita');
+            return redirect()->back()->with(['error' => 'Erro ao cancelar a visita']);
         }
 
         $visita->user->notify(new SolicitacaoVisitaRecusada($visita->user));
@@ -96,6 +128,17 @@ class VisitaController extends Controller
     public function salvarUsuarioVisita(VisitaRequest $request)
     {
         $msgSucesso = 'Visita solicitada com sucesso, você receberá um email quando ela for confirmada.';
+
+        // Corrigir formato da data
+        $request['data'] = str_replace('/', '-', $request['data']);
+        $request['data'] = date('Y-m-d', strtotime($request['data']));
+        
+        $request['hora_inicial'] = $this->visita->horaFloatParaString($request['hora_inicial']);
+        $request['hora_final'] = $this->visita->horaFloatParaString($request['hora_final']);
+
+        if($request['hora_inicial'] == null || $request['hora_final'] == null) {
+            return redirect()->back()->withErrors(['hora' => 'Horários inválidos, tente novamente'])->withInput();
+        }
 
         $request->validated();
 

@@ -30,3 +30,14 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app',
 });
+
+const underscore = require('underscore');
+
+window.moment = require('moment');
+window.moment.locale('pt-br');
+console.log(moment().calendar());
+
+const clndr = require('clndr');
+
+const bootstrapDatepicker = require('bootstrap-datepicker');
+require('bootstrap-datepicker/js/locales/bootstrap-datepicker.pt-BR');

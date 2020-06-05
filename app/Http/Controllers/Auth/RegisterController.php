@@ -216,8 +216,17 @@ class RegisterController extends Controller
         $request->validated();
         $email = $request['email'];
         $userExiste = $this->usuario->where('email', $email)->first();
+        $feriados = $this->visita->diasFeriados();
+        $horas = $this->visita->horas;
+        $visitas = $this->visita->where('confirmada', true)->select('data', 'hora_inicial', 'hora_final')->get();
+
+        foreach($visitas as $visita) {
+            $visita->data = date('d/m/Y', strtotime($visita->data));
+            $visita->hora_inicial = str_replace('.00', '', date('H.i', strtotime($visita->hora_inicial)));
+            $visita->hora_final = str_replace('.00', '', date('H.i', strtotime($visita->hora_final)));
+        }
         
-	    return view('site.visitas.adicionar', compact('userExiste', 'email'));
+	    return view('site.visitas.adicionar', compact('userExiste', 'email', 'feriados', 'horas', 'visitas'));
     }
   
 }

@@ -28,7 +28,7 @@
                     @foreach ($registros as $registro)
                         <tr>
                             <td>{{ $registro->titulo }}</td>
-                            <td>{{ isset($registro->categoria) ? $registro->categoria->nome : 'Nenhuma categoria' }}</td>
+                            <td>{{ isset($registro->categoria) ? ucfirst($registro->categoria->nome) : 'Nenhuma categoria' }}</td>
                             <td>{{ $registro->publicado ? "Sim" : "Não" }}</td>
                             <td>
                                 <a href="{{ route('auth.atla.editar',$registro->slug) }}" class="btn">Editar</a>

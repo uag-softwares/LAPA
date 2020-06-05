@@ -54,14 +54,6 @@ class AtlaSteps extends \Codeception\Actor
     }
 
    /**
-    * @Then Eu vejo erro ao atualizar o atlas com descricao invalida
-    */
-    public function euVejoErroAoAtualizarOAtlasComDescricaoInvalida()
-    {
-        $this->see('A descrição do atlas é obrigatório');
-    }
-
-   /**
      * @When Eu clico em escolher arquivo e escolho :arg1
      */
     public function euClicoEmEscolherArquivoEEscolho($arg1)

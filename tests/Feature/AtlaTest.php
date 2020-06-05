@@ -19,12 +19,14 @@ class AtlaTest extends TestCase
     public function testCriarAtlaValido()
     {
         $atla = factory(Atla::class)->create([
-            'titulo'=>'Atla teste',
+            'titulo' => 'Atla teste',
         ]);
+
         $this->assertDatabaseHas('atlas', [
-        'titulo' => 'Atla teste',]);
-       
+            'titulo' => $atla->titulo,
+        ]);
     }
+
     /**
      * Teste deletar pagina de atlas cadastrado
      *
@@ -32,11 +34,13 @@ class AtlaTest extends TestCase
      */
     public function testDeletarAtlaCadastrado()
     {
-      $atla = factory(Atla::class)->create(['titulo'=>'Atla teste para deletar',]);
-      $atla->delete();
-      $this->assertDeleted($atla);
-       
+        $atla = factory(Atla::class)->create([
+            'titulo' => 'Atla teste para deletar',
+        ]);
+        $atla->delete();
+        $this->assertDeleted($atla);
     }
+
     /**
      * Teste atualizar descricao do pagina de atlas cadastrado
      *
@@ -44,11 +48,16 @@ class AtlaTest extends TestCase
      */
     public function testEditarAtlaTextoValido()
     {
-      $atla = factory(Atla::class)->create(['descricao'=>'Essa pagina do atlas está sendo criando para teste',]);
-      $this->assertDatabaseHas('atlas', [
-        'descricao' => 'Essa pagina do atlas está sendo criando para teste',]);
-      $atla->update(['descricao'=>'Essa pagina do atlas está sendo atualizado para teste',]);
-      $this->assertEquals('Essa pagina do atlas está sendo atualizado para teste',$atla->descricao); 
+        $atla = factory(Atla::class)->create([
+            'descricao' => 'Essa pagina do atlas está sendo criando para teste',
+        ]);
+        $this->assertDatabaseHas('atlas', [
+            'descricao' => $atla->descricao,
+        ]);
+        $atla->update([
+            'descricao' => 'Essa pagina do atlas está sendo atualizado para teste',
+        ]);
+        $this->assertEquals('Essa pagina do atlas está sendo atualizado para teste', $atla->descricao); 
     }
 
     /**
@@ -58,7 +67,8 @@ class AtlaTest extends TestCase
      */
     public function testLerAtlaNaoCadastrado()
     {
-      $this->assertDatabaseMissing('atlas', [
-        'titulo' => 'ler a pagina do atlas  não cadastrada',]);   
+        $this->assertDatabaseMissing('atlas', [
+            'titulo' => 'ler a pagina do atlas  não cadastrada',
+        ]);   
     }
 }
