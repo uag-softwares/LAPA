@@ -64,6 +64,7 @@ class Visita extends Model
     }
 
     function horaFloatParaString($horaFloat) {
+        array_push($this->horas, ['22:00', 22]);
         foreach($this->horas as $hora) {
             if($horaFloat == $hora[1]) {
                 return $hora[0];
@@ -75,7 +76,7 @@ class Visita extends Model
     {
         if(empty($ano))
         {
-            $ano = intval(date('Y'));
+            $ano = (int)date('Y');
         }
 
         $pascoa = easter_date($ano); // Limite de 1970 ou após 2037 da easter_date PHP consulta http://www.php.net/manual/pt_BR/function.easter-date.php

@@ -14,6 +14,7 @@ use App\Notifications\ConfirmarEmailVisita;
 use \Illuminate\Notifications\Notifiable;
 use Notification;
 use Auth;
+use Illuminate\Support\Carbon;
 
 use Illuminate\Support\Facades\DB;
 
@@ -50,7 +51,8 @@ class VisitaController extends Controller
 
     public function busca() 
     {
-        $visitas = $this->visita->where('confirmada', true)->get();
+        $visitas = $this->visita->where('confirmada', true)
+                                ->whereDate('data', '>', Carbon::now())->get();
         $eventos = $this->postagem->where('tipo_postagem', 'evento')->get();
 
         $agenda = [];
