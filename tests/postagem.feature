@@ -69,4 +69,15 @@ Scenario: deletar uma postagem com sucesso
     And Eu estou na pagina de postagens
     And Eu clico em Deletar a postagem com titulo "Entrega de peças ao acervo"
     Then Eu nao vejo a postagem com titulo "Entrega de peças ao acervo"
+
+Scenario: criar uma postagem valida noticia default sem selecionar o tipo
+    Given Eu estou logado como "Luz" com email "luz@admin.com" e senha "12345678"
+    And Eu estou na pagina de postagens
+    Then Eu abro a pagina de criar postagem
+    When Eu preencho o campo titulo com "visita a ufape"
+    And Eu preencho o campo descricao com "Recebemos alunos da escola EREMG"
+    And Eu clico em Escolher arquivo e escolho "anexo.png"
+    And Eu clico em Adicionar
+    Then Eu vejo que a postagem com titulo "visita a ufape" foi salva com sucesso
+
    

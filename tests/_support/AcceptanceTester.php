@@ -324,6 +324,7 @@ class AcceptanceTester extends \Codeception\Actor
      */
     public function euDevoVerAMensagemDeErro($arg1)
     {
+	$this->seeInCurrentUrl('/auth/postagem/adicionar');
         $this->see($arg1);
     }
     
@@ -332,8 +333,8 @@ class AcceptanceTester extends \Codeception\Actor
      */
      public function euAbroAPaginaDeCriarPostagem()
      {
-        $this->click('Adicionar');
         $this->amOnPage('/auth/postagem/adicionar');
+        $this->click('Adicionar');
      }
 
 
