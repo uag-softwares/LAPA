@@ -504,6 +504,63 @@ class AcceptanceTester extends \Codeception\Actor
          $this->fillField(['name' => 'hora'], $arg1);
      }
 
+    /**
+     * @Given Eu estou na pagina de gerenciar contato
+     */
+    public function euEstouNaPaginaDeGerenciarContato()
+    {
+        $this->amOnPage('/auth/contatos');
+       // $this->see('Adicionar Informações de Contato do LAPA', '//h2');
+    }
+
+
+   /**
+    * @When Eu preencho o campo email do contato com :arg1
+    */
+    public function euPreenchoOCampoEmailDoContatoCom($arg1)
+    {
+        $this->fillField(['name' => 'email'], $arg1);
+    }
+
+   /**
+    * @When Eu preencho o campo texto do contato com :arg1
+    */
+    public function euPreenchoOCampoTextoDoContatoCom($arg1)
+    {
+        $this->fillField(['name' => 'texto'], $arg1);
+    }
+
+   /**
+    * @When Eu preencho o campo telefone do contato com :arg1
+    */
+    public function euPreenchoOCampoTelefoneDoContatoCom($arg1)
+    {
+        $this->fillField(['name' => 'telefone'], $arg1);
+    }
+
+   /**
+    * @When Eu preencho o campo instagram do contato com :arg1
+    */
+    public function euPreenchoOCampoInstagramDoContatoCom($arg1)
+    {
+        $this->fillField(['name' => 'instagram'], $arg1);
+    }
+
+   /**
+    * @When Eu preencho o campo twitter do contato com :arg1
+    */
+    public function euPreenchoOCampoTwitterDoContatoCom($arg1)
+    {
+        $this->fillField(['name' => 'twitter'], $arg1);
+    }
+
+   /**
+    * @When Eu preencho o campo facebook do contato com :arg1
+    */
+    public function euPreenchoOCampoFacebookDoContatoCom($arg1)
+    {
+        $this->fillField(['name' => 'facebook'], $arg1);
+    }
       /**
      * @When Eu edito a data para :arg1
      */
@@ -512,5 +569,94 @@ class AcceptanceTester extends \Codeception\Actor
          $this->fillField(['name' => 'data'], $arg1);
      }
 
+    /**
+     * @When Eu clico em Salvar
+     */
+    public function euClicoEmSalvar()
+    {
+        $this->click('Salvar');
+    }
+
+   /**
+    * @Then Eu vejo que o contato foi adicionado corretamente
+    */
+    public function euVejoQueOContatoFoiAdicionadoCorretamente()
+    {
+        $this->see('Informações do Contato adicionadas com sucesso!');
+    }
+
+     /**
+     * @When Eu edito o campo email do contato para :arg1
+     */
+    public function euEditoOCampoEmailDoContatoPara($arg1)
+    {
+        $this->fillField(['name' => 'email'], $arg1);
+    }
+
+   /**
+    * @When Eu edito o campo texto do contato para :arg1
+    */
+    public function euEditoOCampoTextoDoContatoPara($arg1)
+    {
+        $this->fillField(['name' => 'texto'], $arg1);
+    }
+
+   /**
+    * @When Eu edito o campo telefone do contato para :arg1
+    */
+    public function euEditoOCampoTelefoneDoContatoPara($arg1)
+    {
+        $this->fillField(['name' => 'telefone'], $arg1);
+    }
+
+   /**
+    * @When Eu edito o campo instagram do contato para :arg1
+    */
+    public function euEditoOCampoInstagramDoContatoPara($arg1)
+    {
+        $this->fillField(['name' => 'instagram'], $arg1);
+    }
+
+   /**
+    * @When Eu edito o campo twitter do contato para :arg1
+    */
+    public function euEditoOCampoTwitterDoContatoPara($arg1)
+    {
+        $this->fillField(['name' => 'twitter'], $arg1);
+    }
+
+   /**
+    * @When Eu edito o campo facebook do contato para :arg1
+    */
+    public function euEditoOCampoFacebookDoContatoPara($arg1)
+    {
+        $this->fillField(['name' => 'facebook'], $arg1);
+    }
+
+   /**
+    * @When Eu clico em Salvar alterações
+    */
+    public function euClicoEmSalvarAlteraes()
+    {
+        $this->click('Salvar alterações');
+    }
+
+   /**
+    * @Then Eu vejo que o contato foi atualizado corretamente
+    */
+    public function euVejoQueOContatoFoiAtualizadoCorretamente()
+    {
+        $this->see('Informações do Contato atualizadas com sucesso!');
+
+    }
+
+    /**
+     * @Then Eu vejo uma mensagem de erro que o endereco do instagram esta errado
+     */
+    public function euVejoUmaMensagemDeErroQueOEnderecoDoInstagramEstaErrado()
+    {
+        $this->see('O campo do Instagram deve conter um link, exemplo: https://instagram.com/exemplo');
+
+    }
 
 }

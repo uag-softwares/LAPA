@@ -152,6 +152,24 @@ class AdditionalSteps extends \Codeception\Actor
                 'user_id' => $user,
         ]);
     }
+
+    /**
+     * @Given o contato :arg1 ja exista
+     */
+    public function oContatoJaExista($arg1)
+    {
+        $user = $this->grabFromDatabase('users', 'id', array('email' => $arg1));
+
+        $this->haveInDatabase('contatos', [
+                'user_id' => $user,
+                'email' => $arg1,
+                'texto' => 'teste de uma descricao',
+                'telefone' => '88 999999999',
+                'instagram' => 'https://instagram.com/exemplo',
+                'twitter' => 'https://twitter.com/exemplo',
+                'facebook' => 'https://facebook.com/exemplo',
+        ]);
+    }
      /**
      * @Given O usuario administrador com nome :arg1,email :arg2 e senha :arg3 existe
      */

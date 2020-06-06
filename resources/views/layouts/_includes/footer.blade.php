@@ -16,10 +16,11 @@
 						<li><a href="{{ route('site.postagens.indexEvento') }}">Eventos</a>
 						<li><a href="{{ route('site.materiais.index') }}">Materiais</a>
 						<li><a href="{{ route('site.postagens.indexNoticia') }}">Notícias</a>
-						<li><a href="#">Contato</a>
+						<li><a href="{{ route('site.contato.index')}}">Sobre</a>
 						<li><a href="{{ route('site.visita.busca') }}">Visitas</a>
 					</ul>
 				</div>
+
 				<div class="col-xs-12 col-sm-4 col-md-4">
 					<h5>Contatos</h5>
 				<!-- Email -->
