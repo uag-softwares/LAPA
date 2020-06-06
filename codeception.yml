@@ -40,6 +40,8 @@ gherkin:
                 - CategoriaSteps
             atla:
                 - AtlaSteps
+            contato:
+                - ContatoSteps
 
 # additional paths
 paths:

@@ -45,7 +45,7 @@ class ContatoController extends Controller
         $contato=$this->contato->create($dados);
         $contato['slug']=str_slug($contato->email).'-'.$contato->id;
         $contato->update($contato->attributesToArray());
-        return redirect()->route('site.contato.index')->with('success', 'Informações do Contato adicionadas com sucesso!');
+        return redirect()->back()->with('success', 'Informações do Contato adicionadas com sucesso!');
     }
 
     public function editar(Contato $contato) 
