@@ -12,8 +12,6 @@ class MaterialController extends Controller
    protected $material;
    protected $disciplina;
    
-
-
     public function __construct(Material $material, Disciplina $disciplina)
     {
         $this->middleware('auth', ['except' => [
@@ -28,8 +26,8 @@ class MaterialController extends Controller
 
     public function index() 
     { 
-	
         $registros = $this->material->latest()->paginate(5);
+
         return view('auth.materiais.index', compact('registros'));
     }
 
@@ -53,6 +51,11 @@ class MaterialController extends Controller
             $anexo->move($dir, $nomeAnexo);
             $dados['anexo'] = $dir.'/'.$nomeAnexo;
         }
+
+        if(!isset($dados['publicado'])) {
+            $dados['publicado'] = false;
+        }
+
         $material=$this->material->create($dados);
         $material['slug']=str_slug($material->titulo).'-'.$material->id;
         $material->update($material->attributesToArray());
@@ -79,6 +82,11 @@ class MaterialController extends Controller
             $anexo->move($dir, $nomeAnexo);
             $dados['anexo'] = $dir.'/'.$nomeAnexo;
         }
+
+        if(isset($dados['publicado'])) {
+            $dados['publicado'] = false;
+        }
+
         $dados['slug']=str_slug($dados['titulo']).'-'.$material_id;
         $this->material->find($material_id)->update($dados);
         return redirect()->route('auth.materiais')->with('success', 'Material atualizado com sucesso!');

@@ -7,6 +7,7 @@ use App\Categoria;
 use App\Atla;
 use App\Material;
 use App\Visita;
+use App\Contato;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,8 +35,8 @@ Route::get('/site/eventos/vizualizar/{registro:slug}', ['as' => 'site.eventos.vi
 Route::get('/site/editais/vizualizar/{registro:slug}', ['as' => 'site.editais.vizualizar', 'uses' => 'PostagemController@siteVizualizarEdital'], function (App\Postagem $registro) {return $registro;});
 Route::get('/site/noticias/vizualizar/{registro:slug}', ['as' => 'site.noticias.vizualizar', 'uses' => 'PostagemController@siteVizualizarNoticia'], function (App\Postagem $registro) {return $registro;});
 
-Route::get('/site/quemSomos/index', ['as' => 'site.quemSomos.index', 'uses' => 'Auth\RegisterController@siteIndex'], function () {});
-Route::get('/site/quemSomos/vizualizar/{registro:slug}', ['as' => 'site.quemSomos.vizualizar', 'uses' => 'Auth\RegisterController@siteRegistervizualizar'], function (App\User $registro) {return $registro;});
+Route::get('/site/contato/index', ['as' => 'site.contato.index', 'uses' => 'Auth\RegisterController@siteIndex'], function () {});
+Route::get('/site/contato/vizualizar/{registro:slug}', ['as' => 'site.contato.vizualizar', 'uses' => 'Auth\RegisterController@siteRegistervizualizar'], function (App\User $registro) {return $registro;});
 
 Route::get('/site/materiais/index', ['as' => 'site.materiais.index', 'uses' => 'MaterialController@siteIndex'], function () {});
 Route::get('/site/materiais/disciplina/{disciplina:slug}', ['as' => 'site.materiais.disciplina', 'uses' => 'MaterialController@materiaisPorDisciplina'],function (App\Disciplina $disciplina) {return $disciplina;});
@@ -105,7 +106,13 @@ Route::middleware(['auth','check.cpf'])->group(function () {
 	Route::get('/auth/acesso_gerenciamento', ['as' => 'auth.acesso_gerenciamento', 'uses' => 'Auth\RegisterController@gerenciarSolicitacao'], function () {});
 	Route::get('/auth/acesso_gerenciamento/aceitarSolicitacao/{id}', ['as' => 'auth.acesso_gerenciamento.aceitarSolicitacao', 'uses' => 'Auth\RegisterController@aceitarSolicitacao'], function() {});
 	Route::get('/auth/acesso_gerenciamento/recusarSolicitacao/{id}', ['as' => 'auth.acesso_gerenciamento.recusarSolicitacao', 'uses' => 'Auth\RegisterController@recusarSolicitacao'], function() {});
-        
+	
+	Route::get('/auth/contatos', ['as' => 'auth.contatos', 'uses' => 'ContatoController@index'], function () {});
+	Route::get('/auth/contato/adicionar', ['as' => 'auth.contato.adicionar', 'uses' => 'ContatoController@adicionar'], function () {});
+	Route::post('/auth/contato/salvar', ['as' => 'auth.contato.salvar', 'uses' => 'ContatoController@salvar'], function () {});
+	Route::get('/auth/contato/editar/{registro:slug}', ['as' => 'auth.contato.editar', 'uses' => 'ContatoController@editar'], function (App\Contato $registro) {return $registro;});
+	Route::put('/auth/contato/atualizar/{id}', ['as' => 'auth.contato.atualizar', 'uses' => 'ContatoController@atualizar'], function () {});
+	Route::get('/auth/contato/deletar/{registro:slug}', ['as' => 'auth.contato.deletar', 'uses' => 'ContatoController@deletar'],function (App\Contato $registro) {return $registro;});
 
 });
 

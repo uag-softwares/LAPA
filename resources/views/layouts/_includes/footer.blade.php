@@ -12,29 +12,50 @@
 					<h5>Navegação</h5>
 					<ul class="list-unstyled quick-links">
 						<li><a href="{{ route('site.atlas.index') }}">Atlas Iterativo</a>
-						<li><a href="{{ route('site.visita.busca') }}">Visitas</a>
-						<li><a href="{{ route('site.postagens.indexNoticia') }}">Notícias</a>
-            			<li><a href="{{ route('site.postagens.indexEvento') }}">Eventos</a>
+						<li><a href="{{ route('site.postagens.indexEdital') }}">Editais e Seleções</a>
+						<li><a href="{{ route('site.postagens.indexEvento') }}">Eventos</a>
 						<li><a href="{{ route('site.materiais.index') }}">Materiais</a>
-						<li><a href="{{ route('site.quemSomos.index') }}">Quem somos</a>
+						<li><a href="{{ route('site.postagens.indexNoticia') }}">Notícias</a>
+						<li><a href="#">Contato</a>
+						<li><a href="{{ route('site.visita.busca') }}">Visitas</a>
 					</ul>
 				</div>
 				<div class="col-xs-12 col-sm-4 col-md-4">
 					<h5>Contatos</h5>
-					
-            <!-- Facebook -->
-          <a href="#" class="facebook-icone">
-            <i class="fab fa-facebook-f fa-lg white-text"> </i>
-          </a>
-          <!-- Twitter -->
-          <a href="#" class="twitter-icone">
-            <i class="fab fa-twitter fa-lg white-text"> </i>
-          </a>
-          <!--Instagram-->
-          <a href="#" class="instagran-icone">
-            <i class="fab fa-instagram fa-lg white-text"> </i>
-          </a>
-					
+				<!-- Email -->
+				@php($contato = App\Contato::latest('updated_at')->first())
+				@if (isset($contato->email))
+					<p><b>Email:</b> 
+						<a href="mailto:{{ $contato->email ?? '' }}">{{ $contato->email ?? '' }}</a>
+					</p>
+				@endif
+
+				@if (isset($contato->telefone))
+					<p><b>Telefone:</b>
+						<a href="tel:{{ $contato->telefone ?? ''}}">{{ $contato->telefone ?? ''}}</a>	
+					</p>	
+				@endif
+
+				<!-- Facebook -->
+                @if(isset($contato->facebook))
+                    <a class="facebook-icone" href="{{ isset($contato->facebook) ? $contato->facebook : '#' }}" target="_blank">
+                        <i class="fab fa-facebook-f fa-lg white-text"></i>
+                    </a>
+                @endif	
+
+				<!-- Twitter -->
+                @if(isset($contato->twitter))
+                    <a class="twitter-icone" href="{{ isset($contato->twitter) ? $contato->twitter : '#' }}" target="_blank">
+                        <i class="fab fa-twitter fa-lg white-text"></i>
+                    </a>
+                @endif	
+       
+				<!-- Instagram -->
+				@if(isset($contato->instagram))
+					<a class="instagram-icone" href="{{ isset($contato->instagram) ? $contato->instagram : '#' }}" target="_blank">
+						<i class="fab fa-instagram fa-lg white-text"></i>
+					</a>
+				@endif	
 		</div>
 	</div>
   <p>© 2020 Todos os direitos reservados.</p>

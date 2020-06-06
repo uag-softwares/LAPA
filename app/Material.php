@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Material extends Model
 {
     protected $fillable = [
-        'titulo', 'texto', 'anexo', 'disciplina_id','slug',
+        'titulo', 'texto', 'anexo', 'publicado', 'disciplina_id','slug',
     ];
 
     public function disciplina() {

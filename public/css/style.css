@@ -465,6 +465,13 @@ section .section-title {
   all: unset;
 }
 
+
+/* Summernote background dos botoes */
+.note-editor .btn {
+  background-color: var(--main-white);
+  color: var(--main-black);
+}
+
 @media only screen and (max-width: 767px) {
 
   #postagens .img {
