@@ -52,9 +52,7 @@ class MaterialController extends Controller
             $dados['anexo'] = $dir.'/'.$nomeAnexo;
         }
 
-        if(isset($dados['publicado'])) {
-            $dados['publicado'] = true;
-        } else {
+        if(!isset($dados['publicado'])) {
             $dados['publicado'] = false;
         }
 
@@ -85,9 +83,7 @@ class MaterialController extends Controller
             $dados['anexo'] = $dir.'/'.$nomeAnexo;
         }
 
-       if(isset($dados['publicado'])) {
-            $dados['publicado'] = true;
-        } else {
+        if(isset($dados['publicado'])) {
             $dados['publicado'] = false;
         }
 

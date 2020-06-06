@@ -468,7 +468,7 @@ section .section-title {
 
 /* Summernote background dos botoes */
 .note-editor .btn {
-  background-color:var(--main-white);
+  background-color: var(--main-white);
   color: var(--main-black);
 }
 
