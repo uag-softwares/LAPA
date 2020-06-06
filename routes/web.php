@@ -31,12 +31,12 @@ Route::get('/site/eventos/index', ['as' => 'site.postagens.indexEvento', 'uses' 
 Route::get('/site/noticias/index', ['as' => 'site.postagens.indexNoticia', 'uses' => 'PostagemController@siteIndexNoticia'], function () {});
 Route::get('/site/editais/index', ['as' => 'site.postagens.indexEdital', 'uses' => 'PostagemController@siteIndexEdital'], function () {});
 
-Route::get('/site/eventos/vizualizar/{registro:slug}', ['as' => 'site.eventos.vizualizar', 'uses' => 'PostagemController@siteVizualizarEvento'], function (App\Postagem $registro) {return $registro;});
-Route::get('/site/editais/vizualizar/{registro:slug}', ['as' => 'site.editais.vizualizar', 'uses' => 'PostagemController@siteVizualizarEdital'], function (App\Postagem $registro) {return $registro;});
-Route::get('/site/noticias/vizualizar/{registro:slug}', ['as' => 'site.noticias.vizualizar', 'uses' => 'PostagemController@siteVizualizarNoticia'], function (App\Postagem $registro) {return $registro;});
+Route::get('/site/eventos/visualizar/{registro:slug}', ['as' => 'site.eventos.vizualizar', 'uses' => 'PostagemController@siteVizualizarEvento'], function (App\Postagem $registro) {return $registro;});
+Route::get('/site/editais/visualizar/{registro:slug}', ['as' => 'site.editais.vizualizar', 'uses' => 'PostagemController@siteVizualizarEdital'], function (App\Postagem $registro) {return $registro;});
+Route::get('/site/noticias/visualizar/{registro:slug}', ['as' => 'site.noticias.vizualizar', 'uses' => 'PostagemController@siteVizualizarNoticia'], function (App\Postagem $registro) {return $registro;});
 
 Route::get('/site/contato/index', ['as' => 'site.contato.index', 'uses' => 'Auth\RegisterController@siteIndex'], function () {});
-Route::get('/site/contato/vizualizar/{registro:slug}', ['as' => 'site.contato.vizualizar', 'uses' => 'Auth\RegisterController@siteRegistervizualizar'], function (App\User $registro) {return $registro;});
+Route::get('/site/contato/visualizar/{registro:slug}', ['as' => 'site.contato.vizualizar', 'uses' => 'Auth\RegisterController@siteRegistervizualizar'], function (App\User $registro) {return $registro;});
 
 Route::get('/site/materiais/index', ['as' => 'site.materiais.index', 'uses' => 'MaterialController@siteIndex'], function () {});
 Route::get('/site/materiais/disciplina/{disciplina:slug}', ['as' => 'site.materiais.disciplina', 'uses' => 'MaterialController@materiaisPorDisciplina'],function (App\Disciplina $disciplina) {return $disciplina;});

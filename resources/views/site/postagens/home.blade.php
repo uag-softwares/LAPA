@@ -79,7 +79,7 @@
                          </div>
                          <div class="card-body">
                               <h5>
-                                   <a href="{{ route('site.noticias.vizualizar', $evento->slug) }}">
+                                   <a href="{{ route('site.eventos.vizualizar', $evento->slug) }}">
                                         {{$evento->titulo}} 
                                     </a>
                               </h5>
@@ -102,7 +102,7 @@
 
      @if(isset($editais) && count($editais) != 0)
      <div class="mb-5">
-          <h2 class="mb-3">Próximos eventos</h2>
+          <h2 class="mb-3">Últimos editais</h2>
           <div class="d-flex flex-wrap justify-content-center">
           
           @foreach ($editais as $edital)
@@ -113,7 +113,7 @@
                          </div>
                          <div class="card-body">
                               <h5>
-                                   <a href="{{ route('site.noticias.vizualizar', $edital->slug) }}">
+                                   <a href="{{ route('site.editais.vizualizar', $edital->slug) }}">
                                         {{$edital->titulo}} 
                                     </a>
                               </h5>

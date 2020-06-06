@@ -19,7 +19,7 @@
                             </div>
                             <div class="card-body">
                                     <h5>
-                                        <a href="{{ route('site.noticias.vizualizar', $registro->slug) }}">
+                                        <a href="{{ route('site.editais.vizualizar', $registro->slug) }}">
                                             {{$registro->titulo}} 
                                         </a>
                                     </h5>
