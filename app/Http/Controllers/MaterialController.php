@@ -26,7 +26,8 @@ class MaterialController extends Controller
 
     public function index() 
     { 
-        $registros = $this->material->all();
+        $registros = $this->material->latest()->paginate(5);
+
         return view('auth.materiais.index', compact('registros'));
     }
 
@@ -51,9 +52,7 @@ class MaterialController extends Controller
             $dados['anexo'] = $dir.'/'.$nomeAnexo;
         }
 
-        if(isset($dados['publicado'])) {
-            $dados['publicado'] = true;
-        } else {
+        if(!isset($dados['publicado'])) {
             $dados['publicado'] = false;
         }
 
@@ -84,9 +83,7 @@ class MaterialController extends Controller
             $dados['anexo'] = $dir.'/'.$nomeAnexo;
         }
 
-       if(isset($dados['publicado'])) {
-            $dados['publicado'] = true;
-        } else {
+        if(isset($dados['publicado'])) {
             $dados['publicado'] = false;
         }
 

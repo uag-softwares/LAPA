@@ -7,6 +7,7 @@ suites:
             enabled:
                 - PhpBrowser:
                     url: http://localhost:8000
+                    host: 127.0.0.1
                 - \Helper\Acceptance
                 - Db:
                    dsn: 'mysql:host=localhost;dbname=laravel'
@@ -49,7 +50,7 @@ paths:
     output: tests/_output
     data: tests/_data
     support: tests/_support
-    envs: tests/_envs
+    envs: .env.testing
 
 settings:
     shuffle: false

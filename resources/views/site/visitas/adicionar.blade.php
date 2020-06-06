@@ -27,7 +27,7 @@
 
     <script>
         // Bloquear feriados
-        var feriados = {!! json_encode($feriados) !!};
+        var $feriados = {!! json_encode($feriados) !!};
         
         // Todas as horas possíveis
         var $horas = {!! json_encode($horas) !!};

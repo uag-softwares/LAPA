@@ -17,7 +17,7 @@ class PostagemTest extends TestCase
      * @return void
      */
 
-    public function testCriarPostagemValida()
+    public function testCriarPostagemValida()//default é noticia
     {
         $user = factory(User::class)->create(['cpf'=>'999.999.999-99',]);
         factory(Conta::class)->create(['user_id'=>$user->id,]);
@@ -70,8 +70,60 @@ class PostagemTest extends TestCase
     public function testLerPostagemNaoCadastrada()
     {
       $this->assertDatabaseMissing('postagems', [
-        'descricao' => 'ler postagem não cadastrado',]);
-     
+        'descricao' => 'ler postagem não cadastrado',]); 
+    }
+    /**
+     * Teste criar postagem do tipo evento valida
+     *
+     * @return void
+     */
+
+    public function testCriarPostagemEventoValida()
+    {
+        $user = factory(User::class)->create(['cpf'=>'999.999.999-99',]);
+        factory(Conta::class)->create(['user_id'=>$user->id,]);
+        $postagem = factory(Postagem::class)->create(['titulo'=>'Postagem teste','user_id'=>$user->id,'tipo_postagem'=>'evento','data'=>'2020-06-26','hora'=>'02:01:00']);
+        $this->assertDatabaseHas('postagems',['tipo_postagem'=>'evento',
+        'titulo' =>$postagem->titulo,]);
+        $this->assertDatabaseHas('contas', [
+        'user_id' =>$user->id,]);
+       
+    }
+
+    /**
+     * Teste criar postagem do tipo edital valida
+     *
+     * @return void
+     */
+
+    public function testCriarPostagemEditalValida()
+    {
+        $user = factory(User::class)->create(['cpf'=>'999.999.999-99',]);
+        factory(Conta::class)->create(['user_id'=>$user->id,]);
+        $postagem = factory(Postagem::class)->create(['titulo'=>'Postagem teste','user_id'=>$user->id,'tipo_postagem'=>'edital']);
+        $this->assertDatabaseHas('postagems',['tipo_postagem'=>'edital',
+        'titulo' =>$postagem->titulo,]);
+        $this->assertDatabaseHas('contas', [
+        'user_id' =>$user->id,]);
+       
+    }
+     /**
+     * Teste atualizar postagem do tipo edital com titulo valido
+     *
+     * @return void
+     */
+
+    public function testAtualizarPostagemEditalTituloValido()
+    {
+        $user = factory(User::class)->create(['cpf'=>'999.999.999-99',]);
+        factory(Conta::class)->create(['user_id'=>$user->id,]);
+        $postagem = factory(Postagem::class)->create(['titulo'=>'Postagem teste','user_id'=>$user->id,'tipo_postagem'=>'edital']);
+        $this->assertDatabaseHas('postagems',['tipo_postagem'=>'edital',
+        'titulo' =>$postagem->titulo,]);
+        $this->assertDatabaseHas('contas', [
+        'user_id' =>$user->id,]);
+	$postagem->update(['titulo'=>'Essa titulo está sendo atualizada para teste',]);
+        $this->assertEquals('Essa titulo está sendo atualizada para teste',$postagem->titulo);
        
     }
 }

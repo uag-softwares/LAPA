@@ -144,7 +144,9 @@ div.container div.visita-msg {
   background-color: var(--main-white);
 }
 
-.card.manage:hover, .card.manage:hover .card-header, .card.manage:hover .card-footer {
+.card.manage:hover, 
+.card.manage:hover .card-header, 
+.card.manage:hover .card-footer {
   background-color: var(--main-light);
 }
 
@@ -466,22 +468,24 @@ section .section-title {
 
 /* Summernote background dos botoes */
 .note-editor .btn {
-  background-color:var(--main-white);
+  background-color: var(--main-white);
   color: var(--main-black);
 }
 
 @media only screen and (max-width: 767px) {
-    #postagens .img {
-        width: 100%;
-    }
 
-    #usuarios .img {
-        width: 100%;
-    }
+  #postagens .img {
+    width: 100%;
+  }
+
+  #usuarios .img {
+    width: 100%;
+  }
 }
 
 @media only screen and (max-width: 575px) {
-    #footer .container .row div + div {
-        border-left: none;
-    }
+  
+  #footer .container .row div + div {
+    border-left: none;
+  }
 }

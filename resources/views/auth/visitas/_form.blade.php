@@ -97,7 +97,19 @@
         </span>
     @enderror
 </div>
-
+<div class="form-group">	
+    <div class="g-recaptcha{{$errors->has('g-recaptcha-response') ? ' has-error' : '' }}" data-sitekey="{{ env('NOCAPTCHA_SITEKEY') }}"></div>
+         @if ($errors->has('g-recaptcha-response'))
+            		    
+              <span class="invalid-feedback" style="display: block;">
+                    <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+              </span>
+                          
+        @endif
+</div>
+<div class="justify-content-center">
+ <p>Agendando uma visita você concorda com nossos <a href="{{ route('termo.privacidade') }}">Termos & Privacidade</a>.</p>
+</div>
 @if (Auth::user()) 
 <label class="input-checkbox d-flex justify-content-start" for="confirmada">Confirmar visita?
     <input type="checkbox" name="confirmada" {{ isset($registro->confirmada) && $registro->confirmada == true ? 'checked' : ''}} value="true">

@@ -46,6 +46,8 @@ Route::get('/site/visita/buscar',['as'=> 'site.visita.buscar.registro','uses'=> 
 Route::post('/site/visita/salvar', ['as' => 'site.visita.salvar', 'uses' => 'VisitaController@salvarUsuarioVisita'], function() {});
 Route::get('/site/visita/verificar/{id}/{hash}', ['as' => 'site.verificar.visita', 'uses' => 'Auth\VerificationController@verificarVisita'], function() {});
 
+Route::get('/termos&privacidade', ['as' => 'termo.privacidade', 'uses' => 'Auth\RegisterController@vizualizarTermosPrivacidade'], function() {});
+
 Auth::routes(['verify' => true]);
 
 Route::middleware(['auth'])->group(function () {
