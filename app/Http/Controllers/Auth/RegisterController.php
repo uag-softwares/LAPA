@@ -248,7 +248,6 @@ class RegisterController extends Controller
         $request->validated();
         $email = $request['email'];
         $userExiste = $this->usuario->where('email', $email)->first();
-        $feriados = $this->visita->diasFeriados();
         $horas = $this->visita->horas;
         $visitas = $this->visita->where('confirmada', true)->select('data', 'hora_inicial', 'hora_final')->get();
 
@@ -258,7 +257,7 @@ class RegisterController extends Controller
             $visita->hora_final = str_replace('.00', '', date('H.i', strtotime($visita->hora_final)));
         }
         
-	    return view('site.visitas.adicionar', compact('userExiste', 'email', 'feriados', 'horas', 'visitas'));
+	    return view('site.visitas.adicionar', compact('userExiste', 'email', 'horas', 'visitas'));
     }
     public function vizualizarTermosPrivacidade (){
     	return view('auth.privacidade_termos');
