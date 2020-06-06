@@ -26,7 +26,6 @@ $(".datepicker").datepicker({
     format: "dd/mm/yyyy",
     startDate: "+1d",
     language: "pt-BR",
-    datesDisabled: $feriados,
     daysOfWeekDisabled: [0,6],
 });
 

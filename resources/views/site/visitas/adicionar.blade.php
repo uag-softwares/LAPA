@@ -25,10 +25,7 @@
 @endsection
 @section('scripts')
 
-    <script>
-        // Bloquear feriados
-        var $feriados = {!! json_encode($feriados) !!};
-        
+    <script>        
         // Todas as horas possíveis
         var $horas = {!! json_encode($horas) !!};
         
