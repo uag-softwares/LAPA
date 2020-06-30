@@ -110,11 +110,11 @@ class AtlaSteps extends \Codeception\Actor
     }
 
     /**
-    * @Given Eu clico em Adicionar
+    * @Given Eu clico em Publicar agora
     */
-    public function euClicoEmAdicionar()
+    public function euClicoEmPublicarAgora()
     {
-        $this->click('Adicionar');
+        $this->click('Publicar agora');
         
     }
      /**
