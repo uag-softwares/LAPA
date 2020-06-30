@@ -1,6 +1,6 @@
 <div class="form-group">
-    <label for="titulo">Título do atla*</label>
-    <input class="form-control form-control-lg @error('titulo') is-invalid @enderror" type="text" name="titulo" value="{{ isset($registro->titulo) ? $registro->titulo : old('titulo') }}" placeholder="Digite aqui o titulo deste atla">
+    <label for="titulo">Título da página do atlas*</label>
+    <input class="form-control form-control-lg @error('titulo') is-invalid @enderror" type="text" name="titulo" value="{{ isset($registro->titulo) ? $registro->titulo : old('titulo') }}" placeholder="Mínimo de 5 caracteres">
     @error('titulo')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -8,8 +8,8 @@
     @enderror
 </div>
 <div class="form-group">
-    <label for="descricao">Descrição*</label>
-    <textarea class="form-control form-control-lg @error('descricao') is-invalid @enderror" type="text" name="descricao" placeholder="Descreva aqui a descrição deste atla">{{ isset($registro->descricao) ? $registro->descricao : old('descricao') }}</textarea>
+    <label for="descricao">Descrição da página*</label>
+    <textarea class="form-control form-control-lg @error('descricao') is-invalid @enderror" type="text" name="descricao" placeholder="Mínimo de 10 caracteres">{{ isset($registro->descricao) ? $registro->descricao : old('descricao') }}</textarea>
     @error('descricao')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -36,8 +36,13 @@
 </div>
 
 <div class="form-group">
-    <label for="nome">Anexo*</label>
-    <input class="form-control form-control-lg @error('anexo') is-invalid @enderror" type="file" name="anexo">
+    <label class="w-100" for="anexo">Anexo*
+        <div class="d-flex flex-column align-items-center border rounded bg-white">
+            <img id="img-foto" src="{{ asset($registro->anexo ?? asset('img/file-image.svg')) }}" alt="" style="max-height: 100px">
+            <p>Escolher uma imagem jpeg, jpg, png ou gif.</p>
+        </div>
+        <input id="anexo" class="d-none form-control form-control-lg @error('anexo') is-invalid @enderror" type="file" name="anexo" placeholder="Escolha um arquivo jpeg, jpg, png ou gif" onchange="document.getElementById('img-foto').src = window.URL.createObjectURL(this.files[0])">
+    </label>
     @error('anexo')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -45,11 +50,6 @@
     @enderror
 </div>
 
-@if(@isset($registro->anexo))
-    <div class="form-group">
-        <img src="{{ asset($registro->anexo) }}" alt="">
-    </div>    
-@endisset
 <label class="input-checkbox" for="publicado">Publicar agora?
     <input type="checkbox" name="publicado" {{ isset($registro->publicado) && $registro->publicado == true ? 'checked' : ''}} value="true">
     <span class="checkmark"></span>

@@ -50,23 +50,24 @@ class AtlaController extends Controller
         $request->validated();
         $dados = $request->all();
 
-        if($request->hasFile('anexo')) {
-            $anexo = $request->file('anexo');
-            $num = rand(1111,9999);
-            $dir = 'img/atlas/';
-            $extensao = $anexo->guessClientExtension(); //Define a extensao do arquivo
-            $nomeAnexo = 'anexo_'.$num.'.'.$extensao;
-            $anexo->move($dir, $nomeAnexo);
-            $dados['anexo'] = $dir.'/'.$nomeAnexo;
-        }
-
         if(isset($dados['publicado'])) {
             $dados['publicado'] = true;
         } else {
             $dados['publicado'] = false;    
         }
         $atla=$this->atla->create($dados);
-        $atla['slug']=str_slug($atla->titulo).'-'.$atla->id;
+        
+        $atla['slug'] = str_slug($atla->titulo).'-'.$atla->id;
+
+        if($request->hasFile('anexo')) {
+            $anexo = $request->file('anexo');
+            $dir = 'img/atlas/';
+            $extensao = $anexo->guessClientExtension(); //Define a extensao do arquivo
+            $nomeAnexo = 'anexo_'.$atla['slug'].'.'.$extensao;
+            $anexo->move($dir, $nomeAnexo);
+            $atla['anexo'] = $dir.'/'.$nomeAnexo;
+        }
+
         $atla->update($atla->attributesToArray());
         return redirect()->route('auth.atlas')->with('success', 'Página do atlas adicionada com sucesso!');
         

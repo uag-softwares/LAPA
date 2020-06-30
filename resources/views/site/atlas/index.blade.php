@@ -32,7 +32,7 @@
 
                                     @if ($numero_categorias > $i && count($categorias[$i]->atla) >= 1)
                                         <a class="item" href="{{ route('site.atlas.categoria', $categorias[$i]->slug) }}">
-                                            {{ $categorias[$i]->nome }}
+                                            {{ ucfirst($categorias[$i]->nome) }}
                                         </a>
                                     @endif
                                     @if ($numero_disciplinas > $i && count($disciplinas[$i]->categoria) >= 1)
