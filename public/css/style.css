@@ -40,6 +40,12 @@ header {
   margin: 0 auto;
 }
 
+/* Limitar largura dos formularios */
+form {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
 /* Barra de navegação do site */
 .navbar-custom {
   background-color: var(--main-green);

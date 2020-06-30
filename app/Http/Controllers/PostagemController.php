@@ -139,10 +139,24 @@ class PostagemController extends Controller
         return view('site.postagens.home', compact('registros', 'noticias', 'eventos', 'editais'));
     }
 
-    public function siteIndexEvento(){
-        $posts = $this->postagem->where( 'tipo_postagem', 'evento')->latest();
-        $registros = $posts->where('publicado',true)->paginate(5);
-        return view('site.postagens.indexEvento', compact('registros'));
+    public function siteIndexEvento()
+    {
+        $posts = $this->postagem->where('tipo_postagem', 'evento');
+        
+        $agenda = [];
+        foreach($posts->get() as $post) {
+            $item = [
+                'location' => $post->slug,
+                'date' => $post->data,
+                'hora_inicial' => date('H:i', strtotime($post->hora)),
+                'hora_final' => null,
+                'title' => $post->titulo,
+            ];
+            array_push($agenda, $item);
+        }
+        
+        $registros = $posts->latest()->where('publicado',true)->paginate(5);
+        return view('site.postagens.indexEvento', compact('registros', 'agenda'));
     }
 
     public function siteIndexEdital(){
