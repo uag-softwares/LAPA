@@ -438,11 +438,13 @@ section .section-title {
 .home.card {
   font-size: 1rem;
   text-align: left;
-  height: 22em;
+  width: 20em;
+  margin: 1em;
+  align-self: flex-start;
 }
 
 .home.card div.card-header {
-  height: 15em;
+  height: 10em;
   overflow: hidden;
   padding: 0;
 }

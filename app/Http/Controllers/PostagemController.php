@@ -123,10 +123,18 @@ class PostagemController extends Controller
     
      public function siteHome(){//ordenar por data
 
-        $registros = $this->postagem->latest()->take(3)->get();
-        $noticias = $this->postagem->where( 'tipo_postagem', 'noticia')->latest()->take(4)->get();
-        $eventos = $this->postagem->where( 'tipo_postagem', 'evento')->latest()->take(3)->get();
-        $editais = $this->postagem->where( 'tipo_postagem', 'edital')->latest()->take(3)->get();
+        $registros = $this->postagem->where('publicado', true)
+                                ->whereNotNull('anexo')
+                                ->latest()->take(3)->get();
+        $noticias = $this->postagem->where('publicado', true)
+                                ->where( 'tipo_postagem', 'noticia')
+                                ->latest()->take(4)->get();
+        $eventos = $this->postagem->where('publicado', true)
+                                ->where( 'tipo_postagem', 'evento')
+                                ->latest()->take(3)->get();
+        $editais = $this->postagem->where('publicado', true)
+                                ->where( 'tipo_postagem', 'edital')
+                                ->latest()->take(3)->get();
 
         return view('site.postagens.home', compact('registros', 'noticias', 'eventos', 'editais'));
     }
