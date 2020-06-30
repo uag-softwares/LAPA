@@ -84,23 +84,23 @@ form {
 
 /* Tamanho da fonte de todos os botoes */
 
-a.btn, button.btn {
+a.btn, button.btn, input.btn {
   font-weight: bold;
   background-color: var(--main-green);
   color: var(--main-white);
 }
 
-a.btn.btn-outline, button.btn.btn-outline {
+a.btn.btn-outline, button.btn.btn-outline, input.btn.btn-outline {
   background-color: var(--main-white);
   color: var(--main-dark-green);
   border: 1px solid var(--main-green);
 }
 
-a.btn.btn-danger, button.btn.btn-danger {
+a.btn.btn-danger, button.btn.btn-danger, input.btn.btn-danger {
   background-color: #dc3545;
 }
 
-a.btn:hover, button.btn:hover, .navbar-custom .nav-item.active .nav-link,
+a.btn:hover, button.btn:hover, input.btn:hover, .navbar-custom .nav-item.active .nav-link,
 .navbar-custom .nav-item:hover .nav-link, 
 .nav-item.dropdown button:hover {
   background-color: var(--main-dark-green);
@@ -111,7 +111,7 @@ a.btn:hover, button.btn:hover, .navbar-custom .nav-item.active .nav-link,
   border-radius: 0;
 }
 
-a.btn.btn-danger:hover, button.btn.btn-danger:hover {
+a.btn.btn-danger:hover, button.btn.btn-danger:hover, input.btn.btn-danger:hover {
   background-color: #bd2a39;
 }
 

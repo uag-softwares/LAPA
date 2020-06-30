@@ -49,8 +49,3 @@
         </span>
     @enderror
 </div>
-
-<label class="input-checkbox" for="publicado">Publicar agora?
-    <input type="checkbox" name="publicado" {{ isset($registro->publicado) && $registro->publicado == true ? 'checked' : ''}} value="true">
-    <span class="checkmark"></span>
-</label>
