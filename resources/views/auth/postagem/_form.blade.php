@@ -1,6 +1,6 @@
 <div class="form-group">
     <label for="titulo">Título da Postagem*</label>
-    <input class="form-control form-control-lg @error('titulo') is-invalid @enderror" type="text" name="titulo" value="{{ isset($registro->titulo) ? $registro->titulo : old('titulo') }}" placeholder="Digite aqui o titulo da postagem" required autocomplete="titulo">
+    <input class="form-control form-control-lg @error('titulo') is-invalid @enderror" type="text" name="titulo" value="{{ isset($registro->titulo) ? $registro->titulo : old('titulo') }}" placeholder="ex:Visita ao LAPA" required autocomplete="titulo">
     @error('titulo')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -9,7 +9,7 @@
 </div>
 <div class="form-group">
     <label for="descricao">Descrição*</label>
-    <textarea id="summernote" class="form-control form-control-lg @error('descricao') is-invalid @enderror" type="text" name="descricao" placeholder="Descreva aqui a descrição da sua postagem" required autocomplete="descricao">{{ isset($registro->descricao) ? $registro->descricao : old('descricao') }}</textarea>
+   <textarea id="summernote" class="form-control form-control-lg @error('descricao') is-invalid @enderror" type="text" name="descricao"  required autocomplete="descricao">{{ isset($registro->descricao) ? $registro->descricao : old('descricao') }}</textarea>
     @error('descricao')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -22,7 +22,7 @@
         @if(isset($registro->tipo_postagem))
                 <option value="{{ $registro->tipo_postagem }}" selected>{{$registro->tipo_postagem}}</option>
         @else
-        <option hidden disabled selected value>selecionar</option>
+        <option hidden disabled selected value>Clique para selecionar o tipo da postagem</option>
         @endif
         @foreach($tipo_postagens as $tipo)
            
