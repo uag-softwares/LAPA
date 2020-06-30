@@ -43,7 +43,7 @@
     </div>
     <div class="form-group">
         <label for="telephone">Telefone*</label>
-        <input id="telephone" type="text" class="telefone form-control form-control-lg @error('telephone') is-invalid @enderror" name="telephone" value="{{isset($userExiste->telephone) ? $userExiste->telephone: old('telephone')}}" required autofocus placeholder="(99)99999-9999">
+        <input id="telephone" type="text" class="telefone form-control form-control-lg @error('telephone') is-invalid @enderror" name="telephone" value="{{isset($userExiste->telephone) ? $userExiste->telephone: old('telephone')}}" required autofocus placeholder="Ex. (81)99999-9999">
         @error('telephone')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -54,7 +54,7 @@
 </div>
 <div class="form-group">
     <label for="data">Data*</label>
-    <input id="data" type="text" name="data" class="datepicker form-control form-control-lg @error('data') is-invalid @enderror" data-provide="datepicker" value="{{ isset($registro->data) ? $registro->data : old('data') }}" placeholder="Digite a data da visita" required>
+    <input id="data" type="text" name="data" class="datepicker form-control form-control-lg @error('data') is-invalid @enderror" data-provide="datepicker" value="{{ isset($registro->data) ? $registro->data : old('data') }}" placeholder="Ex.: 01/01/2019" required>
     @error('data')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -90,7 +90,7 @@
 
 <div class="form-group">
     <label for="descricao">Descrição*</label>
-    <textarea name="descricao" class="form-control form-control-lg @error('descricao') is-invalid @enderror" type="text" placeholder="Descreva aqui a sua visita" required>{{ isset($registro->descricao) ? $registro->descricao : old('descricao') }}</textarea>
+    <textarea name="descricao" class="form-control form-control-lg @error('descricao') is-invalid @enderror" type="text" placeholder="Descreva brevemente sua visita" required>{{ isset($registro->descricao) ? $registro->descricao : old('descricao') }}</textarea>
     @error('descricao')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -107,18 +107,20 @@
                           
         @endif
 </div>
-<div class="justify-content-center">
- <p>Agendando uma visita você concorda com nossos <a href="{{ route('termo.privacidade') }}">Termos & Privacidade</a>.</p>
-</div>
 @if (Auth::user()) 
-<label class="input-checkbox d-flex justify-content-start" for="confirmada">Confirmar visita?
+<label class="input-checkbox d-flex justify-content-start" for="confirmada">Criar esta visita já confirmada? &nbsp;
     <input type="checkbox" name="confirmada" {{ isset($registro->confirmada) && $registro->confirmada == true ? 'checked' : ''}} value="true">
     <span class="checkmark"></span>
 </label>
+
 @error('confirmada')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
         </span>
 @enderror
+
+<div class="justify-content-center">
+    <p>Agendando uma visita você concorda com nossos <a href="{{ route('termo.privacidade') }}">Termos & Privacidade</a>.</p>
+</div>
 @endif
 
