@@ -2,12 +2,15 @@
 @section('titulo', 'Professores')
 @section('content')
     <div class="container" >
-        <h2>Quem Somos </h2>
+        @if(isset($contato->texto))
+            <h2>Quem Somos </h2>
             <p> {{ $contato->texto ?? '' }}</p>
+        @endif
 
         <h2>Professores</h2>
+
             @if (count($registros) < 1)
-                <p>Ops, ainda não temos professores cadastrados</p>
+                <p>Ops, nossos professores ainda não foram cadastrados</p>
             @else
                 @foreach ($registros as $registro)
                     <div class="d-flex mx-auto text-left shadow-sm mb-3" id="usuarios" style="max-width: 500px;">
@@ -27,6 +30,7 @@
                     </div>
                 @endforeach
             @endif
+            
     </div>
 @endsection 
 

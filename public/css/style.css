@@ -2,7 +2,7 @@
   --main-green: #00ad50;
   --main-dark-green: #009444;
   --main-black: #212529;
-  --main-white: #f8f9fa;
+  --main-white: #f8fafc;
   --main-light: #e8e8ee;
 }
 
@@ -34,9 +34,16 @@ nav.navbar {
   padding: 0;
 }
 
-/* Muda a cor de fundo da header */
+/* Muda a header */
 header {
-  background-color: #f4f4f4;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+/* Limitar largura dos formularios */
+form {
+  max-width: 760px;
+  margin: 0 auto;
 }
 
 /* Barra de navegação do site */
@@ -77,23 +84,23 @@ header {
 
 /* Tamanho da fonte de todos os botoes */
 
-a.btn, button.btn {
+a.btn, button.btn, input.btn {
   font-weight: bold;
   background-color: var(--main-green);
   color: var(--main-white);
 }
 
-a.btn.btn-outline, button.btn.btn-outline {
+a.btn.btn-outline, button.btn.btn-outline, input.btn.btn-outline {
   background-color: var(--main-white);
   color: var(--main-dark-green);
   border: 1px solid var(--main-green);
 }
 
-a.btn.btn-danger, button.btn.btn-danger {
+a.btn.btn-danger, button.btn.btn-danger, input.btn.btn-danger {
   background-color: #dc3545;
 }
 
-a.btn:hover, button.btn:hover, .navbar-custom .nav-item.active .nav-link,
+a.btn:hover, button.btn:hover, input.btn:hover, .navbar-custom .nav-item.active .nav-link,
 .navbar-custom .nav-item:hover .nav-link, 
 .nav-item.dropdown button:hover {
   background-color: var(--main-dark-green);
@@ -104,7 +111,7 @@ a.btn:hover, button.btn:hover, .navbar-custom .nav-item.active .nav-link,
   border-radius: 0;
 }
 
-a.btn.btn-danger:hover, button.btn.btn-danger:hover {
+a.btn.btn-danger:hover, button.btn.btn-danger:hover, input.btn.btn-danger:hover {
   background-color: #bd2a39;
 }
 
@@ -438,11 +445,13 @@ section .section-title {
 .home.card {
   font-size: 1rem;
   text-align: left;
-  height: 22em;
+  width: 20em;
+  margin: 1em;
+  align-self: flex-start;
 }
 
 .home.card div.card-header {
-  height: 15em;
+  height: 10em;
   overflow: hidden;
   padding: 0;
 }

@@ -21,7 +21,7 @@
                                     
                                 @if (count($registro->atla) >= 1)
                                     <a class="item disciplina-atla-item" href="{{ route('site.atlas.categoria', $registro->slug) }}">
-                                        {{ $registro->nome }}
+                                        {{ ucfirst($registro->nome) }}
                                     </a>
                                 @endif
                                     

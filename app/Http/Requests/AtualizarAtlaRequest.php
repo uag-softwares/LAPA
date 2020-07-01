@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AtlaRequest extends FormRequest
+class AtualizarAtlaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,7 +27,7 @@ class AtlaRequest extends FormRequest
             'titulo' => 'required|min:5|string',
             'descricao' => 'required|min:10|string',
             'categoria_id' => 'required|integer|exists:categorias,id',
-            'anexo' => 'required|mimes:jpeg,jpg,png,gif|max:2048',
+            'anexo' => 'mimes:jpeg,jpg,png,gif|max:2048',
         ];
     }
 

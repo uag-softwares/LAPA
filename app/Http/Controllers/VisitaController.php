@@ -51,37 +51,7 @@ class VisitaController extends Controller
 
     public function busca() 
     {
-        $visitas = $this->visita->where('confirmada', true)
-                                ->whereDate('data', '>', Carbon::now())->get();
-        $eventos = $this->postagem->where('tipo_postagem', 'evento')->get();
-
-        $agenda = [];
-
-        foreach($visitas as $visita) {
-            $item = [
-                'location' => $visita->user->name,
-                'date' => $visita->data,
-                'hora_inicial' => date('H:i', strtotime($visita->hora_inicial)),
-                'hora_final' => date('H:i', strtotime($visita->hora_final)),
-                'title' => 'visita',
-            ];
-            array_push($agenda, $item);
-        }
-
-        foreach($eventos as $evento) {
-            $item = [
-                'location' => $evento->titulo,
-                'date' => $evento->data,
-                'hora_inicial' => date('H:i', strtotime($evento->hora)),
-                'hora_final' => null,
-                'title' => 'evento',
-            ];
-            array_push($agenda, $item);
-        }
-
-        //dd($agenda);
-
-        return view('site.visitas.pesquisar_email', compact('agenda'));        
+        return view('site.visitas.pesquisar_email');        
     }
 
     public function salvar($visita) 
