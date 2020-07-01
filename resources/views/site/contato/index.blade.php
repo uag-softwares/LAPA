@@ -17,7 +17,7 @@
                         <div class="d-block my-auto mx-4 w-75" style="overflow: hidden;">
                             <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                 <a href="{{ route('site.contato.vizualizar', $registro->slug) }}">
-                                    {{$registro->name.' '.$registro->surname}}
+                                    {{$registro->name}}
                                 </a>
                             </p>
                             <p class="m-0 mt-auto" style="white-space: nowrap; font-size: 12px; overflow: hidden; text-overflow: ellipsis;">

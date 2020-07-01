@@ -8,7 +8,7 @@
             <div class="row justify-content-center">
                 <div class="col-11 col-md-8 col-lg-6 p-4 border rounded">
                     <section>
-                        <h1 class="mb-4">{{ $registro->name}} {{ $registro->surname}}</h1>
+                        <h1 class="mb-4">{{ $registro->name}}</h1>
                         <article>
                             <img class="img-fluid mb-4" src="{{ asset($registro->avatar) }}" alt="" style="max-height: 400px">
                             <p class="text">Email:

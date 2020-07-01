@@ -78,8 +78,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' =>'required|alpha|string|min:3|max:255',
-	    'surname' =>'required|alpha|string|min:3|max:255',
+            'name' =>'required|regex:/^[\pL\s\-.]+$/u|string|min:3|max:255',
             'email' => ['required', 'string', 'email', 'max:255',Rule::unique('users')->where(function ($query){return $query->where('user_type','admin');})],
             'password' => 'required|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/|string|min:6|confirmed',
 	    'cpf' => ['required','regex:/\d{3}\.\d{3}\.\d{3}\-\d{2}/','string',Rule::unique('users')->where(function ($query){return $query->where('user_type','admin');})],
@@ -123,7 +122,6 @@ class RegisterController extends Controller
             'name' =>  $data ['name'],
             'cpf' =>  $data ['cpf'],
             'email' =>  $data['email'],
-            'surname' =>  $data ['surname'],
             'user_description' =>$data ['user_description'],
             'avatar' => $avatar,
             'user_type' => 'admin',
