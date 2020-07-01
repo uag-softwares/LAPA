@@ -7,7 +7,8 @@ use Validator;
 use App\Atla;
 use App\Categoria;
 use App\Disciplina;
-use App\Http\Requests\AtlaRequest;
+use App\Http\Requests\CriarAtlaRequest;
+use App\Http\Requests\AtualizarAtlaRequest;
 
 class AtlaController extends Controller
 {
@@ -45,28 +46,30 @@ class AtlaController extends Controller
 
     }
 
-    public function salvar(AtlaRequest $request) 
+    public function salvar(CriarAtlaRequest $request) 
     {
         $request->validated();
         $dados = $request->all();
 
-        if($request->hasFile('anexo')) {
-            $anexo = $request->file('anexo');
-            $num = rand(1111,9999);
-            $dir = 'img/atlas/';
-            $extensao = $anexo->guessClientExtension(); //Define a extensao do arquivo
-            $nomeAnexo = 'anexo_'.$num.'.'.$extensao;
-            $anexo->move($dir, $nomeAnexo);
-            $dados['anexo'] = $dir.'/'.$nomeAnexo;
-        }
-
-        if(isset($dados['publicado'])) {
+        if(isset($dados['publicar'])) {
             $dados['publicado'] = true;
-        } else {
+        } else if(isset($dados['rascunho'])) {
             $dados['publicado'] = false;    
         }
+
         $atla=$this->atla->create($dados);
-        $atla['slug']=str_slug($atla->titulo).'-'.$atla->id;
+        
+        $atla['slug'] = str_slug($atla->titulo).'-'.$atla->id;
+
+        if($request->hasFile('anexo')) {
+            $anexo = $request->file('anexo');
+            $dir = 'img/atlas/';
+            $extensao = $anexo->guessClientExtension(); //Define a extensao do arquivo
+            $nomeAnexo = 'anexo_'.$atla['slug'].'.'.$extensao;
+            $anexo->move($dir, $nomeAnexo);
+            $atla['anexo'] = $dir.'/'.$nomeAnexo;
+        }
+
         $atla->update($atla->attributesToArray());
         return redirect()->route('auth.atlas')->with('success', 'Página do atlas adicionada com sucesso!');
         
@@ -79,28 +82,29 @@ class AtlaController extends Controller
 
     }
 
-    public function atualizar(AtlaRequest $request, $identifier)
+    public function atualizar(AtualizarAtlaRequest $request, $identifier)
     {
         $request->validated();
 
         $dados = $request->all();
 
+        if(isset($dados['publicar'])) {
+            $dados['publicado'] = true;
+        } else if(isset($dados['rascunho'])) {
+            $dados['publicado'] = false;    
+        }
+
+        $dados['slug'] = str_slug($dados['titulo']).'-'.$identifier;
+
         if($request->hasFile('anexo')) {
             $anexo = $request->file('anexo');
-            $num = rand(1111,9999);
             $dir = 'img/atlas';
             $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
-            $nomeAnexo = 'anexo_'.$num.'.'.$ex;
+            $nomeAnexo = 'anexo_'.$dados['slug'].'.'.$ex;
             $anexo->move($dir, $nomeAnexo);
             $dados['anexo'] = $dir.'/'.$nomeAnexo;
         }
 
-        if(isset($dados['publicado'])) {
-            $dados['publicado'] = true;
-        } else {
-            $dados['publicado'] = false;    
-        }
-        $dados['slug']=str_slug($dados['titulo']).'-'.$identifier;
         $this->atla->find($identifier)->update($dados);
         return redirect()->route('auth.atlas')->with('success', 'Página do atlas atualizada com sucesso!');
     }

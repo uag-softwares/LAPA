@@ -12,7 +12,7 @@ suites:
                 - Db:
                    dsn: 'mysql:host=localhost;dbname=laravel'
                    user: 'root'
-                   password: '12345678'
+                   password: '123456789'
         # add Codeception\Step\Retry trait to AcceptanceTester to enable retries
         step_decorators:
             - Codeception\Step\ConditionalAssertion

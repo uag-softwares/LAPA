@@ -13,7 +13,7 @@ Feature: atla
     And Eu preencho o campo descricao com "foto do olho do mamifero"
     And Eu seleciono a categoria "Sistema nervoso"
     And Eu clico em escolher arquivo e escolho "anexo.png"
-    And Eu clico em Adicionar
+    And Eu clico em Publicar agora
     Then Eu vejo que o atlas foi adicionado corretamente
   
    Scenario: criar um atla com titulo invalido
@@ -25,7 +25,7 @@ Feature: atla
     And Eu preencho o campo descricao com "foto do olho do mamifero"
     And Eu seleciono a categoria "Sistema nervoso"
     And Eu clico em escolher arquivo e escolho "teste.pdf"
-    And Eu clico em Adicionar
+    And Eu clico em Publicar agora
     Then Eu vejo a mensagem de erro "O tamanho mínimo do título é de 5 letras"
   
   Scenario: criar um atla com descricao invalido
@@ -37,7 +37,7 @@ Feature: atla
     And Eu preencho o campo descricao com "OOO"
     And Eu seleciono a categoria "Sistema nervoso"
     And Eu clico em escolher arquivo e escolho "teste.pdf"
-    And Eu clico em Adicionar
+    And Eu clico em Publicar agora
     Then Eu vejo a mensagem de erro "O tamanho mínimo da descrição é 10 letras"
 
   Scenario: criar um atla sem anexo
@@ -48,7 +48,7 @@ Feature: atla
     When Eu preencho o campo titulo com "Olho de um peixe"
     And Eu preencho o campo descricao com "foto do olho do mamifero"
     And Eu seleciono a categoria "Sistema nervoso"
-    And Eu clico em Adicionar
+    And Eu clico em Publicar agora
     Then Eu vejo a mensagem de erro "O campo anexo é obrigatório."
 
   Scenario: criar um atla sem categoria
@@ -58,7 +58,7 @@ Feature: atla
     When Eu preencho o campo titulo com "Olho de um peixe"
     And Eu preencho o campo descricao com "foto do olho do mamifero"
     And Eu clico em escolher arquivo e escolho "anexo.png"
-    And Eu clico em Adicionar
+    And Eu clico em Publicar agora
     Then Eu vejo a mensagem de erro "A categoria é obrigatória"
 
   Scenario: atualizar descricao de um atlas invalido
@@ -68,7 +68,7 @@ Feature: atla
     And Eu clico em editar o atlas "Olho mamifero"
     When Eu edito a descricao para ""
     And Eu clico em escolher arquivo e escolho "anexo.png"
-    And Eu clico em editar atlas
+    And Eu clico em Publicar agora
     Then Eu vejo a mensagem de erro "A descrição do atlas é obrigatório."
 
   Scenario: atualizar titulo de um atlas invalido
@@ -78,7 +78,7 @@ Feature: atla
     And Eu clico em editar o atlas "Olho mamifero"
     When Eu edito o titulo para "Ol"
     And Eu clico em escolher arquivo e escolho "anexo.png"
-    And Eu clico em editar atlas
+    And Eu clico em Publicar agora
     Then Eu vejo a mensagem de erro "O tamanho mínimo do título é de 5 letras."
 
   Scenario: atualizar um atlas existente
@@ -92,7 +92,7 @@ Feature: atla
     And Eu edito a descricao para "Olho mamifero na diagonal"
     And Eu seleciono a categoria "Sistema nervoso"
     And Eu clico em escolher arquivo e escolho "anexo.png"
-    And Eu clico em editar atlas
+    And Eu clico em Publicar agora
     Then Eu vejo que o atlas foi atualizado corretamente
 
   Scenario: deletar um atlas com sucesso

@@ -2,7 +2,7 @@
 
 @section('titulo', 'Agendar visita')
 @section('content')
-        <div class="container col-11 col-md-7 col-lg-5">
+        <div class="container">
             <h2>Agendar visita</h2>
 
             @if(Session::has('success'))
