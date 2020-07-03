@@ -3,7 +3,7 @@
 @endif
 <div class="form-group">
     <label for="titulo">Título do Material*</label>
-    <input class="form-control form-control-lg @error('titulo') is-invalid @enderror" type="text" name="titulo" value="{{ isset($registro->titulo) ? $registro->titulo : old('titulo') }}" placeholder="Digite aqui o titulo do material">
+    <input class="form-control form-control-lg @error('titulo') is-invalid @enderror" type="text" name="titulo" value="{{ isset($registro->titulo) ? $registro->titulo : old('titulo') }}" placeholder="Ex.: Anatomia de mamíferos">
     @error('titulo')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -12,7 +12,7 @@
 </div>
 <div class="form-group">
     <label for="texto">Texto*</label>
-    <textarea id="summernote" class="form-control form-control-lg @error('texto') is-invalid @enderror" type="text" name="texto" placeholder="Escreva informações sobre seu material">{{ isset($registro->texto) ? $registro->texto : old('texto') }}</textarea>
+    <textarea id="summernote" class="form-control form-control-lg @error('texto') is-invalid @enderror" type="text" name="texto" placeholder="Ex.: Texto explicativo sobre o que foi mencionado no título.">{{ isset($registro->texto) ? $registro->texto : old('texto') }}</textarea>
     @error('texto')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
