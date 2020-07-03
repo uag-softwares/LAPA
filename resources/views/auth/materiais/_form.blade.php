@@ -52,10 +52,6 @@
         </span>
     @enderror
 </div>
-<label class="input-checkbox" for="publicado">Publicar agora?
-    <input type="checkbox" name="publicado" autocomplete="publicado" {{ isset($registro->publicado) && $registro->publicado == true ? 'checked' : ''}} value="true">
-    <span class="checkmark"></span>
-</label>
 <div class="form-group">
      <hr>
       <p>Disciplina não cadastrada? <a class="" href="{{ route('auth.disciplina.adicionar') }}">{{ __('Cadastrar Disciplina') }}</a>.</p>
