@@ -12,7 +12,7 @@ Feature: material
     And   Eu preencho o campo texto com "Esse material e referente a disciplina ES"
     And   Eu clico em escolher arquivo e escolho "arquivo.pdf"
     And   Eu seleciono a disciplina "Ihc"
-    And   Eu clico em adicionar material
+    And   Eu clico em Publicar agora
     Then  Eu vejo que o material foi adicionado corretamente
 
   Scenario: criar material sem nome
@@ -23,7 +23,7 @@ Feature: material
     And   Eu preencho o campo texto com "Esse material e referente a disciplina ES"
     And   Eu clico em escolher arquivo e escolho "arquivo.pdf"
     And   Eu seleciono a disciplina "Ihc"
-    And   Eu clico em adicionar material
+    And   Eu clico em Publicar agora
     Then  Eu vejo a mensagem de erro "Título do material é obrigatório"
 
   Scenario: criar material com nome muito curto
@@ -34,7 +34,7 @@ Feature: material
     And   Eu preencho o campo texto com "Esse material e referente a disciplina ES"
     And   Eu clico em escolher arquivo e escolho "arquivo.pdf"
     And   Eu seleciono a disciplina "Ihc"
-    And   Eu clico em adicionar material
+    And   Eu clico em Publicar agora
     Then  Eu vejo a mensagem de erro "Título deve conter no mínimo três letras"
 
   Scenario: criar material sem texto
@@ -45,7 +45,7 @@ Feature: material
     And   Eu preencho o campo texto com ""
     And   Eu clico em escolher arquivo e escolho "arquivo.pdf"
     And   Eu seleciono a disciplina "Ihc"
-    And   Eu clico em adicionar material
+    And   Eu clico em Publicar agora
     Then  Eu vejo a mensagem de erro "Escrever sobre o texto é obrigatório"
 
   Scenario: criar material sem anexo
@@ -55,7 +55,7 @@ Feature: material
     When  Eu preencho o campo titulo com "Material 1"
     And   Eu preencho o campo texto com ""
     And   Eu seleciono a disciplina "Ihc"
-    And   Eu clico em adicionar material
+    And   Eu clico em Publicar agora
     Then  Eu vejo a mensagem de erro "O campo anexo é obrigatório."
 
   Scenario: criar material sem disciplina
@@ -64,7 +64,7 @@ Feature: material
     When  Eu preencho o campo titulo com "Material 1"
     And   Eu preencho o campo texto com "Descricao do material 1 escrita"
     And   Eu clico em escolher arquivo e escolho "anexo.png"
-    And   Eu clico em adicionar material
+    And   Eu clico em Publicar agora
     Then  Eu vejo a mensagem de erro "Escolher disciplina é obrigátorio"
 
   Scenario: atualizar material com titulo em branco
@@ -74,7 +74,7 @@ Feature: material
     And   Eu estou na pagina de gerenciar materiais
     And   Eu clico em editar material com titulo "Material de Ihc"
     When  Eu edito o campo titulo para " "
-    And   Eu clico em editar material
+    And   Eu clico em Publicar agora
     Then  Eu vejo erro ao adicionar material em branco
 
   Scenario: atualizar material com titulo muito curto
@@ -84,7 +84,7 @@ Feature: material
     And   Eu estou na pagina de gerenciar materiais
     And   Eu clico em editar material com titulo "Material de Ihc"
     When  Eu edito o campo titulo para "Ih"
-    And   Eu clico em editar material
+    And   Eu clico em Publicar agora
     Then  Eu vejo a mensagem de erro "Título deve conter no mínimo três letras"
 
   Scenario: atualizar material sem texto
@@ -95,7 +95,7 @@ Feature: material
     And   Eu clico em editar material com titulo "Material de Ihc"
     When  Eu edito o campo titulo para "Material de ihc atualizado"
     And   Eu edito o campo texto para ""
-    And   Eu clico em editar material
+    And   Eu clico em Publicar agora
     Then  Eu vejo a mensagem de erro "Escrever sobre o texto é obrigatório"
 
  Scenario: deletar material valido
