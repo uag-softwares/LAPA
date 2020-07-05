@@ -49,3 +49,7 @@
         </span>
     @enderror
 </div>
+<div class="form-group">
+     <hr>
+      <p>Categoria não cadastrada? <a class="" href="{{ route('auth.categoria.adicionar') }}">{{ __('Cadastrar Categoria') }}</a>.</p>
+</div>

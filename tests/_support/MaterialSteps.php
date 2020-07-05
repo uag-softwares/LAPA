@@ -29,11 +29,11 @@ class MaterialSteps extends \Codeception\Actor
     }
 
    /**
-    * @When Eu clico em adicionar material
+    * @When Eu clico em Publicar agora
     */
-    public function euClicoEmAdicionarMaterial()
+    public function euClicoEmPublicarAgora()
     {
-        $this->click('Adicionar');
+        $this->click('Publicar agora');
     }
 
    /**
