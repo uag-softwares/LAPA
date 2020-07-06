@@ -415,7 +415,7 @@ class AcceptanceTester extends \Codeception\Actor
      public function euAbroAPaginaDeCriarPostagem()
      {
         $this->amOnPage('/auth/postagem/adicionar');
-        $this->click('Adicionar');
+        //$this->click('Adicionar');
      }
 
 
@@ -648,6 +648,14 @@ class AcceptanceTester extends \Codeception\Actor
     {
         $this->see('O campo do Instagram deve conter um link, exemplo: https://instagram.com/exemplo');
 
+    }
+    /**
+    * @Given Eu clico em Publicar agora
+    */
+    public function euClicoEmPublicarAgora()
+    {
+        $this->click('Publicar agora');
+        
     }
 
 }

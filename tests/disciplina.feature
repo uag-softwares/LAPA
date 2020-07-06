@@ -57,4 +57,4 @@ Feature: disciplina
     When Eu preencho o campo nome com "Estrutura de dados"
     And Eu seleciono o professor "Daniela"
     And Eu clico em adicionar disciplina
-    Then Eu vejo a mensagem de erro "Essa disciplina já existe"
+    Then Eu vejo erro ao adicionar disciplina com nome existente 
