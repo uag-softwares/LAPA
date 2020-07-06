@@ -51,11 +51,12 @@ $("#data").change( function() {
             }
         });
     });
+    horaFinalDisponivel();
 });
 
 // Colocar horas da hora final ao selecionar a hora inicial
-$("#hora_inicial").change( function() {
-    var $horaInicial = $(this);
+function horaFinalDisponivel() {
+    var $horaInicial = $('#hora_inicial');
     var $horaInicialSelecionada = parseFloat($horaInicial.children("option:selected").val());
     var $horaFinal = $("#hora_final");
     $horaFinal.empty();
@@ -78,4 +79,6 @@ $("#hora_inicial").change( function() {
             }
         });
     });
-});
+}
+
+$("#hora_inicial").change(horaFinalDisponivel);

@@ -35,7 +35,7 @@ class VisitaRequest extends FormRequest
             'hora_final' => 'required',
             'descricao' =>'required|min:10',
             'confirmada' => 'nullable',
-	    'g-recaptcha-response' => 'captcha',
+	    'g-recaptcha-response' => 'required',
         ];
     }
 
@@ -65,7 +65,7 @@ class VisitaRequest extends FormRequest
             'email.email' => 'Email inválido',
             'confirmada.nullable' => 'A confirmação pode ser nula',
             'user_type.in' => 'Você não alterar esse campo',
-	    'g-recaptcha-response.captcha'=>'O campo reCaptcha é obrigatório',
+	        'g-recaptcha-response.required'=>'O campo reCaptcha é obrigatório, preencha novamente a data e horários da visita e confirme o reCapatcha.',
         ];
     }
 }
