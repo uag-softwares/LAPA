@@ -17,7 +17,6 @@ class ContaSeeder extends Seeder
         if(!User::where('email', '=', 'v.santos0406@gmail.com')->count()) {
             $vinicius = factory(App\User::class)->create([
                 'name' => 'Vinicius',
-                'surname' => 'Santos',
                 'cpf' => '122.433.655-23',
                 'email' => 'v.santos0406@gmail.com',
             ]);
@@ -35,7 +34,6 @@ class ContaSeeder extends Seeder
         if(!User::where('email', '=', 'vianasantana21@gmail.com')->count()) {
             $iris = factory(App\User::class)->create([
                 'name' => 'Íris',
-                'surname' => 'Viana',
                 'cpf' => '342.453.433-12',
                 'email' => 'vianasantana21@gmail.com',
             ]);
@@ -53,7 +51,6 @@ class ContaSeeder extends Seeder
          if(!User::where('email', '=', 'raquellvieiraa@gmail.com')->count()) {
             $raquel = factory(App\User::class)->create([
                 'name' => 'Raquel',
-                'surname' => 'Vieira',
                 'cpf' => '342.453.433-15',
                 'email' => 'raquellvieiraa@gmail.com',
             ]);

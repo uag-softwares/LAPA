@@ -176,7 +176,6 @@ class AdditionalSteps extends \Codeception\Actor
      {
          $this->haveInDatabase('users', [
             'name' => $arg1,
-            'surname' => "Santos",
             'cpf' =>  "123.456.789-10",
             'cpf_verified_at' => now(),
             'email' => $arg2,
