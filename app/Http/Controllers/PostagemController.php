@@ -44,7 +44,7 @@ class PostagemController extends Controller
         $anexo=null;
         $publicado=false; 
         
-        if(isset($request['publicado'])) {
+        if(isset($request['publicar'])) {
             $publicado = true;
         }
          if($request['tipo_postagem']=='evento'){
@@ -99,7 +99,7 @@ class PostagemController extends Controller
             $anexo->move($dir, $nomeAnexo);
             $dados['anexo']= $dir.'/'.$nomeAnexo;
         }
-        if(isset($request['publicado'])) {
+        if(isset($request['publicar'])) {
             $dados['publicado'] = true;
         } 
          if($request['tipo_postagem']=='evento'){

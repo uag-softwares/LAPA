@@ -7,8 +7,9 @@
             <form action="{{ route('auth.postagem.salvar') }}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 @include('auth.postagem._form')
-                <div class="input-btn">
-                    <button class="btn">Adicionar</button>
+                 <div class="input-btn">
+                    <input name="rascunho" type="submit" class="btn btn-outline" value="Salvar como rascunho">
+                    <input name="publicar" type="submit" class="btn" value="Publicar agora">
                 </div>
             </form>
         </div>
