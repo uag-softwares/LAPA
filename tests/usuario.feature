@@ -16,7 +16,6 @@ Feature: usuario
     	 And   Eu preencho o campo senha "Brasil2020@"
     	 And   Eu preencho o campo confirmacao de senha "Brasil2020@"
     	 And   Eu preencho o campo nome "Laura"
-         And   Eu preencho o campo sobrenome "viana"
     	 And   Eu preencho o campo cpf "809.098.098-00"
          And   Eu preencho o campo descricao profissional"PHD em Engenharia da computação"
     	 And   Eu clico em  solicitar acesso
@@ -66,17 +65,6 @@ Feature: usuario
          When  Eu clico em deletar registro
          Then  Eu vejo que o registro do usuario foi removido
 
-  Scenario: criar registro de usuario invalido administrador com sobrenome em branco
-	 Given Eu estou na pagina de solicitar acesso ao sistema LAPA
-    	 When  Eu preencho o campo email com "irisviana@gmail.com"
-    	 And   Eu preencho o campo senha "Brasil2020@"
-    	 And   Eu preencho o campo confirmacao de senha "Brasil2020@"
-    	 And   Eu preencho o campo nome "Laura"
-         And   Eu preencho o campo sobrenome ""
-    	 And   Eu preencho o campo cpf "809.098.098-00"
-         And   Eu preencho o campo descricao profissional"PHD em Engenharia da computação"
-    	 And   Eu clico em  solicitar acesso
-    	 Then  Eu vejo a mensagem de erro "O campo sobrenome é obrigatório."
 
   Scenario: atualizar link lattes valido do usuario administrador cadastrado 
          Given O usuario administrador com nome "Roberta",email "roberta@gmail.com" e senha "Brasil2020@" existe

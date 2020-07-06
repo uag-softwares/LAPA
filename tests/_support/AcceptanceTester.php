@@ -150,7 +150,7 @@ class AcceptanceTester extends \Codeception\Actor
      */
      public function euClicoEmEditarRegistroDoUsuario()
      {
-         $this->click('Editar', '//table/tbody/tr/td/ancestor::tr/td[5]');
+         $this->click('Editar', '//table/tbody/tr/td/ancestor::tr/td[4]');
      }
   /**
      * @Then Eu vejo que o nome do usuario foi atualizado para :arg1
@@ -181,14 +181,6 @@ class AcceptanceTester extends \Codeception\Actor
      public function euEstouNaPaginaDeSolicitarAcessoAoSistemaLAPA()
      {
          $this->amOnPage('/register');
-     }
-
-    /**
-     * @When Eu preencho o campo sobrenome :arg1
-     */
-     public function euPreenchoOCampoSobrenome($arg1)
-     {
-         $this->fillField(['name' => 'surname'], $arg1);
      }
 
       /**
@@ -233,7 +225,6 @@ class AcceptanceTester extends \Codeception\Actor
      {
          $this->haveInDatabase('users', [
             'name' => $arg1,
-            'surname' => "Santos",
             'cpf' =>  "123.456.789-11",
             'email' => $arg2,
             'email_verified_at' => now(),
