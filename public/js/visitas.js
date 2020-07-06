@@ -31,7 +31,7 @@ $(".datepicker").datepicker({
 
 // Colocar horas da hora final ao selecionar a hora inicial
 function horaFinalDisponivel() {
-    var $horaInicial = $('#hora_inicial');
+    var $horaInicial = $("#hora_inicial");
     var $horaInicialSelecionada = parseFloat($horaInicial.children("option:selected").val());
     var $horaFinal = $("#hora_final");
     $horaFinal.empty();
