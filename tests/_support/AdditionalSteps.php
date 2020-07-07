@@ -50,7 +50,7 @@ class AdditionalSteps extends \Codeception\Actor
         $this->fillField(['name' => 'email'], $arg2);
         $this->fillField(['name' => 'password'], $arg3);
         $this->click('Entrar');
-        $this->see($arg1, '//button');
+        $this->see($arg1, '//a');
     }
     
     /**

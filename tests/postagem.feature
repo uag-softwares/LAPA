@@ -131,7 +131,7 @@ Scenario: criar uma postagem  do tipo evento invalida sem hora
     And Eu preencho o campo data com "2050-06-26"
     And Eu clico em Escolher arquivo e escolho "anexo.png"
     And Eu clico em Publicar agora
-    Then Eu vejo a mensagem de erro "Selecionar á hora quando a postagem for um evento é obrigatório"
+    Then Eu vejo a mensagem de erro "Selecionar a hora quando a postagem for um evento é obrigatório"
 
 Scenario: criar uma postagem  do tipo evento invalida sem data
     Given Eu estou logado como "Sol" com email "sol@admin.com" e senha "12345678"
@@ -152,7 +152,7 @@ Scenario: atualizar hora em branco invalida de uma postagem evento
     And Eu clico em Editar a postagem com titulo "evento 2050"
     When Eu edito a hora para ""
     And Eu clico em Publicar agora
-    Then Eu vejo a mensagem de erro "Selecionar á hora quando a postagem for um evento é obrigatório"
+    Then Eu vejo a mensagem de erro "Selecionar a hora quando a postagem for um evento é obrigatório"
 
 Scenario: atualizar data em branco invalida de uma postagem evento
     Given Eu estou logado como "Josy" com email "Josy@admin.com" e senha "12345678"

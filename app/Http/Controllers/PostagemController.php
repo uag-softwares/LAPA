@@ -52,7 +52,7 @@ class PostagemController extends Controller
                 return redirect()->back()->withErrors(['data' => 'Selecionar data quando a postagem for um evento é obrigatório'])->withInput();
              }
             else if($request['hora']==null){
-                return redirect()->back()->withErrors(['hora' => 'Selecionar á hora quando a postagem for um evento é obrigatório'])->withInput();
+                return redirect()->back()->withErrors(['hora' => 'Selecionar a hora quando a postagem for um evento é obrigatório'])->withInput();
              }
         }
         $post=$this->postagem->create([
@@ -107,7 +107,7 @@ class PostagemController extends Controller
                 return redirect()->back()->withErrors(['data' => 'Selecionar data quando a postagem for um evento é obrigatório']);
              }
              else if($request['hora']==null){
-                return redirect()->back()->withErrors(['hora' => 'Selecionar á hora quando a postagem for um evento é obrigatório']);
+                return redirect()->back()->withErrors(['hora' => 'Selecionar a hora quando a postagem for um evento é obrigatório']);
              }
         }
         $dados['slug']=str_slug($dados['titulo']).'-'.$identifier;
