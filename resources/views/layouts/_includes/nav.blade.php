@@ -73,7 +73,7 @@
                                 <nav class="d-flex">
                                     <li class="nav-item">
                                         <a href="{{ route('auth.gerenciar') }}" title="Gerenciar" class="nav-link">
-                                            <i class="fas fa-sliders-h"></i> 
+                                            <i class="fas fa-sliders-h"></i> Gerenciar
                                         </a>
                                     </li>
                                     <li class="nav-item">

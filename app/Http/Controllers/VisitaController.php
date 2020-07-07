@@ -124,7 +124,6 @@ class VisitaController extends Controller
                 'cpf' =>  $request['cpf'],
                 'email' =>  $request['email'],
                 'telephone' =>  $request['telephone'],
-                'surname' =>  $request['surname'],
                 'user_type' => 'visitant',
             ];
 

@@ -21,12 +21,12 @@
             var status= document.getElementById("tipo_postagem");
             if(status.value == "evento"){
                 
-                document.getElementById("dt").style.visibility="visible";
-                document.getElementById("hi").style.visibility="visible";
+                document.getElementById("dh").style.display = "block";
+                
             }
             else{
-                 document.getElementById("dt").style.visibility="hidden";
-                 document.getElementById("hi").style.visibility="hidden";
+                 document.getElementById("dh").style.display = "none";
+                
             }
         }
         

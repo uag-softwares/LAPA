@@ -5,9 +5,9 @@
         <div class="container">
             <h3 class="mb-4">Detalhes da visita dia <b style="border: 1px solid #000;">{{ date('d/m/Y', strtotime($registro->data)) }}</b> das <b style="border: 1px solid #000;">{{ $registro->hora_inicial }}</b> às <b style="border: 1px solid #000;">{{$registro->hora_final }}</b></h2>
             <div class="visita-detalhes">
-                <p>Responsável pela visita: <b>{{ $registro->user->name.' '.$registro->user->surname }}</b></p>
+                <p>Responsável pela visita: <b>{{ $registro->user->name ?? 'Não informado' }}</b></p>
                 <p>Telefone: <b>{{ $registro->user->telephone ?? 'Não informado' }}</b></p>
-                <p>Email: <b>{{ $registro->user->email }}</b></p>
+                <p>Email: <b>{{ $registro->user->email ?? 'Não informado' }}</b></p>
                 <p>Mensagem do Responsável:</p>
             </div>
             <div class="visita-msg">

@@ -25,7 +25,6 @@ class VisitaRequest extends FormRequest
     {
         return [
             'name' => 'required|string|min:3|max:255',
-            'surname' => 'required|string|min:3|max:255',
             'cpf' => 'required|regex:/\d{3}\.\d{3}\.\d{3}\-\d{2}/',
             'email' => 'required|email',
             'telephone' =>  'required|regex:/\(?\d{2}\)?\s?\d{5}\-?\d{4}/',
@@ -46,10 +45,6 @@ class VisitaRequest extends FormRequest
             'name.min' => 'O nome responsável deve ter ao menos 3 letras',
             'name.max' => 'O nome responsável deve ter no máximo 255 letras',
             'name.string' => 'O nome responsável deve ter letras',
-            'surname.required' => 'O sobrenome do responsável é obrigatório',
-            'surname.min' => 'O sobrenome responsável deve ter ao menos 3 letras',
-            'surname.max' => 'O sobrenome responsável deve ter no máximo 255 letras',
-            'surname.string' => 'O sobrenome responsável deve ter letras',
             'cpf.required' => 'O CPF é deve ser preenchido',
             'cpf.regex' => 'O CPF deve ser no formato 123.456.789-10',
             'data.required' => 'A data da visita é obrigatória',
