@@ -8,8 +8,28 @@
                 {{ csrf_field() }}
                 @include('auth.postagem._form')
                 <div class="input-btn">
-                    <button class="btn">Adicionar</button>
+                    <input name="rascunho" type="submit" class="btn btn-outline" value="Salvar como rascunho">
+                    <input name="publicar" type="submit" class="btn" value="Publicar agora">
                 </div>
             </form>
         </div>
+@endsection
+@section('scripts')
+
+    <script>        
+        function changeStatus(){
+            var status= document.getElementById("tipo_postagem");
+            if(status.value == "evento"){
+                
+                document.getElementById("dt").style.visibility="visible";
+                document.getElementById("hi").style.visibility="visible";
+            }
+            else{
+                 document.getElementById("dt").style.visibility="hidden";
+                 document.getElementById("hi").style.visibility="hidden";
+            }
+        }
+        
+    </script>
+   
 @endsection

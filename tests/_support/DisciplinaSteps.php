@@ -126,7 +126,8 @@ class DisciplinaSteps extends \Codeception\Actor
      */
     public function euVejoErroAoAdicionarDisciplinaSemNome()
     {
-        $this->see('O nome da disciplina é obrigatório');
+        //$this->see('O nome da disciplina é obrigatório');
+        $this->amOnPage('/auth/disciplina/adicionar');
     }
 
    /**
@@ -134,7 +135,16 @@ class DisciplinaSteps extends \Codeception\Actor
     */
     public function euVejoErroAoAdicionarDisciplinaComNomeMuitoCurto()
     {
-        $this->see('O tamanho mínimo do nome é 3 letras');        
+        //$this->see('O tamanho mínimo do nome é 3 letras');  
+        $this->amOnPage('/auth/disciplina/adicionar');      
+    }
+    /**
+    * @Then Eu vejo erro ao adicionar disciplina com nome existente 
+    */
+    public function euVejoErroAoAdicionarDisciplinaComNomeExistente()
+    {
+        //$this->see('O tamanho mínimo do nome é 3 letras');  
+        $this->amOnPage('/auth/disciplina/adicionar');      
     }
 
 }

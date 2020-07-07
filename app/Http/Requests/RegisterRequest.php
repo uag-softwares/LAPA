@@ -24,8 +24,7 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' =>'required|alpha|string|min:3|max:255',
-	    'surname' =>'required|alpha|string|min:3|max:255',
+            'name' =>'required|regex:/^[\pL\s\-.]+$/u|string|min:3|max:255',
             'user_description' => 'max:255|nullable',
             'link_lattes' => 'url|string|nullable',
             'avatar' => 'mimes:jpeg,jpg,png,gif|max:2048|nullable' 

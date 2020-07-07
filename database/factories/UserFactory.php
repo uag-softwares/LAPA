@@ -19,7 +19,6 @@ use Illuminate\Support\Str;
 $factory->define(User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
-        'surname' => $faker->name,
         'cpf' =>  $faker->unique()->regexify('[0-9]{3}+\.[0-9]{3}+\.[0-9]{3}\-[0-9]{2}'),
         'cpf_verified_at' => now(),
         'email' => $faker->unique()->safeEmail,

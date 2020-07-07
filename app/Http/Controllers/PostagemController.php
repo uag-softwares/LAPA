@@ -43,16 +43,8 @@ class PostagemController extends Controller
         $this->user=Auth::user();
         $anexo=null;
         $publicado=false; 
-        if($request->hasFile('anexo')) {
-            $anexo = $request->file('anexo');
-            $num = rand(1111,9999);
-            $dir = 'img/postagens/';
-            $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
-            $nomeAnexo = 'anexo_'.$num.'.'.$ex;
-            $anexo->move($dir, $nomeAnexo);
-            $anexo = $dir.'/'.$nomeAnexo;
-        }
-        if(isset($request['publicado'])) {
+        
+        if(isset($request['publicar'])) {
             $publicado = true;
         }
          if($request['tipo_postagem']=='evento'){
@@ -75,6 +67,14 @@ class PostagemController extends Controller
 	    
         ]);
         $post['slug']=str_slug($post->titulo).'-'.$post->id;
+	if($request->hasFile('anexo')) {
+            $anexo = $request->file('anexo');
+            $dir = 'img/postagens/';
+            $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
+            $nomeAnexo = 'anexo_'.$post->tipo_postagem.'-'.$post->id.'.'.$ex;
+            $anexo->move($dir, $nomeAnexo);
+            $post['anexo']= $dir.'/'.$nomeAnexo;
+        }
         $post->update($post->attributesToArray());
         return redirect()->route('auth.postagens')->with('success', 'Postagem adicionada com sucesso!');
     }
@@ -90,16 +90,16 @@ class PostagemController extends Controller
         $request->validated();
         $dados = $request->all();
         $dados['publicado'] = false; 
+	$post=$this->postagem->find($identifier);
         if($request->hasFile('anexo')) {
             $anexo = $request->file('anexo');
-            $num = rand(1111,9999);
-            $dir = 'img/postagens';
+            $dir = 'img/postagens/';
             $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
-            $nomeAnexo = 'anexo_'.$num.'.'.$ex;
+            $nomeAnexo = 'anexo_'.$post->tipo_postagem.'-'.$post->id.'.'.$ex;
             $anexo->move($dir, $nomeAnexo);
-            $dados['anexo'] = $dir.'/'.$nomeAnexo;
+            $dados['anexo']= $dir.'/'.$nomeAnexo;
         }
-        if(isset($request['publicado'])) {
+        if(isset($request['publicar'])) {
             $dados['publicado'] = true;
         } 
          if($request['tipo_postagem']=='evento'){
@@ -111,7 +111,7 @@ class PostagemController extends Controller
              }
         }
         $dados['slug']=str_slug($dados['titulo']).'-'.$identifier;
-        $this->postagem->find($identifier)->update($dados);
+        $post->update($dados);
         return redirect()->route('auth.postagens')->with('success', 'Postagem atualizada com sucesso!');
     }
 

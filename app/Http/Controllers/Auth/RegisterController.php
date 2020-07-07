@@ -78,21 +78,23 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' =>'required|alpha|string|min:3|max:255',
-	        'surname' =>'required|alpha|string|min:3|max:255',
+
+            'name' =>'required|regex:/^[\pL\s\-.]+$/u|string|min:3|max:255',
             'email' => ['required', 'string', 'email', 'max:255',Rule::unique('users')->where(function ($query){return $query->where('user_type','admin');})],
             'password' => 'required|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/|string|min:6|confirmed',
-	        'cpf' => 'required|regex:/\d{3}\.\d{3}\.\d{3}\-\d{2}/|string|unique:users',
+	    'cpf' => ['required','regex:/\d{3}\.\d{3}\.\d{3}\-\d{2}/','string',Rule::unique('users')->where(function ($query){return $query->where('user_type','admin');})],
+
             'user_description' => 'max:255|nullable',
             'link_lattes' => 'url|string|nullable',
             'avatar' => 'mimes:jpeg,jpg,png,gif|max:2048|nullable',
 	        'g-recaptcha-response' => 'required',
             
-        ], [
-            'password.regex' => 'Sua senha deve conter no mínimo de 6 caracteres,deve conter pelo menos uma letra maiúscula,uma minúscula,um número e um símbolo',
-            'email.unique' => 'O valor informado para o campo e-mail já está em uso em uma conta de administrador',
-            'g-recaptcha-response.required' => 'O campo reCaptcha é obrigatório',
-        ]);
+        ],[
+       'password.regex'=>'Sua senha deve conter no mínimo de 6 caracteres,deve conter pelo menos uma letra maiúscula,uma minúscula,um número e um símbolo',
+       'email.unique'=>'O valor informado para o campo e-mail já está em uso em uma conta de administrador',
+       'cpf.unique'=>'O valor informado para o campo cpf já está em uso em uma conta de administrador',
+       'g-recaptcha-response.required' => 'O campo reCaptcha é obrigatório',
+       ]);
        
     }
     
@@ -108,21 +110,11 @@ class RegisterController extends Controller
        $findUser=$this->usuario->where('email',$data['email'])->first();
        $avatar=null;
        $request = new Request($data);
-       if($request->has('avatar')) {
-            $anexo = $data['avatar'];
-            $num = rand(1111,9999);
-            $dir = 'img/avatares/';
-            $exAnexo =$anexo->guessClientExtension();
-            $nomeAnexo = 'avatar_'.$num.'.'.$exAnexo;
-            $anexo->move($dir, $nomeAnexo);
-            $avatar= $dir.'/'.$nomeAnexo;
-           
-        }
+       
        $dados=[
             'name' =>  $data ['name'],
             'cpf' =>  $data ['cpf'],
             'email' =>  $data['email'],
-            'surname' =>  $data ['surname'],
             'user_description' =>$data ['user_description'],
             'avatar' => $avatar,
             'user_type' => 'admin',
@@ -143,6 +135,15 @@ class RegisterController extends Controller
         ]);
 
         $user['slug']=str_slug($user->name).'-'.$user->id;
+	if($request->has('avatar')) {
+            $anexo = $data['avatar'];
+            $dir = 'img/avatares/';
+            $exAnexo =$anexo->guessClientExtension();
+            $nomeAnexo = 'avatar_'.$user['slug'].'.'.$exAnexo;
+            $anexo->move($dir, $nomeAnexo);
+            $user['avatar']= $dir.'/'.$nomeAnexo;
+           
+        }
         $user->update($user->attributesToArray());
 
 	foreach ($registros as $registro) {
@@ -202,18 +203,18 @@ class RegisterController extends Controller
     {  
         $data->validated();
         $dados = $data->all();
+	$user=Auth::user();
+        $dados['slug']=str_slug($dados['name']).'-'.$user->id;
         if($data->hasFile('avatar')){
             $anexo = $data->file('avatar');
-            $num = rand(1111,9999);
             $dir = 'img/avatares/';
             $exAnexo =$anexo->guessClientExtension();
-            $nomeAnexo = 'avatar_'.$num.'.'.$exAnexo;
+            $nomeAnexo = $nomeAnexo = 'avatar_'.$user['slug'].'.'.$exAnexo;
             $anexo->move($dir, $nomeAnexo);
             $dados['avatar'] = $dir.'/'.$nomeAnexo;
            
         }
-        $user=Auth::user();
-        $dados['slug']=str_slug($dados['name']).'-'.$user->id;
+        
         $user->update($dados);
         
 	    return redirect()->route('auth.registros')->with('success','Conta editada com sucesso');

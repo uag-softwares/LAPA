@@ -17,7 +17,6 @@
         <thead>
             <tr>
                 <th>Nome</th>
-                <th>Sobrenome</th>
                 <th>Cpf</th>
                 <th>E-mail</th>
                 <th>Ações</th>
@@ -26,7 +25,6 @@
         <tbody>
             <tr>
                 <td>{{ Auth::user()->name }}</td>
-		<td>{{ Auth::user()->surname }}</td>
                 <td>{{Auth::user()->cpf}}</td>
                 <td>{{Auth::user()->email}}</td>
                 <td>
