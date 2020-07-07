@@ -12,16 +12,6 @@
         @enderror
     </div>
     <div class="form-group">
-        <label for="surname">Sobrenome*</label>
-        <input id="surname" type="text" class="form-control form-control-lg @error('surname') is-invalid @enderror" name="surname" value="{{isset($userExiste->surname) ? $userExiste->surname : old('surname')}}" required autocomplete="surname" autofocus
-        {{ isset($userExiste->surname) ? 'readonly' : ''}}>
-        @error('surname')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
-    </div>
-    <div class="form-group">
         <label for="cpf">CPF*</label>
         <input id="cpf" type="text" class="cpf form-control form-control-lg @error('cpf') is-invalid @enderror" name="cpf" value="{{isset($userExiste->cpf) ? $userExiste->cpf :old('cpf')}}" required autocomplete="cpf" autofocus placeholder="Ex.: 123.456.789.10"
         {{ isset($userExiste->cpf) ? 'readonly' : ''}}>

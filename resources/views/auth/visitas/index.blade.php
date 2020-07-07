@@ -28,7 +28,7 @@
                 <tbody>
                     @foreach($registros as $registro)
                     <tr>
-                        <td>{{ $registro->user->name.' '.$registro->user->surname }}</td>
+                        <td>{{ $registro->user->name ?? '' }}</td>
                         <td>{{ date('d/m/Y', strtotime($registro->data)).' das '.date('H:i', strtotime($registro->hora_inicial)).' às '.date('H:i', strtotime($registro->hora_final)) }}</td>
                         <td>{{ $registro->user->email }}</td>
                         <td>{{ $registro->confirmada ? 'Sim' : 'Não' }}</td>
