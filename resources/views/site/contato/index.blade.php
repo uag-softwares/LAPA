@@ -9,13 +9,13 @@
 
 
         <h3>Desenvolvedores</h3>
-        
+
             <a target="_blank" href="http://lattes.cnpq.br/4718404713178825">Íris Viana</a><br>
             <a target="_blank" href="http://lattes.cnpq.br/3141289240384782">Raquel Vieira</a><br>
             <a target="_blank" href="http://lattes.cnpq.br/3076429582182777">Vinícius Santos</a><br>
             
 
-        <h2>Professores</h2>
+        <h2 class="mt-2">Professores</h2>
 
             @if (count($registros) < 1)
                 <p>Ops, nossos professores ainda não foram cadastrados</p>

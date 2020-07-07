@@ -61,6 +61,8 @@
                                 <a href="{{ route('site.contato.index') }}" class="nav-link">Sobre</a>
                             </li>
                             
+
+
                      
                             <!-- Authentication Links -->
                             @guest
@@ -68,23 +70,27 @@
                                 <a href="{{ route('login') }}" class="nav-link">Acesso</a>
                             </li>
                             @else
-                                <li class="nav-item dropdown">
-                                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        {{explode(' ',Auth::user()->name)[0]}}
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                                        <a href="{{ route('auth.gerenciar') }}" class="dropdown-item">Gerenciar</a>
-                                        <a href="{{ route('auth.registros') }}" class="dropdown-item">Minha conta</a>
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                <nav class="d-flex">
+                                    <li class="nav-item">
+                                        <a href="{{ route('auth.gerenciar') }}" title="Gerenciar" class="nav-link">
+                                            <i class="fas fa-sliders-h"></i> 
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('auth.registros') }}" title="Minha conta" class="nav-link">
+                                            <i class="fas fa-user"></i> {{ Auth::user()->name ?? "" }}
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a title="Sair" class="nav-link" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
-                                            {{ __('Sair') }}
+                                            <i class="fas fa-sign-out-alt"></i>
                                         </a>
+                                    </li>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             @csrf
                                         </form>
-                                    </div>
-                                </li>
                             @endguest
                         </ul>
                     </div>
