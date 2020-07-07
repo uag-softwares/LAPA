@@ -79,20 +79,20 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' =>'required|alpha|string|min:3|max:255',
-	    'surname' =>'required|alpha|string|min:3|max:255',
+	        'surname' =>'required|alpha|string|min:3|max:255',
             'email' => ['required', 'string', 'email', 'max:255',Rule::unique('users')->where(function ($query){return $query->where('user_type','admin');})],
             'password' => 'required|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/|string|min:6|confirmed',
-	    'cpf' => 'required|regex:/\d{3}\.\d{3}\.\d{3}\-\d{2}/|string|unique:users',
+	        'cpf' => 'required|regex:/\d{3}\.\d{3}\.\d{3}\-\d{2}/|string|unique:users',
             'user_description' => 'max:255|nullable',
             'link_lattes' => 'url|string|nullable',
             'avatar' => 'mimes:jpeg,jpg,png,gif|max:2048|nullable',
-	    'g-recaptcha-response' => 'captcha',
+	        'g-recaptcha-response' => 'required',
             
-        ],[
-       'password.regex'=>'Sua senha deve conter no mínimo de 6 caracteres,deve conter pelo menos uma letra maiúscula,uma minúscula,um número e um símbolo',
-       'email.unique'=>'O valor informado para o campo e-mail já está em uso em uma conta de administrador',
-       'g-recaptcha-response.captcha'=>'O campo reCaptcha é obrigatório',
-       ]);
+        ], [
+            'password.regex' => 'Sua senha deve conter no mínimo de 6 caracteres,deve conter pelo menos uma letra maiúscula,uma minúscula,um número e um símbolo',
+            'email.unique' => 'O valor informado para o campo e-mail já está em uso em uma conta de administrador',
+            'g-recaptcha-response.required' => 'O campo reCaptcha é obrigatório',
+        ]);
        
     }
     

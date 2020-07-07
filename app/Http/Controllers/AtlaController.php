@@ -117,9 +117,17 @@ class AtlaController extends Controller
 
     public function siteIndex() 
     {
-        $registros = $this->atla->all();
-        $categorias = $this->categoria->all();
-        $disciplinas = $this->disciplina->all();
+        $registros = $this->atla->where('publicado', true)->latest()->get();
+
+        $categorias = $this->categoria->whereHas('atla', function($query) {
+            $query->where('publicado', true);
+        })->latest()->get();
+
+        $disciplinas = $this->disciplina->whereHas('categoria', function($queryCategorias) {
+            $queryCategorias->whereHas('atla', function($queryDisciplinas) {
+                $queryDisciplinas->where('publicado', true);
+            });
+        })->latest()->get();
         return view('site.atlas.index', compact('registros', 'categorias', 'disciplinas'));
     }
 
@@ -136,7 +144,10 @@ class AtlaController extends Controller
     public function atlasPorDisciplina(Disciplina $disciplina) 
     {
         
-        $busca = $this->categoria->where('disciplina_id', $disciplina->id);
+        $busca = $this->categoria->where('disciplina_id', $disciplina->id)
+                                ->whereHas('atla', function($query) {
+                                    $query->where('publicado', true);
+        });
         $registros = $busca->get();
         $paginas = $busca->paginate(1);
         return view('site.atlas.ver_atlas_disciplinas', compact('paginas', 'registros', 'disciplina'));

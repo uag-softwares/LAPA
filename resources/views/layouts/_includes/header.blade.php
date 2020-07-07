@@ -15,8 +15,8 @@
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+HK&display=swap" rel="stylesheet"> 
         
         <!-- Styles -->
-        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
         <link href="{{ asset('css/clndr.css') }}" rel="stylesheet">
 
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">

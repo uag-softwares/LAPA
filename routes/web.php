@@ -47,6 +47,7 @@ Route::post('/site/visita/salvar', ['as' => 'site.visita.salvar', 'uses' => 'Vis
 Route::get('/site/visita/verificar/{id}/{hash}', ['as' => 'site.verificar.visita', 'uses' => 'Auth\VerificationController@verificarVisita'], function() {});
 
 Route::get('/termos&privacidade', ['as' => 'termo.privacidade', 'uses' => 'Auth\RegisterController@vizualizarTermosPrivacidade'], function() {});
+Route::get('/confirmacao/email', ['as' => 'confirmacao.email', 'uses' => 'Auth\VerificationController@confirmacaoEmail'], function() {});
 
 Auth::routes(['verify' => true]);
 

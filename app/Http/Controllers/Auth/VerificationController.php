@@ -42,7 +42,7 @@ class VerificationController extends Controller
     {
         $this->user = $user;
 
-        $this->middleware('auth')->except('verificarVisita');
+        $this->middleware('auth')->except('verificarVisita', 'confirmacaoEmail');
         $this->middleware('signed')->only('verify');
         $this->middleware('throttle:6,1')->only('verify', 'resend');
     }
@@ -66,6 +66,11 @@ class VerificationController extends Controller
                 $admin->notify(new SolicitacaoVisita($admin));
         }
 
-        return redirect()->route('site.visita.busca')->with('success', 'Email verificado com sucesso! Agora é só aguardar nossa confirmação.');
+        return redirect()->route('confirmacao.email')->with('success', 'E-mail verificado com sucesso! Agora é só aguardar a confirmação da sua visita por e-mail.');
+    }
+
+    public function confirmacaoEmail()
+    {
+        return view('vendor.mail.confirmation');
     }
 }
