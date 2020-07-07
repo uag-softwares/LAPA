@@ -15,3 +15,22 @@
             </form>
         </div>
 @endsection
+@section('scripts')
+
+    <script>        
+        function changeStatus(){
+            var status= document.getElementById("tipo_postagem");
+            if(status.value == "evento"){
+                
+                document.getElementById("dt").style.visibility="visible";
+                document.getElementById("hi").style.visibility="visible";
+            }
+            else{
+                 document.getElementById("dt").style.visibility="hidden";
+                 document.getElementById("hi").style.visibility="hidden";
+            }
+        }
+        
+    </script>
+   
+@endsection
