@@ -29,33 +29,9 @@ $(".datepicker").datepicker({
     daysOfWeekDisabled: [0,6],
 });
 
-
-// Bloquear horas indisponiveis do hora inicial ao selecionar a data
-$("#data").change( function() {
-    var $dataSelecionada = $(this).val();
-    var $horaInicial = $("#hora_inicial");
-    $horaInicial.empty();
-
-    $horas.forEach(($hora) => {
-        $horaInicial.append("<option value=" + $hora[1] + ">" + $hora[0] + "</option>")
-        $horaInicial.removeAttr("disabled");
-    });
-
-    var $horasIndisponiveis = encontrarVisitaNaData($visitas, $dataSelecionada);
-    
-    Array.prototype.forEach.call($horaInicial.children("option"), $option => {
-        $horaDaOpcao = parseFloat($option.value);
-        $horasIndisponiveis.forEach($hora => {
-            if(parseFloat($hora[0]) <= $horaDaOpcao && parseFloat($hora[1]) > $horaDaOpcao) {
-                $option.disabled = true;
-            }
-        });
-    });
-});
-
 // Colocar horas da hora final ao selecionar a hora inicial
-$("#hora_inicial").change( function() {
-    var $horaInicial = $(this);
+function horaFinalDisponivel() {
+    var $horaInicial = $("#hora_inicial");
     var $horaInicialSelecionada = parseFloat($horaInicial.children("option:selected").val());
     var $horaFinal = $("#hora_final");
     $horaFinal.empty();
@@ -78,4 +54,30 @@ $("#hora_inicial").change( function() {
             }
         });
     });
+}
+
+// Bloquear horas indisponiveis do hora inicial ao selecionar a data
+$("#data").change( function() {
+    var $dataSelecionada = $(this).val();
+    var $horaInicial = $("#hora_inicial");
+    $horaInicial.empty();
+
+    $horas.forEach(($hora) => {
+        $horaInicial.append("<option value=" + $hora[1] + ">" + $hora[0] + "</option>")
+        $horaInicial.removeAttr("disabled");
+    });
+
+    var $horasIndisponiveis = encontrarVisitaNaData($visitas, $dataSelecionada);
+    
+    Array.prototype.forEach.call($horaInicial.children("option"), $option => {
+        $horaDaOpcao = parseFloat($option.value);
+        $horasIndisponiveis.forEach($hora => {
+            if(parseFloat($hora[0]) <= $horaDaOpcao && parseFloat($hora[1]) > $horaDaOpcao) {
+                $option.disabled = true;
+            }
+        });
+    });
+    horaFinalDisponivel();
 });
+
+$("#hora_inicial").change(horaFinalDisponivel);

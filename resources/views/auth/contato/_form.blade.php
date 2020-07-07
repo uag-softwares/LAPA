@@ -1,6 +1,6 @@
 <div class="form-group">
     <label for="email">Email do laboratório*</label>
-    <input class="form-control form-control-lg {{ $errors->has('email') ? 'error' : '' }}" type="text" name="email" value="{{ isset($registro->email) ? $registro->email : old('email') }}" placeholder="Digite aqui o email da organização">
+    <input class="form-control form-control-lg {{ $errors->has('email') ? 'error' : '' }}" type="text" name="email" value="{{ isset($registro->email) ? $registro->email : old('email') }}" placeholder="Ex.: laboratorio@ufape.com">
     @error('email')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -9,7 +9,7 @@
 </div>
 <div class="form-group">
     <label for="texto">Descrição - Quem Somos*</label>
-    <textarea rows="7" class="form-control form-control-lg {{ $errors->has('texto') ? 'error' : '' }}" type="text" name="texto" placeholder="Escreva aqui uma breve descrição sobre o laboratório">{{ isset($registro->texto) ? $registro->texto : old('texto') }}</textarea>
+    <textarea rows="7" class="form-control form-control-lg {{ $errors->has('texto') ? 'error' : '' }}" type="text" name="texto" placeholder="Escreva aqui quem são as pessoas que participam ativamente do laboratorio">{{ isset($registro->texto) ? $registro->texto : old('texto') }}</textarea>
     @error('texto')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -18,7 +18,7 @@
 </div>
 <div class="form-group">
     <label for="telefone">Telefone para contato do laboratório</label>
-    <input class=" form-control form-control-lg {{ $errors->has('telefone') ? 'error' : '' }} telefone" type="text" name="telefone" value="{{ isset($registro->telefone) ? $registro->telefone : old('telefone') }}" placeholder="Digite aqui o telefone da organização">
+    <input class=" form-control form-control-lg {{ $errors->has('telefone') ? 'error' : '' }} telefone" type="text" name="telefone" value="{{ isset($registro->telefone) ? $registro->telefone : old('telefone') }}" placeholder="Ex.: (88) 999991111">
     @error('telefone')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -28,7 +28,7 @@
 <h3>Redes sociais</h3>
 <div class="form-group">
     <label for="instagram">Instagram</label>
-    <input class="form-control form-control-lg @error('instagram') is-invalid @enderror" type="text" name="instagram" value="{{ isset($registro->instagram) ? $registro->instagram : old('instagram') }}" placeholder="Digite aqui o instagram da organização">
+    <input class="form-control form-control-lg @error('instagram') is-invalid @enderror" type="text" name="instagram" value="{{ isset($registro->instagram) ? $registro->instagram : old('instagram') }}" placeholder="Ex.: https://instagram.com/lapaUFAPE">
     @error('instagram')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -37,7 +37,7 @@
 </div>
 <div class="form-group">
     <label for="twitter">Twitter</label>
-    <input  class="form-control form-control-lg @error('twitter') is-invalid @enderror"type="text" name="twitter" value="{{ isset($registro->twitter) ? $registro->twitter : old('twitter') }}" placeholder="Digite aqui o twitter da organização">
+    <input  class="form-control form-control-lg @error('twitter') is-invalid @enderror"type="text" name="twitter" value="{{ isset($registro->twitter) ? $registro->twitter : old('twitter') }}" placeholder="Ex.: https://twitter.com/lapaUFAPE">
     @error('twitter')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -46,7 +46,7 @@
 </div>
 <div class="form-group">
     <label for="facebook">Facebook</label>
-    <input class="form-control form-control-lg @error('facebook') is-invalid @enderror" type="text" name="facebook" value="{{ isset($registro->facebook) ? $registro->facebook : old('facebook') }}" placeholder="Digite aqui o facebook da organização">
+    <input class="form-control form-control-lg @error('facebook') is-invalid @enderror" type="text" name="facebook" value="{{ isset($registro->facebook) ? $registro->facebook : old('facebook') }}" placeholder="Ex.: https://facebook.com/lapaUFAPE">
     @error('facebook')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>

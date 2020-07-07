@@ -1,3 +1,7 @@
+@if(isset($registro))
+    <p>Essa página do atlas está <strong>{{ $registro->publicado ? 'publicada' : 'salva no rascunho' }}.</strong></p>
+@endif
+
 <div class="form-group">
     <label for="titulo">Título da página do atlas*</label>
     <input class="form-control form-control-lg @error('titulo') is-invalid @enderror" type="text" name="titulo" value="{{ isset($registro->titulo) ? $registro->titulo : old('titulo') }}" placeholder="Mínimo de 5 caracteres">
@@ -48,4 +52,8 @@
             <strong>{{ $message }}</strong>
         </span>
     @enderror
+</div>
+<div class="form-group">
+     <hr>
+      <p>Categoria não cadastrada? <a class="" href="{{ route('auth.categoria.adicionar') }}">{{ __('Cadastrar Categoria') }}</a>.</p>
 </div>

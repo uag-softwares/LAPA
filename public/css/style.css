@@ -474,6 +474,26 @@ section .section-title {
   all: unset;
 }
 
+/* Alerts */
+
+.alert {
+  position: relative;
+  padding: 0.75rem 1.25rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  max-width: 760px;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.alert.alert-success {
+  border-color: var(--main-dark-green);
+}
+
 
 /* Summernote background dos botoes */
 .note-editor .btn {
