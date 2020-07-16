@@ -1,3 +1,6 @@
+@if(isset($registro))
+    <p>Essa página de postagem está <strong>{{ $registro->publicado ? 'publicada' : 'salva no rascunho' }}.</strong></p>
+@endif
 <div class="form-group">
     <label for="titulo">Título da Postagem*</label>
     <input class="form-control form-control-lg @error('titulo') is-invalid @enderror" type="text" name="titulo" value="{{ isset($registro->titulo) ? $registro->titulo : old('titulo') }}" placeholder="ex:Visita ao LAPA" required autocomplete="titulo">

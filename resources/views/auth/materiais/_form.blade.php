@@ -1,5 +1,5 @@
-@if ($errors->any())
-    <p class="error">Campos com * são obrigatórios!</p>
+@if(isset($registro))
+    <p>Essa página de material está <strong>{{ $registro->publicado ? 'publicada' : 'salva no rascunho' }}.</strong></p>
 @endif
 <div class="form-group">
     <label for="titulo">Título do Material*</label>
