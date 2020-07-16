@@ -19,15 +19,15 @@
 <div class="form-group">
     <label for="tipo_postagem">Selecione o tipo da postagem*</label>
     <select class="custom-select custom-select-lg @error('tipo_postagem') is-invalid @enderror" name="tipo_postagem" id="tipo_postagem" required autocomplete="tipo_postagem" onchange="changeStatus()">
-        @if(isset($registro->tipo_postagem))
-                <option hidden disabled selected value="{{ $registro->tipo_postagem }}" selected>{{$registro->tipo_postagem}}</option>
-        @else
-        <option hidden disabled selected value>Clique para selecionar o tipo da postagem</option>
+        @if(!isset($registro->tipo_postagem))
+            <option hidden disabled selected value>Clique para selecionar o tipo da postagem</option>
         @endif
         @foreach($tipo_postagens as $tipo)
-           
-            <option value="{{ $tipo}}">{{$tipo}}</option>
-          
+            @if(isset($registro->tipo_postagem) && $registro->tipo_postagem == $tipo))
+                <option selected value="{{ $registro->tipo_postagem }}" selected>{{$registro->tipo_postagem}}</option>
+            @else
+                <option value="{{ $tipo}}">{{$tipo}}</option>
+            @endif
         @endforeach
     </select>
      @error('tipo_postagem')
