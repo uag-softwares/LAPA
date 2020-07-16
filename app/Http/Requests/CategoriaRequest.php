@@ -38,7 +38,7 @@ class CategoriaRequest extends FormRequest
     public function messages()
     {
         return [
-            'nome.required' => 'O nome da categoria é obrigatório',
+            'nome.required' => 'O nome da área de conhecimento é obrigatório',
             'nome.min' => 'O tamanho mínimo do nome é 3 letras',
             'disciplina_id.required' => 'Você deve escolher uma disciplina',
             'disciplina_id.integer' => 'Erro ao cadastrar a disciplina, tente novamente',

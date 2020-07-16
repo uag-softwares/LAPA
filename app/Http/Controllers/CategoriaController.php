@@ -51,7 +51,7 @@ class CategoriaController extends Controller
         $categotia= $this->categoria->create($dados);
         $categotia['slug']=str_slug($categotia->nome).'-'.$categotia->id;
         $categotia->update($categotia->attributesToArray());
-        return redirect()->route('auth.categorias')->with('success', 'Categoria adicionada com sucesso!');
+        return redirect()->route('auth.categorias')->with('success', 'Área de conhecimento adicionada com sucesso!');
     }
 
     public function editar(Categoria $registro) 
@@ -69,19 +69,19 @@ class CategoriaController extends Controller
         $dados = $request->all();
 
         if($this->buscarCategoriaDisciplina($dados['nome'], $dados['disciplina_id']) != 0) {
-            return redirect()->back()->withErrors(['nome' => 'Essa categoria já existe nessa disciplina ou você está tentando colocar o mesmo nome'])->withInput();
+            return redirect()->back()->withErrors(['nome' => 'Essa área de conhecimento já existe nessa disciplina ou você está tentando colocar o mesmo nome'])->withInput();
         }
 
         $dados['slug']=str_slug($dados['nome']).'-'.$identifier;
         $this->categoria->find($identifier)->update($dados);
 
-        return redirect()->route('auth.categorias')->with('success', 'Categoria atualizada com sucesso!');;
+        return redirect()->route('auth.categorias')->with('success', 'Área de conhecimento atualizada com sucesso!');;
     }
 
     public function deletar(Categoria $registro)
     {
         $registro->delete();
-        return redirect()->route('auth.categorias')->with('success', 'Categoria deletada com sucesso!');;
+        return redirect()->route('auth.categorias')->with('success', 'Área de conhecimento deletada com sucesso!');;
     }
 
     public function buscarCategoriaDisciplina($nome, $disciplina_id) {

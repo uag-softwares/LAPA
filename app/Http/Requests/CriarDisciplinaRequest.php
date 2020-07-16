@@ -37,9 +37,9 @@ class CriarDisciplinaRequest extends FormRequest
     public function messages()
     {
         return [
-            'nome.required' => 'O nome da disciplina é obrigatório',
+            'nome.required' => 'O nome da disciplina(assunto) é obrigatório',
             'nome.min' => 'O tamanho mínimo do nome é 3 letras',
-            'nome.unique' => 'Essa disciplina já existe',
+            'nome.unique' => 'Essa disciplina(assunto) já existe',
             'user_id' => 'O professor deve estar cadastrado',
         ];
     }

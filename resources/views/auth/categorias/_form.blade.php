@@ -2,7 +2,7 @@
     <p class="error">Campos com * são obrigatórios!</p>
 @endif
 <div class="form-group">
-    <label for="nome">Nome da categoria*</label>
+    <label for="nome">Nome da área de conhecimento*</label>
     <input {{ isset($registro->nome) ? 'readonly' : '' }} class="form-control form-control-lg @error('nome') is-invalid @enderror" type="text" name="nome" value="{{ isset($registro->nome) ? 
 																			$registro->nome : old('nome') }}" placeholder="ex:Sistema Nervoso">
     @error('nome')

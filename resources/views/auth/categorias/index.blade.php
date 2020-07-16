@@ -3,7 +3,7 @@
 @section('titulo', 'Gerenciar categorias')
 @section('content')
         <div class="container">
-            <h2>Gerenciar categorias</h2>
+            <h2>Gerenciar áreas de conhecimento(categorias)</h2>
             <a href="{{ route('auth.categoria.adicionar') }}" class="btn mb-2">Adicionar</a>
 
             @if(Session::has('success'))

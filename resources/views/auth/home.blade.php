@@ -113,7 +113,8 @@
                     </div>
                     <div class="card-body">
                         <h3 class="card-title">
-                            {{ __('Disciplinas') }}
+                            {{ __('Disciplinas
+                                   (assuntos)') }}
                         </h3>
                     </div>
                     <div class="card-footer">
@@ -133,7 +134,7 @@
                     </div>
                     <div class="card-body">
                         <h3 class="card-title">
-                            {{ __('Categorias') }}
+                            {{ __('Áreas de conhecimento') }}
                         </h3>
                     </div>
                     <div class="card-footer">
@@ -153,7 +154,7 @@
                     </div>
                     <div class="card-body">
                         <h3 class="card-title">
-                            {{ __('Solicitações') }}
+                            {{ __('Solicitações de gerenciamento') }}
                         </>
                     </div>
                     <div class="card-footer">
@@ -170,7 +171,7 @@
                     </div>
                     <div class="card-body">
                         <h3 class="card-title">
-                            {{ __('Contato') }}
+                            {{ __('Contatos do laboratório') }}
                         </h3>
                     </div>
                     <div class="card-footer">
