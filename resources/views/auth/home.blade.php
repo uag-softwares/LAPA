@@ -163,7 +163,7 @@
                     </div>
                 </div>
             </a>
-            <a class="clickable-card" href="#">
+            <a class="clickable-card" href="{{ route('auth.contatos') }}">
                 <div class="card manage">
                     <div class="card-header">
                         <span class="fa fa-info-circle"></span>
