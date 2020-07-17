@@ -5,7 +5,7 @@
     <div class="container col-11 col-md-10 col-lg-7 m-0">
         <h2>Eventos</h2>
 
-        <div class="d-flex justify-content-around row">
+        <div class="d-flex flex-column">
 
             @if (count($registros) < 1)
                 <p>Ops, ainda não temos nenhum evento</p>
@@ -17,13 +17,14 @@
                     @include('site.postagens._card')
                 @endforeach
 
-                <div class="d-flex justify-content-center">
-                    {{ $registros->links() }}
-                </div>                            
             </div>
             @endif
-         </div>
+            
+            <div class="d-flex justify-content-center">
+                {{ $registros->links() }}
+            </div>                            
         </div>
+    </div>
     <div class="container col-11 col-md-8 col-lg-3 m-0">
         <h2>Agenda de eventos</h2>
         <div id="full-clndr" class="clearfix">

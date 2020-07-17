@@ -8,7 +8,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>
-            @yield('titulo')    
+            @yield('titulo') | LAPA - UFAPE    
         </title>
 
         <!-- Fonts -->
