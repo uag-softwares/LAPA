@@ -44,17 +44,22 @@
 </div>
 <div class="form-group">
     <label for="data">Data*</label>
-    <input id="data" type="text" name="data" class="datepicker form-control form-control-lg {{ $errors->has('g-recaptcha-response') || $errors->has('data') ? 'is-invalid' : '' }}" data-provide="datepicker" value="{{ isset($registro->data) ? $registro->data : old('data') }}" placeholder="Ex.: 01/01/2019" required>
+    <input id="data" type="text" name="data" class="datepicker form-control form-control-lg {{ $errors->any() ? 'is-invalid' : '' }}" data-provide="datepicker" value="{{ isset($registro->data) ? $registro->data : old('data') }}" placeholder="Ex.: 01/01/2019" required>
     @error('data')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
         </span>
     @enderror
+    @if($errors->any())
+        <span class="invalid-feedback" role="alert">
+            <strong>É necessário preencher novamente a data e horários da visita.<strong>
+        </span> 
+    @endif
 </div>
 <div class="form-group d-flex flex-row">
     <div class="form-group mr-5 w-100">
         <label for="hora_inicial">Hora de início*</label>
-        <select disabled name="hora_inicial" id="hora_inicial" class="custom-select custom-select-lg {{ $errors->has('g-recaptcha-response') || $errors->has('hora_inicial') || $errors->has('hora') ? 'is-invalid' : '' }}"></select>
+        <select disabled name="hora_inicial" id="hora_inicial" class="custom-select custom-select-lg {{ $errors->any() ? 'is-invalid' : '' }}"></select>
         @error('hora_inicial')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -69,7 +74,7 @@
     </div>
     <div class="form-group w-100">
         <label for="hora_final">Hora de fim*</label>
-        <select disabled name="hora_final" id="hora_final" class="custom-select custom-select-lg {{ $errors->has('g-recaptcha-response') || $errors->has('hora_final') || $errors->has('hora') ? 'is-invalid' : '' }}"></select>
+        <select disabled name="hora_final" id="hora_final" class="custom-select custom-select-lg {{ $errors->any() ? 'is-invalid' : '' }}"></select>
         @error('hora_final')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
