@@ -85,7 +85,7 @@
 
 <div class="form-group">
     <label for="descricao">Descrição*</label>
-    <textarea name="descricao" class="form-control form-control-lg @error('descricao') is-invalid @enderror" type="text" placeholder="Descreva brevemente sua visita" required>{{ isset($registro->descricao) ? $registro->descricao : old('descricao') }}</textarea>
+    <textarea name="descricao" class="form-control form-control-lg @error('descricao') is-invalid @enderror" type="text" placeholder="Mínimo de 10 caracteres." required>{{ isset($registro->descricao) ? $registro->descricao : old('descricao') }}</textarea>
     @error('descricao')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
