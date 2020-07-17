@@ -26,5 +26,6 @@ $factory->define(User::class, function (Faker $faker) {
         'telephone' => $faker->phoneNumber,
         'user_type' => 'admin',
         'user_description'=>$faker->text($maxNbChars = 200),
+        'slug' => $faker->unique()->safeEmail,
     ];
 });

@@ -172,6 +172,13 @@ div.container div.visita-msg {
   padding: 0.5em 0;
 }
 
+.card div.card-footer.event {
+  background-color: var(--main-green);
+  color: var(--white);
+  font-weight: bold;
+  font-size: 1rem;
+}
+
 .card.manage div.card-body {
   padding: 0;
 }
@@ -462,7 +469,7 @@ section .section-title {
   overflow: hidden;
 }
 
-.home.card div.card-footer {
+.home.card .card-footer {
   border-top: 1px solid var(--main-light);
   padding-left: 1em;
   font-size: 0.75rem;

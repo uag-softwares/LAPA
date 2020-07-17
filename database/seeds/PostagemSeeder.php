@@ -12,7 +12,16 @@ class PostagemSeeder extends Seeder
     public function run()
     {
         for($i = 0; $i < 10; $i++) {
-            $postagem = factory(App\Postagem::class)->create();
+            factory(App\Postagem::class)->create([
+                'tipo_postagem'=>'edital',
+            ]);
+            
+            factory(App\Postagem::class)->create([
+                'tipo_postagem'=>'evento',
+            ]);
+            factory(App\Postagem::class)->create([
+                'tipo_postagem'=>'noticia',
+            ]);
         }
     }
 }
