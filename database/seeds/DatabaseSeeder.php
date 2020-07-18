@@ -12,9 +12,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(UserSeeder::class);
-        $this->call(ContaSeeder::class);
-        $this->call(PostagemSeeder::class);
-
+        //$this->call(UserSeeder::class);
+        //$this->call(ContaSeeder::class);
+        //$this->call(PostagemSeeder::class);
+        $this->call(AtlaSeeder::class);
     }
 }

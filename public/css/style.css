@@ -17,6 +17,10 @@ div.container {
   font-size: 22px;
 }
 
+.pagination-container {
+  overflow: auto;
+}
+
 .form-group {
   text-align: start;
 }
@@ -193,6 +197,11 @@ a.clickable-card, a:hover.clickable-card {
 
 ul {
   padding: 0;
+}
+
+#leftSidebar {
+  max-height: 600px;
+  overflow: auto;
 }
 /* Fim de Atlas */
 

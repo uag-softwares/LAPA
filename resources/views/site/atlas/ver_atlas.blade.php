@@ -10,7 +10,7 @@
 
     @endif
 
-    <div id="page" class="container col-lg-10">    
+    <div id="page" class="d-flex flex-column container col-lg-10">    
         <h2>Atlas Interativo</h2>
         
         @if (count($paginas) < 1)
@@ -30,7 +30,7 @@
                         <img class="img img-fluid" src="{{ asset($pagina->anexo) }}"> 
                     </div>
                 </div>
-                <div class="d-flex justify-content-center">
+                <div class="d-flex justify-content-md-center mt-auto pagination-container">
                     {{ $paginas->links() }}
                 </div>
             @endforeach
