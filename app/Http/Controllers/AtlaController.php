@@ -51,9 +51,7 @@ class AtlaController extends Controller
 
         $categorias = $this->categoria->all();
 
-        $registros = $registros->latest()->paginate(5)
-                                ->appends('publicado', request('publicado'))
-                                ->appends('categoria', request('categoria'));
+        $registros = $registros->latest()->get();
         return view('auth.atlas.index', compact('registros', 'categorias', 'filtros'));
     }
 

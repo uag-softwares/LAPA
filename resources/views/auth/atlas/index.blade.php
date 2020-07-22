@@ -82,10 +82,6 @@
                     @endif
                 </tbody>
               </table>
-          
-              <div class="d-flex justify-content-center">
-                    {{ isset($registros) ? $registros->links() : '' }}
-              </div> 
            </div>
        </div>
 @endsection 
