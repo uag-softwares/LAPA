@@ -12,10 +12,12 @@ class AtlaSeeder extends Seeder
      */
     public function run()
     {
+        $categoria = factory(App\Categoria::class)->create();
+
         for($i = 0; $i < 10; $i++) {
             factory(App\Atla::class)->create([
                 'publicado' => true,
-                'categoria_id' => 1,
+                'categoria_id' => $categoria->id,
             ]);
         }
     }
