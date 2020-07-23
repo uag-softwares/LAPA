@@ -70,7 +70,7 @@
                                 <a href="{{ route('login') }}" class="nav-link">Acesso</a>
                             </li>
                             @else
-                                <nav class="d-flex">
+                                <nav class="d-flex flex-md-row flex-column">
                                     <li class="nav-item">
                                         <a href="{{ route('auth.gerenciar') }}" title="Gerenciar" class="nav-link">
                                             <i class="fas fa-sliders-h"></i> Gerenciar
