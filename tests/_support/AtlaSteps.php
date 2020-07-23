@@ -41,7 +41,7 @@ class AtlaSteps extends \Codeception\Actor
     */
     public function euClicoEmEditarOAtlas($arg1)
     {
-        $this->click('Editar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[4]');
+        $this->click('Editar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[1]');
         $this->seeInCurrentUrl('/auth/atla/editar/');
     }
 
@@ -74,7 +74,7 @@ class AtlaSteps extends \Codeception\Actor
     */
     public function euClicoEmDeletarOAtlas($arg1)
     {
-        $this->click('Deletar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[4]');
+        $this->click('Deletar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[1]');
     }
 
    /**

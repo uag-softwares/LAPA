@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('titulo', 'Principais Notícias')
+@section('titulo', 'Início')
 @section('content')
      <div class="container">
 
@@ -32,26 +32,13 @@
                     <span class="fas fa-chevron-right" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                </a>
-          </div>        
-     @endif
-
-     @if(isset($noticias)  && count($noticias) != 0)
-     <div class="mb-5">
-          <h2 class="mb-3">Últimas noticias</h2>
-          <div class="d-flex flex-wrap justify-content-center">
-          
-               @foreach ($noticias as $registro)
-                    @include('site.postagens._card')
-               @endforeach
-              
           </div>
-          <a href="{{ route('site.postagens.indexNoticia') }}" class="btn">Ver todas</a>
-     </div>
+          <a href="{{ route('site.postagens.indexNoticia') }}" class="btn">Ver todas as notícias</a>      
      @endif
 
      @if(isset($eventos) && count($eventos) != 0)
      <div class="mb-5">
-          <h2 class="mb-3">Próximos eventos</h2>
+          <h2 class="mb-3 mt-4">Próximos eventos</h2>
           <div class="d-flex flex-wrap justify-content-center">
           
           @foreach ($eventos as $registro)
@@ -65,7 +52,7 @@
 
      @if(isset($editais) && count($editais) != 0)
      <div class="mb-5">
-          <h2 class="mb-3">Últimos editais</h2>
+          <h2 class="mb-3 mt-4">Últimos editais</h2>
           <div class="d-flex flex-wrap justify-content-center">
           
           @foreach ($editais as $registro)

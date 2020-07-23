@@ -23,6 +23,8 @@ class PostagemController extends Controller
                                   'siteHome','siteIndexEvento','siteIndexEdital']]);
         $this->postagem = $postagem;
         $this->user = $user;
+
+        setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
     }
 
     public function index() 
@@ -124,11 +126,8 @@ class PostagemController extends Controller
      public function siteHome(){//ordenar por data
 
         $registros = $this->postagem->where('publicado', true)
-                                ->whereNotNull('anexo')
-                                ->latest()->take(3)->get();
-        $noticias = $this->postagem->where('publicado', true)
                                 ->where( 'tipo_postagem', 'noticia')
-                                ->latest()->take(4)->get();
+                                ->latest()->take(3)->get();
         $eventos = $this->postagem->where('publicado', true)
                                 ->where( 'tipo_postagem', 'evento')
                                 ->latest()->take(3)->get();
@@ -136,7 +135,7 @@ class PostagemController extends Controller
                                 ->where( 'tipo_postagem', 'edital')
                                 ->latest()->take(3)->get();
 
-        return view('site.postagens.home', compact('registros', 'noticias', 'eventos', 'editais'));
+        return view('site.postagens.home', compact('registros', 'eventos', 'editais'));
     }
 
     public function siteIndexEvento()
@@ -155,19 +154,19 @@ class PostagemController extends Controller
             array_push($agenda, $item);
         }
         
-        $registros = $posts->latest()->where('publicado',true)->paginate(5);
+        $registros = $posts->latest()->where('publicado',true)->paginate(6);
         return view('site.postagens.indexEvento', compact('registros', 'agenda'));
     }
 
     public function siteIndexEdital(){
        $posts = $this->postagem->where( 'tipo_postagem', 'edital')->latest();
-       $registros = $posts->where('publicado',true)->paginate(5);
+       $registros = $posts->where('publicado',true)->paginate(6);
        return view('site.postagens.indexEdital', compact('registros'));
     }
 
     public function siteIndexNoticia(){
         $posts = $this->postagem->where( 'tipo_postagem', 'noticia')->latest();
-        $registros = $posts->where('publicado',true)->paginate(8);
+        $registros = $posts->where('publicado',true)->paginate(6);
         return view('site.postagens.indexNoticia', compact('registros'));
     }
 
