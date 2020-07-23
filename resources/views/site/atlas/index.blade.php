@@ -16,8 +16,9 @@
 
                 <div class="col-11 col-md-10 col-lg-8">
                     <div class="card">
-
-                        
+                        <div class="card-header">
+                            <input class="form-control" id="pesquisa_categoria" type="search" id="form-autocomplete" placeholder="Pesquisar...">
+                        </div>
                         <div id="categorias" class="list-group">
                             
                             <div class="material-group header list-group-item list-group-item-action disabled">

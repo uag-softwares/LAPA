@@ -15,30 +15,45 @@
                 </div>
             @endif
             <div class="table-responsive">
-              <table class="table">
+              <table class="table" id="myTable">
                 <thead>
                     <tr>
+                        <th>Ações</th>
                         <th>Título</th>
             			<th>Disciplina</th>
-                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($registros as $registro)
                     <tr>
-                        <td>{{ $registro->titulo }}</td>
-                        <td>{{ isset($registro->disciplina) ? ucfirst($registro->disciplina->nome) : 'Nenhum professor' }}
                         <td>
                             <a href="{{ route('auth.material.editar', $registro->slug) }}" class="btn">Editar</a>
                             <a href="{{ route('auth.material.deletar', $registro->slug) }}" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar o material?');">Deletar</a>
                         </td>
+                        <td>{{ $registro->titulo }}</td>
+                        <td>{{ isset($registro->disciplina) ? ucfirst($registro->disciplina->nome) : 'Nenhum professor' }}
                     </tr>
                     @endforeach
                 </tbody>
               </table>
-              <div class="d-flex justify-content-center">
-                    {{ $registros->links() }}
-              </div> 
+              
          </div>
         </div>
+@endsection
+@section('scripts')
+
+    <script>  
+      $(document).ready( function () {
+      $('#myTable').DataTable( {
+      "columnDefs": [
+      { "orderable": false, "targets":'_all'}
+      ],
+      "language": {
+      "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
+      }
+      } );
+      } );
+    
+    </script>
+   
 @endsection

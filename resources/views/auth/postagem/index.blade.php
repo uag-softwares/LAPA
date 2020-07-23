@@ -14,34 +14,48 @@
                 </div>
             @endif      
             <div class="table-responsive">
-              <table class="table">
+              <table class="table" id="myTable">
                 <thead>
                     <tr>
+                        <th>Ações</th>
                         <th>Título</th>
                         <th>Autor(ª)</th>
                         <th>Tipo da postagem</th>
                         <th>Publicado</th>
-                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($registros as $registro)
                     <tr>
-                        <td>{{ $registro->titulo }}</td>
-                        <td>{{ isset($registro->user) ? $registro->user->name : 'Nenhum professor' }}</td>
-                        <td>{{ $registro->tipo_postagem }}
-                        <td>{{$registro->publicado ? 'Sim' : 'Não'}}</td>
                         <td>
                             <a href="{{ route('auth.postagem.editar', $registro->slug) }}" class="btn">Editar</a>
                             <a href="{{ route('auth.postagem.deletar', $registro->slug) }}" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar essa postagem?');">Deletar</a>
                         </td>
+                        <td>{{ $registro->titulo }}</td>
+                        <td>{{ isset($registro->user) ? $registro->user->name : 'Nenhum professor' }}</td>
+                        <td>{{ $registro->tipo_postagem }}
+                        <td>{{$registro->publicado ? 'Sim' : 'Não'}}</td>
                     </tr>
                     @endforeach
                 </tbody>
               </table>
-              <div class="d-flex justify-content-center">
-                    {{ $registros->links() }}
-              </div> 
           </div>
         </div>
+@endsection
+@section('scripts')
+
+    <script>  
+      $(document).ready( function () {
+      $('#myTable').DataTable( {
+      "columnDefs": [
+      { "orderable": false, "targets":'_all'}
+      ],
+      "language": {
+      "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
+      }
+      } );
+      } );
+    
+    </script>
+   
 @endsection
