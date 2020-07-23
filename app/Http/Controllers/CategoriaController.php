@@ -45,7 +45,7 @@ class CategoriaController extends Controller
         $dados = $request->all();
         
         if($this->buscarCategoriaDisciplina($dados['nome'], $dados['disciplina_id']) != 0) {
-            return redirect()->back()->withErrors(['nome' => 'Essa categoria já existe nessa disciplina'])->withInput();
+            return redirect()->back()->withErrors(['nome' => 'Essa área de conhecimento já existe nesse assunto'])->withInput();
         }
 
         $categotia= $this->categoria->create($dados);
@@ -69,7 +69,7 @@ class CategoriaController extends Controller
         $dados = $request->all();
 
         if($this->buscarCategoriaDisciplina($dados['nome'], $dados['disciplina_id']) != 0) {
-            return redirect()->back()->withErrors(['nome' => 'Essa área de conhecimento já existe nessa disciplina ou você está tentando colocar o mesmo nome'])->withInput();
+            return redirect()->back()->withErrors(['nome' => 'Essa área de conhecimento já existe nesse assunto ou você está tentando colocar o mesmo nome'])->withInput();
         }
 
         $dados['slug']=str_slug($dados['nome']).'-'.$identifier;

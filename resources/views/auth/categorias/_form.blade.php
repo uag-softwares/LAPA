@@ -12,9 +12,9 @@
     @enderror
 </div>
 <div class="form-group">
-    <label for="disciplina_id">Selecione a disciplina*</label>
+    <label for="disciplina_id">Selecione o assunto*</label>
     <select class="custom-select custom-select-lg @error('disciplina_id') is-invalid @enderror" name="disciplina_id" id="disciplinas">
-        <option disabled selected value>{{ __('Clique para selecionar disciplina') }}</option>
+        <option disabled selected value>{{ __('Clique para selecionar assunto') }}</option>
         @foreach($disciplinas as $disciplina)
             @if(isset($registro->disciplina->id) && $disciplina->id == $registro->disciplina->id)
                 <option value="{{ $disciplina->id }}" selected>{{ ucfirst($disciplina->nome) }}</option>
@@ -31,5 +31,5 @@
 </div>
 <div class="form-group">
      <hr>
-      <p>Disciplina não cadastrada? <a class="" href="{{ route('auth.disciplina.adicionar') }}">{{ __('Cadastrar Disciplina') }}</a>.</p>
+      <p>Assunto não cadastrado? <a class="" href="{{ route('auth.disciplina.adicionar') }}">{{ __('Cadastrar Assunto') }}</a>.</p>
 </div>

@@ -36,7 +36,7 @@ class AtualizarMaterialRequest extends FormRequest
 	    'titulo.min'=>'Título deve conter no mínimo três letras',
 	    'texto.required' => 'Escrever sobre o texto é obrigatório',
         'texto.min' => 'O tamanho mínimo é de 10 letras',
-	    'disciplina_id.required' => 'Escolher disciplina é obrigátorio',
+	    'disciplina_id.required' => 'Escolher assunto é obrigátorio',
         ];
     }
 }

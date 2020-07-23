@@ -20,7 +20,7 @@
                     <tr>
                         <th>Ações</th>
                         <th>Título</th>
-            			<th>Disciplina</th>
+            			      <th>Assunto</th>
                     </tr>
                 </thead>
                 <tbody>

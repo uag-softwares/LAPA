@@ -20,7 +20,7 @@
                     <tr>
                         <th>Ações</th>
                         <th>Título</th>
-                        <th>Categoria</th>
+                        <th>Área de conhecimento</th>
                         <th>Publicado</th>                        
                     </tr>
                </thead>

@@ -20,7 +20,7 @@
                     <tr>
                         <th>Ações</th>
                         <th>Nome</th>
-                        <th>Disciplina</th>
+                        <th>Assunto</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,10 +28,10 @@
                     <tr>
                         <td>
                             <a href="{{ route('auth.categoria.editar', $registro->slug) }}" class="btn">Editar</a>
-                            <a href="{{ route('auth.categoria.deletar', $registro->slug) }}" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar esta categoria?');">Deletar</a>
+                            <a href="{{ route('auth.categoria.deletar', $registro->slug) }}" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar esta área de conhecimento?');">Deletar</a>
                         </td>
                         <td>{{ ucfirst($registro->nome) }}</td>
-                        <td>{{ isset($registro->disciplina) ? ucfirst($registro->disciplina->nome) : 'Nenhuma disciplina' }}</td>
+                        <td>{{ isset($registro->disciplina) ? ucfirst($registro->disciplina->nome) : 'Nenhum assunto' }}</td>
                         
                     </tr>
                     @endforeach

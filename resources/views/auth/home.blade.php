@@ -113,8 +113,8 @@
                     </div>
                     <div class="card-body">
                         <h3 class="card-title">
-                            {{ __('Disciplinas
-                                   (assuntos)') }}
+                            {{ __('Assuntos
+                                   (disciplinas)') }}
                         </h3>
                     </div>
                     <div class="card-footer">

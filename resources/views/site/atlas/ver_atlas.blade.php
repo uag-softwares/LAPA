@@ -14,7 +14,7 @@
         <h2>Atlas Interativo</h2>
         
         @if (count($paginas) < 1)
-            <p>Ops, essa categoria ainda não possui páginas</p>
+            <p>Ops, essa área de conhecimento ainda não possui páginas</p>
         @else
 
             @foreach ($paginas as $pagina)

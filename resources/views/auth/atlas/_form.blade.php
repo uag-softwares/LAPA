@@ -21,9 +21,9 @@
     @enderror
 </div>
 <div class="form-group">
-    <label for="categoria_id">Selecione a categoria*</label>
+    <label for="categoria_id">Selecione a área de conhecimento*</label>
     <select class="custom-select custom-select-lg @error('categoria_id') is-invalid @enderror" name="categoria_id" id="categorias">
-        <option hidden disabled selected value>{{ __('Selecione uma categoria') }}</option>
+        <option hidden disabled selected value>{{ __('Selecione uma área de conhecimento') }}</option>
         @foreach($categorias as $categoria)
             @if(isset($registro->categoria->id) && $categoria->id == $registro->categoria->id)
                 <option value="{{ $categoria->id }}" selected>{{ ucfirst($categoria->nome) }}</option>
@@ -55,5 +55,5 @@
 </div>
 <div class="form-group">
      <hr>
-      <p>Categoria não cadastrada? <a class="" href="{{ route('auth.categoria.adicionar') }}">{{ __('Cadastrar Categoria') }}</a>.</p>
+      <p>Área de conhecimento não cadastrada? <a class="" href="{{ route('auth.categoria.adicionar') }}">{{ __('Cadastrar Área de conhecimento') }}</a>.</p>
 </div>
