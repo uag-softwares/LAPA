@@ -11,6 +11,13 @@ class MaterialSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $disciplina = factory(App\Disciplina::class)->create();
+
+        for($i = 0; $i < 10; $i++) {
+            factory(App\Material::class)->create([
+                'publicado' => true,
+                'disciplina_id' => $disciplina->id,
+            ]);
+        }
     }
 }

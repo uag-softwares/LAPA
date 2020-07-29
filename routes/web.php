@@ -90,7 +90,6 @@ Route::middleware(['auth','check.cpf'])->group(function () {
 	Route::get('/auth/atla/editar/{registro:slug}', ['as' => 'auth.atla.editar', 'uses' => 'AtlaController@editar'], function (App\Atla $registro) {return $registro;});
 	Route::put('/auth/atla/atualizar/{id}', ['as' => 'auth.atla.atualizar', 'uses' => 'AtlaController@atualizar'], function () {});
 	Route::get('/auth/atla/deletar/{registro:slug}', ['as' => 'auth.atla.deletar', 'uses' => 'AtlaController@deletar'],function (App\Atla $registro) {return $registro;});
-	Route::get('ajax/atlas/categoria/{registro:slug}', ['as' => 'auth.ajax.atlas.categoria', 'uses' => 'AtlaController@ajaxAtlasCategoria'], function (App\Atla $registro) {return $registro;});
         
 	Route::get('/auth/materiais', ['as' => 'auth.materiais', 'uses' => 'MaterialController@index'], function () {});
 	Route::get('/auth/materiais/adicionar', ['as' => 'auth.material.adicionar', 'uses' => 'MaterialController@adicionar'], function () {});

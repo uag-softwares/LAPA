@@ -28,8 +28,7 @@ class MaterialController extends Controller
     public function index() 
     { 
         $registros = $this->material;
-        return view('auth.materiais.index', compact('registros'));	 
-               $filtros['nomes'] = array();
+        $filtros['nomes'] = array();
 
         if(request()->has('publicado') && request('publicado') != '') {
             $registros = $registros->where('publicado', request('publicado'));
@@ -134,8 +133,6 @@ class MaterialController extends Controller
         $paginas = $busca->latest()->paginate(1);    
         return view('site.materiais.ver_materiais', compact('registros', 'disciplina', 'paginas'));
     }
-    public function ajaxMateriaisDisciplina($slug) 
-    {
 
-    }
+    
 }

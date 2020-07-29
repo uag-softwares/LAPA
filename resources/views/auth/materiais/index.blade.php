@@ -41,7 +41,7 @@
                                 <select size="{{ isset($disciplinas) ? (count($disciplinas) + 1) : '' }}" class="form-control" name="disciplina" id="disciplina">
                                     <option value="" {{ !isset($filtros['disciplina']) ? 'selected' : '' }}>Todas</option>
                                     @foreach($disciplinas as $disciplina)
-                                        <option {{ isset($filtros['disciplina']) && ($filtros['disicplina'] == $disciplina->id) ? 'selected' : '' }} value="{{ $disciplina->id }}">{{ $disciplina->nome }}</option>
+                                        <option {{ isset($filtros['disciplina']) && ($filtros['disciplina'] == $disciplina->id) ? 'selected' : '' }} value="{{ $disciplina->id }}">{{ $disciplina->nome }}</option>
                                     @endforeach
 
                                 </select>
@@ -88,17 +88,17 @@
 @section('scripts')
 
     <script>  
-      $(document).ready( function () {
-      $('#myTable').DataTable( {
-      "columnDefs": [
-      { "orderable": false, "targets":'_all'}
-      ],
-      "language": {
-      "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
-      }
-      } );
-      } );
-    
+        $(document).ready( function () {
+            $('#myTable').DataTable( {
+                    "columnDefs": [{ 
+                        "orderable": false, "targets":'_all'
+                    }],
+
+                    "language": {
+                        "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
+                    }
+            });
+        });
     </script>
    
 @endsection
