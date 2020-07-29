@@ -14,7 +14,7 @@ class PostagemController extends Controller
     // Model de postagem adicionado ao controller para evitar uso estatico
     protected $postagem;
     protected $user;
-
+  
 
     public function __construct(Postagem $postagem, User $user)
     {
@@ -24,7 +24,7 @@ class PostagemController extends Controller
         $this->postagem = $postagem;
         $this->user = $user;
 
-        setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
+        $setlocale=setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
     }
 
     public function index() 
