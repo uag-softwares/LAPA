@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('#summernote').summernote({
+    $('#summernote_atlas').summernote({
         lang: 'pt-BR',
         placeholder: 'Digite aqui o texto',
         tabsize: 2,

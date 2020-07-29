@@ -13,7 +13,7 @@
 </div>
 <div class="form-group">
     <label for="descricao">Descrição da página*</label>
-    <textarea  id="summernote" class="form-control form-control-lg @error('descricao') is-invalid @enderror" type="text" name="descricao" placeholder="Mínimo de 10 caracteres">{{ isset($registro->descricao) ? $registro->descricao : old('descricao') }}</textarea>
+    <textarea  id="summernote_atlas" class="form-control form-control-lg @error('descricao') is-invalid @enderror" type="text" name="descricao" placeholder="Mínimo de 10 caracteres">{{ isset($registro->descricao) ? $registro->descricao : old('descricao') }}</textarea>
     @error('descricao')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>

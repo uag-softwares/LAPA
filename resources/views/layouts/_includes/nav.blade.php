@@ -31,6 +31,7 @@
                         <li class="nav-item {{ Request::is('/') ? ' active' : '' }}">
                             <a href="{{ route('site.home') }}" class="nav-link">Início</a>
                         </li>
+                       
                     </ul>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                         <i class="fas fa-bars"></i>
