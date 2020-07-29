@@ -54,7 +54,7 @@
         <img class="w-50" src="{{ asset($registro->anexo) }}" alt="{{ $registro->titulo ?? '' }}">
     </div>    
 @endif
-<div id="dh">
+<div id="dh" style="display:none">
     <div class="d-flex flex-row">
       <div class="form-group">
         <label for="data">Data(obrigatório para evento)</label>
@@ -78,4 +78,9 @@
      </div>
     </div>
 </div>
+ @if(isset($registro->tipo_postagem) && $registro->tipo_postagem == "evento")
+   <script> 
+    document.getElementById("dh").style.display = "block";
+   </script>
+ @endif
 
