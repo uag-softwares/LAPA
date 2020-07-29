@@ -57,6 +57,5 @@
       <p>Assunto não cadastrado? <a class="" href="{{ route('auth.disciplina.adicionar') }}">{{ __('Cadastrar Assunto') }}</a>.</p>
 </div>
 
-<script src="{{ asset('js/summernote_config.js') }}"></script> 
 
 

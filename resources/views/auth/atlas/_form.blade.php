@@ -57,4 +57,3 @@
      <hr>
       <p>Área de conhecimento não cadastrada? <a class="" href="{{ route('auth.categoria.adicionar') }}">{{ __('Cadastrar Área de conhecimento') }}</a>.</p>
 </div>
-<script src="{{ asset('js/summernote_atlas_config.js') }}"></script> 
