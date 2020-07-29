@@ -13,6 +13,11 @@
 <!-- include summernote js -->
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <script src="{{ asset('js/summernote_config.js') }}"></script>
+<script src="{{ asset('js/summernote_atlas_config.js') }}"></script> 
+
+<!-- include summernote-PT-Br -->
+<script src="{{ asset('js/summernote/lang/summernote-pt-BR.js') }}"></script>
+
 
 <!-- Footer -->
 	<section id="footer">

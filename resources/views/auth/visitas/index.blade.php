@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('titulo', 'Gerenciar postagens')
+@section('titulo', 'Gerenciar visitas')
 @section('content')
         <div class="container">
             <h2>Gerenciar solicitações de visitas</h2>
