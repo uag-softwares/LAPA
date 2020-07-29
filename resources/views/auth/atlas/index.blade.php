@@ -53,12 +53,13 @@
             </div>
 
             <div class="table-responsive">
-              <table class="table table-bordered">
+
+              <table class="table table-bordered" id="myTable">
                 <thead class="thead-primary">
                     <tr>
                         <th>Ações</th>
                         <th>Título</th>
-                        <th>Categoria</th>
+                        <th>Área de conhecimento</th>
                         <th>Status</th>                        
                     </tr>
                </thead>
@@ -71,7 +72,7 @@
                                     <a href="{{ route('auth.atla.deletar', $registro->slug) }}" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar esse atla');">Deletar</a>
                                 </td>
                                 <td>{{ $registro->titulo }}</td>
-                                <td>{{ isset($registro->categoria) ? ucfirst($registro->categoria->nome) : 'Nenhuma categoria' }}</td>
+                                <td>{{ isset($registro->categoria) ? ucfirst($registro->categoria->nome) : 'Nenhuma área de conhecimento' }}</td>
                                 <td>{{ $registro->publicado ? "Publicado" : "Rascunho" }}</td>
                             </tr>
                         @endforeach
@@ -85,11 +86,24 @@
            </div>
        </div>
 @endsection 
-
 @section('scripts')
-       <script>
+
+    <script>  
+      $(document).ready( function () {
+      $('#myTable').DataTable( {
+      "columnDefs": [
+      { "orderable": false, "targets":'_all'}
+      ],
+      "language": {
+      "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
+      }
+      } );
+      } );
+    
+    </script>
+    <script>
             $(function() {
                 $()
             });
-       </script>
+    </script>
 @endsection

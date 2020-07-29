@@ -35,6 +35,7 @@ class AtlaController extends Controller
 
     public function index() 
     {
+
         $registros = $this->atla;
         $filtros['nomes'] = array();
 

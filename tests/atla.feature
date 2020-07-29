@@ -59,7 +59,7 @@ Feature: atla
     And Eu preencho o campo descricao com "foto do olho do mamifero"
     And Eu clico em escolher arquivo e escolho "anexo.png"
     And Eu clico em Publicar agora
-    Then Eu vejo a mensagem de erro "A categoria é obrigatória"
+    Then Eu vejo a mensagem de erro "A área de conhecimento é obrigatória"
 
   Scenario: atualizar descricao de um atlas invalido
     Given Eu estou logado como "iris" com email "iris@admin.com" e senha "12345678"

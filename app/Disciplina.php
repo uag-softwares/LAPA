@@ -3,7 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+/**
+ASSUNTO
+*/
 class Disciplina extends Model
 {
     /**

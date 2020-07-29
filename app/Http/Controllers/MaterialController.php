@@ -27,7 +27,7 @@ class MaterialController extends Controller
 
     public function index() 
     { 
-        $registros = $this->material->latest()->paginate(5);
+        $registros = $this->material->latest()->get();
 
         return view('auth.materiais.index', compact('registros'));
     }
@@ -88,9 +88,9 @@ class MaterialController extends Controller
             $anexo = $request->file('anexo');
             $dir = 'img/materiais/';
             $extensao = $anexo->guessClientExtension(); //Define a extensao do arquivo
-            $nomeAnexo = 'anexo_'.$material['slug'].'.'.$extensao;
+            $nomeAnexo = 'anexo_'.$dados['slug'].'.'.$extensao;
             $anexo->move($dir, $nomeAnexo);
-            $material['anexo'] = $dir.'/'.$nomeAnexo;
+            $dados['anexo'] = $dir.'/'.$nomeAnexo;
         }
             
         $this->material->find($material_id)->update($dados);

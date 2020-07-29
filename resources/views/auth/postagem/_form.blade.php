@@ -1,3 +1,6 @@
+@if(isset($registro))
+    <p>Essa página de postagem está <strong>{{ $registro->publicado ? 'publicada' : 'salva no rascunho' }}.</strong></p>
+@endif
 <div class="form-group">
     <label for="titulo">Título da Postagem*</label>
     <input class="form-control form-control-lg @error('titulo') is-invalid @enderror" type="text" name="titulo" value="{{ isset($registro->titulo) ? $registro->titulo : old('titulo') }}" placeholder="ex:Visita ao LAPA" required autocomplete="titulo">
@@ -51,7 +54,7 @@
         <img class="w-50" src="{{ asset($registro->anexo) }}" alt="{{ $registro->titulo ?? '' }}">
     </div>    
 @endif
-<div id="dh">
+<div id="dh" style="display:none">
     <div class="d-flex flex-row">
       <div class="form-group">
         <label for="data">Data(obrigatório para evento)</label>
@@ -75,4 +78,9 @@
      </div>
     </div>
 </div>
+ @if(isset($registro->tipo_postagem) && $registro->tipo_postagem == "evento")
+   <script> 
+    document.getElementById("dh").style.display = "block";
+   </script>
+ @endif
 

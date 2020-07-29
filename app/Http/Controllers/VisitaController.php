@@ -45,7 +45,7 @@ class VisitaController extends Controller
     {
         $registros = $this->visita->whereHas('user', function($query) {
             $query->whereNotNull('email_verified_at');
-            })->latest()->paginate(5);
+            })->latest()->get();
         return view('auth.visitas.index', compact('registros'));
     }
 

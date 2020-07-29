@@ -65,7 +65,7 @@ Feature: material
     And   Eu preencho o campo texto com "Descricao do material 1 escrita"
     And   Eu clico em escolher arquivo e escolho "anexo.png"
     And   Eu clico em Publicar agora
-    Then  Eu vejo a mensagem de erro "Escolher disciplina é obrigátorio"
+    Then  Eu vejo a mensagem de erro "Escolher assunto é obrigátorio"
 
   Scenario: atualizar material com titulo em branco
     Given Eu estou logado como "damiao" com email "damiao@admin.com" e senha "12345678"

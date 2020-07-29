@@ -1,5 +1,5 @@
-@if ($errors->any())
-    <p class="error">Campos com * são obrigatórios!</p>
+@if(isset($registro))
+    <p>Essa página de material está <strong>{{ $registro->publicado ? 'publicada' : 'salva no rascunho' }}.</strong></p>
 @endif
 <div class="form-group">
     <label for="titulo">Título do Material*</label>
@@ -35,9 +35,9 @@
 @endisset
 
 <div class="form-group">
-    <label for="user_id">Selecione a disciplina*</label>
+    <label for="user_id">Selecione o assunto*</label>
     <select class="custom-select custom-select-lg @error('disciplina_id') is-invalid @enderror" name="disciplina_id" id="disciplinas">
-        <option hidden disabled selected value>{{ __('Selecione uma disciplina') }}</option>
+        <option hidden disabled selected value>{{ __('Selecione um assunto') }}</option>
         @foreach($disciplinas as $disciplina)
             @if(isset($registro->disciplina->id) && $disciplina->id == $registro->disciplina->id)
                 <option value="{{ $disciplina->id }}" selected>{{ ucfirst($disciplina->nome) }}</option>
@@ -54,7 +54,7 @@
 </div>
 <div class="form-group">
      <hr>
-      <p>Disciplina não cadastrada? <a class="" href="{{ route('auth.disciplina.adicionar') }}">{{ __('Cadastrar Disciplina') }}</a>.</p>
+      <p>Assunto não cadastrado? <a class="" href="{{ route('auth.disciplina.adicionar') }}">{{ __('Cadastrar Assunto') }}</a>.</p>
 </div>
 
 
