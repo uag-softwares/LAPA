@@ -28,7 +28,7 @@ class MaterialController extends Controller
     public function index() 
     { 
         $registros = $this->material;
-        return view('auth.material.index', compact('registros'));	 
+        return view('auth.materiais.index', compact('registros'));	 
                $filtros['nomes'] = array();
 
         if(request()->has('publicado') && request('publicado') != '') {
@@ -43,10 +43,7 @@ class MaterialController extends Controller
         }
 
         $disciplinas = $this->disciplina->all();
-
-        $registros = $registros->latest()->paginate(5)
-                                ->appends('publicado', request('publicado'))
-                                ->appends('disciplina', request('disciplina'));
+        $registros = $registros->latest()->get();
         return view('auth.materiais.index', compact('registros', 'disciplinas', 'filtros'));
 
 
