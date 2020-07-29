@@ -26,7 +26,7 @@ class DisciplinaSteps extends \Codeception\Actor
     public function euEstouNaPaginaDeAdicionarDisciplinas()
     {
         $this->amOnPage('/auth/disciplina/adicionar');
-        $this->see('Adicionar disciplina', '//h2');
+        $this->see('Adicionar assunto (disciplina)', '//h2');
     }
 
     /**
@@ -58,7 +58,7 @@ class DisciplinaSteps extends \Codeception\Actor
      */
     public function euVejoQueADisciplinaFoiAdicionadaCorretamente()
     {
-        $this->see('Disciplina adicionada com sucesso!');
+        $this->see('Assunto adicionado com sucesso!');
     }
 
     /**
@@ -67,7 +67,7 @@ class DisciplinaSteps extends \Codeception\Actor
     public function euEstouNaPaginaDeGerenciarDisciplinas()
     {
         $this->amOnPage('/auth/disciplinas/');
-        $this->see('Gerenciar disciplinas', '//h2');
+        $this->see('Gerenciar assuntos(disciplinas)', '//h2');
     }
 
     /**
@@ -100,7 +100,7 @@ class DisciplinaSteps extends \Codeception\Actor
      */
     public function euVejoQueADisciplinaFoiAlteradaCorretamente()
     {
-        $this->see('Disciplina atualizada com sucesso!');
+        $this->see('Assunto atualizado com sucesso!');
     }
 
     /**
@@ -116,7 +116,7 @@ class DisciplinaSteps extends \Codeception\Actor
      */
     public function euVejoQueADisciplinaFoiDeletadaCorretamente()
     {
-        $this->see('Disciplina deletada com sucesso!');
+        $this->see('Assunto deletado com sucesso!');
     }
 
     /**
@@ -124,7 +124,7 @@ class DisciplinaSteps extends \Codeception\Actor
      */
     public function euVejoErroAoAdicionarDisciplinaSemNome()
     {
-        $this->see('O nome da disciplina é obrigatório');
+        $this->see('O nome do assunto é obrigatório');
         $this->amOnPage('/auth/disciplina/adicionar');
     }
 
@@ -141,7 +141,7 @@ class DisciplinaSteps extends \Codeception\Actor
     */
     public function euVejoErroAoAdicionarDisciplinaComNomeExistente()
     {
-        $this->see('Essa disciplina já existe');  
+        $this->see('Esse assunto já existe');  
         $this->amOnPage('/auth/disciplina/adicionar');      
     }
 
