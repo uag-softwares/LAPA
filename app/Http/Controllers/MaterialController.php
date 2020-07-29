@@ -27,9 +27,30 @@ class MaterialController extends Controller
 
     public function index() 
     { 
-        $registros = $this->material->latest()->paginate(5);
+        $registros = $this->material;
+        return view('auth.material.index', compact('registros'));	 
+               $filtros['nomes'] = array();
 
-        return view('auth.materiais.index', compact('registros'));
+        if(request()->has('publicado') && request('publicado') != '') {
+            $registros = $registros->where('publicado', request('publicado'));
+            $filtros['publicado'] = request('publicado');
+            $filtros['nomes'] = [request('publicado') ? 'publicados' : 'rascunhos'];
+        }
+        if(request()->has('disciplina') && request('disciplina') != '') {
+            $registros = $registros->where('disciplina_id', request('disciplina'));
+            $filtros['disciplina'] = request('disciplina');
+            array_push($filtros['nomes'], $this->disciplina->find(request('disciplina'))->nome);
+        }
+
+        $disciplinas = $this->disciplina->all();
+
+        $registros = $registros->latest()->paginate(5)
+                                ->appends('publicado', request('publicado'))
+                                ->appends('disciplina', request('disciplina'));
+        return view('auth.materiais.index', compact('registros', 'disciplinas', 'filtros'));
+
+
+
     }
 
     public function adicionar() 
@@ -117,5 +138,9 @@ class MaterialController extends Controller
         $registros = $busca->latest()->get();
         $paginas = $busca->latest()->paginate(1);    
         return view('site.materiais.ver_materiais', compact('registros', 'disciplina', 'paginas'));
+    }
+    public function ajaxMateriaisDisciplina($slug) 
+    {
+
     }
 }
