@@ -52,6 +52,7 @@
                 </div>
             </div>
             <div class="table-responsive">
+<<<<<<< HEAD
               <table class="table table-bordered">
                 <thead class="thead-primary"> 
                     <tr>
@@ -93,4 +94,47 @@
                 $()
             });
        </script>
+=======
+              <table class="table" id="myTable">
+                <thead>
+                    <tr>
+                        <th>Ações</th>
+                        <th>Título</th>
+            			      <th>Assunto</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($registros as $registro)
+                    <tr>
+                        <td>
+                            <a href="{{ route('auth.material.editar', $registro->slug) }}" class="btn">Editar</a>
+                            <a href="{{ route('auth.material.deletar', $registro->slug) }}" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar o material?');">Deletar</a>
+                        </td>
+                        <td>{{ $registro->titulo }}</td>
+                        <td>{{ isset($registro->disciplina) ? ucfirst($registro->disciplina->nome) : 'Nenhum professor' }}
+                    </tr>
+                    @endforeach
+                </tbody>
+              </table>
+              
+         </div>
+        </div>
+@endsection
+@section('scripts')
+
+    <script>  
+      $(document).ready( function () {
+      $('#myTable').DataTable( {
+      "columnDefs": [
+      { "orderable": false, "targets":'_all'}
+      ],
+      "language": {
+      "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
+      }
+      } );
+      } );
+    
+    </script>
+   
+>>>>>>> c5f937615989d4a57c612eeecf5a3af92ae54c2f
 @endsection

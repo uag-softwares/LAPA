@@ -1,5 +1,5 @@
 <div class="form-group">
-    <label for="nome">Nome da disciplina *</label>
+    <label for="nome">Nome do assunto *</label>
     <input {{ isset($registro->nome) ? 'readonly' : '' }} class="form-control form-control-lg @error('nome') is-invalid @enderror" type="text" name="nome" value="{{ isset($registro->nome) ? $registro->nome : old('nome') }}" placeholder="ex:Histologia Veterinária">
     @error('nome')
         <span class="invalid-feedback" role="alert">

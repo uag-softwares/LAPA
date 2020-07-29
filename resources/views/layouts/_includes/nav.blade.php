@@ -28,7 +28,7 @@
                             </li>
                         @endif
 
-                        <li class="nav-item">
+                        <li class="nav-item {{ Request::is('/') ? ' active' : '' }}">
                             <a href="{{ route('site.home') }}" class="nav-link">Início</a>
                         </li>
                     </ul>
@@ -61,22 +61,19 @@
                                 <a href="{{ route('site.contato.index') }}" class="nav-link">Sobre</a>
                             </li>
                             
-
-
-                     
                             <!-- Authentication Links -->
                             @guest
                                <li class="nav-item">
                                 <a href="{{ route('login') }}" class="nav-link">Acesso</a>
                             </li>
                             @else
-                                <nav class="d-flex">
-                                    <li class="nav-item">
+                                <nav class="d-flex flex-md-row flex-column">
+                                    <li class="nav-item{{ Request::is('gerenciar') || Request::is('auth/*') && !Request::is('auth/registros') ? ' active' : '' }}">
                                         <a href="{{ route('auth.gerenciar') }}" title="Gerenciar" class="nav-link">
                                             <i class="fas fa-sliders-h"></i> Gerenciar
                                         </a>
                                     </li>
-                                    <li class="nav-item">
+                                    <li class="nav-item{{ Request::is('auth/registros') ? ' active' : '' }}">
                                         <a href="{{ route('auth.registros') }}" title="Minha conta" class="nav-link">
                                             <i class="fas fa-user"></i> {{ Auth::user()->name ?? "" }}
                                         </a>
@@ -88,9 +85,9 @@
                                             <i class="fas fa-sign-out-alt"></i>
                                         </a>
                                     </li>
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            @csrf
-                                        </form>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
                             @endguest
                         </ul>
                     </div>

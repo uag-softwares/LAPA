@@ -158,7 +158,7 @@ class RegisterController extends Controller
 
     public function gerenciarSolicitacao(){
         $usersAdmin=$this->usuario->where( 'user_type', 'admin')->latest();
-        $registros= $usersAdmin->where('cpf_verified_at',null)->paginate(5);
+        $registros= $usersAdmin->where('cpf_verified_at',null)->get();
         return view('auth.acesso_gerenciamento', compact('registros'));
     }
 

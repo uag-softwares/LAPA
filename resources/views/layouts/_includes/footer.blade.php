@@ -12,12 +12,19 @@
 					<h5>Navegação</h5>
 					<ul class="list-unstyled quick-links">
 						<li><a href="{{ route('site.atlas.index') }}">Atlas Iterativo</a>
+							<li><a href="{{ route('site.visita.busca') }}">Agendar Visitas</a>
+							<li><a href="{{ route('site.postagens.indexEvento') }}">Eventos</a>
+								<li><a href="{{ route('site.postagens.indexNoticia') }}">Notícias</a>
 						<li><a href="{{ route('site.postagens.indexEdital') }}">Editais e Seleções</a>
-						<li><a href="{{ route('site.postagens.indexEvento') }}">Eventos</a>
 						<li><a href="{{ route('site.materiais.index') }}">Materiais</a>
-						<li><a href="{{ route('site.postagens.indexNoticia') }}">Notícias</a>
 						<li><a href="{{ route('site.contato.index')}}">Sobre</a>
-						<li><a href="{{ route('site.visita.busca') }}">Visitas</a>
+						@guest
+							<li><a href="{{ route('login') }}">Acesso</a></li>
+						@else
+							<li><a href="{{ route('auth.gerenciar') }}" title="Gerenciar">Gerenciar</a></li>
+							<li><a href="{{ route('auth.registros') }}" title="Minha conta">Minha conta ({{ Auth::user()->name ?? "" }})</a></li>
+							<li><a title="Sair" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sair</a></li>
+						@endguest
 					</ul>
 				</div>
 

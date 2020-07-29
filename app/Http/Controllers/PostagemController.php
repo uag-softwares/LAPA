@@ -14,7 +14,7 @@ class PostagemController extends Controller
     // Model de postagem adicionado ao controller para evitar uso estatico
     protected $postagem;
     protected $user;
-
+  
 
     public function __construct(Postagem $postagem, User $user)
     {
@@ -27,10 +27,29 @@ class PostagemController extends Controller
 
     public function index() 
     {
-        $registros = $this->postagem->latest()->paginate(5);
-        return view('auth.postagem.index', compact('registros'));
-    }
 
+        $registros = $this->postagem;
+        $filtros['nomes'] = array();
+
+        if(request()->has('publicado') && request('publicado') != '') {
+            $registros = $registros->where('publicado', request('publicado'));
+            $filtros['publicado'] = request('publicado');
+            $filtros['nomes'] = [request('publicado') ? 'publicados' : 'rascunhos'];
+        }
+
+        if(request()->has('tipo_postagem') && request('tipo_postagem') != '') {
+            $registros = $registros->where('tipo_postagem', request('tipo_postagem'));
+            $filtros['tipo_postagem'] = request('tipo_postagem');
+            //$filtros['nomes'] = [request('tipo_postagem') ? 'edital' : 'evento'];
+            $filtros['nomes'] = request('tipo_postagem');
+            // array_push($filtros['nomes'],$this->postagem->find(request('tipo_postagem')));
+        }
+        
+        
+        $tipo_postagens= $this->postagem->getEnumValues();
+        $registros = $registros->latest()->get();
+        return view('auth.postagem.index', compact('registros','filtros','tipo_postagens'));
+    }
     public function adicionar() 
     {
         $tipo_postagens= $this->postagem->getEnumValues();
@@ -124,11 +143,8 @@ class PostagemController extends Controller
      public function siteHome(){//ordenar por data
 
         $registros = $this->postagem->where('publicado', true)
-                                ->whereNotNull('anexo')
-                                ->latest()->take(3)->get();
-        $noticias = $this->postagem->where('publicado', true)
                                 ->where( 'tipo_postagem', 'noticia')
-                                ->latest()->take(4)->get();
+                                ->latest()->take(3)->get();
         $eventos = $this->postagem->where('publicado', true)
                                 ->where( 'tipo_postagem', 'evento')
                                 ->latest()->take(3)->get();
@@ -136,7 +152,7 @@ class PostagemController extends Controller
                                 ->where( 'tipo_postagem', 'edital')
                                 ->latest()->take(3)->get();
 
-        return view('site.postagens.home', compact('registros', 'noticias', 'eventos', 'editais'));
+        return view('site.postagens.home', compact('registros', 'eventos', 'editais'));
     }
 
     public function siteIndexEvento()
@@ -155,19 +171,19 @@ class PostagemController extends Controller
             array_push($agenda, $item);
         }
         
-        $registros = $posts->latest()->where('publicado',true)->paginate(5);
+        $registros = $posts->latest()->where('publicado',true)->paginate(6);
         return view('site.postagens.indexEvento', compact('registros', 'agenda'));
     }
 
     public function siteIndexEdital(){
        $posts = $this->postagem->where( 'tipo_postagem', 'edital')->latest();
-       $registros = $posts->where('publicado',true)->paginate(5);
+       $registros = $posts->where('publicado',true)->paginate(6);
        return view('site.postagens.indexEdital', compact('registros'));
     }
 
     public function siteIndexNoticia(){
         $posts = $this->postagem->where( 'tipo_postagem', 'noticia')->latest();
-        $registros = $posts->where('publicado',true)->paginate(8);
+        $registros = $posts->where('publicado',true)->paginate(6);
         return view('site.postagens.indexNoticia', compact('registros'));
     }
 

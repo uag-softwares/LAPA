@@ -156,14 +156,14 @@ class PostagemSteps extends \Codeception\Actor
      */
      public function euClicoEmEditarAPostagemComTitulo($arg1)
      {
-          $this->click('Editar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[5]');
+          $this->click('Editar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[1]');
      }
       /**
      * @Given Eu clico em Deletar a postagem com titulo :arg1
      */
      public function euClicoEmDeletarAPostagemComTitulo($arg1)
      {
-        $this->click('Deletar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[5]');
+        $this->click('Deletar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[1]');
      }
 
 

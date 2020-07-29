@@ -150,7 +150,7 @@ class AcceptanceTester extends \Codeception\Actor
      */
      public function euClicoEmEditarRegistroDoUsuario()
      {
-         $this->click('Editar', '//table/tbody/tr/td/ancestor::tr/td[4]');
+         $this->click('Editar', '//table/tbody/tr/td/ancestor::tr/td[1]');
      }
   /**
      * @Then Eu vejo que o nome do usuario foi atualizado para :arg1
@@ -446,14 +446,14 @@ class AcceptanceTester extends \Codeception\Actor
      */
      public function euClicoEmEditarAPostagemComTitulo($arg1)
      {
-          $this->click('Editar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[5]');
+          $this->click('Editar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[1]');
      }
       /**
      * @Given Eu clico em Deletar a postagem com titulo :arg1
      */
      public function euClicoEmDeletarAPostagemComTitulo($arg1)
      {
-        $this->click('Deletar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[5]');
+        $this->click('Deletar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[1]');
      }
       
       /**

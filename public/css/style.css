@@ -17,6 +17,10 @@ div.container {
   font-size: 22px;
 }
 
+.pagination-container {
+  overflow: auto;
+}
+
 .form-group {
   text-align: start;
 }
@@ -172,6 +176,13 @@ div.container div.visita-msg {
   padding: 0.5em 0;
 }
 
+.card div.card-footer.event {
+  background-color: var(--main-green);
+  color: var(--white);
+  font-weight: bold;
+  font-size: 1rem;
+}
+
 .card.manage div.card-body {
   padding: 0;
 }
@@ -186,6 +197,11 @@ a.clickable-card, a:hover.clickable-card {
 
 ul {
   padding: 0;
+}
+
+#leftSidebar {
+  max-height: 600px;
+  overflow: auto;
 }
 /* Fim de Atlas */
 
@@ -462,7 +478,7 @@ section .section-title {
   overflow: hidden;
 }
 
-.home.card div.card-footer {
+.home.card .card-footer {
   border-top: 1px solid var(--main-light);
   padding-left: 1em;
   font-size: 0.75rem;

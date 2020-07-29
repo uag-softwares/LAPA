@@ -15,34 +15,49 @@
                 </div>
             @endif
             <div class="table-responsive">
-               <table class="table">
+               <table class="table" id="myTable">
                 <thead>
                     <tr>
+                        <th>Ações</th>
                         <th>Responsável</th>
                         <th>Data</th>
                         <th>Email</th>
                         <th>Confirmada?</th>
-                        <th>Ações</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($registros as $registro)
                     <tr>
+                         <td>
+                            <a href="{{ route('auth.visita.ver', $registro->slug) }}" class="btn">Ver</a>
+                            <a href="{{ route('auth.visita.deletar', $registro->id) }}" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja cancelar essa visita?');">Cancelar</a>
+                        </td>
                         <td>{{ $registro->user->name ?? '' }}</td>
                         <td>{{ date('d/m/Y', strtotime($registro->data)).' das '.date('H:i', strtotime($registro->hora_inicial)).' às '.date('H:i', strtotime($registro->hora_final)) }}</td>
                         <td>{{ $registro->user->email }}</td>
                         <td>{{ $registro->confirmada ? 'Sim' : 'Não' }}</td>
-                        <td>
-                            <a href="{{ route('auth.visita.ver', $registro->slug) }}" class="btn">Ver</a>
-                            <a href="{{ route('auth.visita.deletar', $registro->id) }}" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja cancelar essa visita?');">Cancelar</a>
-                        </td>
                     </tr>
                     @endforeach
                 </tbody>
-              </table>
-              <div class="d-flex justify-content-center">
-                    {{ $registros->links() }}
-              </div> 
+              </table> 
           </div>
         </div>
+@endsection
+@section('scripts')
+
+    <script>  
+      $(document).ready( function () {
+      $('#myTable').DataTable( {
+      "columnDefs": [
+      { "orderable": false, "targets":'_all'}
+      ],
+      "language": {
+      "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
+      }
+      } );
+      } );
+    
+    </script>
+   
 @endsection

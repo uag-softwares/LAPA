@@ -113,7 +113,8 @@
                     </div>
                     <div class="card-body">
                         <h3 class="card-title">
-                            {{ __('Disciplinas') }}
+                            {{ __('Assuntos
+                                   (disciplinas)') }}
                         </h3>
                     </div>
                     <div class="card-footer">
@@ -133,7 +134,7 @@
                     </div>
                     <div class="card-body">
                         <h3 class="card-title">
-                            {{ __('Categorias') }}
+                            {{ __('Áreas de conhecimento') }}
                         </h3>
                     </div>
                     <div class="card-footer">
@@ -153,7 +154,7 @@
                     </div>
                     <div class="card-body">
                         <h3 class="card-title">
-                            {{ __('Solicitações') }}
+                            {{ __('Solicitações de gerenciamento') }}
                         </>
                     </div>
                     <div class="card-footer">
@@ -163,14 +164,14 @@
                     </div>
                 </div>
             </a>
-            <a class="clickable-card" href="#">
+            <a class="clickable-card" href="{{ route('auth.contatos') }}">
                 <div class="card manage">
                     <div class="card-header">
                         <span class="fa fa-info-circle"></span>
                     </div>
                     <div class="card-body">
                         <h3 class="card-title">
-                            {{ __('Contato') }}
+                            {{ __('Contatos do laboratório') }}
                         </h3>
                     </div>
                     <div class="card-footer">

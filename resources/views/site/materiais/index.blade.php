@@ -14,7 +14,7 @@
                 </div>
                 <div class="list-group">
                     <div class="material-group header list-group-item list-group-item-action disabled">
-                        <span>Disciplina</span>
+                        <span>Assunto</span>
                         <span>Professor</span>
                     </div>
                     

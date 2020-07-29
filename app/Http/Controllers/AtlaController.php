@@ -35,8 +35,25 @@ class AtlaController extends Controller
 
     public function index() 
     {
-        $registros = $this->atla->latest()->paginate(5);
-        return view('auth.atlas.index', compact('registros'));
+
+        $registros = $this->atla;
+        $filtros['nomes'] = array();
+
+        if(request()->has('publicado') && request('publicado') != '') {
+            $registros = $registros->where('publicado', request('publicado'));
+            $filtros['publicado'] = request('publicado');
+            $filtros['nomes'] = [request('publicado') ? 'publicados' : 'rascunhos'];
+        }
+        if(request()->has('categoria') && request('categoria') != '') {
+            $registros = $registros->where('categoria_id', request('categoria'));
+            $filtros['categoria'] = request('categoria');
+            array_push($filtros['nomes'], $this->categoria->find(request('categoria'))->nome);
+        }
+
+        $categorias = $this->categoria->all();
+
+        $registros = $registros->latest()->get();
+        return view('auth.atlas.index', compact('registros', 'categorias', 'filtros'));
     }
 
     public function adicionar() 
@@ -151,5 +168,10 @@ class AtlaController extends Controller
         $registros = $busca->get();
         $paginas = $busca->paginate(1);
         return view('site.atlas.ver_atlas_disciplinas', compact('paginas', 'registros', 'disciplina'));
+    }
+
+    public function ajaxAtlasCategoria($slug) 
+    {
+
     }
 }
