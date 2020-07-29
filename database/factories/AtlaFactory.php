@@ -12,5 +12,6 @@ $factory->define(Atla::class, function (Faker $faker) {
         'anexo'=> $faker->fileExtension,
         'publicado' => $faker->boolean($chanceOfGettingTrue = 50),
         'categoria_id' => factory(App\Categoria::class),
+        'slug' => $faker->unique()->email(),
     ];
 });

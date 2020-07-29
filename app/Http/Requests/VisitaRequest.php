@@ -60,7 +60,7 @@ class VisitaRequest extends FormRequest
             'email.email' => 'Email inválido',
             'confirmada.nullable' => 'A confirmação pode ser nula',
             'user_type.in' => 'Você não alterar esse campo',
-	        'g-recaptcha-response.required'=>'O campo reCaptcha é obrigatório, preencha novamente a data e horários da visita e confirme o reCapatcha.',
+	        'g-recaptcha-response.required'=>'O campo reCaptcha é obrigatório.',
         ];
     }
 }
