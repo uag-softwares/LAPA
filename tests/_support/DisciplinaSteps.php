@@ -75,7 +75,7 @@ class DisciplinaSteps extends \Codeception\Actor
      */
     public function euClicoEmEditarADisciplina($arg1)
     {
-        $this->click('Editar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[3]');
+        $this->click('Editar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[1]');
         $this->seeInCurrentUrl('/auth/disciplina/editar/');
     }
 
@@ -108,7 +108,7 @@ class DisciplinaSteps extends \Codeception\Actor
      */
     public function euClicoEmDeletarADisciplina($arg1)
     {
-        $this->click('Deletar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[3]');
+        $this->click('Deletar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[1]');
     }
 
     /**
