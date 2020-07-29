@@ -52,70 +52,35 @@
                 </div>
             </div>
             <div class="table-responsive">
-<<<<<<< HEAD
-              <table class="table table-bordered">
-                <thead class="thead-primary"> 
-                    <tr>
-                        <th>Ações</th>
-                        <th>Título</th>
-            			<th>Disciplina</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                @if(isset($registros) && count($registros) > 0)
-                        @foreach ($registros as $registro)
-                            <tr>
-                                <td>
-                                    <a href="{{ route('auth.material.editar',$registro->slug) }}" class="btn">Editar</a>
-                                    <a href="{{ route('auth.material.deletar', $registro->slug) }}" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar esse material');">Deletar</a>
-                                </td>
-                                <td>{{ $registro->titulo }}</td>
-                                <td>{{ isset($registro->disciplina) ? ucfirst($registro->disciplina->nome) : 'Nenhuma disciplina' }}</td>
-                                <td>{{ $registro->publicado ? "Publicado" : "Rascunho" }}</td>
-                            </tr>
-                        @endforeach
-                    @else
-                     </tr>
-                     <td colspan="4">Nenhum resultado em material encontrado</td>
-                    
-                   </tr>
-                   @endif
-                </tbody>
-              </table>
-            </div>
-        </div>
-@endsection
-
-
-@section('scripts')
-       <script>
-            $(function() {
-                $()
-            });
-       </script>
-=======
-              <table class="table" id="myTable">
+            <table class="table" id="myTable">
                 <thead>
                     <tr>
                         <th>Ações</th>
                         <th>Título</th>
-            			      <th>Assunto</th>
+                        <th>Assunto</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($registros as $registro)
-                    <tr>
-                        <td>
-                            <a href="{{ route('auth.material.editar', $registro->slug) }}" class="btn">Editar</a>
-                            <a href="{{ route('auth.material.deletar', $registro->slug) }}" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar o material?');">Deletar</a>
-                        </td>
-                        <td>{{ $registro->titulo }}</td>
-                        <td>{{ isset($registro->disciplina) ? ucfirst($registro->disciplina->nome) : 'Nenhum professor' }}
-                    </tr>
-                    @endforeach
+                    @if(isset($registros) && count($registros) > 0)
+                        @foreach($registros as $registro)
+                        <tr>
+                            <td>
+                                <a href="{{ route('auth.material.editar', $registro->slug) }}" class="btn">Editar</a>
+                                <a href="{{ route('auth.material.deletar', $registro->slug) }}" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar o material?');">Deletar</a>
+                            </td>
+                            <td>{{ $registro->titulo }}</td>
+                            <td>{{ isset($registro->disciplina) ? ucfirst($registro->disciplina->nome) : 'Nenhum professor' }}
+                            <td>{{ $registro->publicado ? "Publicado" : "Rascunho" }}</td>
+                        </tr>
+                        @endforeach
+                    @else
+                        <tr>
+                            <td colspan="4">Nenhum resultado em material encontrado</td>
+                        </tr>
+                    @endif
                 </tbody>
-              </table>
+            </table>
               
          </div>
         </div>
@@ -136,5 +101,4 @@
     
     </script>
    
->>>>>>> c5f937615989d4a57c612eeecf5a3af92ae54c2f
 @endsection
