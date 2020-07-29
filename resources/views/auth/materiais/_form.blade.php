@@ -57,4 +57,6 @@
       <p>Disciplina não cadastrada? <a class="" href="{{ route('auth.disciplina.adicionar') }}">{{ __('Cadastrar Disciplina') }}</a>.</p>
 </div>
 
+<script src="{{ asset('js/summernote_config.js') }}"></script> 
+
 
