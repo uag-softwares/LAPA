@@ -3,7 +3,7 @@
 @section('titulo', 'Adicionar categoria')
 @section('content')
         <div class="container">
-            <h2>Adicionar categoria</h2>
+            <h2>Adicionar área de conhecimento(categoria)</h2>
             <form action="{{ route('auth.categoria.salvar') }}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 @include('auth.categorias._form')

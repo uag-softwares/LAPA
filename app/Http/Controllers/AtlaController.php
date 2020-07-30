@@ -35,6 +35,7 @@ class AtlaController extends Controller
 
     public function index() 
     {
+
         $registros = $this->atla;
         $filtros['nomes'] = array();
 
@@ -169,8 +170,5 @@ class AtlaController extends Controller
         return view('site.atlas.ver_atlas_disciplinas', compact('paginas', 'registros', 'disciplina'));
     }
 
-    public function ajaxAtlasCategoria($slug) 
-    {
-
-    }
+   
 }

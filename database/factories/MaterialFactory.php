@@ -12,5 +12,7 @@ $factory->define(Material::class, function (Faker $faker) {
         'texto' => $faker->text($maxNbChars = 200),
         'anexo'=> $faker->fileExtension,
         'disciplina_id'=>factory(Disciplina::class),
+        'publicado' => $faker->boolean($chanceOfGettingTrue = 50),
+        'slug' => $faker->unique()->email(),
     ];
 });

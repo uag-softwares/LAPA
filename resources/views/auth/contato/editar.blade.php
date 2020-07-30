@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('titulo', 'Editar Informações de Contato do LAPA')
+@section('titulo', 'Editar Informações de Contato do Laboratório')
 @section('content')
         <div class="container">
             <h2>Editar contato</h2>

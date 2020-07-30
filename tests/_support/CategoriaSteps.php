@@ -59,7 +59,7 @@ class CategoriaSteps extends \Codeception\Actor
      */
     public function euVejoQueACategoriaFoiAdicionadaCorretamente()
     {
-        $this->see('Categoria adicionada com sucesso!');
+        $this->see('Área de conhecimento adicionada com sucesso!');
     }
 
     /**
@@ -68,7 +68,7 @@ class CategoriaSteps extends \Codeception\Actor
     public function euEstouNaPaginaDeGerenciarCategorias()
     {
         $this->amOnPage('/auth/categorias/');
-        $this->see('Gerenciar categorias', '//h2');
+        $this->see('Gerenciar áreas de conhecimento(categorias)', '//h2');
     }
 
      /**
@@ -76,7 +76,7 @@ class CategoriaSteps extends \Codeception\Actor
      */
     public function euClicoEmEditarACategoria($arg1)
     {
-        $this->click('Editar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[3]');
+        $this->click('Editar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[1]');
         $this->seeInCurrentUrl('/auth/categoria/editar/');
     }
 
@@ -85,7 +85,7 @@ class CategoriaSteps extends \Codeception\Actor
      */
     public function euVejoQueACategoriaFoiAlteradaCorretamente()
     {
-        $this->see('Categoria atualizada com sucesso!');
+        $this->see('Área de conhecimento atualizada com sucesso!');
     }
 
     /**
@@ -93,7 +93,7 @@ class CategoriaSteps extends \Codeception\Actor
      */
     public function euClicoEmDeletarACategoria($arg1)
     {
-        $this->click('Deletar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[3]');
+        $this->click('Deletar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[1]');
         
     }
      /**
@@ -101,7 +101,7 @@ class CategoriaSteps extends \Codeception\Actor
      */
     public function euVejoQueACategoriaFoiDeletadaCorretamente()
     {
-        $this->see('Categoria deletada com sucesso!');
+        $this->see('Área de conhecimento deletada com sucesso!');
     }
 
      /**

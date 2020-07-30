@@ -14,7 +14,7 @@
         <h2>Material</h2>
 
         @if (count($paginas) < 1)
-            <p>Ops, essa categoria ainda não possui páginas</p>
+            <p>Ops, esse material ainda não possui páginas</p>
         @else
 
             @foreach ($paginas as $pagina)

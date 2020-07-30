@@ -3,7 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+/**
+ÁREA DE CONHECIMENTO
+*/
 class categoria extends Model
 {
      /**

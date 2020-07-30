@@ -92,7 +92,7 @@ class MaterialSteps extends \Codeception\Actor
     */
     public function euClicoEmEditarMaterialComTitulo($arg1)
     {
-        $this->click('Editar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[3]');
+        $this->click('Editar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[1]');
         $this->seeInCurrentUrl('/auth/materiais/editar/');
     }
 
@@ -136,7 +136,7 @@ class MaterialSteps extends \Codeception\Actor
      */
     public function euClicoEmDeletarMaterialComTitulo($arg1)
     {
-        $this->click('Deletar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[3]');
+        $this->click('Deletar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[1]');
     }
 
    /**

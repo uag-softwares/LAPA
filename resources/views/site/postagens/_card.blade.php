@@ -19,7 +19,7 @@
     @if($registro->tipo_postagem == 'evento')
         <div class="card-footer event">
                 <span class="fas fa-calendar-alt"></span>
-                {{ strftime('%A, %d/%m/%Y', strtotime($registro->data)).' às '.date('H:i', strtotime($registro->hora)) }}
+                Dia {{ date('d/m/Y', strtotime($registro->data)).' às '.date('H:i', strtotime($registro->hora)) }}
         </div>
     @endif
 

@@ -14,7 +14,7 @@ class PostagemController extends Controller
     // Model de postagem adicionado ao controller para evitar uso estatico
     protected $postagem;
     protected $user;
-
+  
 
     public function __construct(Postagem $postagem, User $user)
     {
@@ -23,16 +23,33 @@ class PostagemController extends Controller
                                   'siteHome','siteIndexEvento','siteIndexEdital']]);
         $this->postagem = $postagem;
         $this->user = $user;
-
-        setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
     }
 
     public function index() 
     {
-        $registros = $this->postagem->latest()->paginate(5);
-        return view('auth.postagem.index', compact('registros'));
-    }
 
+        $registros = $this->postagem;
+        $filtros['nomes'] = array();
+
+        if(request()->has('publicado') && request('publicado') != '') {
+            $registros = $registros->where('publicado', request('publicado'));
+            $filtros['publicado'] = request('publicado');
+            $filtros['nomes'] = [request('publicado') ? 'publicados' : 'rascunhos'];
+        }
+
+        if(request()->has('tipo_postagem') && request('tipo_postagem') != '') {
+            $registros = $registros->where('tipo_postagem', request('tipo_postagem'));
+            $filtros['tipo_postagem'] = request('tipo_postagem');
+            //$filtros['nomes'] = [request('tipo_postagem') ? 'edital' : 'evento'];
+            $filtros['nomes'] = request('tipo_postagem');
+            // array_push($filtros['nomes'],$this->postagem->find(request('tipo_postagem')));
+        }
+        
+        
+        $tipo_postagens= $this->postagem->getEnumValues();
+        $registros = $registros->latest()->get();
+        return view('auth.postagem.index', compact('registros','filtros','tipo_postagens'));
+    }
     public function adicionar() 
     {
         $tipo_postagens= $this->postagem->getEnumValues();

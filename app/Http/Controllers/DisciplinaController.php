@@ -23,9 +23,9 @@ class DisciplinaController extends Controller
         $this->user = $user;
     }
 
-    public function index() 
+    public function index(Request $request) 
     {
-        $registros = $this->disciplina->latest()->paginate(5);
+        $registros = $this->disciplina->latest()->get();
         return view('auth.disciplinas.index', compact('registros'));
     }
 
@@ -50,7 +50,7 @@ class DisciplinaController extends Controller
         $disciplina=$this->disciplina->create($dados);
         $disciplina['slug']=str_slug( $disciplina->nome).'-'. $disciplina->id;
         $disciplina->update($disciplina->attributesToArray());
-        return redirect()->route('auth.disciplinas')->with('success', 'Disciplina adicionada com sucesso!');
+        return redirect()->route('auth.disciplinas')->with('success', 'Assunto adicionado com sucesso!');
     }
 
     public function editar(Disciplina $registro) 
@@ -69,17 +69,17 @@ class DisciplinaController extends Controller
         $dados = $request->all();
         $dados['slug']=str_slug($dados['nome']).'-'.$identifier;
         if($this->disciplina->find($identifier)->nome != $request['nome']) {
-            return redirect()->back()->withErrors(['nome' => 'O nome da disciplina não pode ser alterado']);
+            return redirect()->back()->withErrors(['nome' => 'O nome do assunto não pode ser alterado']);
         }
 
         $this->disciplina->find($identifier)->update($dados);
 
-        return redirect()->route('auth.disciplinas')->with('success', 'Disciplina atualizada com sucesso!');
+        return redirect()->route('auth.disciplinas')->with('success', 'Assunto atualizado com sucesso!');
     }
 
     public function deletar(Disciplina $registro)
     {
         $registro->delete();
-        return redirect()->route('auth.disciplinas')->with('success', 'Disciplina deletada com sucesso!');
+        return redirect()->route('auth.disciplinas')->with('success', 'Assunto deletado com sucesso!');
     }
 }

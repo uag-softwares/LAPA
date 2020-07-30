@@ -9,7 +9,7 @@ Feature: categoria
     And Eu estou na pagina de adicionar categorias
     When Eu preencho o campo nome da categoria com "Sistema vascular"
     And Eu clico em Adicionar
-    Then Eu vejo a mensagem de erro "Você deve escolher uma disciplina"
+    Then Eu vejo a mensagem de erro "Você deve escolher um assunto"
 
   Scenario: criar uma categoria com nome repetido na mesma disciplina
     Given Eu estou logado como "valeria" com email "valeria@admin.com" e senha "12345678"
@@ -19,7 +19,7 @@ Feature: categoria
     When Eu preencho o campo nome da categoria com "Sistema nervoso"
     And Eu seleciono a disciplina "Ihc"
     And Eu clico em Adicionar
-    Then Eu vejo a mensagem de erro "Essa categoria já existe nessa disciplina"
+    Then Eu vejo a mensagem de erro "Essa área de conhecimento já existe nesse assunto"
 
   Scenario: criar uma categoria com nome repetido em disciplinas diferentes
     Given Eu estou logado como "maria" com email "maria@admin.com" e senha "12345678"
