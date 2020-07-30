@@ -27,10 +27,25 @@ class MaterialController extends Controller
 
     public function index() 
     { 
-        $registros = $this->material->latest()->get();
+        $registros = $this->material;
+        $filtros['nomes'] = array();
 
-        return view('auth.materiais.index', compact('registros'));
-    }
+        if(request()->has('publicado') && request('publicado') != '') {
+            $registros = $registros->where('publicado', request('publicado'));
+            $filtros['publicado'] = request('publicado');
+            $filtros['nomes'] = [request('publicado') ? 'publicados' : 'rascunhos'];
+        }
+        if(request()->has('disciplina') && request('disciplina') != '') {
+            $registros = $registros->where('disciplina_id', request('disciplina'));
+            $filtros['disciplina'] = request('disciplina');
+            array_push($filtros['nomes'], $this->disciplina->find(request('disciplina'))->nome);
+        }
+
+        $disciplinas = $this->disciplina->all();
+        $registros = $registros->latest()->get();
+        return view('auth.materiais.index', compact('registros', 'disciplinas', 'filtros'));
+
+   }
 
     public function adicionar() 
     {
@@ -118,4 +133,6 @@ class MaterialController extends Controller
         $paginas = $busca->latest()->paginate(1);    
         return view('site.materiais.ver_materiais', compact('registros', 'disciplina', 'paginas'));
     }
+
+    
 }

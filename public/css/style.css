@@ -484,11 +484,6 @@ section .section-title {
   font-size: 0.75rem;
 }
 
-/* cards da home */
-
-.note-toolbar * {
-  all: unset;
-}
 
 /* Alerts */
 

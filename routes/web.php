@@ -90,7 +90,6 @@ Route::middleware(['auth','check.cpf'])->group(function () {
 	Route::get('/auth/atla/editar/{registro:slug}', ['as' => 'auth.atla.editar', 'uses' => 'AtlaController@editar'], function (App\Atla $registro) {return $registro;});
 	Route::put('/auth/atla/atualizar/{id}', ['as' => 'auth.atla.atualizar', 'uses' => 'AtlaController@atualizar'], function () {});
 	Route::get('/auth/atla/deletar/{registro:slug}', ['as' => 'auth.atla.deletar', 'uses' => 'AtlaController@deletar'],function (App\Atla $registro) {return $registro;});
-	Route::get('ajax/atlas/categoria/{registro:slug}', ['as' => 'auth.ajax.atlas.categoria', 'uses' => 'AtlaController@ajaxAtlasCategoria'], function (App\Atla $registro) {return $registro;});
         
 	Route::get('/auth/materiais', ['as' => 'auth.materiais', 'uses' => 'MaterialController@index'], function () {});
 	Route::get('/auth/materiais/adicionar', ['as' => 'auth.material.adicionar', 'uses' => 'MaterialController@adicionar'], function () {});
@@ -98,7 +97,7 @@ Route::middleware(['auth','check.cpf'])->group(function () {
 	Route::get('/auth/materiais/editar/{registro:slug}', ['as' => 'auth.material.editar', 'uses' => 'MaterialController@editar'], function (App\Material $registro) {return $registro;});
 	Route::put('/auth/materiais/atualizar/{id}', ['as' => 'auth.material.atualizar', 'uses' => 'MaterialController@atualizar'], function () {});
 	Route::get('/auth/materiais/deletar/{registro:slug}', ['as' => 'auth.material.deletar', 'uses' => 'MaterialController@deletar'], function (App\Material $registro) {return $registro;});
-
+	Route::get('ajax/materiais/disciplina/{registro:slug}', ['as' => 'auth.ajax.materiais.disciplina', 'uses' => 'MaterialController@ajaxMateriaisDisciplina'], function (App\Atla $registro) {return $registro;});
   
 	Route::get('/auth/visitas', ['as' => 'auth.visitas', 'uses' => 'VisitaController@index'], function() {});
 	Route::get('/auth/visita/ver/{registro:slug}', ['as' => 'auth.visita.ver', 'uses' => 'VisitaController@ver'], function (App\Visita $registro) {return $registro;});
