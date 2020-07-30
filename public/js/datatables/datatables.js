@@ -1,5 +1,5 @@
 $(document).ready( function () {
-    $("#myTable").DataTable( {
+    $("#myTable").dataTable( {
         "columnDefs": [
             { "orderable": false, "targets":"_all"}
         ],
