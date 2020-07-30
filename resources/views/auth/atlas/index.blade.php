@@ -85,25 +85,4 @@
               </table>
            </div>
        </div>
-@endsection 
-@section('scripts')
-
-    <script>  
-        $(document).ready( function () {
-            $('#myTable').DataTable( {
-                "columnDefs": [{ 
-                    "orderable": false, "targets":'_all'
-                }],
-                "language": {
-                    "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
-                }
-            });
-        });
-    </script>
-    
-    <script>
-        $(function() {
-            $()
-        });
-    </script>
 @endsection
