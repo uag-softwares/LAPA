@@ -505,6 +505,14 @@ section .section-title {
   border-color: var(--main-dark-green);
 }
 
+/* datatables styles */
+.container .dataTables_length {
+  text-align: left;
+}
+
+.dataTables_filter .form-control-sm, .dataTables_length .custom-select-sm {
+  height: calc(1.5em + 1rem + 2px) !important;
+}
 
 /* Summernote background dos botoes */
 .note-editor .btn {
