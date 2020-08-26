@@ -15,23 +15,3 @@
             </form>
         </div>
 @endsection
-@section('scripts')
-
-    <script>        
-         function changeStatus(){
-            var status= document.getElementById("tipo_postagem");
-            if(status.value == "evento"){
-                
-                document.getElementById("dh").style.display = "block";
-                
-            }
-            else{
-                 document.getElementById("dh").style.display = "none";
-                
-            }
-        }
-
-        
-    </script>
-   
-@endsection

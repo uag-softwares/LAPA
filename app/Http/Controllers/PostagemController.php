@@ -59,20 +59,20 @@ class PostagemController extends Controller
     public function salvar(PostagemRequest $request) 
     {
         $request->validated();
-        $this->user=Auth::user();
-        $anexo=null;
-        $publicado=false; 
-        
+        $this->user = Auth::user();
+        $anexo = null;
+        $publicado = false; 
+
         if(isset($request['publicar'])) {
             $publicado = true;
         }
-         if($request['tipo_postagem']=='evento'){
-             if($request['data']==null){
+        if($request['tipo_postagem']=='evento'){
+            if($request['data']==null){
                 return redirect()->back()->withErrors(['data' => 'Selecionar data quando a postagem for um evento é obrigatório'])->withInput();
-             }
+            }
             else if($request['hora']==null){
                 return redirect()->back()->withErrors(['hora' => 'Selecionar a hora quando a postagem for um evento é obrigatório'])->withInput();
-             }
+            }
         }
         $post=$this->postagem->create([
             'titulo' => $request ['titulo'],
@@ -83,17 +83,26 @@ class PostagemController extends Controller
             'publicado'=>$publicado,
             'data'=>$request['data'],
             'hora'=>$request['hora'],
-	    
+            'tipo_anexo' => $request['tipo_anexo'],
         ]);
-        $post['slug']=str_slug($post->titulo).'-'.$post->id;
-	if($request->hasFile('anexo')) {
-            $anexo = $request->file('anexo');
+        $post['slug'] = str_slug($post->titulo).'-'.$post->id;
+
+        /* Se o link for web nao entra no if
+        * se for drive ele entra no if para converter o link para ser embarcado na página
+        * se for upload ele entra no else if para arrumar o nome do arquivo
+        */
+        $post['anexo'] = $request['anexo_web'];
+        if($request['tipo_anexo'] == 'link_drive') {
+            $post['anexo'] = $this->postagem::convertToEmbedableImageLink($request['anexo_drive']);
+        } else if (($request['tipo_anexo'] == 'upload') && $request->hasFile('anexo_upload')) {
+            $anexo = $request->file('anexo_upload');
             $dir = 'img/postagens/';
             $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
             $nomeAnexo = 'anexo_'.$post->tipo_postagem.'-'.$post->id.'.'.$ex;
             $anexo->move($dir, $nomeAnexo);
-            $post['anexo']= $dir.'/'.$nomeAnexo;
+            $post['anexo'] = $dir.'/'.$nomeAnexo;
         }
+
         $post->update($post->attributesToArray());
         return redirect()->route('auth.postagens')->with('success', 'Postagem adicionada com sucesso!');
     }
@@ -109,26 +118,37 @@ class PostagemController extends Controller
         $request->validated();
         $dados = $request->all();
         $dados['publicado'] = false; 
-	$post=$this->postagem->find($identifier);
-        if($request->hasFile('anexo')) {
-            $anexo = $request->file('anexo');
+        $post=$this->postagem->find($identifier);
+        
+        /* Se o link for web nao entra no if
+        * se for drive ele entra no if para converter o link para ser embarcado na página
+        * se for upload ele entra no else if para arrumar o nome do arquivo
+        */
+        $dados['anexo'] = $request['anexo_web'];
+        $dados['tipo_anexo'] = $request['tipo_anexo'];
+        if($request['tipo_anexo'] == 'link_drive') {
+            $dados['anexo'] = $this->postagem::convertToEmbedableImageLink($request['anexo_drive']);
+        } else if(($request['tipo_anexo'] == 'upload') && $request->hasFile('anexo_upload')) {
+            $anexo = $request->file('anexo_upload');
             $dir = 'img/postagens/';
             $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
             $nomeAnexo = 'anexo_'.$post->tipo_postagem.'-'.$post->id.'.'.$ex;
             $anexo->move($dir, $nomeAnexo);
             $dados['anexo']= $dir.'/'.$nomeAnexo;
         }
+
+
         if(isset($request['publicar'])) {
             $dados['publicado'] = true;
         } 
-         if($request['tipo_postagem']=='evento'){
-             if($request['data']==null){
+        if($request['tipo_postagem']=='evento'){
+            if($request['data']==null){
                 return redirect()->back()->withErrors(['data' => 'Selecionar data quando a postagem for um evento é obrigatório']);
-             }
-             else if($request['hora']==null){
+            } else if($request['hora']==null){
                 return redirect()->back()->withErrors(['hora' => 'Selecionar a hora quando a postagem for um evento é obrigatório']);
-             }
+            }
         }
+
         $dados['slug']=str_slug($dados['titulo']).'-'.$identifier;
         $post->update($dados);
         return redirect()->route('auth.postagens')->with('success', 'Postagem atualizada com sucesso!');

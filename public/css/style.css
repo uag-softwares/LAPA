@@ -1,6 +1,7 @@
 :root {
   --main-green: #00ad50;
   --main-dark-green: #009444;
+  --main-green-opacity-0-9: rgba(0, 173, 80, 0.9);
   --main-black: #212529;
   --main-white: #f8fafc;
   --main-light: #e8e8ee;
@@ -50,8 +51,37 @@ form {
   margin: 0 auto;
 }
 
+.file-input {
+  position: relative;
+}
+
+.file-label {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: var(--main-green);
+  transition: background-color 250ms ease-in-out;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.file-label:hover {
+  cursor: pointer;
+  background-color: var(--main-green-opacity-0-9);
+  transition: background-color 250ms ease-in-out;
+}
+
+.file-label p {
+  color: var(--main-white);
+}
+
+.drive-input .info {
+  font-size: 14px;
+}
+
 /* Barra de navegação do site */
 .navbar-custom {
+  color: var(--main-white);
   background-color: var(--main-green);
 }
 

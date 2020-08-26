@@ -28,15 +28,16 @@ class PostagemRequest extends FormRequest
             'descricao' => 'required|min:10',
             'data' => 'nullable|date|after:today',
             'hora' => 'nullable|date_format:H:i|after_or_equal:00:00',
-            'anexo' => 'mimes:jpeg,jpg,png,gif|max:2048|nullable',
+            'tipo_anexo' => 'required',
+            //'anexo' => 'mimes:jpeg,jpg,png,gif|max:2048|nullable',
             'tipo_postagem'=>'required',
             
         ];
     }
    public function messages(){
-	return[
+	    return [
             'tipo_postagem.required'=>'Selecionar o tipo da postagem é obrigatório', 
-	    'hora.date_format'=>" A hora selecionada não está no formato H:i",
+	        'hora.date_format'=>" A hora selecionada não está no formato H:i",
             'data.after'=>'A data selecionada tem que ser posterior a hoje',
         ];
     }
