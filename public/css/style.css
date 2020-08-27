@@ -79,6 +79,40 @@ form {
   font-size: 14px;
 }
 
+input[type="radio"] + label {
+  cursor: pointer;
+}
+
+/* Opção bloqueada enquanto o sistema não é implantado no servidor da UFAPE */
+input:disabled + label {
+  position: relative;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+input:disabled + label:hover {
+  cursor: not-allowed;
+}
+
+/* Aviso que a opção estará indisponível até que o sistema seja implantado no servidor da UFAPE */
+input:disabled + label::before {
+  content: "Indisponível até a implantação!";
+  position: absolute;
+  top: -30px;
+  width: 350px;
+  background-color: #ffffff;
+  color: var(--main-black);
+  text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  opacity: 0;
+  transition: opacity 350ms ease-in-out;
+}
+
+input:disabled + label:hover::before {
+  opacity: 1;
+  transition: opacity 350ms ease-in-out;
+}
+
 /* Barra de navegação do site */
 .navbar-custom {
   color: var(--main-white);
