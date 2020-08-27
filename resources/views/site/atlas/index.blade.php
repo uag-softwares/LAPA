@@ -22,20 +22,20 @@
                         <div id="categorias" class="list-group">
                             
                             <div class="material-group header list-group-item list-group-item-action disabled">
-                                <span>Área de conhecimento</span>
-                                <span>Assunto</span>
+                                <p>Área de conhecimento</p>
+                                <p>Assunto</p>
                             </div>
 
                             @for ($i = 0; $i < ($numero_categorias > $numero_disciplinas ? $numero_categorias : $numero_disciplinas); $i++)
                                 <div class="material-group list-group-item list-group-item-action">
 
                                     @if ($numero_categorias > $i && count($categorias[$i]->atla) >= 1)
-                                        <a class="item" href="{{ route('site.atlas.categoria', $categorias[$i]->slug) }}">
+                                        <a class="item mr-auto" href="{{ route('site.atlas.categoria', $categorias[$i]->slug) }}">
                                             {{ ucfirst($categorias[$i]->nome) }}
                                         </a>
                                     @endif
                                     @if ($numero_disciplinas > $i && count($disciplinas[$i]->categoria) >= 1)
-                                        <a class="item" href="{{ route('site.atlas.disciplina', $disciplinas[$i]->slug) }}">
+                                        <a class="item ml-auto" href="{{ route('site.atlas.disciplina', $disciplinas[$i]->slug) }}">
                                             {{ ucfirst($disciplinas[$i]->nome) }}
                                         </a>
                                     @endif

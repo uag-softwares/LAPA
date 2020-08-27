@@ -362,7 +362,11 @@ a:hover.page-link {
 .material-group.list-group-item.list-group-item-action.header {
   padding: 1rem;
   justify-content: space-around;
+}
 
+.material-group.list-group-item.list-group-item-action.header p {
+  width: 100%;
+  margin: 0;
 }
 
 .item {

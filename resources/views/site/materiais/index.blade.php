@@ -20,12 +20,12 @@
                     
                     @foreach ($disciplinas as $disciplina)
                         <div id="disciplinas" class="material-group list-group-item list-group-item-action">
-                            <a class="item material-item" href="{{ route('site.materiais.disciplina', $disciplina->slug) }}">
+                            <a class="item material-item mr-auto" href="{{ route('site.materiais.disciplina', $disciplina->slug) }}">
                                 {{ ucfirst($disciplina->nome) }}
                             </a>
                             
                             @if(isset($disciplina->user))
-                                <a class="item material-item" href="{{ route('site.materiais.disciplina', $disciplina->slug) }}">
+                                <a class="item material-item ml-auto" href="{{ route('site.materiais.disciplina', $disciplina->slug) }}">
                                     {{ $disciplina->user->name ?? '' }}
                                 </a>
                             @endif
