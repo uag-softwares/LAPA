@@ -651,6 +651,11 @@ section .section-title {
 }
 
 /* Expandir campos de anexos */ 
+#radio-group-anexo {
+  position: relative;
+  z-index: 1;
+}
+
 .form-group-anime {
   height: auto;
 }
@@ -665,7 +670,7 @@ section .section-title {
   transition: height 250ms ease-in-out;
 }
 
-.js .show {
+.js .form-group-anime.show {
   height: 200px;
 }
 
@@ -675,7 +680,7 @@ section .section-title {
 
 .js .input-anime.show {
   display: block;
-  animation: fadeInFromNone 500ms ease-out;
+  animation: fadeInFromNone 500ms ease-in-out;
 }
 
 /* Animação do seletor de evento */
@@ -685,14 +690,11 @@ section .section-title {
 }
 
 .js #dh {
-  height: 0;
-  opacity: 0;
-  transition: height 250ms ease-in-out, opacity 300ms ease-in-out;
+  animation: fadeOutToNoneHeight 250ms ease-in-out forwards;
 }
 
 .js #dh.show {
-  height: 200px;
-  opacity: 1;
+  animation: fadeInFromNoneHeight 250ms ease-in-out forwards;
 }
 
 @keyframes fadeInFromNone {
@@ -709,6 +711,47 @@ section .section-title {
   100% {
       display: block;
       opacity: 1;
+  }
+}
+
+@keyframes fadeInFromNoneHeight {
+  0% {
+    display: none;
+    opacity: 0;
+    height: 0;
+  }
+
+  1% {
+    display: block;
+    opacity: 0;
+    height: 0;
+  }
+
+  100% {
+    display: block ;
+    opacity: 1;
+    height: 200px;
+  }
+}
+
+@keyframes fadeOutToNoneHeight {
+  0% {
+    display: block;
+    opacity: 1;
+    height: 200px;
+    
+  }
+
+  99% {
+    display: block;
+    opacity: 0;
+    height: 0;
+  }
+
+  100% {
+    display: none !important;
+    opacity: 0;
+    height: 0;
   }
 }
 
