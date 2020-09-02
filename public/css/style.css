@@ -13,6 +13,10 @@ header {
   font-family: 'Noto Sans HK', sans-serif;
 }
 
+main div.container {
+  padding: 1.5rem;
+}
+
 div.container {
   text-align: center;
   font-size: 22px;
@@ -57,7 +61,7 @@ form {
 
 .file-label {
   position: absolute;
-  bottom: 0;
+  bottom: -1px;
   width: 100%;
   background-color: var(--main-green);
   transition: background-color 250ms ease-in-out;
@@ -119,6 +123,15 @@ input:disabled + label:hover::before {
   background-color: var(--main-green);
 }
 
+a.btn:hover,
+button.btn:hover,
+input.btn:hover,
+.navbar-custom .nav-item.active .nav-link,
+.navbar-custom .nav-item:hover .nav-link,
+.nav-item.dropdown button:hover {
+  transition: background-color 300ms ease-in-out;
+}
+
 /* change the brand and text color */
 .navbar-custom .navbar-brand,
 .navbar-custom .navbar-text {
@@ -138,6 +151,46 @@ input:disabled + label:hover::before {
   color: var(--main-black);
   font-size: 22px;
   font-style: normal;
+}
+
+.dropdown-menu.dropdown-menu-anime {
+  display: block;
+  transform: scaleY(1);
+}
+
+/* Mostrar menu dropdown para animar */
+.js .dropdown-menu.dropdown-menu-anime {
+  position: absolute;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 100ms ease-in-out;
+}
+
+.js .dropdown-menu.dropdown-menu-anime * {
+  opacity: 0;
+  transition: opacity 500ms;
+}
+
+.js .dropdown-menu.dropdown-menu-anime.show {
+  transform: scaleY(1);
+}
+
+.js .dropdown-menu.dropdown-menu-anime.show * {
+  opacity: 1;
+}
+
+/* Mostrar a navbar se o javascript estiver desabilitado */
+.collapse:not(.show) {
+  display: block;
+}
+
+.js .collapse:not(.show) {
+  display: none;
+}
+
+/*mostrar campos de hora quando nao ha javascript habilitado */
+.js .no-javascript {
+  display: none;
 }
 
 /* Centraliza verticalmente os links da navbar */
@@ -264,7 +317,6 @@ ul {
 }
 
 #leftSidebar {
-  max-height: 600px;
   overflow: auto;
 }
 /* Fim de Atlas */
@@ -329,15 +381,25 @@ a:hover.page-link {
   text-overflow: ellipsis;
 }
 
-#leftSidebar.show {
+#leftSidebar {
+  position: absolute;
   height: 100%;
   width: 270px;
   background-color: var(--main-white);
   z-index: 998;
+  transform: translate3d(-270px, 0, 0);
+  transition: transform 250ms ease-in-out;
+}
+
+#leftSidebar.show {
+  transform: translate3d(0, 0, 0);
 }
 
 #toggleLeftSidebar {
   z-index: 999;
+  top: 10px;
+  transform: translate3d(0, 0, 0);
+  transition: transform 250ms ease-in-out;
 }
 
 #toggleLeftSidebar .btn {
@@ -346,7 +408,7 @@ a:hover.page-link {
 }
 
 #toggleLeftSidebar.push {
-  left: 270px;
+  transform: translate3d(270px, 0, 0);
 }
 
 /* Sidebar da esquerda de Atlas */
@@ -399,7 +461,7 @@ a:hover.page-link {
 
 .carousel-item {
   position: relative;
-  height: 400px;
+  height: 350px;
 }
 
 .carousel-item img {
@@ -588,6 +650,68 @@ section .section-title {
   color: var(--main-black);
 }
 
+/* Expandir campos de anexos */ 
+.form-group-anime {
+  height: auto;
+}
+
+.input-anime {
+  opacity: 1;
+  display: block;
+}
+
+.js .form-group-anime {
+  height: 0;
+  transition: height 250ms ease-in-out;
+}
+
+.js .show {
+  height: 200px;
+}
+
+.js .input-anime {
+  display: none;
+}
+
+.js .input-anime.show {
+  display: block;
+  animation: fadeInFromNone 500ms ease-out;
+}
+
+/* Animação do seletor de evento */
+#dh {
+  display: block;
+  opacity: 1;
+}
+
+.js #dh {
+  height: 0;
+  opacity: 0;
+  transition: height 250ms ease-in-out, opacity 300ms ease-in-out;
+}
+
+.js #dh.show {
+  height: 200px;
+  opacity: 1;
+}
+
+@keyframes fadeInFromNone {
+  0% {
+      display: none;
+      opacity: 0;
+  }
+
+  25% {
+      display: block;
+      opacity: 0;
+  }
+
+  100% {
+      display: block;
+      opacity: 1;
+  }
+}
+
 @media only screen and (max-width: 767px) {
 
   #postagens .img {
@@ -596,6 +720,14 @@ section .section-title {
 
   #usuarios .img {
     width: 100%;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  #leftSidebar {
+    position: static;
+    height: auto;
+    transform: translate3d(0, 0, 0);
   }
 }
 

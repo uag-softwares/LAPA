@@ -40,7 +40,7 @@
     @enderror
 </div>
 
-<div id="dh" style="{{ isset($registro->tipo_postagem) ? ($registro->tipo_postagem == 'evento' ? 'display: block' : 'display: none') : 'display: none' }}">
+<div id="dh" class="{{ isset($registro->tipo_postagem) ? ($registro->tipo_postagem == 'evento' ? 'show' : '') : '' }}">
     <div class="d-flex flex-row">
         <div class="form-group">
             <label for="data">Data(obrigatório para evento)</label>
@@ -78,8 +78,8 @@
         </span>
     @enderror
 </div>
-<div class="form-group">
-    <label id="upload" class="file-input w-100" style="{{ isset($registro) ? ($registro->tipo_anexo == 'upload' ? 'display: block' : 'display: none') : 'display: none' }}" for="anexo">
+<div class="form-group form-group-anime">
+    <label id="upload" class="file-input w-100 input-anime {{ isset($registro) ? ($registro->tipo_anexo == 'upload' ? 'show' : '') : '' }}" for="anexo">
         <div class="d-flex flex-column text-center border rounded bg-white">
             <div class="file-header">
                 <img height="200px" id="img-foto" src="{{ asset($registro->anexo ?? asset('img/file-image.svg')) }}" alt="" style="max-height: 200px">
@@ -90,12 +90,12 @@
         </div>
         <input id="anexo" class="d-none form-control form-control-lg @error('anexo') is-invalid @enderror" type="file" name="anexo_upload" placeholder="Escolha um arquivo jpeg, jpg, png ou gif" onchange="document.getElementById('img-foto').src = window.URL.createObjectURL(this.files[0])">
     </label>
-    <div id="link_drive" class="drive-input" style="{{ isset($registro) ? ($registro->tipo_anexo == 'link_drive' ? 'display: block' : 'display: none') : 'display: none' }}">
+    <div id="link_drive" class="drive-input input-anime {{ isset($registro) ? ($registro->tipo_anexo == 'link_drive' ? 'show' : '') : '' }}">
         <label>Link da imagem do Google Drive*</label>
         <input type="text" class="form-control form-control-lg @error('anexo') is-invalid @enderror" name="anexo_drive" placeholder="A imagem deve ser no formato jpeg, jpg, png ou gif." value="{{ isset($registro->anexo) ? $registro->anexo : old('anexo') }}">
         <p class="info">*O link é obtido na opção "Gerar link compartilhável" pelo Google Drive e deve ter a permissão "Visível a qualquer pessoa com link".</p>
     </div>
-    <div id="link_web" class="web-link-input" style="{{ isset($registro) ? ($registro->tipo_anexo == 'link_web' ? 'display: block' : 'display: none') : 'display: none' }}">
+    <div id="link_web" class="web-link-input input-anime {{ isset($registro) ? ($registro->tipo_anexo == 'link_web' ? 'show' : '') : '' }}">
         <label>Link da imagem da web</label>
         <input type="text" class="form-control form-control-lg @error('anexo') is-invalid @enderror" name="anexo_web" placeholder="A imagem deve ser no formato jpeg, jpg, png ou gif." value="{{ isset($registro->anexo) ? $registro->anexo : old('anexo') }}">
     </div>
@@ -111,9 +111,9 @@
     <script>        
         document.getElementById("tipo_postagem").addEventListener("change", function() {
             if(this.value === "evento"){
-                document.getElementById("dh").style.display = "block";
+                document.getElementById("dh").classList.add("show");
             } else {
-                document.getElementById("dh").style.display = "none";
+                document.getElementById("dh").classList.remove("show");
             }
         });
     </script>

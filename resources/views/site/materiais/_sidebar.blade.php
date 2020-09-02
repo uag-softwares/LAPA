@@ -4,7 +4,7 @@
     </a>
 </div>
 
-<div id="leftSidebar" class="col-lg-3 border-right pl-4 d-none d-lg-block shadow-sm">
+<div id="leftSidebar" class="col-lg-3 border-right p-4 shadow-sm">
     <p style="font-weight: bold">Materiais em {{ isset($disciplina->nome) ? ucfirst($disciplina->nome) : '' }}<p>
     <input class="form-control mb-3" id="pesquisa_atlas" type="search" id="form-autocomplete" placeholder="Pesquisar...">
     <div id="paginasMateriais" class="list-group p-0 text-left">

@@ -3,8 +3,8 @@
 @section('titulo', 'Materiais')
 @section('content')
 <div class="container">
-    <h2> Materiais</h2>
-    <div class="d-flex justify-content-around row">
+    <h2 class="fadeInDown" data-anime="150"> Materiais</h2>
+    <div class="d-flex justify-content-around row fadeInDown" data-anime="300">
 
         <div class="col-11 col-md-10 col-lg-8">
             <div class="card">

@@ -18,8 +18,8 @@ class PostagemController extends Controller
 
     public function __construct(Postagem $postagem, User $user)
     {
-        $this->middleware('auth', ['except' => ['siteIndexNoticia','siteVizualizarEvento',
-                                  'siteVizualizarNoticia','siteVizualizarEdital',
+        $this->middleware('auth', ['except' => ['siteIndexNoticia','sitevisualizarEvento',
+                                  'sitevisualizarNoticia','sitevisualizarEdital',
                                   'siteHome','siteIndexEvento','siteIndexEdital']]);
         $this->postagem = $postagem;
         $this->user = $user;
@@ -207,16 +207,16 @@ class PostagemController extends Controller
         return view('site.postagens.indexNoticia', compact('registros'));
     }
 
-    public function siteVizualizarEvento(Postagem $registro){
-        return view('site.postagens.vizualizarEvento', compact('registro'));
+    public function sitevisualizarEvento(Postagem $registro){
+        return view('site.postagens.visualizarEvento', compact('registro'));
     }
 
-    public function siteVizualizarNoticia(Postagem $registro){
-       return view('site.postagens.vizualizarNoticia', compact('registro'));
+    public function sitevisualizarNoticia(Postagem $registro){
+       return view('site.postagens.visualizarNoticia', compact('registro'));
     }
     
-    public function siteVizualizarEdital(Postagem $registro){
-        return view('site.postagens.vizualizarEdital', compact('registro'));
+    public function sitevisualizarEdital(Postagem $registro){
+        return view('site.postagens.visualizarEdital', compact('registro'));
     }
 
 }

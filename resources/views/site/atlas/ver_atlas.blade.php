@@ -10,15 +10,15 @@
 
     @endif
 
-    <div id="page" class="d-flex flex-column container col-lg-10">    
-        <h2>Atlas Interativo</h2>
+    <div id="page" class="d-flex flex-column container py-4 col-lg-10">    
+        <h2 class="fadeInDown" data-anime="150">Atlas Interativo</h2>
         
         @if (count($paginas) < 1)
             <p>Ops, essa área de conhecimento ainda não possui páginas</p>
         @else
 
             @foreach ($paginas as $pagina)
-                <div class="row justify-content-between">
+                <div class="row justify-content-between fadeInDown" data-anime="300">
                     <div class="col-md-8 col-12 text-left">
                         <h3 class="title">{{ $pagina->titulo }}</h3>
                         <p class="text">
@@ -30,7 +30,7 @@
                         <img class="img img-fluid" src="{{ asset($pagina->anexo) }}"> 
                     </div>
                 </div>
-                <div class="d-flex justify-content-md-center mt-auto pagination-container">
+                <div class="d-flex justify-content-md-center mt-auto pagination-container fadeInDown" data-anime="700">
                     {{ $paginas->links() }}
                 </div>
             @endforeach

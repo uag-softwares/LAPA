@@ -7,8 +7,8 @@
 
 @section('content')
     <div class="container">
-        <h2>Atlas Interativo</h2>
-        <div class="d-flex justify-content-around row">
+        <h2 class="fadeInDown" data-anime="150">Atlas Interativo</h2>
+        <div class="d-flex justify-content-around row fadeInDown" data-anime="300">
 
             @if ($numero_categorias < 1 || $numero_disciplinas < 1)
                 <p>Ops, ainda não temos nenhuma página no atlas</p>

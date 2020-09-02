@@ -18,6 +18,7 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">
         <link href="{{ asset('css/clndr.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/simple-anime.css') }}" rel="stylesheet">
         
         <!-- Bootstrap Datepicker -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.standalone.min.css">
@@ -28,6 +29,8 @@
         <!-- include summernote css -->
         <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
         
+        <script>document.documentElement.classList.add("js")</script>
+
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}"></script>
         <script src="{{ asset('js/pesquisa_atlas.js') }}"></script>
