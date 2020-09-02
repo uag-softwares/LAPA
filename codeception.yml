@@ -43,6 +43,8 @@ gherkin:
                 - AtlaSteps
             contato:
                 - ContatoSteps
+            postagem:
+                - PostagemSteps
 
 # additional paths
 paths:
