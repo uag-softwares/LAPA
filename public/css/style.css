@@ -44,7 +44,7 @@
 body {
   font-family: 'Open Sans', sans-serif;
   font-weight: var(--font-regular);
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -64,6 +64,15 @@ main .container {
 /* 2- Header e navegacao do site */
 nav.navbar {
   padding: 0;
+}
+
+.acessibilidade * {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.acessibilidade { 
+  background-color: var(--main-white);
 }
 
 /* Largura da header */
