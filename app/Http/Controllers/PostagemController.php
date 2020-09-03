@@ -207,16 +207,8 @@ class PostagemController extends Controller
         return view('site.postagens.indexNoticia', compact('registros'));
     }
 
-    public function sitevisualizarEvento(Postagem $registro){
-        return view('site.postagens.visualizarEvento', compact('registro'));
-    }
-
-    public function sitevisualizarNoticia(Postagem $registro){
-       return view('site.postagens.visualizarNoticia', compact('registro'));
-    }
-    
-    public function sitevisualizarEdital(Postagem $registro){
-        return view('site.postagens.visualizarEdital', compact('registro'));
+    public function siteVisualizarPostagem(Postagem $registro){
+        return view('site.postagens.visualizarPostagem', compact('registro'));
     }
 
 }
