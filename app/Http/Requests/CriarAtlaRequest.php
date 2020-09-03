@@ -27,7 +27,8 @@ class CriarAtlaRequest extends FormRequest
             'titulo' => 'required|min:5|string',
             'descricao' => 'required|min:10|string',
             'categoria_id' => 'required|integer|exists:categorias,id',
-            'anexo' => 'required|mimes:jpeg,jpg,png,gif|max:2048',
+            'tipo_anexo' => 'required',
+            //'anexo' => 'required|mimes:jpeg,jpg,png,gif|max:2048',
         ];
     }
 
