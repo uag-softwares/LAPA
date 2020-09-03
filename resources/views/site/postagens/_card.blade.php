@@ -9,11 +9,11 @@
     
     <div class="card-body">
         <h5>
-            @if(Request::is('site/eventos/index'))
+            @if($registro->tipo_postagem == 'evento')
                 <a href="{{ route('site.eventos.visualizar', $registro->slug) }}">
-            @elseif(Request::is('site/noticias/index'))
+            @elseif($registro->tipo_postagem == 'noticia')
                 <a href="{{ route('site.noticias.visualizar', $registro->slug) }}">
-            @elseif(Request::is('site/editais/index'))
+            @elseif($registro->tipo_postagem == 'edital')
                 <a href="{{ route('site.editais.visualizar', $registro->slug) }}">
             @endif
                 {{$registro->titulo}} 

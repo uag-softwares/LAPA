@@ -3,7 +3,7 @@
 @section('titulo', 'Edital')
 @section('content')
     <div class="container" >
-        <h2 class="fadeInDown" data-anime="150">Evento</h2>
+        <h2 class="fadeInDown" data-anime="150">Edital</h2>
 
         <div class="d-flex justify-content-around row text-left fadeInDown" data-anime="300">
             <div class="col-11 col-md-10 col-lg-8">
