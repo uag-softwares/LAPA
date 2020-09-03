@@ -1,3 +1,30 @@
+/* Sumario do documento por Vinicius Santos
+  1- Estilos gerais
+  2- Header e navegacao do site
+  3- Postagens: noticias, eventos e editais
+  4- Menu usuario logado
+  5- Home do site
+    5.1- Slide da home do site
+    5.2- Cards de postagens do site
+  6- Formularios do site
+  7- Botoes do site
+  8- Footer do site
+  9- Estilo de alertas
+  10- Estilos das tabelas do site
+  11- Estilo do editor de texto Summernote
+  12- Estilos do atlas
+    12.1- Zoom no atlas
+    12.2- Sidebar da esquerda de Atlas
+    12.3- Lista de atlas e materiais
+  13- Outros
+    13.1- Cards de usuarios do sobre
+    13.2- Pagina dos detalhes da visita
+    13.3- Links ativos do bootstrap
+  I- Animacoes keyframes
+  II- Mediaqueries do site
+*/
+
+/* 1- Estilos gerais  */
 :root {
   --main-green: #00ad50;
   --main-dark-green: #009444;
@@ -5,27 +32,296 @@
   --main-black: #212529;
   --main-white: #f8fafc;
   --main-light: #e8e8ee;
+  --font-light: 300;
+  --font-regular: 400;
+  --font-bold: 600;
+  --font-size-title: 2.375rem;
+  --font-size-subtitle: 1.375rem;
+  --font-size-text: 1.125rem;
+  --font-size-info: 0.9375rem
 }
 
-/* tamanho de fonte padrão dentro da classe container */
-div.container,
-header {
-  font-family: 'Noto Sans HK', sans-serif;
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: var(--font-regular);
+  font-size: 16px;
 }
 
-main div.container {
+h1, h2, h3, h4, h5, h6 {
+  font-weight: var(--font-regular);
+}
+
+ul {
+  padding: 0;
+}
+
+main .container {
+  text-align: center;
+  font-size: var(--font-size-text);
   padding: 1.5rem;
 }
 
-div.container {
-  text-align: center;
-  font-size: 22px;
+/* 2- Header e navegacao do site */
+nav.navbar {
+  padding: 0;
 }
 
-.pagination-container {
-  overflow: auto;
+/* Largura da header */
+header {
+  max-width: 1140px;
+  margin: 0 auto;
 }
 
+.navbar-custom {
+  color: var(--main-white);
+  background-color: var(--main-green);
+}
+
+a.btn:hover,
+button.btn:hover,
+input.btn:hover,
+.navbar-custom .nav-item.active .nav-link,
+.navbar-custom .nav-item:hover .nav-link,
+.nav-item.dropdown button:hover {
+  transition: background-color 300ms ease-in-out;
+  background-color: var(--main-dark-green);
+  color: var(--main-white);
+}
+
+/* Muda a cor e fonte dos links da navbar */
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text,
+.navbar-custom .navbar-nav .nav-link,
+.nav-item.dropdown button,
+.dropdown-menu a {
+  color: var(--main-white);
+  font-size: var(--font-size-subtitle);
+  font-style: normal;
+  font-weight: var(--font-bold);
+}
+
+/* Centraliza verticalmente os links da navbar */
+.nav-item {
+  align-self: center;
+}
+
+.nav-item.dropdown button:hover {
+  border-radius: 0;
+}
+
+/* Muda a cor do botao de expandir a navbar no celular */
+.navbar .fas {
+  color: var(--main-white);
+}
+
+
+/* Muda a cor e fonte dos links da dropdown de acesso */ 
+.dropdown-menu a {
+  color: var(--main-black);
+  font-weight: var(--font-regular);
+}
+
+.dropdown-menu.dropdown-menu-anime {
+  display: block;
+  transform: scaleY(1);
+}
+
+/* Mostrar menu dropdown com animacao */
+.js .dropdown-menu.dropdown-menu-anime {
+  position: absolute;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 100ms ease-in-out;
+}
+
+.js .dropdown-menu.dropdown-menu-anime * {
+  opacity: 0;
+  transition: opacity 500ms;
+}
+
+.js .dropdown-menu.dropdown-menu-anime.show {
+  transform: scaleY(1);
+}
+
+.js .dropdown-menu.dropdown-menu-anime.show * {
+  opacity: 1;
+}
+
+/* Mostrar a navbar se o javascript estiver desabilitado */
+.collapse:not(.show) {
+  display: block;
+}
+
+.js .collapse:not(.show) {
+  display: none;
+}
+
+/* 3- Postagens: noticias, eventos e editais */
+form,
+.postagem,
+.alert {
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.postagem {
+  padding: 1em;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.25rem;
+  text-align: left;
+}
+
+.postagem .img-fluid {
+  height: 400px;
+}
+
+.postagem h1 {
+  font-weight: var(--font-light);
+  margin-bottom: var(--font-size-subtitle);
+}
+
+.postagem p {
+  font-weight: var(--font-regular);
+  font-size: 1.125rem;
+  text-align: left;
+}
+
+.postagem .info {
+  font-size: var(--font-size-info);
+  font-style: italic;
+}
+
+.postagem .tag {
+  color: var(--main-white);
+  font-weight: var(--font-bold);
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.postagem .tag.edital {
+  background-color: blue;
+}
+
+.postagem .tag.noticia {
+  background-color: red;
+}
+
+.postagem .tag.evento {
+  background-color: var(--main-green);
+}
+/* Fim de 3- Postagens: noticias, eventos e editais */
+
+/* 4- Menu usuario logado */
+.card.manage{
+  cursor: pointer;
+  width: 12em;
+  margin: 0 0.5rem 0.5rem;
+  background-color: var(--main-white);
+}
+
+.card.manage:hover, 
+.card.manage:hover .card-header, 
+.card.manage:hover .card-footer {
+  background-color: var(--main-light);
+}
+
+.card.manage div.card-header span {
+  font-size: 1.5em;
+}
+
+.card.manage a.btn, button.btn {
+  font-size: var(--font-size-info);
+  font-weight: bold;
+}
+
+.card.manage div.card-header, .card div.card-footer {
+  background-color: var(--main-white);
+  border: 0;
+  padding: 0.5em 0;
+}
+
+.card div.card-footer.event {
+  background-color: var(--main-green);
+  color: var(--white);
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.card.manage div.card-body {
+  padding: 0;
+}
+
+a.clickable-card, a:hover.clickable-card {
+  color: var(--main-black);
+  text-decoration: none;
+}
+/* Fim de 4- Menu usuario logado */
+
+/* 5- Home do site */
+/* 5.1- Slide da home do site */
+.carousel-item {
+  position: relative;
+  height: 350px;
+}
+
+.carousel-item img {
+  position: absolute;
+}
+
+.carousel-item a.carousel-caption {
+  position: absolute;
+  right: 0%;
+  bottom: 0;
+  left: 0%;
+  padding: 2em;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: var(--main-white);
+  cursor: pointer;
+}
+
+.carousel-item a:hover.carousel-caption {
+  text-decoration: none;
+  background-color: rgba(0, 0, 0, 0.6);
+  transition: background-color 250ms ease-in-out;
+}
+
+.carousel-control-next span, .carousel-control-prev span{
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+/* Fim de 5.1- Slide da home do site */
+
+/* 5.2- Cards de postagens do site */
+.home.card {
+  font-size: 1rem;
+  text-align: left;
+  width: 20em;
+  margin: 1em;
+  align-self: flex-start;
+}
+
+.home.card div.card-header {
+  height: 10em;
+  overflow: hidden;
+  padding: 0;
+}
+
+.home.card div.card-body {
+  margin: 1em;
+  padding: 0;
+  overflow: hidden;
+}
+
+.home.card .card-footer {
+  border-top: 1px solid var(--main-light);
+  padding-left: 1em;
+  font-size: 0.75rem;
+}
+/* Fim de 5.2- Cards de postagens do site */
+/* Fim de 5- Home do site */
+
+/* 6- Formularios do site */
 .form-group {
   text-align: start;
 }
@@ -36,23 +332,6 @@ input[name='nome'] {
 
 input[name='nome']::placeholder {
   text-transform: initial;
-}
-
-/* Remover o espaçamento da navbar */
-nav.navbar {
-  padding: 0;
-}
-
-/* Muda a header */
-header {
-  max-width: 1140px;
-  margin: 0 auto;
-}
-
-/* Limitar largura dos formularios */
-form {
-  max-width: 760px;
-  margin: 0 auto;
 }
 
 .file-input {
@@ -117,98 +396,62 @@ input:disabled + label:hover::before {
   transition: opacity 350ms ease-in-out;
 }
 
-/* Barra de navegação do site */
-.navbar-custom {
-  color: var(--main-white);
-  background-color: var(--main-green);
-}
-
-a.btn:hover,
-button.btn:hover,
-input.btn:hover,
-.navbar-custom .nav-item.active .nav-link,
-.navbar-custom .nav-item:hover .nav-link,
-.nav-item.dropdown button:hover {
-  transition: background-color 300ms ease-in-out;
-  background-color: var(--main-dark-green);
-  color: var(--main-white);
-}
-
-/* change the brand and text color */
-.navbar-custom .navbar-brand,
-.navbar-custom .navbar-text {
-  color: var(--main-white);
-}
-
-/* Muda a cor e fonte dos links da navbar */
-.navbar-custom .navbar-nav .nav-link, .nav-item.dropdown button {
-  color: var(--main-white);
-  font-size: 22px;
-  font-style: normal;
-  font-weight: bold;
-}
-
-/* Muda a cor e fonte dos links da dropdown de acesso */ 
-.dropdown-menu a {
-  color: var(--main-black);
-  font-size: 22px;
-  font-style: normal;
-}
-
-.dropdown-menu.dropdown-menu-anime {
-  display: block;
-  transform: scaleY(1);
-}
-
-/* Mostrar menu dropdown para animar */
-.js .dropdown-menu.dropdown-menu-anime {
-  position: absolute;
-  transform: scaleY(0);
-  transform-origin: top;
-  transition: transform 100ms ease-in-out;
-}
-
-.js .dropdown-menu.dropdown-menu-anime * {
-  opacity: 0;
-  transition: opacity 500ms;
-}
-
-.js .dropdown-menu.dropdown-menu-anime.show {
-  transform: scaleY(1);
-}
-
-.js .dropdown-menu.dropdown-menu-anime.show * {
-  opacity: 1;
-}
-
-/* Mostrar a navbar se o javascript estiver desabilitado */
-.collapse:not(.show) {
-  display: block;
-}
-
-.js .collapse:not(.show) {
-  display: none;
-}
-
 /* Mostrar campos de hora quando nao ha javascript habilitado */
 .js .no-javascript {
   display: none;
 }
 
-/* Centraliza verticalmente os links da navbar */
-.nav-item {
-  align-self: center;
+/* Expandir campos de anexos */ 
+#radio-group-anexo {
+  position: relative;
+  z-index: 1;
 }
 
-/* Muda a cor do botao de expandir a navbar no celular */
-.navbar .fas {
-  color: var(--main-white);
+.form-group-anime {
+  height: auto;
 }
 
-/* Tamanho da fonte de todos os botoes */
+.input-anime {
+  opacity: 1;
+  display: block;
+}
 
+.js .form-group-anime {
+  height: 0;
+  transition: height 250ms ease-in-out;
+}
+
+.js .form-group-anime.show {
+  height: 150px;
+}
+
+.js .input-anime {
+  display: none;
+}
+
+.js .input-anime.show {
+  display: block;
+  animation: fadeInFromNone 500ms ease-in-out forwards;
+}
+
+/* Animação do seletor de evento */
+#dh {
+  display: block;
+  opacity: 1;
+}
+
+.js #dh {
+  animation: fadeOutToNoneHeight 250ms ease-in-out forwards;
+}
+
+.js #dh.show {
+  animation: fadeInFromNoneHeight 250ms ease-in-out forwards;
+}
+/* Fim de 6- Formularios do site */
+
+/* 7- Botoes do site */
 a.btn, button.btn, input.btn {
-  font-weight: bold;
+  font-weight: var(--font-bold);
   background-color: var(--main-green);
   color: var(--main-white);
 }
@@ -223,17 +466,13 @@ a.btn.btn-danger, button.btn.btn-danger, input.btn.btn-danger {
   background-color: #dc3545;
 }
 
-.nav-item.dropdown button:hover {
-  border-radius: 0;
-}
-
 a.btn.btn-danger:hover, button.btn.btn-danger:hover, input.btn.btn-danger:hover {
   background-color: #bd2a39;
 }
 
 .btn.btn-link {
   all: unset;
-  font-size: 22px;
+  font-size: var(--font-size-subtitle);
   background-color: var(--main-white);
   color: #007bff;
   padding: 0 0.5rem;
@@ -244,76 +483,109 @@ a.btn.btn-danger:hover, button.btn.btn-danger:hover, input.btn.btn-danger:hover 
   color: #0056b3;
   text-decoration: underline;
 }
+/* Fim de 7- Botoes do site */
 
-
-/* Pagina dos detalhes da visita */
-div.container div.visita-detalhes {
-  text-align: start;
-  border-radius: 10px;
+/* 8- Footer do site */
+footer {
+  padding-top: var(--font-size-subtitle);
+  background: var(--main-green);
 }
 
-div.container div.visita-msg {
-  padding: 1em;
-  text-align: start;
-  border: 1px solid var(--main-green);
-  border-radius: 10px;
-}
-
-/* cards da pagina logado */
-.card.manage{
-  cursor: pointer;
-  width: 10em;
-  margin: 0 0.5rem 0.5rem;
-  background-color: var(--main-white);
-}
-
-.card.manage:hover, 
-.card.manage:hover .card-header, 
-.card.manage:hover .card-footer {
-  background-color: var(--main-light);
-}
-
-.card.manage div.card-header span {
-  font-size: 1.5em;
-}
-
-.card.manage a.btn, button.btn {
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.card.manage div.card-header, .card div.card-footer {
-  background-color: var(--main-white);
-  border: 0;
-  padding: 0.5em 0;
-}
-
-.card div.card-footer.event {
-  background-color: var(--main-green);
-  color: var(--white);
-  font-weight: bold;
+footer p {
+  padding: 0 0 1em 0;
+  margin: 0;
   font-size: 1rem;
-}
-
-.card.manage div.card-body {
-  padding: 0;
-}
-
-a.clickable-card, a:hover.clickable-card {
-  color: var(--main-black);
+  color: var(--main-white);
   text-decoration: none;
-}
-/* Fim de cards da pagina logado */
-
-/* Atlas */
-
-ul {
-  padding: 0;
+  background-color: transparent;
 }
 
-/* Fim de Atlas */
+footer h5 {
+  margin: 0 0 0.75em 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--main-white);
+}
 
-/* Zoom no atlas */
+footer a,
+footer a:visited {
+  font-size: 1rem;
+  color: var(--main-white);
+  text-decoration: none;
+  background-color: transparent;
+  -webkit-text-decoration-skip: objects;
+}
+
+footer a:hover {
+  color: var(--main-white);
+}
+
+footer i {
+  font-size: 2rem;
+  padding: 0.5em 1em;
+}
+
+footer ul.quick-links li:hover{
+  text-decoration: underline;
+  color: var(--main-white);
+}
+
+footer ul.quick-links li a i{
+  margin-right: 5px;
+}
+
+footer ul.quick-links li:hover a i {
+  font-weight: 200;
+}
+
+footer .container .row div + div {
+  border-left: 1px solid var(--main-white);
+}
+
+footer .container > p {
+  text-align: center;
+}
+/* Fim de 8- Footer do site */
+
+/* 9- Estilo de alertas */
+.alert {
+  position: relative;
+  padding: 0.75rem 1.25rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.alert.alert-success {
+  border-color: var(--main-dark-green);
+}
+
+/* 10- Estilos das tabelas do site */
+.container .dataTables_length {
+  text-align: left;
+}
+
+.dataTables_filter .form-control-sm, .dataTables_length .custom-select-sm {
+  height: calc(1.5em + 1rem + 2px) !important;
+}
+
+thead tr th:first-child {
+  width: 200px;
+}
+/* Fim de 10- Estilos das tabelas do site */
+
+/* 11- Estilo do editor de texto Summernote */
+.note-editor .btn {
+  background-color: var(--main-white);
+  color: var(--main-black);
+}
+/* Fim de 11- Estilo do editor de texto Summernote */
+
+/* 12- Estilos do atlas */
+/* 12.1- Zoom no atlas */
 #overlay{
   position: fixed;
   top:0;
@@ -340,29 +612,9 @@ ul {
   right:20px;
   font-size: 2em;
 }
-/* Fim de Zoom no atlas */
+/* Fim de 12.1- Zoom no atlas */
 
-/* Links ativos do bootstrap */
-
-a.page-link {
-  color: #495057;
-}
-
-a:hover.page-link {
-  color: #495057;
-}
-
-.list-group .list-group-item.active, li.page-item.active .page-link, span.badge-primary {
-  color: var(--main-white);
-  font-weight: bold;
-  background-color: var(--main-green);
-  border: 1px solid var(--main-green);
-}
-
-/* Fim de links ativos do bootstrap */
-
-
-/* Sidebar da esquerda de Atlas */
+/* 12.2- Sidebar da esquerda de Atlas */
 #paginasAtlas, #paginasMateriais {
   padding: 0 0 0 1.5em;
 }
@@ -404,9 +656,9 @@ a:hover.page-link {
   transform: translate3d(270px, 0, 0);
 }
 
-/* Sidebar da esquerda de Atlas */
+/* Fim de 12.2- Sidebar da esquerda de Atlas */
 
-/* inicio de lista de materiais */
+/* 12.3- Lista de atlas e materiais */
 .material-group.list-group-item.list-group-item-action {
   display: flex;
   padding: 0;
@@ -445,251 +697,53 @@ a:hover.page-link {
 .disciplina-atla-item {
   width: 100%;
 }
+/* Fim de 12.3- Lista de atlas e materiais */
+/* Fim de 12- Estilos do atlas */
 
-
-/* fim de lista de materiais */
-
-
-/* carrosel de postagens */
-
-.carousel-item {
-  position: relative;
-  height: 350px;
-}
-
-.carousel-item img {
-  position: absolute;
-}
-
-.carousel-item a.carousel-caption {
-  position: absolute;
-  right: 0%;
-  bottom: 0;
-  left: 0%;
-  padding: 2em;
-  background-color: rgba(0, 0, 0, 0.8);
-  color: var(--main-white);
-  cursor: pointer;
-}
-
-.carousel-item a:hover.carousel-caption {
-  text-decoration: none;
-  background-color: rgba(0, 0, 0, 0.6);
-  transition: background-color 250ms ease-in-out;
-}
-
-.carousel-control-next span, .carousel-control-prev span{
-  padding: 1rem;
-  background-color: rgba(0, 0, 0, 0.8);
-}
-/* fim de carrosel de postagens */
-
-/* pagina de postagem */
-.text {
-  text-align: left;
-}
-
-.text-footer {
-  font-size: 1rem;
-  text-align: left;
-}
-
-#postagens .img {
-  position: relative;
-  height: 150px;
-  width: 200px;
-  overflow: hidden;
-}
-
-#postagens .img-fluid {
-  position: absolute;
-  width: 100%;
-  left: 0;
-}
-#usuarios.img {
-  position: relative;
-  height: 200px;
-  width: 200px;
-  overflow: hidden;
-}
-
-#usuarios .img-fluid {
+/* 13- Outros */
+/* 13.1- Cards de usuarios do sobre */
+.usuarios .img-fluid {
   position: relative;
   left: 0;
 }
 
-/* Footer */
-section {
-  padding: 30px 0 0 0;
+.pagination-container {
+  overflow: auto;
+}
+/* Fim de 13.1- Cards de usuarios do sobre */
+
+/* 13.2- Pagina dos detalhes da visita */
+div.container div.visita-detalhes {
+  text-align: start;
+  border-radius: 10px;
 }
 
-section .section-title {
-  text-align: center;
-  margin-bottom: 50px;
-  text-transform: uppercase;
+div.container div.visita-msg {
+  padding: 1em;
+  text-align: start;
+  border: 1px solid var(--main-green);
+  border-radius: 10px;
+}
+/* Fim de 13.2- Pagina de detalhes da visita */
+
+/* 13.3- Links ativos do bootstrap */
+a.page-link {
+  color: #495057;
 }
 
-#footer {
-  background: var(--main-green);
+a:hover.page-link {
+  color: #495057;
 }
 
-#footer p{
-  padding: 0 0 1em 0;
-  margin: 0;
-  font-size: 1rem;
+.list-group .list-group-item.active, li.page-item.active .page-link, span.badge-primary {
   color: var(--main-white);
-  text-decoration: none;
-  background-color: transparent;
-}
-
-#footer h5 {
-  margin: 0 0 0.75em 0;
-  font-size: 1.5rem;
   font-weight: bold;
-  color: var(--main-white);
+  background-color: var(--main-green);
+  border: 1px solid var(--main-green);
 }
+/* Fim de 13.3- Links ativos do bootstrap */
 
-#footer a {
-  font-size: 1rem;
-  color: var(--main-white);
-  text-decoration: none;
-  background-color: transparent;
-  -webkit-text-decoration-skip: objects;
-}
-
-#footer i {
-  font-size: 2rem;
-  padding: 0.5em 1em;
-}
-
-#footer ul.quick-links li:hover{
-  text-decoration: underline;
-  color: var(--main-white);
-}
-
-#footer ul.quick-links li a i{
-  margin-right: 5px;
-}
-
-#footer ul.quick-links li:hover a i {
-  font-weight: 200;
-}
-
-#footer .container .row div + div {
-  border-left: 1px solid var(--main-white);
-}
-
-/* cards da home */
-
-.home.card {
-  font-size: 1rem;
-  text-align: left;
-  width: 20em;
-  margin: 1em;
-  align-self: flex-start;
-}
-
-.home.card div.card-header {
-  height: 10em;
-  overflow: hidden;
-  padding: 0;
-}
-
-.home.card div.card-body {
-  margin: 1em;
-  padding: 0;
-  overflow: hidden;
-}
-
-.home.card .card-footer {
-  border-top: 1px solid var(--main-light);
-  padding-left: 1em;
-  font-size: 0.75rem;
-}
-
-
-/* Alerts */
-
-.alert {
-  position: relative;
-  padding: 0.75rem 1.25rem;
-  border: 1px solid transparent;
-  border-radius: 0.25rem;
-  max-width: 760px;
-  margin-top: 0;
-  margin-bottom: 1rem;
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.alert.alert-success {
-  border-color: var(--main-dark-green);
-}
-
-/* datatables styles */
-.container .dataTables_length {
-  text-align: left;
-}
-
-.dataTables_filter .form-control-sm, .dataTables_length .custom-select-sm {
-  height: calc(1.5em + 1rem + 2px) !important;
-}
-
-/* Summernote background dos botoes */
-.note-editor .btn {
-  background-color: var(--main-white);
-  color: var(--main-black);
-}
-
-/* Expandir campos de anexos */ 
-#radio-group-anexo {
-  position: relative;
-  z-index: 1;
-}
-
-.form-group-anime {
-  height: auto;
-}
-
-.input-anime {
-  opacity: 1;
-  display: block;
-}
-
-.js .form-group-anime {
-  height: 0;
-  transition: height 250ms ease-in-out;
-}
-
-.js .form-group-anime.show {
-  height: 200px;
-}
-
-.js .input-anime {
-  display: none;
-}
-
-.js .input-anime.show {
-  display: block;
-  animation: fadeInFromNone 500ms ease-in-out;
-}
-
-/* Animação do seletor de evento */
-#dh {
-  display: block;
-  opacity: 1;
-}
-
-.js #dh {
-  animation: fadeOutToNoneHeight 250ms ease-in-out forwards;
-}
-
-.js #dh.show {
-  animation: fadeInFromNoneHeight 250ms ease-in-out forwards;
-}
-
+/* I- Animacoes keyframes */
 @keyframes fadeInFromNone {
   0% {
     display: none;
@@ -747,7 +801,9 @@ section .section-title {
     height: 0;
   }
 }
+/* Fim de I- Animacoes keyframes */
 
+/* II- Mediaqueries */
 @media only screen and (max-width: 767px) {
 
   #postagens .img {
@@ -769,7 +825,8 @@ section .section-title {
 
 @media only screen and (max-width: 575px) {
   
-  #footer .container .row div + div {
+  footer .container .row div + div {
     border-left: none;
   }
 }
+/* Fim de II- Mediaqueries */

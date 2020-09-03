@@ -31,9 +31,9 @@ Route::get('/site/eventos/index', ['as' => 'site.postagens.indexEvento', 'uses' 
 Route::get('/site/noticias/index', ['as' => 'site.postagens.indexNoticia', 'uses' => 'PostagemController@siteIndexNoticia'], function () {});
 Route::get('/site/editais/index', ['as' => 'site.postagens.indexEdital', 'uses' => 'PostagemController@siteIndexEdital'], function () {});
 
-Route::get('/site/eventos/visualizar/{registro:slug}', ['as' => 'site.eventos.visualizar', 'uses' => 'PostagemController@sitevisualizarEvento'], function (App\Postagem $registro) {return $registro;});
-Route::get('/site/editais/visualizar/{registro:slug}', ['as' => 'site.editais.visualizar', 'uses' => 'PostagemController@sitevisualizarEdital'], function (App\Postagem $registro) {return $registro;});
-Route::get('/site/noticias/visualizar/{registro:slug}', ['as' => 'site.noticias.visualizar', 'uses' => 'PostagemController@sitevisualizarNoticia'], function (App\Postagem $registro) {return $registro;});
+Route::get('/site/eventos/visualizar/{registro:slug}', ['as' => 'site.eventos.visualizar', 'uses' => 'PostagemController@sitevisualizarPostagem'], function (App\Postagem $registro) {return $registro;});
+Route::get('/site/editais/visualizar/{registro:slug}', ['as' => 'site.editais.visualizar', 'uses' => 'PostagemController@sitevisualizarPostagem'], function (App\Postagem $registro) {return $registro;});
+Route::get('/site/noticias/visualizar/{registro:slug}', ['as' => 'site.noticias.visualizar', 'uses' => 'PostagemController@sitevisualizarPostagem'], function (App\Postagem $registro) {return $registro;});
 
 Route::get('/site/contato/index', ['as' => 'site.contato.index', 'uses' => 'Auth\RegisterController@siteIndex'], function () {});
 Route::get('/site/contato/visualizar/{registro:slug}', ['as' => 'site.contato.visualizar', 'uses' => 'Auth\RegisterController@siteRegistervisualizar'], function (App\User $registro) {return $registro;});

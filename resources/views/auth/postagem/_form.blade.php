@@ -78,7 +78,7 @@
         </span>
     @enderror
 </div>
-<div class="form-group form-group-anime">
+<div class="form-group form-group-anime {{ isset($registro) ? 'show' : '' }}">
     <label id="upload" class="file-input w-100 input-anime {{ isset($registro) ? ($registro->tipo_anexo == 'upload' ? 'show' : '') : '' }}" for="anexo">
         <div class="d-flex flex-column text-center border rounded bg-white">
             <div class="file-header">
