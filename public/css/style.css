@@ -261,6 +261,7 @@ a.clickable-card, a:hover.clickable-card {
 /* Fim de 4- Menu usuario logado */
 
 /* 5- Home do site */
+
 /* 5.1- Slide da home do site */
 .carousel-item {
   position: relative;
@@ -292,6 +293,7 @@ a.clickable-card, a:hover.clickable-card {
   padding: 1rem;
   background-color: rgba(0, 0, 0, 0.8);
 }
+
 /* Fim de 5.1- Slide da home do site */
 
 /* 5.2- Cards de postagens do site */
