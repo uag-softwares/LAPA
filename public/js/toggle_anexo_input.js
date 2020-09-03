@@ -1,7 +1,7 @@
 var radioGroupAnexo = document.getElementById("radio-group-anexo").children;
 
 for( var i = 0, length = radioGroupAnexo.length; i < length; i++) {
-    radioGroupAnexo[parseInt(i)].addEventListener("change", function() {
+    radioGroupAnexo[parseInt(i, 10)].addEventListener("change", function() {
         if(this.checked) {
             document.querySelector(".form-group-anime").classList.add("show");
             if(this.value === "link_drive") {
