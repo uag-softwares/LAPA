@@ -103,7 +103,7 @@ input:disabled + label::before {
   position: absolute;
   top: -30px;
   width: 350px;
-  background-color: #ffffff;
+  background-color: var(--main-white);
   color: var(--main-black);
   text-align: center;
   border: 1px solid rgba(0, 0, 0, 0.2);
@@ -130,6 +130,8 @@ input.btn:hover,
 .navbar-custom .nav-item:hover .nav-link,
 .nav-item.dropdown button:hover {
   transition: background-color 300ms ease-in-out;
+  background-color: var(--main-dark-green);
+  color: var(--main-white);
 }
 
 /* change the brand and text color */
@@ -188,7 +190,7 @@ input.btn:hover,
   display: none;
 }
 
-/*mostrar campos de hora quando nao ha javascript habilitado */
+/* Mostrar campos de hora quando nao ha javascript habilitado */
 .js .no-javascript {
   display: none;
 }
@@ -219,13 +221,6 @@ a.btn.btn-outline, button.btn.btn-outline, input.btn.btn-outline {
 
 a.btn.btn-danger, button.btn.btn-danger, input.btn.btn-danger {
   background-color: #dc3545;
-}
-
-a.btn:hover, button.btn:hover, input.btn:hover, .navbar-custom .nav-item.active .nav-link,
-.navbar-custom .nav-item:hover .nav-link, 
-.nav-item.dropdown button:hover {
-  background-color: var(--main-dark-green);
-  color: var(--main-white);
 }
 
 .nav-item.dropdown button:hover {
@@ -316,9 +311,6 @@ ul {
   padding: 0;
 }
 
-#leftSidebar {
-  overflow: auto;
-}
 /* Fim de Atlas */
 
 /* Zoom no atlas */
@@ -382,6 +374,7 @@ a:hover.page-link {
 }
 
 #leftSidebar {
+  overflow: auto;
   position: absolute;
   height: 100%;
   width: 270px;
@@ -699,18 +692,18 @@ section .section-title {
 
 @keyframes fadeInFromNone {
   0% {
-      display: none;
-      opacity: 0;
+    display: none;
+    opacity: 0;
   }
 
   25% {
-      display: block;
-      opacity: 0;
+    display: block;
+    opacity: 0;
   }
 
   100% {
-      display: block;
-      opacity: 1;
+    display: block;
+    opacity: 1;
   }
 }
 
@@ -728,7 +721,7 @@ section .section-title {
   }
 
   100% {
-    display: block ;
+    display: block;
     opacity: 1;
     height: 200px;
   }
@@ -749,7 +742,7 @@ section .section-title {
   }
 
   100% {
-    display: none !important;
+    display: none;
     opacity: 0;
     height: 0;
   }
