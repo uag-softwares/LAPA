@@ -38,7 +38,7 @@
   --font-size-title: 2.375rem;
   --font-size-subtitle: 1.375rem;
   --font-size-text: 1.125rem;
-  --font-size-info: 0.9375rem
+  --font-size-info: 0.9375rem;
 }
 
 body {
@@ -210,6 +210,7 @@ form,
 .postagem .tag.evento {
   background-color: var(--main-green);
 }
+
 /* Fim de 3- Postagens: noticias, eventos e editais */
 
 /* 4- Menu usuario logado */
@@ -256,6 +257,7 @@ a.clickable-card, a:hover.clickable-card {
   color: var(--main-black);
   text-decoration: none;
 }
+
 /* Fim de 4- Menu usuario logado */
 
 /* 5- Home do site */
@@ -318,7 +320,9 @@ a.clickable-card, a:hover.clickable-card {
   padding-left: 1em;
   font-size: 0.75rem;
 }
+
 /* Fim de 5.2- Cards de postagens do site */
+
 /* Fim de 5- Home do site */
 
 /* 6- Formularios do site */
@@ -447,6 +451,7 @@ input:disabled + label:hover::before {
 .js #dh.show {
   animation: fadeInFromNoneHeight 250ms ease-in-out forwards;
 }
+
 /* Fim de 6- Formularios do site */
 
 /* 7- Botoes do site */
@@ -483,6 +488,7 @@ a.btn.btn-danger:hover, button.btn.btn-danger:hover, input.btn.btn-danger:hover 
   color: #0056b3;
   text-decoration: underline;
 }
+
 /* Fim de 7- Botoes do site */
 
 /* 8- Footer do site */
@@ -545,6 +551,7 @@ footer .container .row div + div {
 footer .container > p {
   text-align: center;
 }
+
 /* Fim de 8- Footer do site */
 
 /* 9- Estilo de alertas */
@@ -563,6 +570,8 @@ footer .container > p {
   border-color: var(--main-dark-green);
 }
 
+/* Fim de 9- Estilos de alertas */
+
 /* 10- Estilos das tabelas do site */
 .container .dataTables_length {
   text-align: left;
@@ -575,6 +584,7 @@ footer .container > p {
 thead tr th:first-child {
   width: 200px;
 }
+
 /* Fim de 10- Estilos das tabelas do site */
 
 /* 11- Estilo do editor de texto Summernote */
@@ -582,9 +592,11 @@ thead tr th:first-child {
   background-color: var(--main-white);
   color: var(--main-black);
 }
+
 /* Fim de 11- Estilo do editor de texto Summernote */
 
 /* 12- Estilos do atlas */
+
 /* 12.1- Zoom no atlas */
 #overlay{
   position: fixed;
@@ -612,6 +624,7 @@ thead tr th:first-child {
   right:20px;
   font-size: 2em;
 }
+
 /* Fim de 12.1- Zoom no atlas */
 
 /* 12.2- Sidebar da esquerda de Atlas */
@@ -697,10 +710,13 @@ thead tr th:first-child {
 .disciplina-atla-item {
   width: 100%;
 }
+
 /* Fim de 12.3- Lista de atlas e materiais */
+
 /* Fim de 12- Estilos do atlas */
 
 /* 13- Outros */
+
 /* 13.1- Cards de usuarios do sobre */
 .usuarios .img-fluid {
   position: relative;
@@ -710,6 +726,7 @@ thead tr th:first-child {
 .pagination-container {
   overflow: auto;
 }
+
 /* Fim de 13.1- Cards de usuarios do sobre */
 
 /* 13.2- Pagina dos detalhes da visita */
@@ -724,6 +741,7 @@ div.container div.visita-msg {
   border: 1px solid var(--main-green);
   border-radius: 10px;
 }
+
 /* Fim de 13.2- Pagina de detalhes da visita */
 
 /* 13.3- Links ativos do bootstrap */
@@ -741,6 +759,7 @@ a:hover.page-link {
   background-color: var(--main-green);
   border: 1px solid var(--main-green);
 }
+
 /* Fim de 13.3- Links ativos do bootstrap */
 
 /* I- Animacoes keyframes */
@@ -801,6 +820,7 @@ a:hover.page-link {
     height: 0;
   }
 }
+
 /* Fim de I- Animacoes keyframes */
 
 /* II- Mediaqueries */
@@ -829,4 +849,5 @@ a:hover.page-link {
     border-left: none;
   }
 }
+
 /* Fim de II- Mediaqueries */
