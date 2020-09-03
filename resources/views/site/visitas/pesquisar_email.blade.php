@@ -2,8 +2,8 @@
 
 @section('titulo', 'Agendar visita')
 @section('content')
-        <div class="container col-11 col-md-10 col-lg-10 p-0">
-            <h2>Agendamento de visitas</h2>
+        <div class="container col-11 col-md-10 col-lg-10">
+            <h2 class="fadeInDown" data-anime="150">Agendamento de visitas</h2>
             @if(Session::has('success'))
                 <div class="alert alert-success alert-dismissible">
                     {!! Session::get('success') !!}
@@ -13,7 +13,7 @@
                 </div>
             @endif
 
-            <div class="d-flex flex-wrap-reverse">
+            <div class="d-flex flex-wrap-reverse fadeInDown" data-anime="300">
                 <form id="form-busca" action="{{ route('site.visita.buscar.registro') }}" method="GET" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="form-group">

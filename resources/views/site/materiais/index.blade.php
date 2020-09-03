@@ -3,8 +3,8 @@
 @section('titulo', 'Materiais')
 @section('content')
 <div class="container">
-    <h2> Materiais</h2>
-    <div class="d-flex justify-content-around row">
+    <h2 class="fadeInDown" data-anime="150"> Materiais</h2>
+    <div class="d-flex justify-content-around row fadeInDown" data-anime="300">
 
         <div class="col-11 col-md-10 col-lg-8">
             <div class="card">
@@ -20,12 +20,12 @@
                     
                     @foreach ($disciplinas as $disciplina)
                         <div id="disciplinas" class="material-group list-group-item list-group-item-action">
-                            <a class="item material-item" href="{{ route('site.materiais.disciplina', $disciplina->slug) }}">
+                            <a class="item material-item mr-auto" href="{{ route('site.materiais.disciplina', $disciplina->slug) }}">
                                 {{ ucfirst($disciplina->nome) }}
                             </a>
                             
                             @if(isset($disciplina->user))
-                                <a class="item material-item" href="{{ route('site.materiais.disciplina', $disciplina->slug) }}">
+                                <a class="item material-item ml-auto" href="{{ route('site.materiais.disciplina', $disciplina->slug) }}">
                                     {{ $disciplina->user->name ?? '' }}
                                 </a>
                             @endif

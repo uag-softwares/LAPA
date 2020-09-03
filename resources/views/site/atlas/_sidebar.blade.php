@@ -4,7 +4,7 @@
     </a>
 </div>
 
-<div id="leftSidebar" class="col-lg-2 border-right pl-4 d-none d-lg-block shadow-sm">
+<div id="leftSidebar" class="col-lg-2 border-right p-4">
     <p style="font-weight: bold;">
         Páginas em {{ $categoria->nome ?? '' }}
     </p>

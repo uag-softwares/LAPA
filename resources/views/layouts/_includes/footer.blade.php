@@ -20,6 +20,12 @@
 <!-- include summernote-PT-Br -->
 <script src="{{ asset('js/summernote/lang/summernote-pt-BR.js') }}"></script>
 
+<!-- include simple-anime library -->
+<script src="{{ asset('js/simple-anime.js') }}"></script>
+
+<!-- app scripts -->
+<script src="{{ asset('js/animation_config.js') }}"></script>
+
 
 <!-- Footer -->
 	<section id="footer">

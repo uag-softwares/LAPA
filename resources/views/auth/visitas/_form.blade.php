@@ -60,6 +60,7 @@
     <div class="form-group mr-5 w-100">
         <label for="hora_inicial">Hora de início*</label>
         <select disabled name="hora_inicial" id="hora_inicial" class="custom-select custom-select-lg {{ $errors->any() ? 'is-invalid' : '' }}"></select>
+        <input type="time" name="hora_inicial" class="no-javascript"> <!-- Se não houver js habilitado usar esse campo -->
         @error('hora_inicial')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -75,13 +76,15 @@
     <div class="form-group w-100">
         <label for="hora_final">Hora de fim*</label>
         <select disabled name="hora_final" id="hora_final" class="custom-select custom-select-lg {{ $errors->any() ? 'is-invalid' : '' }}"></select>
+        <input type="time" name="hora_final" class="no-javascript"> <!-- Se não houver js habilitado usar esse campo -->
         @error('hora_final')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
         @enderror
-    </div>
+    </div>    
 </div>
+<p class="no-javascript">O Javascript não está habilitado no seu navegador, a data e hora pode não estar disponível!</p>
 
 <div class="form-group">
     <label for="descricao">Descrição*</label>

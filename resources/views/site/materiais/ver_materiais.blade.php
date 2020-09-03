@@ -11,14 +11,14 @@
     @endif
 
     <div id="page" class="container col-lg-9">    
-        <h2>Material</h2>
+        <h2 class="fadeInDown" data-anime="150">Material</h2>
 
         @if (count($paginas) < 1)
             <p>Ops, esse material ainda não possui páginas</p>
         @else
 
             @foreach ($paginas as $pagina)
-                <div class="row justify-content-center">
+                <div class="row justify-content-center fadeInDown" data-anime="300">
                     <div class="col-12 col-md-10 col-lg-9 text-left mb-4">
                         <h3 class="title">{{ $pagina->titulo }}</h3>
                         <p class="text">

@@ -62,7 +62,7 @@ class RegisterController extends Controller
     {
        $this->middleware('auth', ['except' => [
 
-            'register','showRegistrationForm','siteIndex','siteRegistervizualizar', 'buscarUsuarioVisita','vizualizarTermosPrivacidade']]);
+            'register','showRegistrationForm','siteIndex','siteRegistervisualizar', 'buscarUsuarioVisita','visualizarTermosPrivacidade']]);
        $this->middleware('guest', ['only' => [
             'register',
             'showRegistrationForm'
@@ -240,8 +240,8 @@ class RegisterController extends Controller
         return view('site.contato.index', compact('registros', 'contato'));
     }
 
-    public function siteRegistervizualizar(User $registro){
-        return view('site.contato.vizualizar', compact('registro'));
+    public function siteRegistervisualizar(User $registro){
+        return view('site.contato.visualizar', compact('registro'));
     }
 
     public function buscarUsuarioVisita(EmailVisitaRequest $request)
@@ -260,7 +260,7 @@ class RegisterController extends Controller
         
 	    return view('site.visitas.adicionar', compact('userExiste', 'email', 'horas', 'visitas'));
     }
-    public function vizualizarTermosPrivacidade (){
+    public function visualizarTermosPrivacidade (){
     	return view('auth.privacidade_termos');
     }
 }

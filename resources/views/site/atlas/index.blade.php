@@ -7,8 +7,8 @@
 
 @section('content')
     <div class="container">
-        <h2>Atlas Interativo</h2>
-        <div class="d-flex justify-content-around row">
+        <h2 class="fadeInDown" data-anime="150">Atlas Interativo</h2>
+        <div class="d-flex justify-content-around row fadeInDown" data-anime="300">
 
             @if ($numero_categorias < 1 || $numero_disciplinas < 1)
                 <p>Ops, ainda não temos nenhuma página no atlas</p>
@@ -22,20 +22,20 @@
                         <div id="categorias" class="list-group">
                             
                             <div class="material-group header list-group-item list-group-item-action disabled">
-                                <span>Área de conhecimento</span>
-                                <span>Assunto</span>
+                                <p>Área de conhecimento</p>
+                                <p>Assunto</p>
                             </div>
 
                             @for ($i = 0; $i < ($numero_categorias > $numero_disciplinas ? $numero_categorias : $numero_disciplinas); $i++)
                                 <div class="material-group list-group-item list-group-item-action">
 
                                     @if ($numero_categorias > $i && count($categorias[$i]->atla) >= 1)
-                                        <a class="item" href="{{ route('site.atlas.categoria', $categorias[$i]->slug) }}">
+                                        <a class="item mr-auto" href="{{ route('site.atlas.categoria', $categorias[$i]->slug) }}">
                                             {{ ucfirst($categorias[$i]->nome) }}
                                         </a>
                                     @endif
                                     @if ($numero_disciplinas > $i && count($disciplinas[$i]->categoria) >= 1)
-                                        <a class="item" href="{{ route('site.atlas.disciplina', $disciplinas[$i]->slug) }}">
+                                        <a class="item ml-auto" href="{{ route('site.atlas.disciplina', $disciplinas[$i]->slug) }}">
                                             {{ ucfirst($disciplinas[$i]->nome) }}
                                         </a>
                                     @endif

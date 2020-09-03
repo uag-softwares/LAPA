@@ -1,3 +1,4 @@
+@postagem
 Feature: postagem
   In order to gerenciar o sistema do LAPA
   As a user
@@ -10,7 +11,8 @@ Feature: postagem
     When Eu preencho o campo titulo com "Visita ao LAPA"
     And Eu preencho o campo descricao com "Recebemos alunos da escola EREMG"
     And Eu seleciono o campo tipo da postagem "noticia"
-    And Eu clico em Escolher arquivo e escolho "anexo.png"
+    And Eu seleciono o campo escolher origem do anexo link do drive
+    And Eu preencho o campo do link do arquivo com "https://drive.google.com/file/d/1eJt5xYMq3chZL92_vbHSDq5VmMO22V80/view?usp=sharing"
     And Eu clico em Publicar agora
     Then Eu vejo que a postagem com titulo "Visita ao LAPA" foi salva com sucesso
 
@@ -20,7 +22,8 @@ Feature: postagem
     And Eu clico em Editar a postagem com titulo "Visita ao LAPA"
     When Eu edito o titulo para "Entrega de peças ao acervo"
     And Eu edito a descricao para "Chegaram novas peças no nosso acervo"
-    And Eu clico em Escolher arquivo e escolho "anexo2.png"
+    And Eu seleciono o campo escolher origem do anexo link da web
+    And Eu preencho o campo do link do arquivo com "https://drive.google.com/file/d/1eJt5xYMq3chZL92_vbHSDq5VmMO22V80/view?usp=sharing"
     And Eu clico em Publicar agora
     Then Eu vejo que a postagem com titulo "Entrega de peças ao acervo" foi salva com sucesso
 
@@ -47,7 +50,8 @@ Scenario: criar postagem com tamanho do titulo invalido
     When Eu preencho o campo titulo com "aa"
     And Eu preencho o campo descricao com "Recebemos alunos da escola EREMG"
     And Eu seleciono o campo tipo da postagem "noticia"
-    And Eu clico em Escolher arquivo e escolho "anexo.png"
+    And Eu seleciono o campo escolher origem do anexo link do drive
+    And Eu preencho o campo do link do arquivo com "https://drive.google.com/file/d/1eJt5xYMq3chZL92_vbHSDq5VmMO22V80/view?usp=sharing"
     And Eu clico em Publicar agora
     Then Eu vejo a mensagem de erro "O campo titulo deve conter no mínimo 5 caracteres."
 
@@ -58,12 +62,14 @@ Scenario: criar postagem com tamanho da descricao invalida
     When Eu preencho o campo titulo com "Visita ao LAPA"
     And Eu preencho o campo descricao com "hwh"
     And Eu seleciono o campo tipo da postagem "noticia"
-    And Eu clico em Escolher arquivo e escolho "anexo.png"
+    And Eu seleciono o campo escolher origem do anexo link do drive
+    And Eu preencho o campo do link do arquivo com "https://drive.google.com/file/d/1eJt5xYMq3chZL92_vbHSDq5VmMO22V80/view?usp=sharing"
     And Eu clico em Publicar agora
     Then Eu vejo a mensagem de erro "O campo descricao deve conter no mínimo 10 caracteres."
 
 Scenario: deletar uma postagem com sucesso
     Given Eu estou logado como "Marcia" com email "Marcia@admin.com" e senha "12345678"
+    And A postagem "Entrega de peças ao acerto" ja exista
     And Eu estou na pagina de postagens
     And Eu clico em Deletar a postagem com titulo "Entrega de peças ao acervo"
     Then Eu nao vejo a postagem com titulo "Entrega de peças ao acervo"
@@ -74,7 +80,8 @@ Scenario: criar uma postagem valida noticia default sem selecionar o tipo
     Then Eu abro a pagina de criar postagem
     When Eu preencho o campo titulo com "visita a ufape"
     And Eu preencho o campo descricao com "Recebemos alunos da escola EREMG"
-    And Eu clico em Escolher arquivo e escolho "anexo.png"
+    And Eu seleciono o campo escolher origem do anexo link do drive
+    And Eu preencho o campo do link do arquivo com "https://drive.google.com/file/d/1eJt5xYMq3chZL92_vbHSDq5VmMO22V80/view?usp=sharing"
     And Eu clico em Publicar agora
     Then Eu vejo que a postagem com titulo "visita a ufape" foi salva com sucesso
 
@@ -85,64 +92,64 @@ Scenario: criar uma postagem valida do tipo evento
     When Eu preencho o campo titulo com "evento 2050"
     And Eu preencho o campo descricao com "Recebemos alunos da escola EREMG"
     And Eu seleciono o campo tipo da postagem "evento"
-    And Eu clico em Escolher arquivo e escolho "anexo.png"
     And Eu preencho o campo data com "2050-06-26"
     And Eu preencho o campo hora com "14:00"
-    And Eu clico em Escolher arquivo e escolho "anexo.png"
+    And Eu seleciono o campo escolher origem do anexo link da web
+    And Eu preencho o campo do link do arquivo com "https://drive.google.com/file/d/1eJt5xYMq3chZL92_vbHSDq5VmMO22V80/view?usp=sharing"
     And Eu clico em Publicar agora
     Then Eu vejo que a postagem com titulo "evento 2050" foi salva com sucesso
 
-Scenario: criar uma postagem  do tipo evento com formato de hora invalida
+Scenario: criar uma postagem do tipo evento com formato de hora invalida
     Given Eu estou logado como "Luz" com email "luz@admin.com" e senha "12345678"
     And Eu estou na pagina de postagens
     Then Eu abro a pagina de criar postagem
     When Eu preencho o campo titulo com "evento 2050"
     And Eu preencho o campo descricao com "Recebemos alunos da escola EREMG"
     And Eu seleciono o campo tipo da postagem "evento"
-    And Eu clico em Escolher arquivo e escolho "anexo.png"
     And Eu preencho o campo data com "2050-06-26"
     And Eu preencho o campo hora com "02:01:00"
-    And Eu clico em Escolher arquivo e escolho "anexo.png"
+    And Eu seleciono o campo escolher origem do anexo link da web
+    And Eu preencho o campo do link do arquivo com "https://drive.google.com/file/d/1eJt5xYMq3chZL92_vbHSDq5VmMO22V80/view?usp=sharing"
     And Eu clico em Publicar agora
     Then Eu vejo a mensagem de erro "A hora selecionada não está no formato H:i"
 
-Scenario: criar uma postagem  do tipo evento com data anterior invalida
+Scenario: criar uma postagem do tipo evento com data anterior invalida
     Given Eu estou logado como "Sol" com email "sol@admin.com" e senha "12345678"
     And Eu estou na pagina de postagens
     Then Eu abro a pagina de criar postagem
     When Eu preencho o campo titulo com "evento novo"
     And Eu preencho o campo descricao com "Recebemos alunos da escola EREMG"
     And Eu seleciono o campo tipo da postagem "evento"
-    And Eu clico em Escolher arquivo e escolho "anexo.png"
     And Eu preencho o campo data com "1995-05-26"
     And Eu preencho o campo hora com "15:00"
-    And Eu clico em Escolher arquivo e escolho "anexo.png"
+    And Eu seleciono o campo escolher origem do anexo link do drive
+    And Eu preencho o campo do link do arquivo com "https://drive.google.com/file/d/1eJt5xYMq3chZL92_vbHSDq5VmMO22V80/view?usp=sharing"
     And Eu clico em Publicar agora
     Then Eu vejo a mensagem de erro "A data selecionada tem que ser posterior a hoje"
 
-Scenario: criar uma postagem  do tipo evento invalida sem hora
+Scenario: criar uma postagem do tipo evento invalida sem hora
     Given Eu estou logado como "Sol" com email "sol@admin.com" e senha "12345678"
     And Eu estou na pagina de postagens
     Then Eu abro a pagina de criar postagem
     When Eu preencho o campo titulo com "evento novo"
     And Eu preencho o campo descricao com "Recebemos alunos da escola EREMG"
     And Eu seleciono o campo tipo da postagem "evento"
-    And Eu clico em Escolher arquivo e escolho "anexo.png"
     And Eu preencho o campo data com "2050-06-26"
-    And Eu clico em Escolher arquivo e escolho "anexo.png"
+    And Eu seleciono o campo escolher origem do anexo link da web
+    And Eu preencho o campo do link do arquivo com "https://drive.google.com/file/d/1eJt5xYMq3chZL92_vbHSDq5VmMO22V80/view?usp=sharing"
     And Eu clico em Publicar agora
     Then Eu vejo a mensagem de erro "Selecionar a hora quando a postagem for um evento é obrigatório"
 
-Scenario: criar uma postagem  do tipo evento invalida sem data
+Scenario: criar uma postagem do tipo evento invalida sem data
     Given Eu estou logado como "Sol" com email "sol@admin.com" e senha "12345678"
     And Eu estou na pagina de postagens
     Then Eu abro a pagina de criar postagem
     When Eu preencho o campo titulo com "evento novo"
     And Eu preencho o campo descricao com "Recebemos alunos da escola EREMG"
     And Eu seleciono o campo tipo da postagem "evento"
-    And Eu clico em Escolher arquivo e escolho "anexo.png"
     And Eu preencho o campo hora com "15:00"
-    And Eu clico em Escolher arquivo e escolho "anexo.png"
+    And Eu seleciono o campo escolher origem do anexo link do drive
+    And Eu preencho o campo do link do arquivo com "https://drive.google.com/file/d/1eJt5xYMq3chZL92_vbHSDq5VmMO22V80/view?usp=sharing"
     And Eu clico em Publicar agora
     Then Eu vejo a mensagem de erro "Selecionar data quando a postagem for um evento é obrigatório"
 
@@ -185,6 +192,7 @@ Scenario: criar uma postagem valida do tipo edital
     When Eu preencho o campo titulo com "postagem edital"
     And Eu preencho o campo descricao com "Recebemos alunos da escola EREMG"
     And Eu seleciono o campo tipo da postagem "edital"
-    And Eu clico em Escolher arquivo e escolho "anexo.png"
+    And Eu seleciono o campo escolher origem do anexo link da web
+    And Eu preencho o campo do link do arquivo com "https://drive.google.com/file/d/1eJt5xYMq3chZL92_vbHSDq5VmMO22V80/view?usp=sharing"
     And Eu clico em Publicar agora
     Then Eu vejo que a postagem com titulo "postagem edital" foi salva com sucesso
