@@ -4,7 +4,7 @@
 
 <div class="form-group">
     <label for="titulo">Título da página do atlas*</label>
-    <input class="form-control form-control-lg @error('titulo') is-invalid @enderror" type="text" name="titulo" value="{{ isset($registro->titulo) ? $registro->titulo : old('titulo') }}" placeholder="Mínimo de 5 caracteres">
+    <input class="form-control form-control-lg @error('titulo') is-invalid @enderror" type="text" name="titulo" value="{{ isset($registro->titulo) ? $registro->titulo : old('titulo') }}" placeholder="ex: Atlas olho mamífero">
     @error('titulo')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -41,7 +41,7 @@
 
 <div class="form-group" id="radio-group-anexo">
     <label>Escolher origem da imagem anexa*</label><br>
-    <input type="radio" name="tipo_anexo" value="upload" id="upload-radio" {{ isset($registro) ? ($registro->tipo_anexo == 'upload' ? 'checked' : '') : ''}}>
+    <input disabled type="radio" name="tipo_anexo" value="upload" id="upload-radio" {{ isset($registro) ? ($registro->tipo_anexo == 'upload' ? 'checked' : '') : ''}}>
     <label for="upload-radio">Enviar arquivo do dispositivo</label><br>
     <input type="radio" name="tipo_anexo" value="link_drive" id="drive-radio" {{ isset($registro) ? ($registro->tipo_anexo == 'link_drive' ? 'checked' : '') : '' }}>
     <label for="drive-radio">Link compartilhado do Google Drive</label><br>
