@@ -121,8 +121,8 @@ class MaterialController extends Controller
         }
 
 
-        $dados['slug']=str_slug($dados['titulo']).'-'.$material_id;
-        $this->update($dados);
+        $dados['slug']=str_slug($dados['titulo']).'-'.$identifier;
+        $this->material->update($dados);
         return redirect()->route('auth.materiais')->with('success', 'Material atualizado com sucesso!');
     }
 
