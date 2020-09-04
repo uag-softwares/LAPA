@@ -43,6 +43,14 @@
         <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
         <!-- br barra-->
         <script defer="defer" src="//barra.brasil.gov.br/barra.js" type="text/javascript"></script>
+        <!-- Contraste-->
+        <script type="text/javascript" src="js/contraste.js"></script>
+        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+
+        <!-- Tradutor-->
+        <script src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" type="text/javascript"></script>
+        <script src="jquery.js"></script>
+        <script src="jquery.translate.js"></script>
     </head>
     <body>
     @include('layouts._includes.barra_gov')
