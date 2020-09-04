@@ -24,7 +24,7 @@
     <select class="custom-select custom-select-lg @error('disciplina_id') is-invalid @enderror" name="disciplina_id" id="disciplinas">
         <option hidden disabled selected value>{{ __('Selecione um assunto') }}</option>
         @foreach($disciplinas as $disciplina)
-            @if(isset($registro->disciplina->id) && $disciplina->id == $registro->disciplina->id)
+            @if(isset($registro->disciplina->id) && $disciplina->id == $registro->disciplina->id || old('disciplina_id') == $disciplina->id)
                 <option value="{{ $disciplina->id }}" selected>{{ ucfirst($disciplina->nome) }}</option>
             @else
                 <option value="{{ $disciplina->id }}">{{ ucfirst($disciplina->nome) }}</option>
@@ -39,16 +39,16 @@
 </div>
 
 <div class="form-group" id="radio-group-anexo">
-    <label class="@error('tipo_anexo') is-invalid @enderror">Escolher origem do material anexo*</label><br>
+    <label class="@error('tipo_anexo') is-invalid @enderror @error('anexo_web') is-invalid @enderror">Escolher origem do material anexo*</label><br>
     <input disabled type="radio" name="tipo_anexo" value="upload" id="upload-radio" {{ isset($registro) ? ($registro->tipo_anexo == 'upload' ? 'checked' : '') : ''}}>
     <label for="upload-radio">Enviar arquivo do dispositivo</label><br>
-    <input type="radio" name="tipo_anexo" value="link_web" id="drive-radio" {{ isset($registro) ? ($registro->tipo_anexo == 'link_web' ? 'checked' : '') : '' }}>
+    <input type="radio" name="tipo_anexo" value="link_web" id="web-radio" {{ isset($registro) ? ($registro->tipo_anexo == 'link_web' ? 'checked' : '') : '' }}>
     <label for="web-radio">Link de anexo do material</label>
-    @error('tipo_anexo')
+    @if($errors->first('tipo_anexo') || $errors->first('anexo_upload') || $errors->first('anexo_web'))
         <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
+            <strong>{{ $errors->first('tipo_anexo') | $errors->first('anexo_upload') | $errors->first('anexo_web')}}</strong>
         </span>
-    @enderror
+    @endif
 </div>
 
 <div class="form-group form-group-anime {{ isset($registro) ? 'show' : '' }}">
@@ -58,7 +58,7 @@
     </div>
     <div id="link_web" class="web-link input-anime {{ isset($registro) ? ($registro->tipo_anexo == 'link_web' ? 'show' : '') : '' }}">
         <label>Link do anexo</label>
-        <input type="text" class="form-control form-control-lg @error('anexo_web') is-invalid @enderror" name="anexo_web" placeholder="" value="{{ isset($registro->anexo) ? $registro->anexo : old('anexo_web') }}">
+        <input type="text" class="form-control form-control-lg" name="anexo_web" placeholder="A imagem deve ser no formato jpeg, jpg, png ou gif." value="{{ isset($registro->anexo) ? $registro->anexo : old('anexo_web') }}">
     </div>	   
     @error('anexo')
         <span class="invalid-feedback" role="alert">

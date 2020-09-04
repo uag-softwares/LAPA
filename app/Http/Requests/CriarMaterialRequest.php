@@ -34,12 +34,14 @@ class CriarMaterialRequest extends FormRequest
          ];
     }
     public function messages(){
-	return[
-	    'titulo.required'=>'Título do material é obrigatório',
-	    'titulo.min'=>'Título deve conter no mínimo três letras',
-	    'texto.required' => 'Escrever sobre o texto é obrigatório',
-        'texto.min' => 'O tamanho mínimo é de 10 letras',
-	    'disciplina_id.required' => 'Escolher assunto é obrigátorio',
+        return [
+            'titulo.required'=>'Título do material é obrigatório',
+            'titulo.min'=>'Título deve conter no mínimo três letras',
+            'texto.required' => 'Escrever sobre o texto é obrigatório',
+            'texto.min' => 'O tamanho mínimo é de 10 letras',
+            'disciplina_id.required' => 'Escolher assunto é obrigátorio',
+            'anexo_upload.required_if' => 'É necessário enviar um arquivo quando a opção for selecionada, selecione a opção desejada novamente.',
+            'anexo_web.required_if' => 'É necessário enviar um link de imagem da web quando a opção for selecionada, selecione a opção desejada novamente.',
         ];
     }
 }
