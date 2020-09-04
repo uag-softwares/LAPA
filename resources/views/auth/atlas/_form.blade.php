@@ -25,7 +25,7 @@
     <select class="custom-select custom-select-lg @error('categoria_id') is-invalid @enderror" name="categoria_id" id="categorias">
         <option hidden disabled selected value>{{ __('Selecione uma área de conhecimento') }}</option>
         @foreach($categorias as $categoria)
-            @if(isset($registro->categoria->id) && $categoria->id == $registro->categoria->id)
+            @if((isset($registro->categoria->id) && $categoria->id == $registro->categoria->id) || old('categoria_id') == $categoria->id) 
                 <option value="{{ $categoria->id }}" selected>{{ ucfirst($categoria->nome) }}</option>
             @else
                 <option value="{{ $categoria->id }}">{{ ucfirst($categoria->nome) }}</option>
