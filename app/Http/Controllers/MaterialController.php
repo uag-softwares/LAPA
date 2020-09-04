@@ -8,6 +8,7 @@ use App\Disciplina;
 use Validator;
 use App\Http\Requests\CriarMaterialRequest;
 use App\Http\Requests\AtualizarMaterialRequest;
+use Auth;
 class MaterialController extends Controller
 {
    protected $material;
@@ -56,19 +57,27 @@ class MaterialController extends Controller
     public function salvar(CriarMaterialRequest $request) 
     {
         $request->validated();
-        $dados = $request->all();
-
-        if(isset($dados['publicar'])) {
-            $dados['publicado'] = true;
-        } else if(isset($dados['rascunho'])) {
-            $dados['publicado'] = false;    
-        }
+        $this->user = Auth::user();
+        $anexo = null;
+        $publicado = false;
+        
+        if(isset($request['publicar'])) {
+            $publicado = true;
+        } 
      
-        $material=$this->material->create($dados);
+        $material=$this->material->create([
+            'titulo' => $request ['titulo'],
+            'texto' => $request ['texto'],
+            'anexo' => $anexo,
+            'publicado' => ['publicado'],
+            'disciplina_id' => $request ['disciplina_id'],
+        ]);
         $material['slug'] = str_slug($material->titulo).'-'.$material->id;
 
-        if($request->hasFile('anexo')) {
-            $anexo = $request->file('anexo');
+        $material['anexo'] = $request['anexo_web'];
+       
+        if (($request['tipo_anexo'] == 'upload') && $request->hasFile('anexo_upload')) {
+            $anexo = $request->file('anexo_upload');
             $dir = 'img/materiais/';
             $extensao = $anexo->guessClientExtension(); //Define a extensao do arquivo
             $nomeAnexo = 'anexo_'.$material['slug'].'.'.$extensao;
@@ -90,25 +99,28 @@ class MaterialController extends Controller
     {
         $request->validated();
         $dados = $request->all();
+        $dados['publicado'] = false;
+        $material = $this->material->find($identifier);
+         
+        if(isset($request['publicar'])) {
+            $publicado = true;
+        }       
 
-        if(isset($dados['publicar'])) {
-            $dados['publicado'] = true;
-        } else if(isset($dados['rascunho'])) {
-            $dados['publicado'] = false;    
-        }
 
-        $dados['slug']=str_slug($dados['titulo']).'-'.$material_id;
-
-        if($request->hasFile('anexo')) {
-            $anexo = $request->file('anexo');
+        $dados['anexo'] = $request['anexo_web'];
+        $dados['tipo_anexo'] = $request['tipo_anexo'];
+        if(($request['tipo_anexo'] == 'upload') && $request->hasFile('anexo_upload')) {
+            $anexo = $request->file('anexo_uploadgit');
             $dir = 'img/materiais/';
             $extensao = $anexo->guessClientExtension(); //Define a extensao do arquivo
             $nomeAnexo = 'anexo_'.$dados['slug'].'.'.$extensao;
             $anexo->move($dir, $nomeAnexo);
             $dados['anexo'] = $dir.'/'.$nomeAnexo;
         }
-            
-        $this->material->find($material_id)->update($dados);
+
+
+        $dados['slug']=str_slug($dados['titulo']).'-'.$material_id;
+        $this->update($dados);
         return redirect()->route('auth.materiais')->with('success', 'Material atualizado com sucesso!');
     }
 
