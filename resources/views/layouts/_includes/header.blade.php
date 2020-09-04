@@ -40,4 +40,6 @@
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     </head>
     <body>
+    @include('layouts._includes.barra_acessibilidade')
     @include('layouts._includes.nav')
+    

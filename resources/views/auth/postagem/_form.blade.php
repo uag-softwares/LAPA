@@ -21,7 +21,7 @@
 </div>
 <div class="form-group">
     <label for="tipo_postagem">Selecione o tipo da postagem*</label>
-    <select class="custom-select custom-select-lg @error('tipo_postagem') is-invalid @enderror" name="tipo_postagem" id="tipo_postagem" required autocomplete="tipo_postagem">
+    <select class="custom-select custom-select-lg @error('tipo_postagem') is-invalid @enderror" name="tipo_postagem" id="tipo_postagem" required autocomplete="tipo_postagem" >
         @if(!isset($registro->tipo_postagem))
             <option hidden disabled selected value>Clique para selecionar o tipo da postagem</option>
         @endif
@@ -40,7 +40,7 @@
     @enderror
 </div>
 
-<div id="dh" class="{{ isset($registro->tipo_postagem) ? ($registro->tipo_postagem == 'evento' ? 'show' : '') : '' }}">
+<div id="dh" class="{{ isset($registro->tipo_postagem) ? ($registro->tipo_postagem == 'evento' ? 'show' : '') : '' }} @error('data') show @enderror">
     <div class="d-flex flex-row">
         <div class="form-group">
             <label for="data">Data(obrigatório para evento)</label>

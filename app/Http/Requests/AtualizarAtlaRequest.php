@@ -27,7 +27,8 @@ class AtualizarAtlaRequest extends FormRequest
             'titulo' => 'required|min:5|string',
             'descricao' => 'required|min:10|string',
             'categoria_id' => 'required|integer|exists:categorias,id',
-            'anexo' => 'mimes:jpeg,jpg,png,gif|max:2048',
+           // 'anexo' => 'mimes:jpeg,jpg,png,gif|max:2048',
+           'tipo_anexo' => 'required',
         ];
     }
 

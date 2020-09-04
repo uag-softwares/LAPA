@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Str;
 
 class Atla extends Model
 {
@@ -12,7 +13,7 @@ class Atla extends Model
      * @var array
      */
     protected $fillable = [
-        'titulo', 'descricao', 'anexo', 'publicado', 'categoria_id','slug',
+        'titulo', 'descricao', 'anexo', 'publicado', 'categoria_id','slug', 'tipo_anexo',
     ];
 
     public function categoria() {
@@ -31,4 +32,18 @@ class Atla extends Model
   {
     return 'slug';
   }
+
+   /**
+    * Convert a shared image link from drive to an embedable image link.
+    *
+    * @return string
+    */
+    public static function convertToEmbedableImageLink($link) {
+      $embedableLink = Str::replaceFirst('https://drive.google.com/file/d/', 'https://drive.google.com/thumbnail?id=', $link);
+      $embedableLink = Str::replaceFirst('/view?usp=sharing', '', $embedableLink);
+
+      return $embedableLink;
+  }
+
+
 }

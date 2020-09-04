@@ -6,3 +6,4 @@
     @yield('scripts')
 @include('layouts._includes.footer')
 
+
