@@ -27,7 +27,8 @@ class CriarMaterialRequest extends FormRequest
            'titulo' =>'required|min:5',
            'texto' => 'required|min:10',
            'disciplina_id' =>'required',
-           'anexo' => 'required|mimes:jpeg,jpg,png,gif,pdf,doc,txt,docx,odt,xls,csv,xlsx,ppt,pptx,rtf|max:2048',
+           //'anexo' => 'required|mimes:jpeg,jpg,png,gif,pdf,doc,txt,docx,odt,xls,csv,xlsx,ppt,pptx,rtf|max:2048',
+           'tipo_anexo',
         ];
     }
     public function messages(){

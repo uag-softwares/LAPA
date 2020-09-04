@@ -58,7 +58,7 @@ class MaterialController extends Controller
     {
         $request->validated();
         $this->user = Auth::user();
-        $anexo = null;
+        $anexo = "Anexo";
         $publicado = false;
         
         if(isset($request['publicar'])) {
@@ -69,13 +69,15 @@ class MaterialController extends Controller
             'titulo' => $request ['titulo'],
             'texto' => $request ['texto'],
             'anexo' => $anexo,
-            'publicado' => ['publicado'],
+            'publicado' => $publicado,
             'disciplina_id' => $request ['disciplina_id'],
+            'tipo_anexo' => $request ['tipo_anexo'],
+
         ]);
         $material['slug'] = str_slug($material->titulo).'-'.$material->id;
 
-        $material['anexo'] = $request['anexo_web'];
-       
+        $material['anexo'] = $request['anexo_web'];  
+             
         if (($request['tipo_anexo'] == 'upload') && $request->hasFile('anexo_upload')) {
             $anexo = $request->file('anexo_upload');
             $dir = 'img/materiais/';
@@ -95,7 +97,7 @@ class MaterialController extends Controller
         return view('auth.materiais.editar', compact('registro','disciplinas'));        
     }
 
-    public function atualizar(AtualizarMaterialRequest $request, $material_id)
+    public function atualizar(AtualizarMaterialRequest $request, $identifier)
     {
         $request->validated();
         $dados = $request->all();

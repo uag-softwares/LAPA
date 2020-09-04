@@ -13,8 +13,8 @@ class AddLinkToMaterial extends Migration
      */
     public function up()
     {
-        Schema::table('material', function (Blueprint $table) {
-            $table->enum('tipo_anexo', ['link_arquivo', 'upload'])->default('upload');
+        Schema::table('materials', function (Blueprint $table) {
+            $table->enum('tipo_anexo', ['link_web', 'upload'])->default('upload');
         });
     }
 
@@ -25,7 +25,7 @@ class AddLinkToMaterial extends Migration
      */
     public function down()
     {
-        Schema::table('material', function (Blueprint $table) {
+        Schema::table('materials', function (Blueprint $table) {
             //
         });
     }

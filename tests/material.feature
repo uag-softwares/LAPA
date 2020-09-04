@@ -10,7 +10,8 @@ Feature: material
     And   Eu estou na pagina de adicionar materiais
     When  Eu preencho o campo titulo com "Material de Ihc"
     And   Eu preencho o campo texto com "Esse material e referente a disciplina ES"
-    And   Eu clico em escolher arquivo e escolho "arquivo.pdf"
+    And   Eu seleciono o campo escolher origem do anexo link da web
+    And   Eu preencho o campo do link do arquivo com "https://drive.google.com/file/d/1eJt5xYMq3chZL92_vbHSDq5VmMO22V80/view?usp=sharing"
     And   Eu seleciono a disciplina "Ihc"
     And   Eu clico em Publicar agora
     Then  Eu vejo que o material foi adicionado corretamente
