@@ -235,5 +235,13 @@ class AdditionalSteps extends \Codeception\Actor
         $this->fillField(['name' => 'anexo_drive'], $arg1);
     }
 
+     /**
+    * @When Eu preencho o campo do link da web com :arg1
+    */
+    public function euPreenchoOCampoDoLinkDaWebCom($arg1)
+    {
+        $this->fillField(['name' => 'anexo_web'], $arg1);
+    }
+
 
 }

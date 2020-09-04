@@ -3,11 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Str;
 
 class Material extends Model
 {
     protected $fillable = [
-        'titulo', 'texto', 'anexo', 'publicado', 'disciplina_id','slug',
+        'titulo', 'texto', 'anexo', 'publicado', 'disciplina_id','slug', 'tipo_anexo'
     ];
 
     public function disciplina() {
