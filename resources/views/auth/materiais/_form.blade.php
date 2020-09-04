@@ -73,7 +73,7 @@
 
 @section('scripts')
   <!-- Script de mostrar/esconder campos de anexos -->
-  <script src="{{ asset('js/toggle_anexo_input.js') }}"></script>
+  <script src="{{ asset('js/toggle_anexo_material.js') }}"></script>
 @endsection
 
 

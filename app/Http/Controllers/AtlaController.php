@@ -10,6 +10,7 @@ use App\Disciplina;
 use App\Http\Requests\CriarAtlaRequest;
 use App\Http\Requests\AtualizarAtlaRequest;
 use Auth;
+use App\Util\ConvertToEmbedableImageLink;
 
 class AtlaController extends Controller
 {
@@ -90,7 +91,7 @@ class AtlaController extends Controller
         */
         $atla['anexo'] = $request['anexo_web'];
         if($request['tipo_anexo'] == 'link_drive') {
-            $atla['anexo'] = $this->atla::convertToEmbedableImageLink($request['anexo_drive']);
+            $atla['anexo'] = ConvertToEmbedableImageLink::convertToEmbedableImageLink($request['anexo_drive']);
         }else if (($request['tipo_anexo'] == 'upload') && $request->hasFile('anexo_upload')) {
             $anexo = $request->file('anexo_upload');
             $dir = 'img/atlas/';
@@ -123,7 +124,7 @@ class AtlaController extends Controller
         $dados['anexo'] = $request['anexo_web'];
         $dados['tipo_anexo'] = $request['tipo_anexo'];
         if($request['tipo_anexo'] == 'link_drive') {
-            $dados['anexo'] = $this->atla::convertToEmbedableImageLink($request['anexo_drive']);
+            $dados['anexo'] = ConvertToEmbedableImageLink::convertToEmbedableImageLink($request['anexo_drive']);
         } else if(($request['tipo_anexo'] == 'upload') && $request->hasFile('anexo_upload')) {
             $anexo = $request->file('anexo_upload');
             $dir = 'img/atlas/';
