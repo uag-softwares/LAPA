@@ -166,27 +166,5 @@ class PostagemSteps extends \Codeception\Actor
         $this->click('Deletar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[1]');
      }
 
-    /**
-    * @When Eu seleciono o campo escolher origem do anexo link do drive
-    */
-    public function euSelecionoOCampoEscolherOrigemDoAnexoLinkDoDrive()
-    {
-        $this->selectOption('input[name=tipo_anexo]', 'link_drive');
-    }
-
-    /**
-    * @When Eu seleciono o campo escolher origem do anexo link da web
-    */
-    public function euSelecionoOCampoEscolherOrigemDoAnexoLinkDaWeb()
-    {
-        $this->selectOption('input[name=tipo_anexo]', 'link_web');
-    }
-
-    /**
-    * @When Eu preencho o campo do link do arquivo com :arg1
-    */
-    public function euPreenchoOCampoDoLinkDoArquivoCom($arg1)
-    {
-        $this->fillField(['name' => 'anexo_drive'], $arg1);
-    }
+   
 }
