@@ -10,8 +10,9 @@ Feature: material
     And   Eu estou na pagina de adicionar materiais
     When  Eu preencho o campo titulo com "Material de Ihc"
     And   Eu preencho o campo texto com "Esse material e referente a disciplina ES"
-    And   Eu clico em escolher arquivo e escolho "arquivo.pdf"
     And   Eu seleciono a disciplina "Ihc"
+    And   Eu seleciono o campo escolher origem do anexo link da web
+    And   Eu preencho o campo do link da web com "https://drive.google.com/file/d/1eJt5xYMq3chZL92_vbHSDq5VmMO22V80/view?usp=sharing"
     And   Eu clico em Publicar agora
     Then  Eu vejo que o material foi adicionado corretamente
 
@@ -21,8 +22,9 @@ Feature: material
     And   Eu estou na pagina de adicionar materiais
     When  Eu preencho o campo titulo com ""
     And   Eu preencho o campo texto com "Esse material e referente a disciplina ES"
-    And   Eu clico em escolher arquivo e escolho "arquivo.pdf"
     And   Eu seleciono a disciplina "Ihc"
+    And   Eu seleciono o campo escolher origem do anexo link da web
+    And   Eu preencho o campo do link da web com "https://drive.google.com/file/d/1eJt5xYMq3chZL92_vbHSDq5VmMO22V80/view?usp=sharing"
     And   Eu clico em Publicar agora
     Then  Eu vejo a mensagem de erro "Título do material é obrigatório"
 
@@ -32,8 +34,9 @@ Feature: material
     And   Eu estou na pagina de adicionar materiais
     When  Eu preencho o campo titulo com "Ma"
     And   Eu preencho o campo texto com "Esse material e referente a disciplina ES"
-    And   Eu clico em escolher arquivo e escolho "arquivo.pdf"
     And   Eu seleciono a disciplina "Ihc"
+    And   Eu seleciono o campo escolher origem do anexo link da web
+    And   Eu preencho o campo do link da web com "https://drive.google.com/file/d/1eJt5xYMq3chZL92_vbHSDq5VmMO22V80/view?usp=sharing"
     And   Eu clico em Publicar agora
     Then  Eu vejo a mensagem de erro "Título deve conter no mínimo três letras"
 
@@ -43,8 +46,9 @@ Feature: material
     And   Eu estou na pagina de adicionar materiais
     When  Eu preencho o campo titulo com "Material 1"
     And   Eu preencho o campo texto com ""
-    And   Eu clico em escolher arquivo e escolho "arquivo.pdf"
     And   Eu seleciono a disciplina "Ihc"
+    And   Eu seleciono o campo escolher origem do anexo link da web
+    And   Eu preencho o campo do link da web com "https://drive.google.com/file/d/1eJt5xYMq3chZL92_vbHSDq5VmMO22V80/view?usp=sharing"
     And   Eu clico em Publicar agora
     Then  Eu vejo a mensagem de erro "Escrever sobre o texto é obrigatório"
 
@@ -56,14 +60,15 @@ Feature: material
     And   Eu preencho o campo texto com ""
     And   Eu seleciono a disciplina "Ihc"
     And   Eu clico em Publicar agora
-    Then  Eu vejo a mensagem de erro "O campo anexo é obrigatório."
+    Then  Eu vejo a mensagem de erro "O campo tipo anexo é obrigatório."
 
   Scenario: criar material sem disciplina
     Given Eu estou logado como "damiao" com email "damiao@admin.com" e senha "12345678"
     And   Eu estou na pagina de adicionar materiais
     When  Eu preencho o campo titulo com "Material 1"
     And   Eu preencho o campo texto com "Descricao do material 1 escrita"
-    And   Eu clico em escolher arquivo e escolho "anexo.png"
+    And   Eu seleciono o campo escolher origem do anexo link da web
+    And   Eu preencho o campo do link da web com "https://drive.google.com/file/d/1eJt5xYMq3chZL92_vbHSDq5VmMO22V80/view?usp=sharing"
     And   Eu clico em Publicar agora
     Then  Eu vejo a mensagem de erro "Escolher assunto é obrigátorio"
 

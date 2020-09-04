@@ -8,6 +8,8 @@ use App\User;
 use Validator;
 use App\Http\Requests\PostagemRequest;
 use Auth;
+use App\Util\ConvertToEmbedableImageLink;
+
 class PostagemController extends Controller
 {
     
@@ -93,7 +95,7 @@ class PostagemController extends Controller
         */
         $post['anexo'] = $request['anexo_web'];
         if($request['tipo_anexo'] == 'link_drive') {
-            $post['anexo'] = $this->postagem::convertToEmbedableImageLink($request['anexo_drive']);
+            $post['anexo'] = ConvertToEmbedableImageLink::convertToEmbedableImageLink($request['anexo_drive']);
         } else if (($request['tipo_anexo'] == 'upload') && $request->hasFile('anexo_upload')) {
             $anexo = $request->file('anexo_upload');
             $dir = 'img/postagens/';
@@ -127,7 +129,7 @@ class PostagemController extends Controller
         $dados['anexo'] = $request['anexo_web'];
         $dados['tipo_anexo'] = $request['tipo_anexo'];
         if($request['tipo_anexo'] == 'link_drive') {
-            $dados['anexo'] = $this->postagem::convertToEmbedableImageLink($request['anexo_drive']);
+            $dados['anexo'] = ConvertToEmbedableImageLink::convertToEmbedableImageLink($request['anexo_drive']);
         } else if(($request['tipo_anexo'] == 'upload') && $request->hasFile('anexo_upload')) {
             $anexo = $request->file('anexo_upload');
             $dir = 'img/postagens/';

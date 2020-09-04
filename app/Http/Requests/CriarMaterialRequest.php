@@ -26,9 +26,12 @@ class CriarMaterialRequest extends FormRequest
         return [
            'titulo' =>'required|min:5',
            'texto' => 'required|min:10',
-           'disciplina_id' =>'required',
-           'anexo' => 'required|mimes:jpeg,jpg,png,gif,pdf,doc,txt,docx,odt,xls,csv,xlsx,ppt,pptx,rtf|max:2048',
-        ];
+           'disciplina_id' => 'required',
+           //'anexo' => 'required|mimes:jpeg,jpg,png,gif,pdf,doc,txt,docx,odt,xls,csv,xlsx,ppt,pptx,rtf|max:2048',
+           'tipo_anexo' => 'required',
+           'anexo_upload' => 'required_if:tipo_anexo,upload|mimes:jpeg,jpg,png,gif,pdf,doc,txt,docx,odt,xls,csv,xlsx,ppt,pptx,rtf|max:2048|nullable',
+           'anexo_web' => 'required_if:tipo_anexo,link_web|url|nullable',
+         ];
     }
     public function messages(){
 	return[
