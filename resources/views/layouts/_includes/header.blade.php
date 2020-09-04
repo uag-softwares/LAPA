@@ -45,6 +45,7 @@
         <script defer="defer" src="//barra.brasil.gov.br/barra.js" type="text/javascript"></script>
     </head>
     <body>
+    @include('layouts._includes.barra_gov')
     @include('layouts._includes.barra_acessibilidade')
     @include('layouts._includes.nav')
     
