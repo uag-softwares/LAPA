@@ -9,6 +9,7 @@ use App\Categoria;
 use App\Disciplina;
 use App\Http\Requests\CriarAtlaRequest;
 use App\Http\Requests\AtualizarAtlaRequest;
+use Auth;
 
 class AtlaController extends Controller
 {
@@ -67,7 +68,7 @@ class AtlaController extends Controller
     {
         $request->validated();
         $this->user = Auth::user();
-        $anexo = null;
+        $anexo = "Anexo";
         $publicado = false;
       
         if(isset($request['publicar'])) {
@@ -78,8 +79,8 @@ class AtlaController extends Controller
             'titulo' => $request ['titulo'],
             'descricao' => $request ['descricao'],
             'anexo' => $anexo,
-            'publicado'=>$publicado,
-            'categoria_id' =>$this->categoria->id,
+            'publicado'=> $publicado,
+            'categoria_id' => $request ['categoria_id'],
         ]);
         $atla['slug'] = str_slug($atla->titulo).'-'.$atla->id;
 
@@ -116,7 +117,7 @@ class AtlaController extends Controller
         $request->validated();
         $dados = $request->all();
         $dados['publicado'] = false;
-        $this->atla->find($identifier)->update($dados);
+        $atla = $this->atla->find($identifier);
        
 
         $dados['anexo'] = $request['anexo_web'];
