@@ -40,14 +40,13 @@
 </div>
 
 <div class="form-group" id="radio-group-anexo">
-    <label>Escolher origem da imagem anexa*</label><br>
+    <label class="@error('tipo_anexo') is-invalid @enderror">Escolher origem da imagem anexa*</label><br>
     <input disabled type="radio" name="tipo_anexo" value="upload" id="upload-radio" {{ isset($registro) ? ($registro->tipo_anexo == 'upload' ? 'checked' : '') : ''}}>
     <label for="upload-radio">Enviar arquivo do dispositivo</label><br>
     <input type="radio" name="tipo_anexo" value="link_drive" id="drive-radio" {{ isset($registro) ? ($registro->tipo_anexo == 'link_drive' ? 'checked' : '') : '' }}>
     <label for="drive-radio">Link compartilhado do Google Drive</label><br>
     <input type="radio" name="tipo_anexo" value="link_web" id="web-radio" {{ isset($registro) ? ($registro->tipo_anexo == 'link_web' ? 'checked' : '') : '' }}>
     <label for="web-radio">Link da imagem da web</label>
-
     @error('tipo_anexo')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>

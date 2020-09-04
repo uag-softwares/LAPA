@@ -52,7 +52,7 @@ Feature: atla
     And Eu preencho o campo descricao com "foto do olho do mamifero"
     And Eu seleciono a categoria "Sistema nervoso"
     And Eu clico em Publicar agora
-    Then Eu vejo a mensagem de erro "O campo anexo é obrigatório."
+    Then Eu vejo a mensagem de erro "O campo tipo anexo é obrigatório."
 
   Scenario: criar um atla sem categoria
     Given Eu estou logado como "Raquel" com email "raquel@admin.com" e senha "12345678"

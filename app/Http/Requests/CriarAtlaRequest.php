@@ -46,6 +46,7 @@ class CriarAtlaRequest extends FormRequest
             'descricao.min' => 'O tamanho mínimo da descrição é 10 letras.',
             'categoria_id.required' => 'A área de conhecimento é obrigatória.',
             'categoria_id.exists' => 'A área de conhecimento deve estar cadastrada.',
+            
         ];
     }
 }
