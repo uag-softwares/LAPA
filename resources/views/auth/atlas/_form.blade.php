@@ -13,7 +13,7 @@
 </div>
 <div class="form-group">
     <label for="descricao">Descrição*</label>
-    <textarea rows="14" id="summernote" class="form-control form-control-lg @error('descricao') is-invalid @enderror" type="text" name="descricao"  required autocomplete="descricao">{{ isset($registro->descricao) ? $registro->descricao : old('descricao') }}</textarea>
+    <textarea rows="14" id="summernote" class="form-control form-control-lg @error('descricao') is-invalid @enderror" type="text" name="descricao" autocomplete="descricao">{{ isset($registro->descricao) ? $registro->descricao : old('descricao') }}</textarea>
     @error('descricao')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -40,18 +40,18 @@
 </div>
 
 <div class="form-group" id="radio-group-anexo">
-    <label class="@error('tipo_anexo') is-invalid @enderror">Escolher origem da imagem anexa*</label><br>
+    <label class="@error('tipo_anexo') is-invalid @enderror @error('anexo_web') is-invalid @enderror @error('anexo_drive') is-invalid @enderror @error('anexo_upload') is-invalid @enderror">Escolher origem da imagem anexa*</label><br>
     <input disabled type="radio" name="tipo_anexo" value="upload" id="upload-radio" {{ isset($registro) ? ($registro->tipo_anexo == 'upload' ? 'checked' : '') : ''}}>
     <label for="upload-radio">Enviar arquivo do dispositivo</label><br>
     <input type="radio" name="tipo_anexo" value="link_drive" id="drive-radio" {{ isset($registro) ? ($registro->tipo_anexo == 'link_drive' ? 'checked' : '') : '' }}>
     <label for="drive-radio">Link compartilhado do Google Drive</label><br>
     <input type="radio" name="tipo_anexo" value="link_web" id="web-radio" {{ isset($registro) ? ($registro->tipo_anexo == 'link_web' ? 'checked' : '') : '' }}>
     <label for="web-radio">Link da imagem da web</label>
-    @error('tipo_anexo')
+    @if($errors->first('tipo_anexo') || $errors->first('anexo_upload') || $errors->first('anexo_drive') || $errors->first('anexo_web'))
         <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
+            <strong>{{ $errors->first('tipo_anexo') | $errors->first('anexo_upload') | $errors->first('anexo_drive') | $errors->first('anexo_web')}}</strong>
         </span>
-    @enderror
+    @endif
 </div>
 
 <div class="form-group form-group-anime {{ isset($registro) ? 'show' : '' }}">

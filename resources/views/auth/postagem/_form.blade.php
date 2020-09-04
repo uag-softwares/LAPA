@@ -71,14 +71,9 @@
     <label for="drive-radio">Link compartilhado do Google Drive</label><br>
     <input type="radio" name="tipo_anexo" value="link_web" id="web-radio" {{ isset($registro) ? ($registro->tipo_anexo == 'link_web' ? 'checked' : '') : '' }}>
     <label for="web-radio">Link da imagem da web</label>
-    @error('tipo_anexo')
+    @if($errors->first('tipo_anexo') || $errors->first('anexo_upload') || $errors->first('anexo_drive') || $errors->first('anexo_web'))
         <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
-    @enderror
-    @if($errors->first('anexo_upload') || $errors->first('anexo_drive') || $errors->first('anexo_web'))
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $errors->first('anexo_upload') | $errors->first('anexo_drive') | $errors->first('anexo_web')}}</strong>
+            <strong>{{ $errors->first('tipo_anexo') | $errors->first('anexo_upload') | $errors->first('anexo_drive') | $errors->first('anexo_web')}}</strong>
         </span>
     @endif
 </div>

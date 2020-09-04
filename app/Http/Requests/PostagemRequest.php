@@ -31,8 +31,8 @@ class PostagemRequest extends FormRequest
             'hora' => 'required_if:tipo_postagem,evento|nullable|date_format:H:i|after_or_equal:00:00',
             'tipo_anexo' => 'required',
             'anexo_upload' => 'required_if:tipo_anexo,upload|mimes:jpeg,jpg,png,gif|max:2048|nullable',
-            'anexo_drive' => 'required_if:tipo_anexo,link_drive|nullable',
-            'anexo_web' => 'required_if:tipo_anexo,link_web|nullable',
+            'anexo_drive' => 'required_if:tipo_anexo,link_drive|nullable|url',
+            'anexo_web' => 'required_if:tipo_anexo,link_web|nullable|url',
         ];
     }
    public function messages(){
@@ -41,8 +41,8 @@ class PostagemRequest extends FormRequest
 	        'hora.date_format'=>" A hora selecionada não está no formato H:i",
             'data.after'=>'A data selecionada tem que ser posterior a hoje',
             'anexo_upload.required_if' => 'É necessário enviar um arquivo quando a opção for selecionada, selecione a opção desejada novamente.',
-            'anexo_web.required_if' => 'É necessário enviar um link de imagem do Google Drive quando a opção for selecionada, selecione a opção desejada novamente.',
-            'anexo_drive.required_if' => 'É necessário enviar um link de imagem da web quando a opção for selecionada, selecione a opção desejada novamente.',
+            'anexo_web.required_if' => 'É necessário enviar um link de imagem da web quando a opção for selecionada, selecione a opção desejada novamente.',
+            'anexo_drive.required_if' => 'É necessário enviar um link de imagem do Google Drive quando a opção for selecionada, selecione a opção desejada novamente.',
 
         ];
     }
