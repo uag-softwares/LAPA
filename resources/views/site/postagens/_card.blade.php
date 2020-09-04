@@ -1,4 +1,4 @@
-<div class="card home">
+<div class="card home fadeInDown" data-anime="300">
 
     
     @if(isset($registro->anexo))
@@ -9,7 +9,13 @@
     
     <div class="card-body">
         <h5>
-            <a href="{{ route('site.eventos.vizualizar', $registro->slug) }}">
+            @if($registro->tipo_postagem == 'evento')
+                <a href="{{ route('site.eventos.visualizar', $registro->slug) }}">
+            @elseif($registro->tipo_postagem == 'noticia')
+                <a href="{{ route('site.noticias.visualizar', $registro->slug) }}">
+            @elseif($registro->tipo_postagem == 'edital')
+                <a href="{{ route('site.editais.visualizar', $registro->slug) }}">
+            @endif
                 {{$registro->titulo}} 
             </a>
         </h5>

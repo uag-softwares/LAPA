@@ -169,6 +169,24 @@ class AdditionalSteps extends \Codeception\Actor
                 'facebook' => 'https://facebook.com/exemplo',
         ]);
     }
+
+    /**
+    * @Given A postagem :arg1 ja exista
+    */
+    public function aPostagemJaExista($arg1)
+    {
+        $this->haveInDatabase('postagems', [
+            'titulo' => $arg1,
+            'descricao' => 'Texto do material',
+            'anexo' => 'file.png',
+            'user_id' => null,
+            'publicado' => true,
+            'slug'=> $arg1,
+            'tipo_postagem' => 'edital',
+        ]);    
+    }
+
+
      /**
      * @Given O usuario administrador com nome :arg1,email :arg2 e senha :arg3 existe
      */
@@ -192,6 +210,30 @@ class AdditionalSteps extends \Codeception\Actor
         ]);
 
      }
+
+      /**
+    * @When Eu seleciono o campo escolher origem do anexo link do drive
+    */
+    public function euSelecionoOCampoEscolherOrigemDoAnexoLinkDoDrive()
+    {
+        $this->selectOption('input[name=tipo_anexo]', 'link_drive');
+    }
+
+    /**
+    * @When Eu seleciono o campo escolher origem do anexo link da web
+    */
+    public function euSelecionoOCampoEscolherOrigemDoAnexoLinkDaWeb()
+    {
+        $this->selectOption('input[name=tipo_anexo]', 'link_web');
+    }
+
+    /**
+    * @When Eu preencho o campo do link do arquivo com :arg1
+    */
+    public function euPreenchoOCampoDoLinkDoArquivoCom($arg1)
+    {
+        $this->fillField(['name' => 'anexo_drive'], $arg1);
+    }
 
 
 }

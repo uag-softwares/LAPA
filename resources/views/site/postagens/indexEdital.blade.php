@@ -1,8 +1,8 @@
 @extends('layouts.app')
-@section('titulo', 'Editais')
+@section('titulo', 'Editais e seleções')
 @section('content')
     <div class="container" >
-        <h2>Todos os editais</h2>
+        <h2 class="fadeInDown" data-anime="150">Editais e seleções</h2>
         <div class="d-flex flex-column">
 
             @if (count($registros) < 1)

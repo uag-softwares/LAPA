@@ -149,7 +149,7 @@ class PostagemSteps extends \Codeception\Actor
      */
      public function euNaoVejoAPostagemComTitulo($arg1)
      {
-         $this->see($arg1, '//table/tbody/tr');
+         $this->dontSee($arg1, '//table/tbody/tr');
      }
      /**
      * @Given Eu clico em Editar a postagem com titulo :arg1
@@ -166,5 +166,5 @@ class PostagemSteps extends \Codeception\Actor
         $this->click('Deletar', '//table/tbody/tr/td[text()="'.$arg1.'"]/ancestor::tr/td[1]');
      }
 
-
+   
 }

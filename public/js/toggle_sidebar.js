@@ -8,8 +8,8 @@ $("#overlay")
 
 // Toggle pages on mobile
 $("#toggleLeftSidebar").on("click", function() {
-    $("#leftSidebar").toggleClass("d-none", "position-absolute", "show");
-    $("#leftSidebar").toggleClass("position-absolute");
+    // $("#leftSidebar").toggleClass("hide");
+    // $("#leftSidebar").toggleClass("position-absolute");
     $("#leftSidebar").toggleClass("show");
     $("#toggleLeftSidebar").toggleClass("push");
     $("#toggleLeftSidebar a span").toggleClass("fa-chevron-right");

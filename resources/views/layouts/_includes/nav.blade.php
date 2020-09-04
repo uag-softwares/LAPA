@@ -51,7 +51,7 @@
                                 <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Postagens
                                 </button>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-anime" aria-labelledby="dropdownMenuButton">
                                     <a href="{{ route('site.postagens.indexEvento') }}" class="dropdown-item">Eventos</a>
                                     <a href="{{ route('site.postagens.indexNoticia') }}" class="dropdown-item">Notícias</a>
                                     <a href="{{ route('site.postagens.indexEdital') }}" class="dropdown-item">Editais e seleções</a>

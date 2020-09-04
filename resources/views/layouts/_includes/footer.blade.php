@@ -20,9 +20,18 @@
 <!-- include summernote-PT-Br -->
 <script src="{{ asset('js/summernote/lang/summernote-pt-BR.js') }}"></script>
 
+<!-- include simple-anime library -->
+<script src="{{ asset('js/simple-anime.js') }}"></script>
+
+<!-- include font-size-acessibilidade -->
+<script src="{{ asset('js/font-size-acessibilidade.js') }}"></script>
+
+<!-- app scripts -->
+<script src="{{ asset('js/animation_config.js') }}"></script>
+
 
 <!-- Footer -->
-	<section id="footer">
+	<footer>
 		<div class="container">
 			<div class="row text-center text-xs-center text-sm-left text-md-left">
 				<div class="col-xs-12 col-sm-4 col-md-4">
@@ -90,5 +99,5 @@
 		</div>
 	</div>
   <p>© 2020 Todos os direitos reservados.</p>
- </section>
+</footer>
 <!-- ./Footer -->

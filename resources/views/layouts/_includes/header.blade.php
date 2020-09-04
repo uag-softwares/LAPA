@@ -12,12 +12,13 @@
         </title>
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+HK&display=swap" rel="stylesheet"> 
-        
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap" rel="stylesheet">
+
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">
         <link href="{{ asset('css/clndr.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/simple-anime.css') }}" rel="stylesheet">
         
         <!-- Bootstrap Datepicker -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.standalone.min.css">
@@ -28,6 +29,8 @@
         <!-- include summernote css -->
         <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
         
+        <script>document.documentElement.classList.add("js")</script>
+
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}"></script>
         <script src="{{ asset('js/pesquisa_atlas.js') }}"></script>
@@ -42,4 +45,6 @@
         <script defer="defer" src="//barra.brasil.gov.br/barra.js" type="text/javascript"></script>
     </head>
     <body>
+    @include('layouts._includes.barra_acessibilidade')
     @include('layouts._includes.nav')
+    

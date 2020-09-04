@@ -2,7 +2,7 @@
 @section('titulo', 'Noticias')
 @section('content')
     <div class="container" >
-        <h2>Todas as notícias</h2>
+        <h2 class="fadeInDown" data-anime="150">Notícias</h2>
         <div class="d-flex flex-column">
 
             @if (count($registros) < 1)
@@ -18,7 +18,7 @@
             </div>
             @endif
 
-            <div class="d-flex justify-content-center">
+            <div class="d-flex justify-content-center fadeInDown" data-anime="300">
                 {{ $registros->links() }}
             </div> 
          </div>

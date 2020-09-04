@@ -3,7 +3,7 @@
 @section('content')
 <div class="row justify-content-center">
     <div class="container col-11 col-md-10 col-lg-7 m-0">
-        <h2>Eventos</h2>
+        <h2 class="fadeInDown" data-anime="150">Eventos</h2>
 
         <div class="d-flex flex-column">
 
@@ -20,14 +20,16 @@
             </div>
             @endif
             
-            <div class="d-flex justify-content-center">
+            <div class="d-flex justify-content-center fadeInDown" data-anime="300">
                 {{ $registros->links() }}
             </div>                            
         </div>
     </div>
     <div class="container col-11 col-md-8 col-lg-3 m-0">
-        <h2>Agenda de eventos</h2>
-        <div id="full-clndr" class="clearfix">
+        <h2 class="fadeInDown" data-anime="150">Agenda de eventos</h2>
+        <div id="full-clndr" class="clearfix fadeInDown" data-anime="300">
+        <p class="no-javascript">O Javascript não está habilitado no seu navegador, agenda não está disponível sem Javascript</p>
+
         </div>
     </div>
 </div>

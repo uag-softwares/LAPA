@@ -3,12 +3,12 @@
 @section('titulo', 'Atlas Interativo - '.$disciplina->nome ?? '')
 @section('content')
     <div class="container">
-        <h2>Atlas Interativo</h2>
-        <div class="d-flex justify-content-around row">
+        <h2 class="fadeInDown" data-anime="150">Atlas Interativo</h2>
+        <div class="d-flex justify-content-around row fadeInDown" data-anime="300">
             <div class="col-11 col-md-10 col-lg-8">
                 <div class="card">
                     <div class="card-header">
-                        <h3>Mostrando áreas de conhecimento do assunto{{ ucfirst($disciplina->nome) }}</h3>
+                        <h3>Mostrando áreas de conhecimento do assunto {{ ucfirst($disciplina->nome) }}</h3>
                         <input class="form-control" id="pesquisa_categoria" type="search" id="form-autocomplete" placeholder="Pesquisar...">
                     </div>
                     @if (count($paginas) < 1)

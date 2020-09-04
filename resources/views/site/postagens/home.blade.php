@@ -6,7 +6,7 @@
      @if (count($registros) < 1)
           <p>Ops, ainda não temos nenhum evento</p>
      @else
-          <div id="myCarousel" class="carousel slide mb-4" data-ride="carousel">
+          <div id="myCarousel" class="carousel slide mb-4 fadeInDown" data-ride="carousel" data-anime="150">
                <ol class="carousel-indicators">
                     @for($i = 0; $i < ( count($registros) < 3 ? count($registros) : 3); $i++)
                          <li data-target="#myCarousel" data-slide-to="{{ $i }}" class="{{ $i == 0 ? 'active' : ''}}"></li>
@@ -17,7 +17,7 @@
                     @for($i = 0; $i < ( count($registros) < 3 ? count($registros) : 3); $i++)
                          <div class="carousel-item {{$i == 0 ? 'active' : '' }}" data-interval="5000">
                               <img src="{{ asset($registros[$i]->anexo) }}" class="d-block w-100" alt="Imagem do banner de postagens">
-                              <a class="carousel-caption" href="{{ route('site.noticias.vizualizar', $registros[$i]->slug) }}">
+                              <a class="carousel-caption" href="{{ route('site.noticias.visualizar', $registros[$i]->slug) }}">
                                    <h2>{{ $registros[$i]->titulo}}</h2>
                               </a>
                          </div>
@@ -33,12 +33,12 @@
                     <span class="sr-only">Next</span>
                </a>
           </div>
-          <a href="{{ route('site.postagens.indexNoticia') }}" class="btn">Ver todas as notícias</a>      
+          <a href="{{ route('site.postagens.indexNoticia') }}" class="btn fadeInDown" data-anime="300">Ver todas as notícias</a>      
      @endif
 
      @if(isset($eventos) && count($eventos) != 0)
      <div class="mb-5">
-          <h2 class="mb-3 mt-4">Próximos eventos</h2>
+          <h2 class="mb-3 mt-4  fadeInDown" data-anime="300">Próximos eventos</h2>
           <div class="d-flex flex-wrap justify-content-center">
           
           @foreach ($eventos as $registro)
@@ -46,13 +46,13 @@
           @endforeach
 
           </div>
-          <a href="{{ route('site.postagens.indexEvento') }}" class="btn">Ver todos</a>
+          <a href="{{ route('site.postagens.indexEvento') }}" class="btn fadeInDown" data-anime="300">Ver todos</a>
      </div>
      @endif
 
      @if(isset($editais) && count($editais) != 0)
      <div class="mb-5">
-          <h2 class="mb-3 mt-4">Últimos editais</h2>
+          <h2 class="mb-3 mt-4  fadeInDown" data-anime="300">Últimos editais</h2>
           <div class="d-flex flex-wrap justify-content-center">
           
           @foreach ($editais as $registro)
@@ -60,7 +60,7 @@
           @endforeach
 
           </div>
-          <a href="{{ route('site.postagens.indexEdital') }}" class="btn">Ver todos</a>
+          <a href="{{ route('site.postagens.indexEdital') }}" class="btn fadeInDown" data-anime="300">Ver todos</a>
           
      </div>
      @endif
