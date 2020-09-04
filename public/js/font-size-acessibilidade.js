@@ -1,8 +1,8 @@
 window.onload = function() {
-    var elementBody = document.querySelector(':root');
-    var elementBtnIncreaseFont = document.getElementById('increase-font');
-    var elementBtnDecreaseFont = document.getElementById('decrease-font');
-    var elementBtnReseteFont = document.getElementById('resete-font');
+    var elementBody = document.querySelector(":root");
+    var elementBtnIncreaseFont = document.getElementById("increase-font");
+    var elementBtnDecreaseFont = document.getElementById("decrease-font");
+    var elementBtnReseteFont = document.getElementById("resete-font");
 
     // Padrão de tamanho, equivale a 100% do valor definido no Body
     var fontSize = 100;
@@ -10,24 +10,24 @@ window.onload = function() {
     var increaseDecrease = 10;
 
     // Evento de click para aumentar a fonte
-    elementBtnIncreaseFont.addEventListener('click', function(event) {
+    elementBtnIncreaseFont.addEventListener("click", function(event) {
         if(fontSize <= 140){
             fontSize = fontSize + increaseDecrease;
-            elementBody.style.fontSize = fontSize + '%';
+            elementBody.style.fontSize = fontSize + "%";
         }
        
     });
 
      // Evento de click para resetar a fonte
-     elementBtnReseteFont.addEventListener('click', function(event) {
-        elementBody.style.fontSize = '100%';     
+     elementBtnReseteFont.addEventListener("click", function(event) {
+        elementBody.style.fontSize = "100%";     
     });
 
     // Evento de click para diminuir a fonte
-    elementBtnDecreaseFont.addEventListener('click', function(event) {
+    elementBtnDecreaseFont.addEventListener("click", function(event) {
         if(fontSize >= 80){
             fontSize = fontSize - increaseDecrease;
-            elementBody.style.fontSize = fontSize + '%';
+            elementBody.style.fontSize = fontSize + "%";
         }
 
     });
