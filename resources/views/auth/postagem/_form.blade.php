@@ -3,7 +3,7 @@
 @endif
 <div class="form-group">
     <label for="titulo">Título da Postagem*</label>
-    <input class="form-control form-control-lg @error('titulo') is-invalid @enderror" type="text" name="titulo" value="{{ isset($registro->titulo) ? $registro->titulo : old('titulo') }}" placeholder="ex: Visita ao LAPA" required autocomplete="titulo">
+    <input class="form-control form-control-lg @error('titulo') is-invalid @enderror" type="text" name="titulo" value="{{ isset($registro->titulo) ? $registro->titulo : old('titulo') }}" placeholder="ex: Visita ao LAPA" autocomplete="titulo">
     @error('titulo')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -12,7 +12,7 @@
 </div>
 <div class="form-group">
     <label for="descricao">Descrição*</label>
-    <textarea rows="14" id="summernote" class="form-control form-control-lg @error('descricao') is-invalid @enderror" type="text" name="descricao"  required autocomplete="descricao">{{ isset($registro->descricao) ? $registro->descricao : old('descricao') }}</textarea>
+    <textarea rows="14" id="summernote" class="form-control form-control-lg @error('descricao') is-invalid @enderror" type="text" name="descricao" autocomplete="descricao">{{ isset($registro->descricao) ? $registro->descricao : old('descricao') }}</textarea>
     @error('descricao')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -26,8 +26,8 @@
             <option hidden disabled selected value>Clique para selecionar o tipo da postagem</option>
         @endif
         @foreach($tipo_postagens as $tipo)
-            @if(isset($registro->tipo_postagem) && $registro->tipo_postagem == $tipo))
-                <option selected value="{{ $registro->tipo_postagem }}" selected>{{$registro->tipo_postagem}}</option>
+            @if((isset($registro->tipo_postagem) && $registro->tipo_postagem == $tipo) || old('tipo_postagem') == $tipo))
+                <option selected value="{{ $tipo }}" selected>{{ $tipo }}</option>
             @else
                 <option value="{{ $tipo}}">{{$tipo}}</option>
             @endif
@@ -40,7 +40,7 @@
     @enderror
 </div>
 
-<div id="dh" class="{{ isset($registro->tipo_postagem) ? ($registro->tipo_postagem == 'evento' ? 'show' : '') : '' }} @error('data') show @enderror">
+<div id="dh" class="{{ isset($registro->tipo_postagem) ? ($registro->tipo_postagem == 'evento' ? 'show' : '') : '' }} {{ old('tipo_postagem') == $tipo ? 'show' : '' }} @error('data') show @enderror @error('hora') show @enderror">
     <div class="d-flex flex-row">
         <div class="form-group">
             <label for="data">Data(obrigatório para evento)</label>
@@ -65,7 +65,7 @@
     </div>
 </div>
 <div class="form-group" id="radio-group-anexo">
-    <label>Escolher origem da imagem anexa*</label><br>
+    <label class="@error('tipo_anexo') is-invalid @enderror">Escolher origem da imagem anexa*</label><br>
     <input disabled type="radio" name="tipo_anexo" value="upload" id="upload-radio" {{ isset($registro) ? ($registro->tipo_anexo == 'upload' ? 'checked' : '') : ''}}>
     <label for="upload-radio">Enviar arquivo do dispositivo</label><br>
     <input type="radio" name="tipo_anexo" value="link_drive" id="drive-radio" {{ isset($registro) ? ($registro->tipo_anexo == 'link_drive' ? 'checked' : '') : '' }}>
