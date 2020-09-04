@@ -1,21 +1,5 @@
         <div id="app">
-            <body>
-            <div id="barra-brasil" style="background:#7F7F7F; height: 20px; padding:0 0 0 10px;display:block;"  >
-              <ul id="menu-barra-temp" style="list-style:none;">
-                <li style="display:inline; float:left;padding-right:10px; margin-right:10px; border-right:1px solid #EDEDED">
-                    <a href="http://brasil.gov.br" style="font-family:sans,sans-serif; text-decoration:none; color:white;">Portal do Governo Brasileiro</a>
-                </li>
-                <li>
-                   <a style="font-family:sans,sans-serif; text-decoration:none; color:white;" href="http://epwg.governoeletronico.gov.br/barra/atualize.html">Atualize sua Barra de Governo</a>
-                </li>
-              </ul>
-            </div>
-            <div vw class="enabled">
-                            <div vw-access-button class="active"></div>
-                            <div vw-plugin-wrapper>
-                              <div class="vw-plugin-top-wrapper"></div>
-                            </div>
-            </div>
+            
             <header class="d-flex px-md-5 px-4 justify-content-around text-md-center text-left align-items-center">
                   
                 <div class="title d-md-none">
