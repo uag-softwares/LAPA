@@ -13,6 +13,9 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap" rel="stylesheet">
+        <!-- Tamanho da font do cookie acessibilidade -->
+        <script src="{{ asset('js/font_size_cookie.js') }}"></script>
+
 
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
