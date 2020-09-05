@@ -29,7 +29,6 @@
 <!-- app scripts -->
 <script src="{{ asset('js/animation_config.js') }}"></script>
 
-
 <!-- Footer -->
 	<footer>
 		<div class="container">

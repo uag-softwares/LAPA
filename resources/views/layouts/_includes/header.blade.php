@@ -13,10 +13,14 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap" rel="stylesheet">
+        <!-- Tamanho da font do cookie acessibilidade -->
+        <script src="{{ asset('js/acessibilidade_cookies.js') }}"></script>
+
 
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/style_contraste.css') }}" rel="stylesheet" id="css-contraste">
         <link href="{{ asset('css/clndr.css') }}" rel="stylesheet">
         <link href="{{ asset('css/simple-anime.css') }}" rel="stylesheet">
         
@@ -38,8 +42,19 @@
 
         <!-- reCAPTCHA-->
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        <!-- Vlibras -->
+        <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+        <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+        <!-- br barra-->
+        <script defer="defer" src="//barra.brasil.gov.br/barra.js" type="text/javascript"></script>
+
     </head>
     <body>
+    @include('layouts._includes.barra_gov')
     @include('layouts._includes.barra_acessibilidade')
+
+    <!-- contraste cookies -->
+    <script src="{{ asset('js/contraste_cookies.js') }}"></script>
+    
     @include('layouts._includes.nav')
     

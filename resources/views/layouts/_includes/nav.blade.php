@@ -1,6 +1,7 @@
         <div id="app">
-
+            
             <header class="d-flex px-md-5 px-4 justify-content-around text-md-center text-left align-items-center">
+                  
                 <div class="title d-md-none">
                     <h3>Laboratório de Anatomia e Patologia Animal</h3>
                 </div>
@@ -10,6 +11,7 @@
                     <h3>Laboratório de Anatomia e Patologia Animal</h3>
                 </div>
                 <img class="my-4" style="height:130px;" src="{{ asset('img/logo-uag.png') }}" alt="">
+
             </header>
 
             <nav class="navbar navbar-expand-lg navbar-custom px-4">
