@@ -22,7 +22,7 @@
                     <div class="col-md-8 col-12 text-left">
                         <h3 class="title">{{ $pagina->titulo }}</h3>
                         <p class="text">
-                            {{ $pagina->descricao }}
+                            {!! $pagina->toArray()['descricao'] !!}
                         </p>
                     </div>
                     <div id="overlay"></div>
