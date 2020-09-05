@@ -105,7 +105,7 @@ Feature: usuario
          And Eu seleciono o campo escolher origem do avatar link do drive
          And Eu preencho o campo do link do arquivo com "gsdtjhdtghjedytjhtyjk"
          And   Eu clico em Editar
-         Then  Eu vejo a mensagem de erro "O formato da URL informada para o campo anexo web é inválido."
+         Then  Eu vejo a mensagem de erro "O formato da URL informada para o campo anexo drive é inválido."
 
   Scenario: atualizar link lattes com formato invalido do usuario administrador cadastrado 
          Given O usuario administrador com nome "Rodrigo",email "rodrigo@gmail.com" e senha "Brasil2020@" existe
