@@ -80,20 +80,23 @@ class RegisterController extends Controller
         return Validator::make($data, [
 
             'name' =>'required|regex:/^[\pL\s\-.]+$/u|string|min:3|max:255',
-            'email' => ['required', 'string', 'email', 'max:255',Rule::unique('users')->where(function ($query){return $query->where('user_type','admin');})],
+           // 'email' => ['required', 'string', 'email', 'max:255',Rule::unique('users')->where(function ($query){return $query->where('user_type','admin');})],
             'password' => 'required|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/|string|min:6|confirmed',
-	    'cpf' => ['required','regex:/\d{3}\.\d{3}\.\d{3}\-\d{2}/','string',Rule::unique('users')->where(function ($query){return $query->where('user_type','admin');})],
+	         'cpf' => ['required','regex:/\d{3}\.\d{3}\.\d{3}\-\d{2}/','string',Rule::unique('users')->where(function ($query){return $query->where('user_type','admin');})],
 
             'user_description' => 'max:255|nullable',
             'link_lattes' => 'url|string|nullable',
-            'avatar' => 'mimes:jpeg,jpg,png,gif|max:2048|nullable',
-	        'g-recaptcha-response' => 'required',
-            
+	          'g-recaptcha-response' => 'required',
+            'tipo_avatar' => 'max:255|nullable',
+
         ],[
        'password.regex'=>'Sua senha deve conter no mínimo de 6 caracteres,deve conter pelo menos uma letra maiúscula,uma minúscula,um número e um símbolo',
        'email.unique'=>'O valor informado para o campo e-mail já está em uso em uma conta de administrador',
        'cpf.unique'=>'O valor informado para o campo cpf já está em uso em uma conta de administrador',
        'g-recaptcha-response.required' => 'O campo reCaptcha é obrigatório',
+       #'tipo_avatar.url'=>'O formato da URL informada para o campo foto é inválido.',
+       'tipo_avatar.max'=>'O tamanho máximo da URL informada para o campo foto é 255 caracteres.',
+       
       
        ]);
        
@@ -107,7 +110,9 @@ class RegisterController extends Controller
      */
      
     protected function create(array $data)
-    {  $registros=$this->usuario->where( 'user_type', 'admin')->get()->whereNotNull('cpf_verified_at')->all();
+    {  
+
+      $registros=$this->usuario->where( 'user_type', 'admin')->get()->whereNotNull('cpf_verified_at')->all();
        $findUser=$this->usuario->where('email',$data['email'])->first();
        $avatar=null;
        $request = new Request($data);
@@ -149,12 +154,12 @@ class RegisterController extends Controller
         }
 
         $user->update($user->attributesToArray());
-/*
+
 	foreach ($registros as $registro) {
             $registro->notify(new SolicitacaoAcesso($user));
         }
         return $user;
-        */
+        
     }
 
     public function index (){

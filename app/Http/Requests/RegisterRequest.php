@@ -27,9 +27,21 @@ class RegisterRequest extends FormRequest
             'name' =>'required|regex:/^[\pL\s\-.]+$/u|string|min:3|max:255',
             'user_description' => 'max:255|nullable',
             'link_lattes' => 'url|string|nullable',
-            'avatar' => 'mimes:jpeg,jpg,png,gif|max:2048|nullable',
-           # 'tipo_anexo' => 'required'
+            #'avatar' => 'mimes:jpeg,jpg,png,gif|max:2048|nullable',
+            'tipo_avatar' => 'max:255|nullable',
 	    
+        ];
+    }
+    /**
+     * Get the validation messages that apply to the request.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+           # 'tipo_avatar.active_url'=>'O formato da URL informada para o campo foto é inválida.',
+           'tipo_avatar.max'=>'O tamanho máximo da URL informada para o campo foto é 255 caracteres.',
         ];
     }
     
