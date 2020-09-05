@@ -1,0 +1,166 @@
+:root {
+  --body-color: #212529;
+  --main-green: #000000;
+  --main-dark-green: #000000;
+  --main-green-opacity-0-9: #000000;
+  --main-black: #ffffff;
+  --main-white: #ffffff;
+  --main-light: #000000;
+  --white: #000000;
+  --link-color: #ff0;
+}
+
+body,
+.card,
+.dropdown-menu,
+.card div.card-footer,
+.card div.card-footer.event,
+.card.manage div.card-header,
+.card.manage,
+.form-control:disabled,
+.form-control[readonly],
+.list-group-item,
+.list-group-item:visited,
+.list-group-item.disabled,
+.item,
+.item:visited,
+a.page-link,
+#leftSidebar {
+  background-color: var(--body-color);
+  color: var(--main-black);
+}
+
+.form-control,
+.form-control:focus,
+.note-editing-area {
+  background-color: var(--main-green);
+  color: var(--main-white);
+}
+
+a,
+a:visited,
+a.page-link {
+  color: var(--link-color);
+  text-decoration: underline;
+}
+
+a:hover,
+a:hover.page-link {
+  color: var(--link-color) !important;
+  text-decoration: none;
+}
+
+a.btn,
+a:visited.btn,
+button.btn,
+input.btn,
+.page-link,
+.item:hover,
+.list-group-item-action:hover, .list-group-item-action:focus,
+a.page-link:hover,
+a.btn.btn-outline,
+button.btn.btn-outline,
+input.btn.btn-outline,
+.dropdown-item,
+.dropdown-item:visited {
+  background-color: var(--main-green);
+  color: var(--main-black);
+  text-decoration: underline;
+}
+
+h1, h2, h3, h4, h5, h6, p,
+footer,
+footer a,
+footer a:visited,
+.table {
+  color: var(--main-black);
+}
+
+.pagination-container nav {
+  border: none;
+}
+
+.card {
+  border-color: var(--white);
+}
+
+.card,
+a.btn,
+a:visited.btn,
+button.btn,
+input.btn,
+.nav-item,
+.page-link,
+.dropdown-menu,
+li.page-item.active .page-link,
+.list-group .list-group-item.active,
+.list-group-item,
+.form-control,
+.form-control:focus,
+.user-card,
+a.page-link:hover,
+a.btn.btn-outline,
+button.btn.btn-outline,
+input.btn.btn-outline,
+.note-editing-area {
+  border-left: 2px solid var(--main-black);
+  border-right: 2px solid var(--main-black);
+}
+
+nav,
+.card,
+a.btn,
+a:visited.btn,
+button.btn,
+input.btn,
+.page-link,
+.dropdown-menu,
+li.page-item.active .page-link,
+.list-group .list-group-item.active,
+.list-group-item,
+.form-control,
+.form-control:focus,
+.user-card,
+a.page-link:hover,
+a.btn.btn-outline,
+button.btn.btn-outline,
+input.btn.btn-outline,
+.note-editing-area {
+  border-top: 2px solid var(--main-black);
+  border-bottom: 2px solid var(--main-black);
+}
+
+footer {
+  border-top: 2px solid var(--main-white);
+}
+
+.border-right {
+  border-right: 2px solid var(--main-black) !important;
+}
+
+.btn.dropdown-toggle,
+#barra-brasil nav  {
+  border: none;
+}
+
+nav.acessibilidade {
+  border-top: none;
+}
+
+#barra-brasil {
+  background-color: var(--body-color) !important;
+  color: var(--main-white) !important;
+  border-color: var(--main-white) !important;
+  border-width: 2px !important;
+}
+
+#barra-brasil .link-barra {
+  color: var(--link-color) !important;
+  text-decoration: underline;
+}
+
+header > img {
+  box-sizing: content-box;
+  padding: 0.5em;
+  background-color: var(--main-white);
+}

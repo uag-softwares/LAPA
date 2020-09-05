@@ -1,6 +1,8 @@
+// Recuperar tamanho da fonte
 var fontSizeCookie = getCookie("fontSize");
 document.querySelector(":root").style.fontSize = fontSizeCookie + "%";
 
+// Pegar cookies de nome cname
 function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
