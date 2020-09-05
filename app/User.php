@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
+use Str;
 class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
@@ -16,7 +16,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name','cpf','email','telephone','user_description','avatar','user_type','email_verified_at','cpf_verified_at','link_lattes','slug',
+        'name','cpf','email','telephone','user_description','avatar','user_type','email_verified_at','cpf_verified_at','link_lattes','slug', 'tipo_avatar',
     ];
 
     
@@ -64,7 +64,18 @@ class User extends Authenticatable implements MustVerifyEmail
     return 'slug';
   }
 
-    public function contato() {
+   public function contato() {
         return $this->hasMany('App\Sobre');
     }
+   /**
+    * Convert a shared image link from drive to an embedable image link.
+    *
+    * @return string
+    */
+    public static function convertToEmbedableImageLink($link) {
+      $embedableLink = Str::replaceFirst('https://drive.google.com/file/d/', 'https://drive.google.com/thumbnail?id=', $link);
+      $embedableLink = Str::replaceFirst('/view?usp=sharing', '', $embedableLink);
+
+      return $embedableLink;
+  }
 }
