@@ -1,12 +1,12 @@
 :root {
   --body-color: #212529;
-  --main-green: #000000;
-  --main-dark-green: #000000;
-  --main-green-opacity-0-9: #000000;
-  --main-black: #ffffff;
-  --main-white: #ffffff;
-  --main-light: #000000;
-  --white: #000000;
+  --main-green: #000;
+  --main-dark-green: #000;
+  --main-green-opacity-0-9: #000;
+  --main-black: #fff;
+  --main-white: #fff;
+  --main-light: #000;
+  --white: #000;
   --link-color: #ff0;
 }
 
