@@ -88,7 +88,8 @@ Feature: usuario
          And   Eu abro pagina de configuracao de usuario
          And   Eu clico em editar registro do usuario
          Then  Eu estou na pagina de editar registro
-         When  Eu mudo a foto de perfil do registro para "anexo2.png"
+         And Eu seleciono o campo escolher origem do avatar link do drive
+         And Eu preencho o campo do link do arquivo com "https://drive.google.com/file/d/1eJt5xYMq3chZL92_vbHSDq5VmMO22V80/view?usp=sharing"
          And   Eu clico em Editar
          Then  Eu vejo uma menssagem de sucesso
 
@@ -101,9 +102,10 @@ Feature: usuario
          And   Eu abro pagina de configuracao de usuario
          And   Eu clico em editar registro do usuario
          Then  Eu estou na pagina de editar registro
-         When  Eu mudo a foto de perfil do registro para "arquivo.pdf"
+         And Eu seleciono o campo escolher origem do avatar link do drive
+         And Eu preencho o campo do link do arquivo com "gsdtjhdtghjedytjhtyjk"
          And   Eu clico em Editar
-         Then  Eu vejo a mensagem de erro "O campo foto deve conter um arquivo do tipo: jpeg, jpg, png, gif."
+         Then  Eu vejo a mensagem de erro "O formato da URL informada para o campo anexo drive é inválido."
 
   Scenario: atualizar link lattes com formato invalido do usuario administrador cadastrado 
          Given O usuario administrador com nome "Rodrigo",email "rodrigo@gmail.com" e senha "Brasil2020@" existe

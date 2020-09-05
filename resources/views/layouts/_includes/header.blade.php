@@ -20,7 +20,6 @@
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/style_contraste.css') }}" rel="stylesheet" id="css-contraste">
         <link href="{{ asset('css/clndr.css') }}" rel="stylesheet">
         <link href="{{ asset('css/simple-anime.css') }}" rel="stylesheet">
         
