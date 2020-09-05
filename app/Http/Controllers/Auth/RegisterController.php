@@ -96,7 +96,6 @@ class RegisterController extends Controller
             'email.unique'=>'O valor informado para o campo e-mail já está em uso em uma conta de administrador',
             'cpf.unique'=>'O valor informado para o campo cpf já está em uso em uma conta de administrador',
             'g-recaptcha-response.required' => 'O campo reCaptcha é obrigatório',
-            'tipo_avatar.max'=>'O tamanho máximo da URL informada para o campo foto é 255 caracteres.',
        ]);
        
     }
@@ -141,15 +140,17 @@ class RegisterController extends Controller
 
         $user['slug']=str_slug($user->name).'-'.$user->id;
         $user['avatar'] = $data['anexo_web'];
-        if($data['tipo_avatar'] == 'link_drive') {
-                    $user['avatar']  = $this->usuario::convertToEmbedableImageLink($data['anexo_drive']);
-        }else if (($data['tipo_avatar'] == 'upload') && $data->hasFile('anexo_upload')) {
-            $anexo = $data->file('anexo_upload');
-            $dir = 'img/avatares/';
-            $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
-            $nomeAnexo = 'avatar_'.$user['slug'].'.'.$exAnexo;
-            $anexo->move($dir, $nomeAnexo);
-            $user['avatar'] = $dir.'/'.$nomeAnexo;
+        if(in_array('tipo_avatar', $data)) {
+            if($data['tipo_avatar'] == 'link_drive') {
+                        $user['avatar']  = $this->usuario::convertToEmbedableImageLink($data['anexo_drive']);
+            } else if (($data['tipo_avatar'] == 'upload') && $data->hasFile('anexo_upload')) {
+                $anexo = $data->file('anexo_upload');
+                $dir = 'img/avatares/';
+                $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
+                $nomeAnexo = 'avatar_'.$user['slug'].'.'.$exAnexo;
+                $anexo->move($dir, $nomeAnexo);
+                $user['avatar'] = $dir.'/'.$nomeAnexo;
+            }
         }
 
         $user->update($user->attributesToArray());
@@ -217,15 +218,17 @@ class RegisterController extends Controller
 
         $dados['avatar'] = $data['anexo_web'];
         $dados['tipo_avatar'] = $data['tipo_avatar'];
-         if($data['tipo_avatar'] == 'link_drive') {
-            $dados['avatar']  = $this->usuario::convertToEmbedableImageLink($data['anexo_drive']);
-         }else if (($data['tipo_avatar'] == 'upload') && $data->hasFile('anexo_upload')) {
-            $anexo = $data->file('anexo_upload');
-            $dir = 'img/avatares/';
-            $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
-            $nomeAnexo = 'avatar_'.$user['slug'].'.'.$exAnexo;
-            $anexo->move($dir, $nomeAnexo);
-            $user['avatar'] = $dir.'/'.$nomeAnexo;
+        if($data->has('tipo_avatar')) {
+            if($data['tipo_avatar'] == 'link_drive') {
+                $dados['avatar']  = $this->usuario::convertToEmbedableImageLink($data['anexo_drive']);
+            }else if (($data['tipo_avatar'] == 'upload') && $data->hasFile('anexo_upload')) {
+                $anexo = $data->file('anexo_upload');
+                $dir = 'img/avatares/';
+                $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
+                $nomeAnexo = 'avatar_'.$user['slug'].'.'.$exAnexo;
+                $anexo->move($dir, $nomeAnexo);
+                $user['avatar'] = $dir.'/'.$nomeAnexo;
+            }
         }
         
         $user->update($dados);
