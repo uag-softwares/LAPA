@@ -6,15 +6,11 @@ for( var i = 0, length = radioGroupAnexo.length; i < length; i++) {
             document.querySelector(".form-group-anime").classList.add("show");
             var upload = document.getElementById("upload");
             var linkWeb = document.getElementById("link_web");
-            var linkDrive = document.getElementById("link_drive");
 
             upload.classList.remove("show");
             linkWeb.classList.remove("show");
-            linkDrive.classList.remove("show");
-            
-            if(this.value === "link_drive") {
-                linkDrive.classList.add("show");
-            } else if(this.value === "link_web") {
+           
+            if(this.value === "link_web") {
                 linkWeb.classList.add("show");
             } else if(this.value === "upload") {
                 upload.classList.add("show");

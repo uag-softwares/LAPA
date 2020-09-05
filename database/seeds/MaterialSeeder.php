@@ -15,8 +15,8 @@ class MaterialSeeder extends Seeder
 
         for($i = 0; $i < 10; $i++) {
             factory(App\Material::class)->create([
-                'publicado' => true,
-                'disciplina_id' => $disciplina->id,
+               'publicado' => true,
+               'disciplina_id' => $disciplina->id,
             ]);
         }
     }

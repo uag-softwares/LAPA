@@ -47,15 +47,6 @@ body {
   font-size: 1rem;
 
 }
-.contraste {
-    background: #212529;
-}
-.contraste h4 {
-  color: #00ad50;
-}
-.contraste h3{
-   color: #00ad50;
-}
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: var(--font-regular);
@@ -79,10 +70,6 @@ nav.navbar {
 .acessibilidade * {
   margin-right: 10px;
   margin-left: 10px;
-}
-
-.acessibilidade {
-  background-color: var(--main-white);
 }
 
 /* Largura da header */
@@ -235,7 +222,7 @@ form,
 /* 4- Menu usuario logado */
 .card.manage{
   cursor: pointer;
-  width: 12em;
+  width: 13em;
   margin: 0 0.5rem 0.5rem;
   background-color: var(--main-white);
 }
@@ -460,16 +447,16 @@ input:disabled + label:hover::before {
 }
 
 /* Animação do seletor de evento */
-#dh {
+.input-group-data-hora {
   display: block;
   opacity: 1;
 }
 
-.js #dh {
+.js .input-group-data-hora {
   animation: fadeOutToNoneHeight 250ms ease-in-out forwards;
 }
 
-.js #dh.show {
+.js .input-group-data-hora.show {
   animation: fadeInFromNoneHeight 250ms ease-in-out forwards;
 }
 
@@ -803,40 +790,35 @@ a:hover.page-link {
 
 @keyframes fadeInFromNoneHeight {
   0% {
-    display: none;
     opacity: 0;
     height: 0;
   }
 
   1% {
-    display: block;
     opacity: 0;
     height: 0;
   }
 
   100% {
-    display: block;
     opacity: 1;
-    height: 200px;
+    height: 230px;
   }
 }
 
 @keyframes fadeOutToNoneHeight {
   0% {
-    display: block;
     opacity: 1;
-    height: 200px;
+    height: 230px;
     
   }
 
   99% {
-    display: block;
     opacity: 0;
     height: 0;
   }
 
   100% {
-    display: none;
+    visibility: hidden;
     opacity: 0;
     height: 0;
   }

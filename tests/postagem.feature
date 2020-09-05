@@ -23,7 +23,7 @@ Feature: postagem
     When Eu edito o titulo para "Entrega de peças ao acervo"
     And Eu edito a descricao para "Chegaram novas peças no nosso acervo"
     And Eu seleciono o campo escolher origem do anexo link da web
-    And Eu preencho o campo do link do arquivo com "https://drive.google.com/file/d/1eJt5xYMq3chZL92_vbHSDq5VmMO22V80/view?usp=sharing"
+    And Eu preencho o campo do link da web com "https://drive.google.com/file/d/1eJt5xYMq3chZL92_vbHSDq5VmMO22V80/view?usp=sharing"
     And Eu clico em Publicar agora
     Then Eu vejo que a postagem com titulo "Entrega de peças ao acervo" foi salva com sucesso
 
@@ -95,7 +95,7 @@ Scenario: criar uma postagem valida do tipo evento
     And Eu preencho o campo data com "2050-06-26"
     And Eu preencho o campo hora com "14:00"
     And Eu seleciono o campo escolher origem do anexo link da web
-    And Eu preencho o campo do link do arquivo com "https://drive.google.com/file/d/1eJt5xYMq3chZL92_vbHSDq5VmMO22V80/view?usp=sharing"
+    And Eu preencho o campo do link da web com "https://drive.google.com/file/d/1eJt5xYMq3chZL92_vbHSDq5VmMO22V80/view?usp=sharing"
     And Eu clico em Publicar agora
     Then Eu vejo que a postagem com titulo "evento 2050" foi salva com sucesso
 
@@ -109,7 +109,7 @@ Scenario: criar uma postagem do tipo evento com formato de hora invalida
     And Eu preencho o campo data com "2050-06-26"
     And Eu preencho o campo hora com "02:01:00"
     And Eu seleciono o campo escolher origem do anexo link da web
-    And Eu preencho o campo do link do arquivo com "https://drive.google.com/file/d/1eJt5xYMq3chZL92_vbHSDq5VmMO22V80/view?usp=sharing"
+    And Eu preencho o campo do link da web com "https://drive.google.com/file/d/1eJt5xYMq3chZL92_vbHSDq5VmMO22V80/view?usp=sharing"
     And Eu clico em Publicar agora
     Then Eu vejo a mensagem de erro "A hora selecionada não está no formato H:i"
 
@@ -136,9 +136,9 @@ Scenario: criar uma postagem do tipo evento invalida sem hora
     And Eu seleciono o campo tipo da postagem "evento"
     And Eu preencho o campo data com "2050-06-26"
     And Eu seleciono o campo escolher origem do anexo link da web
-    And Eu preencho o campo do link do arquivo com "https://drive.google.com/file/d/1eJt5xYMq3chZL92_vbHSDq5VmMO22V80/view?usp=sharing"
+    And Eu preencho o campo do link da web com "https://drive.google.com/file/d/1eJt5xYMq3chZL92_vbHSDq5VmMO22V80/view?usp=sharing"
     And Eu clico em Publicar agora
-    Then Eu vejo a mensagem de erro "Selecionar a hora quando a postagem for um evento é obrigatório"
+    Then Eu vejo a mensagem de erro "O campo hora é obrigatório quando o valor do campo tipo postagem é igual a evento."
 
 Scenario: criar uma postagem do tipo evento invalida sem data
     Given Eu estou logado como "Sol" com email "sol@admin.com" e senha "12345678"
@@ -151,7 +151,7 @@ Scenario: criar uma postagem do tipo evento invalida sem data
     And Eu seleciono o campo escolher origem do anexo link do drive
     And Eu preencho o campo do link do arquivo com "https://drive.google.com/file/d/1eJt5xYMq3chZL92_vbHSDq5VmMO22V80/view?usp=sharing"
     And Eu clico em Publicar agora
-    Then Eu vejo a mensagem de erro "Selecionar data quando a postagem for um evento é obrigatório"
+    Then Eu vejo a mensagem de erro "O campo data é obrigatório quando o valor do campo tipo postagem é igual a evento."
 
 Scenario: atualizar hora em branco invalida de uma postagem evento
     Given Eu estou logado como "Josy" com email "Josy@admin.com" e senha "12345678"
@@ -159,7 +159,7 @@ Scenario: atualizar hora em branco invalida de uma postagem evento
     And Eu clico em Editar a postagem com titulo "evento 2050"
     When Eu edito a hora para ""
     And Eu clico em Publicar agora
-    Then Eu vejo a mensagem de erro "Selecionar a hora quando a postagem for um evento é obrigatório"
+    Then Eu vejo a mensagem de erro "O campo hora é obrigatório quando o valor do campo tipo postagem é igual a evento."
 
 Scenario: atualizar data em branco invalida de uma postagem evento
     Given Eu estou logado como "Josy" com email "Josy@admin.com" e senha "12345678"
@@ -167,7 +167,7 @@ Scenario: atualizar data em branco invalida de uma postagem evento
     And Eu clico em Editar a postagem com titulo "evento 2050"
     When Eu edito a data para ""
     And Eu clico em Publicar agora
-    Then Eu vejo a mensagem de erro "Selecionar data quando a postagem for um evento é obrigatório"
+    Then Eu vejo a mensagem de erro "O campo data é obrigatório quando o valor do campo tipo postagem é igual a evento."
 
 Scenario: atualizar hora com formato invalido de uma postagem evento
     Given Eu estou logado como "Josy" com email "Josy@admin.com" e senha "12345678"
@@ -193,6 +193,6 @@ Scenario: criar uma postagem valida do tipo edital
     And Eu preencho o campo descricao com "Recebemos alunos da escola EREMG"
     And Eu seleciono o campo tipo da postagem "edital"
     And Eu seleciono o campo escolher origem do anexo link da web
-    And Eu preencho o campo do link do arquivo com "https://drive.google.com/file/d/1eJt5xYMq3chZL92_vbHSDq5VmMO22V80/view?usp=sharing"
+    And Eu preencho o campo do link da web com "https://drive.google.com/file/d/1eJt5xYMq3chZL92_vbHSDq5VmMO22V80/view?usp=sharing"
     And Eu clico em Publicar agora
     Then Eu vejo que a postagem com titulo "postagem edital" foi salva com sucesso

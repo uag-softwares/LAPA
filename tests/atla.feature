@@ -26,7 +26,7 @@ Feature: atla
     And Eu preencho o campo descricao com "foto do olho do mamifero"
     And Eu seleciono a categoria "Sistema nervoso"
     And Eu seleciono o campo escolher origem do anexo link da web
-    And Eu preencho o campo do link do arquivo com "https://drive.google.com/file/d/1eJt5xYMq3chZL92_vbHSDq5VmMO22V80/view?usp=sharing"
+    And Eu preencho o campo do link da web com "https://drive.google.com/file/d/1eJt5xYMq3chZL92_vbHSDq5VmMO22V80/view?usp=sharing"
     And Eu clico em Publicar agora
     Then Eu vejo a mensagem de erro "O tamanho mínimo do título é de 5 letras"
   
@@ -72,7 +72,7 @@ Feature: atla
     And Eu clico em editar o atlas "Olho mamifero"
     When Eu edito a descricao para ""
     And Eu seleciono o campo escolher origem do anexo link da web
-    And Eu preencho o campo do link do arquivo com "https://drive.google.com/file/d/1eJt5xYMq3chZL92_vbHSDq5VmMO22V80/view?usp=sharing"
+    And Eu preencho o campo do link da web com "https://drive.google.com/file/d/1eJt5xYMq3chZL92_vbHSDq5VmMO22V80/view?usp=sharing"
     And Eu clico em Publicar agora
     Then Eu vejo a mensagem de erro "A descrição do atlas é obrigatório."
 
@@ -83,7 +83,7 @@ Feature: atla
     And Eu clico em editar o atlas "Olho mamifero"
     When Eu edito o titulo para "Ol"
     And Eu seleciono o campo escolher origem do anexo link da web
-    And Eu preencho o campo do link do arquivo com "https://drive.google.com/file/d/1eJt5xYMq3chZL92_vbHSDq5VmMO22V80/view?usp=sharing"
+    And Eu preencho o campo do link da web com "https://drive.google.com/file/d/1eJt5xYMq3chZL92_vbHSDq5VmMO22V80/view?usp=sharing"
     And Eu clico em Publicar agora
     Then Eu vejo a mensagem de erro "O tamanho mínimo do título é de 5 letras."
 
@@ -98,7 +98,7 @@ Feature: atla
     And Eu edito a descricao para "Olho mamifero na diagonal"
     And Eu seleciono a categoria "Sistema nervoso"
     And Eu seleciono o campo escolher origem do anexo link da web
-    And Eu preencho o campo do link do arquivo com "https://drive.google.com/file/d/1eJt5xYMq3chZL92_vbHSDq5VmMO22V80/view?usp=sharing"
+    And Eu preencho o campo do link da web com "https://drive.google.com/file/d/1eJt5xYMq3chZL92_vbHSDq5VmMO22V80/view?usp=sharing"
     And Eu clico em Publicar agora
     Then Eu vejo que o atlas foi atualizado corretamente
 
