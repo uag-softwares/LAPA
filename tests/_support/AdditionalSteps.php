@@ -242,6 +242,12 @@ class AdditionalSteps extends \Codeception\Actor
     {
         $this->fillField(['name' => 'anexo_web'], $arg1);
     }
-
+      /**
+    * @When Eu seleciono o campo escolher origem do avatar link do drive
+    */
+    public function euSelecionoOCampoEscolherOrigemDoAvatarLinkDoDrive()
+    {
+        $this->selectOption('input[name=tipo_avatar]', 'link_drive');
+    }
 
 }
