@@ -39,8 +39,7 @@
         </span>
     @enderror
 </div>
-
-<div id="dh" class="{{ isset($registro->tipo_postagem) ? ($registro->tipo_postagem == 'evento' ? 'show' : '') : '' }} {{ old('tipo_postagem') == $tipo ? 'show' : '' }} @error('data') show @enderror @error('hora') show @enderror">
+<div class="input-group-data-hora {{ isset($registro->tipo_postagem) ? ($registro->tipo_postagem == 'evento' ? 'show' : '') : '' }} {{ old('tipo_postagem') == $tipo ? 'show' : '' }} @error('data') show @enderror @error('hora') show @enderror">
     <div class="d-flex flex-row">
         <div class="form-group">
             <label for="data">Data(obrigatório para evento)</label>
@@ -65,20 +64,20 @@
     </div>
 </div>
 <div class="form-group" id="radio-group-anexo">
-    <label class="@error('tipo_anexo') is-invalid @enderror">Escolher origem da imagem anexa*</label><br>
+    <label class="@error('tipo_anexo') is-invalid @enderror @error('anexo_web') is-invalid @enderror @error('anexo_drive') is-invalid @enderror @error('anexo_upload') is-invalid @enderror">Escolher origem da imagem anexa*</label><br>
     <input disabled type="radio" name="tipo_anexo" value="upload" id="upload-radio" {{ isset($registro) ? ($registro->tipo_anexo == 'upload' ? 'checked' : '') : ''}}>
     <label for="upload-radio">Enviar arquivo do dispositivo</label><br>
     <input type="radio" name="tipo_anexo" value="link_drive" id="drive-radio" {{ isset($registro) ? ($registro->tipo_anexo == 'link_drive' ? 'checked' : '') : '' }}>
     <label for="drive-radio">Link compartilhado do Google Drive</label><br>
     <input type="radio" name="tipo_anexo" value="link_web" id="web-radio" {{ isset($registro) ? ($registro->tipo_anexo == 'link_web' ? 'checked' : '') : '' }}>
     <label for="web-radio">Link da imagem da web</label>
-    @error('tipo_anexo')
+    @if($errors->first('tipo_anexo') || $errors->first('anexo_upload') || $errors->first('anexo_drive') || $errors->first('anexo_web'))
         <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
+            <strong>{{ $errors->first('tipo_anexo') | $errors->first('anexo_upload') | $errors->first('anexo_drive') | $errors->first('anexo_web')}}</strong>
         </span>
-    @enderror
+    @endif
 </div>
-<div class="form-group form-group-anime {{ isset($registro) ? 'show' : '' }}">
+<div class="form-group form-group-anime {{ isset($registro) ? 'show' : '' }} mb-0">
     <label id="upload" class="file-input w-100 input-anime {{ isset($registro) ? ($registro->tipo_anexo == 'upload' ? 'show' : '') : '' }}" for="anexo">
         <div class="d-flex flex-column text-center border rounded bg-white">
             <div class="file-header">
@@ -88,32 +87,27 @@
                 <p>Escolher uma imagem jpeg, jpg, png ou gif.</p>
             </div>
         </div>
-        <input id="anexo" class="d-none form-control form-control-lg @error('anexo') is-invalid @enderror" type="file" name="anexo_upload" placeholder="Escolha um arquivo jpeg, jpg, png ou gif" onchange="document.getElementById('img-foto').src = window.URL.createObjectURL(this.files[0])">
+        <input id="anexo" class="d-none form-control form-control-lg" type="file" name="anexo_upload" placeholder="Escolha um arquivo jpeg, jpg, png ou gif" onchange="document.getElementById('img-foto').src = window.URL.createObjectURL(this.files[0])">
     </label>
     <div id="link_drive" class="drive-input input-anime {{ isset($registro) ? ($registro->tipo_anexo == 'link_drive' ? 'show' : '') : '' }}">
         <label>Link da imagem do Google Drive*</label>
-        <input type="text" class="form-control form-control-lg @error('anexo') is-invalid @enderror" name="anexo_drive" placeholder="A imagem deve ser no formato jpeg, jpg, png ou gif." value="{{ isset($registro->anexo) ? $registro->anexo : old('anexo') }}">
+        <input type="text" class="form-control form-control-lg" name="anexo_drive" placeholder="A imagem deve ser no formato jpeg, jpg, png ou gif." value="{{ old('anexo_drive') }}">
         <p class="info">*O link é obtido na opção "Gerar link compartilhável" pelo Google Drive e deve ter a permissão "Visível a qualquer pessoa com link".</p>
     </div>
     <div id="link_web" class="web-link-input input-anime {{ isset($registro) ? ($registro->tipo_anexo == 'link_web' ? 'show' : '') : '' }}">
         <label>Link da imagem da web</label>
-        <input type="text" class="form-control form-control-lg @error('anexo') is-invalid @enderror" name="anexo_web" placeholder="A imagem deve ser no formato jpeg, jpg, png ou gif." value="{{ isset($registro->anexo) ? $registro->anexo : old('anexo') }}">
+        <input type="text" class="form-control form-control-lg" name="anexo_web" placeholder="A imagem deve ser no formato jpeg, jpg, png ou gif." value="{{ old('anexo_web') }}">
     </div>
-
-    @error('anexo')
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
-    @enderror
 </div>
 
 @section('scripts')
-    <script>        
+    <script>
+        var inputGroupDataHora = document.querySelector(".input-group-data-hora");
         document.getElementById("tipo_postagem").addEventListener("change", function() {
             if(this.value === "evento"){
-                document.getElementById("dh").classList.add("show");
+                inputGroupDataHora.classList.add("show");
             } else {
-                document.getElementById("dh").classList.remove("show");
+                inputGroupDataHora.classList.remove("show");
             }
         });
     </script>

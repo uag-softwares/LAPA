@@ -12,7 +12,6 @@ for( var i = 0, length = radioGroupAnexo.length; i < length; i++) {
             linkWeb.classList.remove("show");
             linkDrive.classList.remove("show");
             
-           
             if(this.value === "link_drive") {
                 linkDrive.classList.add("show");
             } else if(this.value === "link_web") {

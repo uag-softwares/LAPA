@@ -450,16 +450,16 @@ input:disabled + label:hover::before {
 }
 
 /* Animação do seletor de evento */
-#dh {
+.input-group-data-hora {
   display: block;
   opacity: 1;
 }
 
-.js #dh {
+.js .input-group-data-hora {
   animation: fadeOutToNoneHeight 250ms ease-in-out forwards;
 }
 
-.js #dh.show {
+.js .input-group-data-hora.show {
   animation: fadeInFromNoneHeight 250ms ease-in-out forwards;
 }
 
@@ -793,40 +793,35 @@ a:hover.page-link {
 
 @keyframes fadeInFromNoneHeight {
   0% {
-    display: none;
     opacity: 0;
     height: 0;
   }
 
   1% {
-    display: block;
     opacity: 0;
     height: 0;
   }
 
   100% {
-    display: block;
     opacity: 1;
-    height: 200px;
+    height: 230px;
   }
 }
 
 @keyframes fadeOutToNoneHeight {
   0% {
-    display: block;
     opacity: 1;
-    height: 200px;
+    height: 230px;
     
   }
 
   99% {
-    display: block;
     opacity: 0;
     height: 0;
   }
 
   100% {
-    display: none;
+    visibility: hidden;
     opacity: 0;
     height: 0;
   }
