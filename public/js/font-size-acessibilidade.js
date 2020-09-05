@@ -13,8 +13,8 @@ function setCookie(name, value, options = {}) {
     let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
   
     for (var i = 0; i < options.lenght; i++) {
-        updatedCookie += "; " + options[parseInt(i)];
-        let optionValue = options[parseInt(i)];
+        updatedCookie += "; " + options[parseInt(i, 10)];
+        let optionValue = options[parseInt(i, 10)];
         if (optionValue !== true) {
             updatedCookie += "=" + optionValue;
         }
