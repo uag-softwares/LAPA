@@ -82,22 +82,21 @@ class RegisterController extends Controller
             'name' =>'required|regex:/^[\pL\s\-.]+$/u|string|min:3|max:255',
             'email' => ['required', 'string', 'email', 'max:255',Rule::unique('users')->where(function ($query){return $query->where('user_type','admin');})],
             'password' => 'required|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/|string|min:6|confirmed',
-	         'cpf' => ['required','regex:/\d{3}\.\d{3}\.\d{3}\-\d{2}/','string',Rule::unique('users')->where(function ($query){return $query->where('user_type','admin');})],
-
+            'cpf' => ['required','regex:/\d{3}\.\d{3}\.\d{3}\-\d{2}/','string',Rule::unique('users')->where(function ($query){return $query->where('user_type','admin');})],
             'user_description' => 'max:255|nullable',
             'link_lattes' => 'url|string|nullable',
-	          'g-recaptcha-response' => 'required',
+            'g-recaptcha-response' => 'required',
             'tipo_avatar' => 'max:255|nullable',
+            'anexo_upload' => 'required_if:tipo_avatar,upload|mimes:jpeg,jpg,png,gif|max:2048|nullable',
+            'anexo_drive' => 'required_if:tipo_avatar,link_drive|nullable|url',
+            'anexo_web' => 'required_if:tipo_avatar,link_web|nullable|url',
 
         ],[
-       'password.regex'=>'Sua senha deve conter no mínimo de 6 caracteres,deve conter pelo menos uma letra maiúscula,uma minúscula,um número e um símbolo',
-       'email.unique'=>'O valor informado para o campo e-mail já está em uso em uma conta de administrador',
-       'cpf.unique'=>'O valor informado para o campo cpf já está em uso em uma conta de administrador',
-       'g-recaptcha-response.required' => 'O campo reCaptcha é obrigatório',
-       #'tipo_avatar.url'=>'O formato da URL informada para o campo foto é inválido.',
-       'tipo_avatar.max'=>'O tamanho máximo da URL informada para o campo foto é 255 caracteres.',
-       
-      
+            'password.regex'=>'Sua senha deve conter no mínimo de 6 caracteres,deve conter pelo menos uma letra maiúscula,uma minúscula,um número e um símbolo',
+            'email.unique'=>'O valor informado para o campo e-mail já está em uso em uma conta de administrador',
+            'cpf.unique'=>'O valor informado para o campo cpf já está em uso em uma conta de administrador',
+            'g-recaptcha-response.required' => 'O campo reCaptcha é obrigatório',
+            'tipo_avatar.max'=>'O tamanho máximo da URL informada para o campo foto é 255 caracteres.',
        ]);
        
     }
@@ -140,11 +139,11 @@ class RegisterController extends Controller
             'user_id'=>$user->id,  
         ]);
 
-    $user['slug']=str_slug($user->name).'-'.$user->id;
-    $user['avatar'] = $data['anexo_web'];
-  if($data['tipo_avatar'] == 'link_drive') {
-            $user['avatar']  = $this->usuario::convertToEmbedableImageLink($data['anexo_drive']);
-  }else if (($data['tipo_avatar'] == 'upload') && $data->hasFile('anexo_upload')) {
+        $user['slug']=str_slug($user->name).'-'.$user->id;
+        $user['avatar'] = $data['anexo_web'];
+        if($data['tipo_avatar'] == 'link_drive') {
+                    $user['avatar']  = $this->usuario::convertToEmbedableImageLink($data['anexo_drive']);
+        }else if (($data['tipo_avatar'] == 'upload') && $data->hasFile('anexo_upload')) {
             $anexo = $data->file('anexo_upload');
             $dir = 'img/avatares/';
             $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
