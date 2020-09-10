@@ -65,7 +65,7 @@
 </div>
 <div class="form-group" id="radio-group-anexo">
     <label class="@error('tipo_anexo') is-invalid @enderror @error('anexo_web') is-invalid @enderror @error('anexo_drive') is-invalid @enderror @error('anexo_upload') is-invalid @enderror">Escolher origem da imagem anexa*</label><br>
-    <input disabled type="radio" name="tipo_anexo" value="upload" id="upload-radio" {{ isset($registro) ? ($registro->tipo_anexo == 'upload' ? 'checked' : '') : ''}}>
+    <input type="radio" name="tipo_anexo" value="upload" id="upload-radio" {{ isset($registro) ? ($registro->tipo_anexo == 'upload' ? 'checked' : '') : ''}}>
     <label for="upload-radio">Enviar arquivo do dispositivo</label><br>
     <input type="radio" name="tipo_anexo" value="link_drive" id="drive-radio" {{ isset($registro) ? ($registro->tipo_anexo == 'link_drive' ? 'checked' : '') : '' }}>
     <label for="drive-radio">Link compartilhado do Google Drive</label><br>

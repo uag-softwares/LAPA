@@ -40,7 +40,7 @@
 
 <div class="form-group" id="radio-group-anexo">
     <label class="@error('tipo_anexo') is-invalid @enderror @error('anexo_web') is-invalid @enderror">Escolher origem do material anexo*</label><br>
-    <input disabled type="radio" name="tipo_anexo" value="upload" id="upload-radio" {{ isset($registro) ? ($registro->tipo_anexo == 'upload' ? 'checked' : '') : ''}}>
+    <input type="radio" name="tipo_anexo" value="upload" id="upload-radio" {{ isset($registro) ? ($registro->tipo_anexo == 'upload' ? 'checked' : '') : ''}}>
     <label for="upload-radio">Enviar arquivo do dispositivo</label><br>
     <input type="radio" name="tipo_anexo" value="link_web" id="web-radio" {{ isset($registro) ? ($registro->tipo_anexo == 'link_web' ? 'checked' : '') : '' }}>
     <label for="web-radio">Link de anexo do material</label>

@@ -434,7 +434,7 @@ input:disabled + label:hover::before {
 }
 
 .js .form-group-anime.show {
-  height: 150px;
+  height: 210px;
 }
 
 .js .input-anime {

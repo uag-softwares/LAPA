@@ -8,7 +8,7 @@
         <div id="radio-group-anexo">
             <label for="avatar">{{ __('Foto (opcional)') }}</label>
             <label class="@error('tipo_avatar') is-invalid @enderror @error('anexo_web') is-invalid @enderror @error('anexo_drive') is-invalid @enderror @error('anexo_upload') is-invalid @enderror">Escolher origem da imagem anexa*</label><br>
-            <input disabled type="radio" name="tipo_avatar" value="upload" id="upload-radio" {{ isset($user) ? ($user->tipo_avatar== 'upload' ? 'checked' : '') : ''}}>
+            <input type="radio" name="tipo_avatar" value="upload" id="upload-radio" {{ isset($user) ? ($user->tipo_avatar== 'upload' ? 'checked' : '') : ''}}>
             <label for="upload-radio">Enviar arquivo do dispositivo</label><br>
             <input type="radio" name="tipo_avatar" value="link_drive" id="drive-radio" {{ isset($user) ? ($user->tipo_avatar== 'link_drive' ? 'checked' : '') : '' }}>
             <label for="drive-radio">Link compartilhado do Google Drive</label><br>
