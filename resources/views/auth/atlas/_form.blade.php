@@ -13,7 +13,7 @@
 </div>
 <div class="form-group">
     <label for="descricao">Descrição*</label>
-    <textarea rows="14" id="summernote" class="form-control form-control-lg @error('descricao') is-invalid @enderror" type="text" name="descricao" autocomplete="descricao">{{ isset($registro->descricao) ? $registro->descricao : old('descricao') }}</textarea>
+    <textarea rows="14" id="summernote_atlas" class="form-control form-control-lg @error('descricao') is-invalid @enderror" type="text" name="descricao" autocomplete="descricao">{{ isset($registro->descricao) ? $registro->descricao : old('descricao') }}</textarea>
     @error('descricao')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -68,12 +68,12 @@
     </label>
     <div id="link_drive"  class="drive-input input-anime {{ isset($registro) ? ($registro->tipo_anexo == 'link_drive' ? 'show' : '') : '' }}">
         <label>Link da imagem do Google Drive*</label>
-        <input type="text" class="form-control form-control-lg" name="anexo_drive" placeholder="A imagem deve ser no formato jpeg, jpg, png ou gif." value="{{ old('anexo_drive') }}">
+        <input type="text" class="form-control form-control-lg" name="anexo_drive" placeholder="A imagem deve ser no formato jpeg, jpg, png ou gif." value="{{ isset($registro->tipo_anexo) && $registro->tipo_anexo == 'link_drive' ? $registro->anexo : old('anexo_drive') }}">
         <p class="info">*O link é obtido na opção "Gerar link compartilhável" pelo Google Drive e deve ter a permissão "Visível a qualquer pessoa com link".</p>
     </div>
     <div id="link_web" class="web-link input-anime {{ isset($registro) ? ($registro->tipo_anexo == 'link_web' ? 'show' : '') : '' }}">
         <label>Link da imagem da web</label>
-        <input type="text" class="form-control form-control-lg" name="anexo_web" placeholder="A imagem deve ser no formato jpeg, jpg, png ou gif." value="{{ old('anexo_web') }}">
+        <input type="text" class="form-control form-control-lg" name="anexo_web" placeholder="A imagem deve ser no formato jpeg, jpg, png ou gif." value="{{ isset($registro->tipo_anexo) && $registro->tipo_anexo == 'link_web' ? $registro->anexo : old('anexo_web') }}">
     </div>	   
     @error('anexo')
         <span class="invalid-feedback" role="alert">

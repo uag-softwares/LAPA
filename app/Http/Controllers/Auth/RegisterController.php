@@ -26,6 +26,8 @@ use Illuminate\Support\Facades\Storage;
 use Image;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Illuminate\Validation\Rule;
+use App\Util\ConvertToEmbedableImageLink;
+
 class RegisterController extends Controller
 {
     /*
@@ -142,7 +144,7 @@ class RegisterController extends Controller
         $user['avatar'] = $data['anexo_web'];
         if(in_array('tipo_avatar', $data)) {
             if($data['tipo_avatar'] == 'link_drive') {
-                        $user['avatar']  = $this->usuario::convertToEmbedableImageLink($data['anexo_drive']);
+                        $user['avatar']  = ConvertToEmbedableImageLink::convertToEmbedableImageLink($data['anexo_drive']);
             } else if (($data['tipo_avatar'] == 'upload') && $data->hasFile('anexo_upload')) {
                 $anexo = $data->file('anexo_upload');
                 $dir = 'img/avatares/';
@@ -220,7 +222,7 @@ class RegisterController extends Controller
         $dados['tipo_avatar'] = $data['tipo_avatar'];
         if($data->has('tipo_avatar')) {
             if($data['tipo_avatar'] == 'link_drive') {
-                $dados['avatar']  = $this->usuario::convertToEmbedableImageLink($data['anexo_drive']);
+                $dados['avatar']  = ConvertToEmbedableImageLink::convertToEmbedableImageLink($data['anexo_drive']);
             }else if (($data['tipo_avatar'] == 'upload') && $data->hasFile('anexo_upload')) {
                 $anexo = $data->file('anexo_upload');
                 $dir = 'img/avatares/';

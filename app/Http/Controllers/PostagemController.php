@@ -20,16 +20,19 @@ class PostagemController extends Controller
 
     public function __construct(Postagem $postagem, User $user)
     {
-        $this->middleware('auth', ['except' => ['siteIndexNoticia','sitevisualizarEvento',
-                                  'sitevisualizarNoticia','sitevisualizarEdital',
-                                  'siteHome','siteIndexEvento','siteIndexEdital']]);
+        $this->middleware('auth', ['except' => [
+            'siteHome',
+            'siteIndexNoticia',
+            'siteIndexEvento',
+            'siteIndexEdital',
+            'siteVisualizarPostagem',
+        ]]);
         $this->postagem = $postagem;
         $this->user = $user;
     }
 
     public function index() 
     {
-
         $registros = $this->postagem;
         $filtros['nomes'] = array();
 

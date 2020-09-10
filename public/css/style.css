@@ -179,7 +179,7 @@ form,
 }
 
 .postagem .img-fluid {
-  height: 400px;
+  height: 300px;
 }
 
 .postagem h1 {
@@ -312,7 +312,7 @@ a.clickable-card, a:hover.clickable-card {
 }
 
 .home.card div.card-header {
-  height: 10em;
+  height: 8em;
   overflow: hidden;
   padding: 0;
 }

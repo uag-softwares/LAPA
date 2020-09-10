@@ -41,8 +41,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function conta()
     {
-         return $this->hasOne('App\Conta');
-
+        return $this->hasOne('App\Conta');
     }
 
     public function visita()
@@ -54,28 +53,18 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->create($user);
     }
-         /**
-  * Get the route key for the model.
-  *
-  * @return string
-  */
-  public function getRouteKeyName()
-  {
-    return 'slug';
-  }
 
-   public function contato() {
-        return $this->hasMany('App\Sobre');
-    }
-   /**
-    * Convert a shared image link from drive to an embedable image link.
+    /**
+    * Get the route key for the model.
     *
     * @return string
     */
-    public static function convertToEmbedableImageLink($link) {
-      $embedableLink = Str::replaceFirst('https://drive.google.com/file/d/', 'https://drive.google.com/thumbnail?id=', $link);
-      $embedableLink = Str::replaceFirst('/view?usp=sharing', '', $embedableLink);
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
-      return $embedableLink;
-  }
+    public function contato() {
+        return $this->hasMany('App\Sobre');
+    }
 }

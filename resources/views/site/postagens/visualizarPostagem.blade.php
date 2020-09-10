@@ -9,7 +9,7 @@
                 <span class="tag {{ $registro->tipo_postagem ?? '' }}">{{ $registro->tipo_postagem ?? '' }}</span>
                 Postado em {{ date('d/m/Y', strtotime($registro->created_at)) }} às {{ date('H:i', strtotime($registro->created_at)) }}
             </p>
-            <div class="img-fluid fadeInDown" data-anime="450" width="760px" height="400px" style="background: no-repeat url('{{ asset($registro->anexo ?? 'img/file-image.svg') }}'); background-size: 100%"></div>
+            <div class="img-fluid fadeInDown" data-anime="450" width="760px" height="300px" style="background: no-repeat url('{{ asset($registro->anexo ?? 'img/file-image.svg') }}'); background-size: 100%"></div>
             
             @if($registro->tipo_postagem == 'evento')
                 <p class="evento-info fadeInDown" data-anime="450">

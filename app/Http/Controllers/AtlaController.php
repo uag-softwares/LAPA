@@ -82,6 +82,7 @@ class AtlaController extends Controller
             'anexo' => $anexo,
             'publicado'=> $publicado,
             'categoria_id' => $request ['categoria_id'],
+            'tipo_anexo' => $request['tipo_anexo'],
         ]);
         $atla['slug'] = str_slug($atla->titulo).'-'.$atla->id;
 
