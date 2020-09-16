@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PostagemRequest extends FormRequest
+class CriarPostagemRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -43,7 +43,6 @@ class PostagemRequest extends FormRequest
             'anexo_upload.required_if' => 'É necessário enviar um arquivo quando a opção for selecionada, selecione a opção desejada novamente.',
             'anexo_web.required_if' => 'É necessário enviar um link de imagem da web quando a opção for selecionada, selecione a opção desejada novamente.',
             'anexo_drive.required_if' => 'É necessário enviar um link de imagem do Google Drive quando a opção for selecionada, selecione a opção desejada novamente.',
-
         ];
     }
     

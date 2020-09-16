@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Postagem;
 use App\User;
 use Validator;
-use App\Http\Requests\PostagemRequest;
+use App\Http\Requests\CriarPostagemRequest;
+use App\Http\Requests\AtualizarPostagemRequest;
 use Auth;
 use App\Util\ConvertToEmbedableImageLink;
 
@@ -61,7 +62,7 @@ class PostagemController extends Controller
         return view('auth.postagem.adicionar', compact('tipo_postagens'));
     }
 
-    public function salvar(PostagemRequest $request) 
+    public function salvar(CriarPostagemRequest $request) 
     {
         $request->validated();
         $this->user = Auth::user();
@@ -118,7 +119,7 @@ class PostagemController extends Controller
         return view('auth.postagem.editar', compact('registro','tipo_postagens'));        
     }
 
-    public function atualizar(PostagemRequest $request, $identifier)
+    public function atualizar(AtualizarPostagemRequest $request, $identifier)
     {
         $request->validated();
         $dados = $request->all();
@@ -140,6 +141,8 @@ class PostagemController extends Controller
             $nomeAnexo = 'anexo_'.$post->tipo_postagem.'-'.$post->id.'.'.$ex;
             $anexo->move($dir, $nomeAnexo);
             $dados['anexo']= $dir.'/'.$nomeAnexo;
+        } else {
+            $dados['anexo'] = $post->anexo;
         }
 
 

@@ -118,6 +118,8 @@ class MaterialController extends Controller
             $nomeAnexo = 'anexo_'.$dados['slug'].'.'.$extensao;
             $anexo->move($dir, $nomeAnexo);
             $dados['anexo'] = $dir.'/'.$nomeAnexo;
+        } else {
+            $dados['anexo'] = $material->anexo;
         }
 
 

@@ -2,10 +2,8 @@
 @section('titulo', 'Início')
 @section('content')
      <div class="container">
-
-     @if (count($registros) < 1)
-          <p>Ops, ainda não temos nenhum evento</p>
-     @else
+          
+     @if (count($registros) >= 1)
           <div id="myCarousel" class="carousel slide mb-4 fadeInDown" data-ride="carousel" data-anime="150">
                <ol class="carousel-indicators">
                     @for($i = 0; $i < ( count($registros) < 3 ? count($registros) : 3); $i++)

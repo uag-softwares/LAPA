@@ -17,7 +17,12 @@
                 </p>
             @endif
             
-            <p class="fadeInDown" data-anime="450">{!! $registro->toArray()['descricao'] !!}</p>
+            <div class="fadeInDown" data-anime="450">{!! $registro->toArray()['descricao'] !!}</div>
+            @if($registro->tipo_postagem == 'evento')
+                <p class="evento-info fadeInDown" data-anime="450">
+                    <strong>Data do evento:</strong> {{ date('d/m/Y', strtotime($registro->data)) }} às {{ date('H:i', strtotime($registro->hora)) }}
+                </p>
+            @endif
         </div>           
     </div>
 @endsection 

@@ -27,12 +27,9 @@ class RegisterRequest extends FormRequest
             'name' =>'required|regex:/^[\pL\s\-.]+$/u|string|min:3|max:255',
             'user_description' => 'max:255|nullable',
             'link_lattes' => 'url|string|nullable',
-            'tipo_avatar' => 'max:255|nullable',
-            'anexo_upload' => 'required_if:tipo_avatar,upload|mimes:jpeg,jpg,png,gif|max:2048|nullable',
-            'tipo_avatar' => 'max:255|nullable',
-            'anexo_upload' => 'required_if:tipo_avatar,upload|mimes:jpeg,jpg,png,gif|max:2048|nullable',
-            'anexo_drive' => 'required_if:tipo_avatar,link_drive|nullable|url',
-            'anexo_web' => 'required_if:tipo_avatar,link_web|nullable|url',
+            'tipo_avatar' => 'nullable',
+            'anexo_drive' => 'required_if:tipo_avatar,link_drive|nullable',
+            'anexo_web' => 'required_if:tipo_avatar,link_web|nullable',
 	    
         ];
     }

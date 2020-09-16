@@ -24,7 +24,7 @@ class CriarAtlaRequest extends FormRequest
     public function rules()
     {
         return [
-            'titulo' => 'required|min:5|string',
+            'titulo' => 'required|min:5|string|max:255',
             'descricao' => 'required|min:10|string',
             'categoria_id' => 'required|integer|exists:categorias,id',
             'tipo_anexo' => 'required',

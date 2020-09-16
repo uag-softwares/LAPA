@@ -71,6 +71,7 @@
                     @foreach($registros as $registro)
                       <tr>
                         <td>
+                            <a href="{{ route('site.eventos.visualizar', $registro->slug) }}" class="btn">Ver</a>
                             <a href="{{ route('auth.postagem.editar', $registro->slug) }}" class="btn">Editar</a>
                             <a href="{{ route('auth.postagem.deletar', $registro->slug) }}" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar essa postagem?');">Deletar</a>
                         </td>

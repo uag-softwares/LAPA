@@ -24,7 +24,7 @@ class CriarMaterialRequest extends FormRequest
     public function rules()
     {
         return [
-           'titulo' =>'required|min:5',
+           'titulo' =>'required|min:5|max:255',
            'texto' => 'required|min:10',
            'disciplina_id' => 'required',
            //'anexo' => 'required|mimes:jpeg,jpg,png,gif,pdf,doc,txt,docx,odt,xls,csv,xlsx,ppt,pptx,rtf|max:2048',

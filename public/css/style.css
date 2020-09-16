@@ -370,7 +370,7 @@ input[name='nome']::placeholder {
   color: var(--main-white);
 }
 
-.drive-input .info {
+.form-group .info {
   font-size: 14px;
 }
 
@@ -435,6 +435,10 @@ input:disabled + label:hover::before {
 
 .js .form-group-anime.show {
   height: 210px;
+}
+
+.js .form-group-anime.user.show {
+  height: 110px;
 }
 
 .js .input-anime {
@@ -596,7 +600,7 @@ thead tr th:first-child {
 /* Fim de 10- Estilos das tabelas do site */
 
 /* 11- Estilo do editor de texto Summernote */
-.note-editor .btn {
+.note-editor .btn, .note-editing-area {
   background-color: var(--main-white);
   color: var(--main-black);
 }

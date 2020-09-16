@@ -24,7 +24,7 @@ class CategoriaRequest extends FormRequest
     public function rules()
     {
         return [
-            'nome' => 'required|min:3',
+            'nome' => 'required|min:3|max:255',
             'disciplina_id' => 'required|integer|exists:disciplinas,id',
             
         ];

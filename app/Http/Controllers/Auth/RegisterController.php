@@ -149,7 +149,7 @@ class RegisterController extends Controller
                 $anexo = $data->file('anexo_upload');
                 $dir = 'img/avatares/';
                 $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
-                $nomeAnexo = 'avatar_'.$user['slug'].'.'.$exAnexo;
+                $nomeAnexo = 'avatar_'.$user['slug'].'.'.$ex;
                 $anexo->move($dir, $nomeAnexo);
                 $user['avatar'] = $dir.'/'.$nomeAnexo;
             }
@@ -215,7 +215,7 @@ class RegisterController extends Controller
     {  
         $data->validated();
         $dados = $data->all();
-	      $user=Auth::user();
+        $user=Auth::user();
         $dados['slug']=str_slug($dados['name']).'-'.$user->id;
 
         $dados['avatar'] = $data['anexo_web'];
@@ -227,9 +227,11 @@ class RegisterController extends Controller
                 $anexo = $data->file('anexo_upload');
                 $dir = 'img/avatares/';
                 $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
-                $nomeAnexo = 'avatar_'.$user['slug'].'.'.$exAnexo;
+                $nomeAnexo = 'avatar_'.$user['slug'].'.'.$ex;
                 $anexo->move($dir, $nomeAnexo);
-                $user['avatar'] = $dir.'/'.$nomeAnexo;
+                $dados['avatar'] = $dir.'/'.$nomeAnexo;
+            } else {
+                $data['avatar'] = $user->avatar;
             }
         }
         

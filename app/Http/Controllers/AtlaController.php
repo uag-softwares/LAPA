@@ -133,6 +133,8 @@ class AtlaController extends Controller
             $nomeAnexo = 'anexo_'.$atla->anexo.'-'.$atla->id.'.'.$ex;
             $anexo->move($dir, $nomeAnexo);
             $dados['anexo']= $dir.'/'.$nomeAnexo;
+        } else {
+            $dados['anexo'] = $atla->anexo;
         }
 
         if(isset($request['publicar'])) {
