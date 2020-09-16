@@ -122,7 +122,7 @@ class AtlaController extends Controller
         $atla = $this->atla->find($identifier);
        
 
-        $dados['anexo'] = $request['anexo_web'];
+        $dados['anexo'] = $atla->anexo;
         $dados['tipo_anexo'] = $request['tipo_anexo'];
         if($request['tipo_anexo'] == 'link_drive') {
             $dados['anexo'] = ConvertToEmbedableImageLink::convertToEmbedableImageLink($request['anexo_drive']);
@@ -134,7 +134,7 @@ class AtlaController extends Controller
             $anexo->move($dir, $nomeAnexo);
             $dados['anexo']= $dir.'/'.$nomeAnexo;
         }
-
+        
         if(isset($request['publicar'])) {
             $dados['publicado'] = true;
         } 

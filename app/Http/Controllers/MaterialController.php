@@ -109,7 +109,7 @@ class MaterialController extends Controller
         }       
 
 
-        $dados['anexo'] = $request['anexo_web'];
+        $dados['anexo'] = $material->anexo;
         $dados['tipo_anexo'] = $request['tipo_anexo'];
         if(($request['tipo_anexo'] == 'upload') && $request->hasFile('anexo_upload')) {
             $anexo = $request->file('anexo_uploadgit');
@@ -119,7 +119,6 @@ class MaterialController extends Controller
             $anexo->move($dir, $nomeAnexo);
             $dados['anexo'] = $dir.'/'.$nomeAnexo;
         }
-
 
         $dados['slug']=str_slug($dados['titulo']).'-'.$identifier;
         $this->material->update($dados);

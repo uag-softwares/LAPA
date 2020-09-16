@@ -34,6 +34,7 @@ Route::get('/site/editais/index', ['as' => 'site.postagens.indexEdital', 'uses' 
 Route::get('/site/eventos/visualizar/{registro:slug}', ['as' => 'site.eventos.visualizar', 'uses' => 'PostagemController@siteVisualizarPostagem'], function (App\Postagem $registro) {return $registro;});
 Route::get('/site/editais/visualizar/{registro:slug}', ['as' => 'site.editais.visualizar', 'uses' => 'PostagemController@siteVisualizarPostagem'], function (App\Postagem $registro) {return $registro;});
 Route::get('/site/noticias/visualizar/{registro:slug}', ['as' => 'site.noticias.visualizar', 'uses' => 'PostagemController@siteVisualizarPostagem'], function (App\Postagem $registro) {return $registro;});
+Route::get('/site/postagem/visualizar/{registro:slug}', ['as' => 'site.postagem.visualizar', 'uses' => 'PostagemController@siteVisualizarPostagem'], function (App\Postagem $registro) {return $registro;});
 
 Route::get('/site/contato/index', ['as' => 'site.contato.index', 'uses' => 'Auth\RegisterController@siteIndex'], function () {});
 Route::get('/site/contato/visualizar/{registro:slug}', ['as' => 'site.contato.visualizar', 'uses' => 'Auth\RegisterController@siteRegistervisualizar'], function (App\User $registro) {return $registro;});

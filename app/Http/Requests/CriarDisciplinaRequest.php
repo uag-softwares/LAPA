@@ -24,7 +24,7 @@ class CriarDisciplinaRequest extends FormRequest
     public function rules()
     {
         return [
-            'nome' => 'required|min:3|unique:disciplinas',
+            'nome' => 'required|min:3|unique:disciplinas|max:255',
             'user_id' => 'integer|nullable',
         ];
     }

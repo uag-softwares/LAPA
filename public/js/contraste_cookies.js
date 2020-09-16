@@ -3,7 +3,7 @@ function ativarContraste() {
     if( linkCssContraste === null) {
         linkCssContraste = document.createElement("link");
         linkCssContraste.rel = "stylesheet";
-        linkCssContraste.href = "/css/style_contraste.css";
+        linkCssContraste.href = "/lapa/css/style_contraste.css";
         linkCssContraste.id = "css-contraste";
         document.querySelector("head").appendChild(linkCssContraste);
     } else {

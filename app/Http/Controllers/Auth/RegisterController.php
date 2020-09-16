@@ -149,7 +149,7 @@ class RegisterController extends Controller
                 $anexo = $data->file('anexo_upload');
                 $dir = 'img/avatares/';
                 $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
-                $nomeAnexo = 'avatar_'.$user['slug'].'.'.$exAnexo;
+                $nomeAnexo = 'avatar_'.$user['slug'].'.'.$ex;
                 $anexo->move($dir, $nomeAnexo);
                 $user['avatar'] = $dir.'/'.$nomeAnexo;
             }
@@ -215,10 +215,10 @@ class RegisterController extends Controller
     {  
         $data->validated();
         $dados = $data->all();
-	      $user=Auth::user();
+        $user=Auth::user();
         $dados['slug']=str_slug($dados['name']).'-'.$user->id;
 
-        $dados['avatar'] = $data['anexo_web'];
+        $data['avatar'] = $user->avatar;
         $dados['tipo_avatar'] = $data['tipo_avatar'];
         if($data->has('tipo_avatar')) {
             if($data['tipo_avatar'] == 'link_drive') {
@@ -227,9 +227,9 @@ class RegisterController extends Controller
                 $anexo = $data->file('anexo_upload');
                 $dir = 'img/avatares/';
                 $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
-                $nomeAnexo = 'avatar_'.$user['slug'].'.'.$exAnexo;
+                $nomeAnexo = 'avatar_'.$user['slug'].'.'.$ex;
                 $anexo->move($dir, $nomeAnexo);
-                $user['avatar'] = $dir.'/'.$nomeAnexo;
+                $dados['avatar'] = $dir.'/'.$nomeAnexo;
             }
         }
         
@@ -251,7 +251,7 @@ class RegisterController extends Controller
 
     public function siteIndex(){
         $usersAdmin=$this->usuario->where( 'user_type', 'admin')->get();
-        $registros= $usersAdmin->whereNotNull('cpf_verified_at')->all();
+        $registros= $usersAdmin->whereNotNull('cpf_verified_at')->reverse();
 
         $contato = $this->contato->latest('updated_at')->first();
 

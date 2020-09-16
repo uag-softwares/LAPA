@@ -64,7 +64,8 @@
     </div>
 </div>
 <div class="form-group" id="radio-group-anexo">
-    <label class="@error('tipo_anexo') is-invalid @enderror @error('anexo_web') is-invalid @enderror @error('anexo_drive') is-invalid @enderror @error('anexo_upload') is-invalid @enderror">Escolher origem da imagem anexa*</label><br>
+    <label class="@error('tipo_anexo') is-invalid @enderror @error('anexo_web') is-invalid @enderror @error('anexo_drive') is-invalid @enderror @error('anexo_upload') is-invalid @enderror">Escolher origem da imagem do cabeçalho da postagem*</label><br>
+    <p class="info">*Imagens no formato 7x3 se ajustam melhor ao layout do site</p>
     <input type="radio" name="tipo_anexo" value="upload" id="upload-radio" {{ isset($registro) ? ($registro->tipo_anexo == 'upload' ? 'checked' : '') : ''}}>
     <label for="upload-radio">Enviar arquivo do dispositivo</label><br>
     <input type="radio" name="tipo_anexo" value="link_drive" id="drive-radio" {{ isset($registro) ? ($registro->tipo_anexo == 'link_drive' ? 'checked' : '') : '' }}>
@@ -87,7 +88,7 @@
                 <p>Escolher uma imagem jpeg, jpg, png ou gif.</p>
             </div>
         </div>
-        <input id="anexo" class="d-none form-control form-control-lg" type="file" name="anexo_upload" placeholder="Escolha um arquivo jpeg, jpg, png ou gif" onchange="document.getElementById('img-foto').src = window.URL.createObjectURL(this.files[0])">
+        <input id="anexo" class="d-none form-control form-control-lg" type="file" name="anexo_upload" placeholder="Escolha um arquivo jpeg, jpg, png ou gif" value="{{ isset($registro->tipo_anexo) && $registro->tipo_anexo == 'upload' ? asset($registro->anexo) : old('anexo_upload') }}" onchange="document.getElementById('img-foto').src = window.URL.createObjectURL(this.files[0])">
     </label>
     <div id="link_drive" class="drive-input input-anime {{ isset($registro) ? ($registro->tipo_anexo == 'link_drive' ? 'show' : '') : '' }}">
         <label>Link da imagem do Google Drive*</label>
