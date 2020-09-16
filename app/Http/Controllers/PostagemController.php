@@ -130,7 +130,7 @@ class PostagemController extends Controller
         * se for drive ele entra no if para converter o link para ser embarcado na página
         * se for upload ele entra no else if para arrumar o nome do arquivo
         */
-        $dados['anexo'] = $request['anexo_web'];
+        $dados['anexo'] = $post->anexo;
         $dados['tipo_anexo'] = $request['tipo_anexo'];
         if($request['tipo_anexo'] == 'link_drive') {
             $dados['anexo'] = ConvertToEmbedableImageLink::convertToEmbedableImageLink($request['anexo_drive']);
@@ -141,8 +141,6 @@ class PostagemController extends Controller
             $nomeAnexo = 'anexo_'.$post->tipo_postagem.'-'.$post->id.'.'.$ex;
             $anexo->move($dir, $nomeAnexo);
             $dados['anexo']= $dir.'/'.$nomeAnexo;
-        } else {
-            $dados['anexo'] = $post->anexo;
         }
 
 

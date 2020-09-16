@@ -218,7 +218,7 @@ class RegisterController extends Controller
         $user=Auth::user();
         $dados['slug']=str_slug($dados['name']).'-'.$user->id;
 
-        $dados['avatar'] = $data['anexo_web'];
+        $data['avatar'] = $user->avatar;
         $dados['tipo_avatar'] = $data['tipo_avatar'];
         if($data->has('tipo_avatar')) {
             if($data['tipo_avatar'] == 'link_drive') {
@@ -230,8 +230,6 @@ class RegisterController extends Controller
                 $nomeAnexo = 'avatar_'.$user['slug'].'.'.$ex;
                 $anexo->move($dir, $nomeAnexo);
                 $dados['avatar'] = $dir.'/'.$nomeAnexo;
-            } else {
-                $data['avatar'] = $user->avatar;
             }
         }
         
@@ -253,7 +251,7 @@ class RegisterController extends Controller
 
     public function siteIndex(){
         $usersAdmin=$this->usuario->where( 'user_type', 'admin')->get();
-        $registros= $usersAdmin->whereNotNull('cpf_verified_at')->all();
+        $registros= $usersAdmin->whereNotNull('cpf_verified_at')->reverse();
 
         $contato = $this->contato->latest('updated_at')->first();
 
