@@ -43,8 +43,9 @@ class ContatoController extends Controller
         $dados = $request->all();
         $dados["user_id"] = Auth::user()->id;
         $contato=$this->contato->create($dados);
-        $contato['slug']=str_slug($contato->email).'-'.$contato->id;
+        $contato['slug'] = str_slug($contato->email).'-'.$contato->id;
         $contato->update($contato->attributesToArray());
+
         return redirect()->back()->with('success', 'Informações do Contato adicionadas com sucesso!');
     }
 
@@ -57,8 +58,9 @@ class ContatoController extends Controller
     {
         $request->validated();
         $dados = $request->all();
-        $dados['slug']=str_slug($dados['email']).'-'.$identifier;
+        $dados['slug'] = str_slug($dados['email']).'-'.$identifier;
         $this->contato->find($identifier)->update($dados);
+        
         return redirect()->route('auth.contatos')->with('success', 'Informações do Contato atualizadas com sucesso!');
     }
 

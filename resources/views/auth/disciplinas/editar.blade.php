@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('titulo', 'Editar disciplina')
+@section('titulo', 'Editar assunto')
 @section('content')
         <div class="container">
             <h2>Editar assunto (disciplina)</h2>

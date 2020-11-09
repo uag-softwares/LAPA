@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Validator;
 use App\Atla;
 use App\Categoria;
 use App\Disciplina;
@@ -11,6 +9,7 @@ use App\Http\Requests\CriarAtlaRequest;
 use App\Http\Requests\AtualizarAtlaRequest;
 use Auth;
 use App\Util\ConvertToEmbedableImageLink;
+use App\Util\SaveFileUtil;
 
 class AtlaController extends Controller
 {
@@ -76,7 +75,7 @@ class AtlaController extends Controller
             $publicado = true;
         }   
         
-        $atla=$this->atla->create([
+        $atla = $this->atla->create([
             'titulo' => $request ['titulo'],
             'descricao' => $request ['descricao'],
             'anexo' => $anexo,
@@ -94,12 +93,11 @@ class AtlaController extends Controller
         if($request['tipo_anexo'] == 'link_drive') {
             $atla['anexo'] = ConvertToEmbedableImageLink::convertToEmbedableImageLink($request['anexo_drive']);
         }else if (($request['tipo_anexo'] == 'upload') && $request->hasFile('anexo_upload')) {
-            $anexo = $request->file('anexo_upload');
-            $dir = 'img/atlas/';
-            $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
-            $nomeAnexo = 'anexo_'.$atla->anexo.'-'.$atla->id.'.'.$ex;
-            $anexo->move($dir, $nomeAnexo);
-            $atla['anexo'] = $dir.'/'.$nomeAnexo;
+            $atla['anexo'] = SaveFileUtil::saveFile(
+                $request->file('anexo_upload'),
+                $atla->id,
+                'img/atlas/'
+            );
         }
        
         $atla->update($atla->attributesToArray());
@@ -127,12 +125,11 @@ class AtlaController extends Controller
         if($request['tipo_anexo'] == 'link_drive') {
             $dados['anexo'] = ConvertToEmbedableImageLink::convertToEmbedableImageLink($request['anexo_drive']);
         } else if(($request['tipo_anexo'] == 'upload') && $request->hasFile('anexo_upload')) {
-            $anexo = $request->file('anexo_upload');
-            $dir = 'img/atlas/';
-            $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
-            $nomeAnexo = 'anexo_'.$atla->anexo.'-'.$atla->id.'.'.$ex;
-            $anexo->move($dir, $nomeAnexo);
-            $dados['anexo']= $dir.'/'.$nomeAnexo;
+            $atla['anexo'] = SaveFileUtil::saveFile(
+                $request->file('anexo_upload'),
+                $atla->id,
+                'img/atlas/'
+            );
         }
         
         if(isset($request['publicar'])) {
