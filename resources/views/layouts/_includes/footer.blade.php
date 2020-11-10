@@ -23,9 +23,6 @@
 <!-- include simple-anime library -->
 <script src="{{ asset('js/simple-anime.js') }}"></script>
 
-<!-- include font-size-acessibilidade -->
-<script src="{{ asset('js/font-size-acessibilidade.js') }}"></script>
-
 <!-- app scripts -->
 <script src="{{ asset('js/animation_config.js') }}"></script>
 

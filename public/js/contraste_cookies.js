@@ -1,30 +1,20 @@
 function ativarContraste() {
     var linkCssContraste = document.getElementById("css-contraste");
-    if( linkCssContraste === null) {
-        linkCssContraste = document.createElement("link");
-        linkCssContraste.rel = "stylesheet";
-        linkCssContraste.href = "/lapa/css/style_contraste.css";
-        linkCssContraste.id = "css-contraste";
-        document.querySelector("head").appendChild(linkCssContraste);
+    if( linkCssContraste.getAttribute("disabled")) {
+        linkCssContraste.removeAttribute("disabled");
     } else {
-        linkCssContraste.id = "";
-        linkCssContraste.href = "";
+        linkCssContraste.setAttribute("disabled", true);
     }
+    
 }
-
-// Recuperar config. de contraste
-var contrasteCookie = getCookie("contraste");
-if(contrasteCookie === "true") {
-    ativarContraste();
-}
-
 
 $(".bt-tema").on("click", function(e) {
+    var contrasteCookie = localStorage.getItem("contraste");
     ativarContraste();
     if(contrasteCookie === "true") {
-        setCookie("contraste", "false", {secure: true})
+        localStorage.setItem("contraste", "false");
     } else {
-        setCookie("contraste", "true", {secure: true})
+        localStorage.setItem("contraste", "true");
     }
 });
 
