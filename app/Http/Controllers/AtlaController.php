@@ -101,7 +101,12 @@ class AtlaController extends Controller
         }
        
         $atla->update($atla->attributesToArray());
-        return redirect()->route('auth.atlas')->with('success', 'Página do atlas adicionada com sucesso!');
+
+        if($publicado) {
+            return redirect()->route('auth.atlas')->with('success', 'Página do atlas adicionada com sucesso!');
+        } else {
+            return redirect()->route('auth.atla.visualizar', $atla)->with('success', 'Página do atlas salva com sucesso!');
+        }
         
     }
 
@@ -137,7 +142,20 @@ class AtlaController extends Controller
         } 
         $dados['slug'] = str_slug($dados['titulo']).'-'.$identifier;
         $atla->update($dados);
-        return redirect()->route('auth.atlas')->with('success', 'Página do atlas atualizada com sucesso!');
+
+        if($dados['publicado']) {
+            return redirect()->route('auth.atlas')->with('success', 'Página do atlas atualizada com sucesso!');
+        } else {
+            return redirect()->route('auth.atla.visualizar', $atla)->with('success', 'Página do atlas salva com sucesso!');
+        }
+    }
+
+    public function publicar(Atla $registro) 
+    {
+        $dados = ['publicado' => true];
+
+        $registro->update($dados);
+        return redirect()->back()->with('success', 'Página do atlas publicada com sucesso.');
     }
 
     public function deletar(Atla $registro)
@@ -182,6 +200,12 @@ class AtlaController extends Controller
         $registros = $busca->get();
         $paginas = $busca->paginate(1);
         return view('site.atlas.ver_atlas_disciplinas', compact('paginas', 'registros', 'disciplina'));
+    }
+
+    public function ver(Atla $registro) 
+    {
+        $categoria = $registro->categoria;
+        return view('auth.atlas.ver', compact('registro', 'categoria'));
     }
 
    
