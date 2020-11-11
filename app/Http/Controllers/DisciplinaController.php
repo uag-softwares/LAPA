@@ -47,8 +47,8 @@ class DisciplinaController extends Controller
         $request->validated();
 
         $dados = $request->all();
-        $disciplina=$this->disciplina->create($dados);
-        $disciplina['slug']=str_slug( $disciplina->nome).'-'. $disciplina->id;
+        $disciplina = $this->disciplina->create($dados);
+        $disciplina['slug'] = str_slug($disciplina->nome).'-'. $disciplina->id;
         $disciplina->update($disciplina->attributesToArray());
         return redirect()->route('auth.disciplinas')->with('success', 'Assunto adicionado com sucesso!');
     }
@@ -67,7 +67,7 @@ class DisciplinaController extends Controller
         $request->validated();
 
         $dados = $request->all();
-        $dados['slug']=str_slug($dados['nome']).'-'.$identifier;
+        $dados['slug'] = str_slug($dados['nome']).'-'.$identifier;
         if($this->disciplina->find($identifier)->nome != $request['nome']) {
             return redirect()->back()->withErrors(['nome' => 'O nome do assunto não pode ser alterado']);
         }

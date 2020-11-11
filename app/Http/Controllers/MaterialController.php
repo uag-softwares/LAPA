@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Validator;
 use App\Material;
 use App\Disciplina;
-use Validator;
 use App\Http\Requests\CriarMaterialRequest;
 use App\Http\Requests\AtualizarMaterialRequest;
 use Auth;
+
 class MaterialController extends Controller
 {
    protected $material;
@@ -16,14 +17,16 @@ class MaterialController extends Controller
    
     public function __construct(Material $material, Disciplina $disciplina)
     {
+
+        $this->material = $material;
+        $this->disciplina = $disciplina;
+
         $this->middleware('auth', ['except' => [
             'materiaisPorDisciplina',
             'ver',
             'siteIndex',
         ]]);
 
-        $this->material = $material;
-        $this->disciplina = $disciplina;
     }
 
     public function index() 
@@ -50,7 +53,7 @@ class MaterialController extends Controller
 
     public function adicionar() 
     {
-        $disciplinas=$this->disciplina->all();
+        $disciplinas = $this->disciplina->all();
         return view('auth.materiais.adicionar', compact('disciplinas'));
     }
 
@@ -93,7 +96,7 @@ class MaterialController extends Controller
 
     public function editar(Material $registro) 
     {
-	$disciplinas=$this->disciplina->all();
+	    $disciplinas=$this->disciplina->all();
         return view('auth.materiais.editar', compact('registro','disciplinas'));        
     }
 
@@ -108,7 +111,6 @@ class MaterialController extends Controller
             $publicado = true;
         }       
 
-
         $dados['anexo'] = $material->anexo;
         $dados['tipo_anexo'] = $request['tipo_anexo'];
         if(($request['tipo_anexo'] == 'upload') && $request->hasFile('anexo_upload')) {
@@ -120,7 +122,7 @@ class MaterialController extends Controller
             $dados['anexo'] = $dir.'/'.$nomeAnexo;
         }
 
-        $dados['slug']=str_slug($dados['titulo']).'-'.$identifier;
+        $dados['slug'] = str_slug($dados['titulo']).'-'.$identifier;
         $this->material->update($dados);
         return redirect()->route('auth.materiais')->with('success', 'Material atualizado com sucesso!');
     }

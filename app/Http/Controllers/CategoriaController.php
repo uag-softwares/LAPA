@@ -48,8 +48,8 @@ class CategoriaController extends Controller
             return redirect()->back()->withErrors(['nome' => 'Essa área de conhecimento já existe nesse assunto'])->withInput();
         }
 
-        $categotia= $this->categoria->create($dados);
-        $categotia['slug']=str_slug($categotia->nome).'-'.$categotia->id;
+        $categotia = $this->categoria->create($dados);
+        $categotia['slug'] = str_slug($categotia->nome).'-'.$categotia->id;
         $categotia->update($categotia->attributesToArray());
         return redirect()->route('auth.categorias')->with('success', 'Área de conhecimento adicionada com sucesso!');
     }
@@ -72,9 +72,8 @@ class CategoriaController extends Controller
             return redirect()->back()->withErrors(['nome' => 'Essa área de conhecimento já existe nesse assunto ou você está tentando colocar o mesmo nome'])->withInput();
         }
 
-        $dados['slug']=str_slug($dados['nome']).'-'.$identifier;
+        $dados['slug'] = str_slug($dados['nome']).'-'.$identifier;
         $this->categoria->find($identifier)->update($dados);
-
         return redirect()->route('auth.categorias')->with('success', 'Área de conhecimento atualizada com sucesso!');;
     }
 
