@@ -25,6 +25,7 @@ class MaterialController extends Controller
             'materiaisPorDisciplina',
             'ver',
             'siteIndex',
+            'siteVisualizarMaterial',
         ]]);
 
     }
@@ -123,7 +124,7 @@ class MaterialController extends Controller
         }
 
         $dados['slug'] = str_slug($dados['titulo']).'-'.$identifier;
-        $this->material->update($dados);
+        $material->update($dados);
         return redirect()->route('auth.materiais')->with('success', 'Material atualizado com sucesso!');
     }
 
@@ -148,6 +149,11 @@ class MaterialController extends Controller
         $paginas = $busca->latest()->paginate(1);    
         return view('site.materiais.ver_materiais', compact('registros', 'disciplina', 'paginas'));
     }
+
+    public function siteVisualizarMaterial(Material $registro){
+        return view('site.materiais.visualizarMaterial', compact('registro'));
+    }
+
 
     
 }

@@ -66,9 +66,11 @@
                             
                             <!-- Authentication Links -->
                             @guest
-                               <li class="nav-item">
-                                <a href="{{ route('login') }}" class="nav-link">Acesso</a>
+                            {{--
+                            <li class="nav-item">
+                                <a href="{{ route('login') }}" class="nav-link">Acesso</a> 
                             </li>
+                             --}}
                             @else
                                 <nav class="d-flex flex-md-row flex-column">
                                     <li class="nav-item{{ Request::is('gerenciar') || Request::is('auth/*') && !Request::is('auth/registros') ? ' active' : '' }}">
