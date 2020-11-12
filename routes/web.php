@@ -39,7 +39,7 @@ Route::get('/site/postagem/visualizar/{registro:slug}', ['as' => 'site.postagem.
 Route::get('/site/contato/index', ['as' => 'site.contato.index', 'uses' => 'Auth\RegisterController@siteIndex'], function () {});
 Route::get('/site/contato/visualizar/{registro:slug}', ['as' => 'site.contato.visualizar', 'uses' => 'Auth\RegisterController@siteRegistervisualizar'], function (App\User $registro) {return $registro;});
 
-Route::get('/site/materiais/visualizar/{registro:slug}', ['as' => 'site.materiais.visualizar', 'uses' => 'MaterialController@siteVisualizarMaterial'], function (App\Material $registro) {return $registro;});
+
 Route::get('/site/materiais/index', ['as' => 'site.materiais.index', 'uses' => 'MaterialController@siteIndex'], function () {});
 Route::get('/site/materiais/disciplina/{disciplina:slug}', ['as' => 'site.materiais.disciplina', 'uses' => 'MaterialController@materiaisPorDisciplina'],function (App\Disciplina $disciplina) {return $disciplina;});
 
@@ -92,7 +92,8 @@ Route::middleware(['auth','check.cpf'])->group(function () {
 	Route::get('/auth/atla/editar/{registro:slug}', ['as' => 'auth.atla.editar', 'uses' => 'AtlaController@editar'], function (App\Atla $registro) {return $registro;});
 	Route::put('/auth/atla/atualizar/{id}', ['as' => 'auth.atla.atualizar', 'uses' => 'AtlaController@atualizar'], function () {});
 	Route::get('/auth/atla/deletar/{registro:slug}', ['as' => 'auth.atla.deletar', 'uses' => 'AtlaController@deletar'],function (App\Atla $registro) {return $registro;});
-        
+	  
+
 	Route::get('/auth/materiais', ['as' => 'auth.materiais', 'uses' => 'MaterialController@index'], function () {});
 	Route::get('/auth/materiais/adicionar', ['as' => 'auth.material.adicionar', 'uses' => 'MaterialController@adicionar'], function () {});
 	Route::post('/auth/materiais/salvar', ['as' => 'auth.material.salvar', 'uses' => 'MaterialController@salvar'], function () {});
@@ -100,7 +101,10 @@ Route::middleware(['auth','check.cpf'])->group(function () {
 	Route::put('/auth/materiais/atualizar/{id}', ['as' => 'auth.material.atualizar', 'uses' => 'MaterialController@atualizar'], function () {});
 	Route::get('/auth/materiais/deletar/{registro:slug}', ['as' => 'auth.material.deletar', 'uses' => 'MaterialController@deletar'], function (App\Material $registro) {return $registro;});
 	Route::get('ajax/materiais/disciplina/{registro:slug}', ['as' => 'auth.ajax.materiais.disciplina', 'uses' => 'MaterialController@ajaxMateriaisDisciplina'], function (App\Atla $registro) {return $registro;});
-  
+	Route::get('/auth/material/visualizar/{registro:slug}', ['as' => 'auth.material.visualizar', 'uses' => 'MaterialController@ver'], function (App\Material $registro) {return $registro;});
+	Route::get('/auth/material/publicar/{registro:slug}', ['as' => 'auth.material.publicar', 'uses' => 'MaterialController@publicar'], function (App\Material $registro) {return $registro;});
+
+
 	Route::get('/auth/visitas', ['as' => 'auth.visitas', 'uses' => 'VisitaController@index'], function() {});
 	Route::get('/auth/visita/ver/{registro:slug}', ['as' => 'auth.visita.ver', 'uses' => 'VisitaController@ver'], function (App\Visita $registro) {return $registro;});
 	Route::put('/auth/visitas/atualizar/{id}', ['as' => 'auth.visita.atualizar', 'uses' => 'VisitaController@atualizar'], function() {});
