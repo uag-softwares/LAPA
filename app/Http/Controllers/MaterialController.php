@@ -92,9 +92,9 @@ class MaterialController extends Controller
         $material->update($material->attributesToArray());
         if($publicado) {
             return redirect()->route('auth.materiais')->with('success', 'Material adicionado com sucesso!');
-        } else {
-            return redirect()->route('auth.material.visualizar', $material)->with('success', 'Página do Material salva com sucesso!');
         }
+        return redirect()->route('auth.material.visualizar', $material)->with('success', 'Página do Material salva com sucesso!');
+        
        
     }
 
@@ -131,15 +131,14 @@ class MaterialController extends Controller
         $material->update($dados);
         if($dados['publicado']) {
             return redirect()->route('auth.materiais')->with('success', 'Material atualizado com sucesso!');
-        } else {
-            return redirect()->route('auth.material.visualizar', $material)->with('success', 'Material salvo com sucesso!');
         }
+
+        return redirect()->route('auth.material.visualizar', $material)->with('success', 'Material salvo com sucesso!');
     }
 
     public function publicar(Material $registro) 
     {
         $dados = ['publicado' => true];
-
         $registro->update($dados);
         return redirect()->back()->with('success', 'Material publicado com sucesso.');
        
