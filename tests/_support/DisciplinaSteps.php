@@ -67,7 +67,7 @@ class DisciplinaSteps extends \Codeception\Actor
     public function euEstouNaPaginaDeGerenciarDisciplinas()
     {
         $this->amOnPage('/auth/disciplinas/');
-        $this->see('Gerenciar assuntos(disciplinas)', '//h2');
+        $this->see('Gerenciar assuntos (disciplinas)', '//h2');
     }
 
     /**

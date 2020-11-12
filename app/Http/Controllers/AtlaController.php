@@ -104,10 +104,9 @@ class AtlaController extends Controller
 
         if($publicado) {
             return redirect()->route('auth.atlas')->with('success', 'Página do atlas adicionada com sucesso!');
-        } else {
-            return redirect()->route('auth.atla.visualizar', $atla)->with('success', 'Página do atlas salva com sucesso!');
         }
         
+        return redirect()->route('auth.atla.visualizar', $atla)->with('success', 'Página do atlas salva com sucesso!');
     }
 
     public function editar(Atla $registro) 
@@ -145,9 +144,9 @@ class AtlaController extends Controller
 
         if($dados['publicado']) {
             return redirect()->route('auth.atlas')->with('success', 'Página do atlas atualizada com sucesso!');
-        } else {
-            return redirect()->route('auth.atla.visualizar', $atla)->with('success', 'Página do atlas salva com sucesso!');
         }
+
+        return redirect()->route('auth.atla.visualizar', $atla)->with('success', 'Página do atlas salva com sucesso!');
     }
 
     public function publicar(Atla $registro) 
