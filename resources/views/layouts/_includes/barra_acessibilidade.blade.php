@@ -8,10 +8,10 @@
         <a href="#" id="increase-font" title="Aumentar fonte">A&nbsp;+</a> 
         |
         <a href="#" class="bt-tema" data-classe="classe-azul">Alto&nbsp;Contraste</a>
-        |
+{{--    |
         <a href="#" class="en" >English</a>
 	    |
 	    <a href="#" class="pt" >Português</a>
-	    
+--}}
     </div>
 </nav>

@@ -39,6 +39,7 @@ Route::get('/site/postagem/visualizar/{registro:slug}', ['as' => 'site.postagem.
 Route::get('/site/contato/index', ['as' => 'site.contato.index', 'uses' => 'Auth\RegisterController@siteIndex'], function () {});
 Route::get('/site/contato/visualizar/{registro:slug}', ['as' => 'site.contato.visualizar', 'uses' => 'Auth\RegisterController@siteRegistervisualizar'], function (App\User $registro) {return $registro;});
 
+Route::get('/site/materiais/visualizar/{registro:slug}', ['as' => 'site.materiais.visualizar', 'uses' => 'MaterialController@siteVisualizarMaterial'], function (App\Material $registro) {return $registro;});
 Route::get('/site/materiais/index', ['as' => 'site.materiais.index', 'uses' => 'MaterialController@siteIndex'], function () {});
 Route::get('/site/materiais/disciplina/{disciplina:slug}', ['as' => 'site.materiais.disciplina', 'uses' => 'MaterialController@materiaisPorDisciplina'],function (App\Disciplina $disciplina) {return $disciplina;});
 
