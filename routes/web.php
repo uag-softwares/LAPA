@@ -32,10 +32,13 @@ Route::get('/site/noticias/index', ['as' => 'site.postagens.indexNoticia', 'uses
 Route::get('/site/editais/index', ['as' => 'site.postagens.indexEdital', 'uses' => 'PostagemController@siteIndexEdital'], function () {});
 
 Route::get('/site/eventos/visualizar/{registro:slug}', ['as' => 'site.eventos.visualizar', 'uses' => 'PostagemController@siteVisualizarPostagem'], function (App\Postagem $registro) {return $registro;});
-Route::get('/site/editais/visualizar/{registro:slug}', ['as' => 'site.editais.visualizar', 'uses' => 'PostagemController@siteVisualizarPostagem'], function (App\Postagem $registro) {return $registro;});
-Route::get('/site/noticias/visualizar/{registro:slug}', ['as' => 'site.noticias.visualizar', 'uses' => 'PostagemController@siteVisualizarPostagem'], function (App\Postagem $registro) {return $registro;});
-Route::get('/site/postagem/visualizar/{registro:slug}', ['as' => 'site.postagem.visualizar', 'uses' => 'PostagemController@siteVisualizarPostagem'], function (App\Postagem $registro) {return $registro;});
 
+Route::get('/site/editais/visualizar/{registro:slug}', ['as' => 'site.editais.visualizar', 'uses' => 'PostagemController@siteVisualizarPostagem'], function (App\Postagem $registro) {return $registro;});
+
+Route::get('/site/noticias/visualizar/{registro:slug}', ['as' => 'site.noticias.visualizar', 'uses' => 'PostagemController@siteVisualizarPostagem'], function (App\Postagem $registro) {return $registro;});
+
+
+Route::get('/site/postagem/visualizar/{registro:slug}', ['as' => 'site.postagem.visualizar', 'uses' => 'PostagemController@siteVisualizarPostagem'], function (App\Postagem $registro) {return $registro;});
 
 Route::get('/site/contato/index', ['as' => 'site.contato.index', 'uses' => 'Auth\RegisterController@siteIndex'], function () {});
 Route::get('/site/contato/visualizar/{registro:slug}', ['as' => 'site.contato.visualizar', 'uses' => 'Auth\RegisterController@siteRegistervisualizar'], function (App\User $registro) {return $registro;});
@@ -74,14 +77,19 @@ Route::middleware(['auth','check.cpf'])->group(function () {
 	Route::get('/auth/disciplina/deletar/{registro:slug}', ['as' => 'auth.disciplina.deletar', 'uses' => 'DisciplinaController@deletar'],function (App\Disciplina $registro) {return $registro;});
 
 	Route::get('/auth/postagens', ['as' => 'auth.postagens', 'uses' => 'PostagemController@index'], function () {});
+
 	Route::get('/auth/postagem/adicionar', ['as' => 'auth.postagem.adicionar', 'uses' => 'PostagemController@adicionar'], function () {});
 	Route::post('/auth/postagem/salvar', ['as' => 'auth.postagem.salvar', 'uses' => 'PostagemController@salvar'], function () {});
+
 	Route::get('/auth/postagem/editar/{registro:slug}', ['as' => 'auth.postagem.editar', 'uses' => 'PostagemController@editar'], function (App\Postagem $registro) {return $registro;});
+
 	Route::put('/auth/postagem/atualizar/{id}', ['as' => 'auth.postagem.atualizar', 'uses' => 'PostagemController@atualizar'], function (App\Postagem $registro) {return $registro;});
+
 	Route::get('/auth/postagem/deletar/{registro:slug}', ['as' => 'auth.postagem.deletar', 'uses' => 'PostagemController@deletar'], function (App\Postagem $registro) {return $registro;});
 
 	Route::get('/auth/postagem/publicar/{registro:slug}', ['as' => 'auth.postagem.publicar', 'uses' => 'PostagemController@publicar_postagem'], function (App\Postagem $registro) {return $registro;});
 
+	Route::get('/auth/postagem/ver/{registro:slug}', ['as' => 'auth.postagem.ver', 'uses' => 'PostagemController@visualizarRascunho'], function (App\Postagem $registro) {return $registro;});
 	
 	Route::get('/auth/categorias', ['as' => 'auth.categorias', 'uses' => 'CategoriaController@index'], function () {});
 	Route::get('/auth/categoria/adicionar', ['as' => 'auth.categoria.adicionar', 'uses' => 'CategoriaController@adicionar'], function () {});

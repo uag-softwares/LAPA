@@ -224,5 +224,10 @@ class PostagemController extends Controller
         $registro->update($dados);
         return redirect()->back()->with('success', 'Postagem publicada com sucesso.');
     }
+    public function visualizarRascunho(Postagem $registro){
+        return view('auth.postagem.ver', compact('registro'));
+    }
+
+    
 
 }
