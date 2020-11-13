@@ -68,7 +68,7 @@ class CategoriaSteps extends \Codeception\Actor
     public function euEstouNaPaginaDeGerenciarCategorias()
     {
         $this->amOnPage('/auth/categorias/');
-        $this->see('Gerenciar áreas de conhecimento(categorias)', '//h2');
+        $this->see('Gerenciar áreas de conhecimento (categorias)', '//h2');
     }
 
      /**

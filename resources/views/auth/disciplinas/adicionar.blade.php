@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('titulo', 'Adicionar disciplina')
+@section('titulo', 'Adicionar assunto')
 @section('content')
         <div class="container">
             <h2>Adicionar assunto (disciplina)</h2>

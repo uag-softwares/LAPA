@@ -42,7 +42,7 @@
 <div class="input-group-data-hora {{ isset($registro->tipo_postagem) ? ($registro->tipo_postagem == 'evento' ? 'show' : '') : '' }} {{ old('tipo_postagem') == $tipo ? 'show' : '' }} @error('data') show @enderror @error('hora') show @enderror">
     <div class="d-flex flex-row">
         <div class="form-group">
-            <label for="data">Data(obrigatório para evento)</label>
+            <label for="data">Data*</label>
             <input min="{{ date('Y-m-d', strtotime('tomorrow')) }}" class="form-control form-control-lg @error('data') is-invalid @enderror" type="date" name="data" value="{{ isset($registro->data) ? $registro->data : old('data') }}" autocomplete="data">
             @error('data')
             <span class="invalid-feedback" role="alert">
@@ -53,7 +53,7 @@
     </div>
     <div class="d-flex flex-row">
         <div class="form-group">
-            <label for="hora">Hora(obrigatório para evento)</label>
+            <label for="hora">Hora*</label>
             <input min="{{ date('H:i', strtotime('00:00')) }}" class="form-control form-control-lg @error('hora') is-invalid @enderror" type="time" name="hora" value="{{ isset($registro->hora) ? date('H:i', strtotime($registro->hora)) : old('hora') }}" placeholder="Digite a hora do evento">
             @error('hora')
             <span class="invalid-feedback" role="alert">

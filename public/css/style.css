@@ -193,27 +193,27 @@ form,
   text-align: left;
 }
 
-.postagem .info {
+.info {
   font-size: var(--font-size-info);
   font-style: italic;
 }
 
-.postagem .tag {
+.tag {
   color: var(--main-white);
   font-weight: var(--font-bold);
   padding: 5px;
   border-radius: 5px;
 }
 
-.postagem .tag.edital {
+.tag.edital {
   background-color: blue;
 }
 
-.postagem .tag.noticia {
+.tag.noticia {
   background-color: red;
 }
 
-.postagem .tag.evento {
+.tag.evento {
   background-color: var(--main-green);
 }
 

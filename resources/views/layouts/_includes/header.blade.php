@@ -14,7 +14,7 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap" rel="stylesheet">
         <!-- Tamanho da font do cookie acessibilidade -->
-        <script src="{{ asset('js/acessibilidade_cookies.js') }}"></script>
+        <script src="{{ asset('js/font_size_acessibilidade.js') }}"></script>
 
 
         <!-- Styles -->
@@ -22,6 +22,15 @@
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">
         <link href="{{ asset('css/clndr.css') }}" rel="stylesheet">
         <link href="{{ asset('css/simple-anime.css') }}" rel="stylesheet">
+
+        <!-- Alto contraste -->
+        <link href="{{ asset('css/style_contraste.css') }}" rel="stylesheet" id="css-contraste" disabled="true">
+        <script>
+            var linkCssContraste = document.getElementById("css-contraste");
+            if( localStorage.getItem("contraste") === "true" ) {
+                linkCssContraste.removeAttribute('disabled');
+            }
+        </script>
         
         <!-- Bootstrap Datepicker -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.standalone.min.css">
