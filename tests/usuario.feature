@@ -79,19 +79,6 @@ Feature: usuario
          And   Eu clico em Editar
          Then  Eu vejo uma menssagem de sucesso
 
-  Scenario: atualizar foto de perfil valido do usuario administrador cadastrado 
-         Given O usuario administrador com nome "Roberta",email "roberta@gmail.com" e senha "Brasil2020@" existe
-         And   Eu estou na pagina de login
-	 And   Eu preencho o campo email com "roberta@gmail.com"
-	 And   Eu preencho o campo senha "Brasil2020@"
-         And   Eu clico em entrar
-         And   Eu abro pagina de configuracao de usuario
-         And   Eu clico em editar registro do usuario
-         Then  Eu estou na pagina de editar registro
-         And Eu seleciono o campo escolher origem do avatar link do drive
-         And Eu preencho o campo do link do arquivo com "https://drive.google.com/file/d/1eJt5xYMq3chZL92_vbHSDq5VmMO22V80/view?usp=sharing"
-         And   Eu clico em Editar
-         Then  Eu vejo uma menssagem de sucesso
 
   Scenario: atualizar link lattes com formato invalido do usuario administrador cadastrado 
          Given O usuario administrador com nome "Rodrigo",email "rodrigo@gmail.com" e senha "Brasil2020@" existe
