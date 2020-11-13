@@ -250,8 +250,11 @@ class RegisterController extends Controller
     }
 
     public function siteIndex(){
-        $usersAdmin=$this->usuario->where( 'user_type', 'admin')->get();
-        $registros= $usersAdmin->whereNotNull('cpf_verified_at')->reverse();
+
+        $usersAdmin= $this->usuario->where( 'user_type', 'admin')->get();
+        $registro= $usersAdmin->whereNotNull('cpf_verified_at')->reverse();
+        $registros= $registro->whereNotIn('email', ['v.santos0406@gmail.com','raquellvieiraa@gmail.com',
+        'vianasantana21@gmail.com']);
 
         $contato = $this->contato->latest('updated_at')->first();
 
