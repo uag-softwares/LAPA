@@ -29,7 +29,7 @@ class CriarPostagemRequest extends FormRequest
             'tipo_postagem'=>'required',
             'data' => 'required_if:tipo_postagem,evento|nullable|date|after:today',
             'hora' => 'required_if:tipo_postagem,evento|nullable|date_format:H:i|after_or_equal:00:00',
-            'tipo_anexo' => 'required',
+            #'tipo_anexo' => 'required',
             'anexo_upload' => 'required_if:tipo_anexo,upload|mimes:jpeg,jpg,png,gif|max:2048|nullable',
             'anexo_drive' => 'required_if:tipo_anexo,link_drive|nullable|url',
             'anexo_web' => 'required_if:tipo_anexo,link_web|nullable|url',
