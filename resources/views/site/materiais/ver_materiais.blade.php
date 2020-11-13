@@ -11,8 +11,7 @@
     @endif
 
     <div id="page" class="container col-lg-9">    
-        <h2 class="fadeInDown" data-anime="150">Material</h2>
-
+       
         @if (count($paginas) < 1)
             <p>Ops, esse material ainda não possui páginas</p>
         @else
