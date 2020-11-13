@@ -11,8 +11,6 @@
     @endif
 
     <div id="page" class="d-flex flex-column container py-4 col-lg-10">    
-        <h2 class="fadeInDown" data-anime="150">Atlas Interativo</h2>
-        
         @if (count($paginas) < 1)
             <p>Ops, essa área de conhecimento ainda não possui páginas</p>
         @else
@@ -20,7 +18,17 @@
             @foreach ($paginas as $pagina)
                 <div class="row justify-content-between fadeInDown" data-anime="300">
                     <div class="col-md-8 col-12 text-left">
-                        <h3 class="title">{{ $pagina->titulo }}</h3>
+                        <h2 class="title pb-3">{{ $pagina->titulo }}</h2>
+                        <p class="info" style="text-transform: capitalize;">
+                            <a style="color: white;" href="{{ route('site.atlas.disciplina', $categoria->disciplina) }}">
+                                <span class="tag evento">{{ $categoria->disciplina->nome}}</span>
+                            </a>
+                            <span class="tag evento">/</span>
+                            
+                            <a style="color: white;" href="{{ route('site.atlas.categoria', $categoria) }}">
+                                <span class="tag evento">{{ $categoria->nome }}</span>
+                            </a>
+                        </p>
                         <p class="text">
                             {!! $pagina->toArray()['descricao'] !!}
                         </p>

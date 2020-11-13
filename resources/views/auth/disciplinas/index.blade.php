@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
-@section('titulo', 'Gerenciar disciplinas')
+@section('titulo', 'Gerenciar assuntos')
 @section('content')
         <div class="container">
-            <h2>Gerenciar assuntos(disciplinas)</h2>
+            <h2>Gerenciar assuntos (disciplinas)</h2>
             <a href="{{ route('auth.disciplina.adicionar') }}" class="btn mb-2">Adicionar</a>
 
             @if(Session::has('success'))

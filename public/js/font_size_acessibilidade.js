@@ -1,28 +1,3 @@
-function setCookie(name, value, options = {}) {
-
-    options = {
-        path: "/",
-        // add other defaults here if necessary
-        ...options
-    };
-  
-    if (options.expires instanceof Date) {
-        options.expires = options.expires.toUTCString();
-    }
-  
-    let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
-  
-    for (var i = 0; i < options.lenght; i++) {
-        updatedCookie += "; " + options[parseInt(i, 10)];
-        let optionValue = options[parseInt(i, 10)];
-        if (optionValue !== true) {
-            updatedCookie += "=" + optionValue;
-        }
-    }
-  
-    document.cookie = updatedCookie;
-}
-
 
 window.onload = function() {
     var elementBody = document.querySelector(":root");
@@ -41,7 +16,7 @@ window.onload = function() {
         if(fontSize <= 140){
             fontSize = fontSize + increaseDecrease;
             elementBody.style.fontSize = fontSize + "%";
-            setCookie("fontSize", fontSize);
+            localStorage.setItem("fontSize", fontSize);
         }
        
     });
@@ -49,7 +24,7 @@ window.onload = function() {
     // Evento de click para resetar a fonte
     elementBtnReseteFont.addEventListener("click", function(event) {
         elementBody.style.fontSize = "100%";
-        setCookie("fontSize", fontSize);
+        localStorage.setItem("fontSize", fontSize);
     });
 
     // Evento de click para diminuir a fonte
@@ -57,8 +32,12 @@ window.onload = function() {
         if(fontSize >= 80){
             fontSize = fontSize - increaseDecrease;
             elementBody.style.fontSize = fontSize + "%";
-            setCookie("fontSize", fontSize)
+            localStorage.setItem("fontSize", fontSize)
         }
 
     });
 }
+
+// Recuperar tamanho da fonte
+var fontSizeCookie = localStorage.getItem("fontSize");
+document.querySelector(":root").style.fontSize = fontSizeCookie + "%";

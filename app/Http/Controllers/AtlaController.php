@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Validator;
 use App\Atla;
 use App\Categoria;
 use App\Disciplina;
@@ -11,6 +9,7 @@ use App\Http\Requests\CriarAtlaRequest;
 use App\Http\Requests\AtualizarAtlaRequest;
 use Auth;
 use App\Util\ConvertToEmbedableImageLink;
+use App\Util\SaveFileUtil;
 
 class AtlaController extends Controller
 {
@@ -76,7 +75,7 @@ class AtlaController extends Controller
             $publicado = true;
         }   
         
-        $atla=$this->atla->create([
+        $atla = $this->atla->create([
             'titulo' => $request ['titulo'],
             'descricao' => $request ['descricao'],
             'anexo' => $anexo,
@@ -94,17 +93,20 @@ class AtlaController extends Controller
         if($request['tipo_anexo'] == 'link_drive') {
             $atla['anexo'] = ConvertToEmbedableImageLink::convertToEmbedableImageLink($request['anexo_drive']);
         }else if (($request['tipo_anexo'] == 'upload') && $request->hasFile('anexo_upload')) {
-            $anexo = $request->file('anexo_upload');
-            $dir = 'img/atlas/';
-            $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
-            $nomeAnexo = 'anexo_'.$atla->anexo.'-'.$atla->id.'.'.$ex;
-            $anexo->move($dir, $nomeAnexo);
-            $atla['anexo'] = $dir.'/'.$nomeAnexo;
+            $atla['anexo'] = SaveFileUtil::saveFile(
+                $request->file('anexo_upload'),
+                $atla->id,
+                'img/atlas/'
+            );
         }
        
         $atla->update($atla->attributesToArray());
-        return redirect()->route('auth.atlas')->with('success', 'Página do atlas adicionada com sucesso!');
+
+        if($publicado) {
+            return redirect()->route('auth.atlas')->with('success', 'Página do atlas adicionada com sucesso!');
+        }
         
+        return redirect()->route('auth.atla.visualizar', $atla)->with('success', 'Página do atlas salva com sucesso!');
     }
 
     public function editar(Atla $registro) 
@@ -127,12 +129,11 @@ class AtlaController extends Controller
         if($request['tipo_anexo'] == 'link_drive') {
             $dados['anexo'] = ConvertToEmbedableImageLink::convertToEmbedableImageLink($request['anexo_drive']);
         } else if(($request['tipo_anexo'] == 'upload') && $request->hasFile('anexo_upload')) {
-            $anexo = $request->file('anexo_upload');
-            $dir = 'img/atlas/';
-            $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
-            $nomeAnexo = 'anexo_'.$atla->anexo.'-'.$atla->id.'.'.$ex;
-            $anexo->move($dir, $nomeAnexo);
-            $dados['anexo']= $dir.'/'.$nomeAnexo;
+            $atla['anexo'] = SaveFileUtil::saveFile(
+                $request->file('anexo_upload'),
+                $atla->id,
+                'img/atlas/'
+            );
         }
         
         if(isset($request['publicar'])) {
@@ -140,7 +141,20 @@ class AtlaController extends Controller
         } 
         $dados['slug'] = str_slug($dados['titulo']).'-'.$identifier;
         $atla->update($dados);
-        return redirect()->route('auth.atlas')->with('success', 'Página do atlas atualizada com sucesso!');
+
+        if($dados['publicado']) {
+            return redirect()->route('auth.atlas')->with('success', 'Página do atlas atualizada com sucesso!');
+        }
+
+        return redirect()->route('auth.atla.visualizar', $atla)->with('success', 'Página do atlas salva com sucesso!');
+    }
+
+    public function publicar(Atla $registro) 
+    {
+        $dados = ['publicado' => true];
+
+        $registro->update($dados);
+        return redirect()->back()->with('success', 'Página do atlas publicada com sucesso.');
     }
 
     public function deletar(Atla $registro)
@@ -185,6 +199,12 @@ class AtlaController extends Controller
         $registros = $busca->get();
         $paginas = $busca->paginate(1);
         return view('site.atlas.ver_atlas_disciplinas', compact('paginas', 'registros', 'disciplina'));
+    }
+
+    public function ver(Atla $registro) 
+    {
+        $categoria = $registro->categoria;
+        return view('auth.atlas.ver', compact('registro', 'categoria'));
     }
 
    

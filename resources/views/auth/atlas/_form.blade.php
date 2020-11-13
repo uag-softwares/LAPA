@@ -39,6 +39,10 @@
     @enderror
 </div>
 
+<div class="form-group">
+    <p>Área de conhecimento não cadastrada? <a class="" href="{{ route('auth.categoria.adicionar') }}">{{ __('Cadastrar Área de conhecimento') }}</a>.</p>
+</div>
+
 <div class="form-group" id="radio-group-anexo">
     <label class="@error('tipo_anexo') is-invalid @enderror @error('anexo_web') is-invalid @enderror @error('anexo_drive') is-invalid @enderror @error('anexo_upload') is-invalid @enderror">Escolher origem da imagem anexa*</label><br>
     <input type="radio" name="tipo_anexo" value="upload" id="upload-radio" {{ isset($registro) ? ($registro->tipo_anexo == 'upload' ? 'checked' : '') : ''}}>
@@ -80,9 +84,6 @@
             <strong>{{ $message }}</strong>
         </span>
     @enderror
-</div>
-<div class="form-group">
-    <p>Área de conhecimento não cadastrada? <a class="" href="{{ route('auth.categoria.adicionar') }}">{{ __('Cadastrar Área de conhecimento') }}</a>.</p>
 </div>
 
 @section('scripts')

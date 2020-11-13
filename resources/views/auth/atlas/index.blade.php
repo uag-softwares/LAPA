@@ -68,6 +68,7 @@
                         @foreach ($registros as $registro)
                             <tr>
                                 <td>
+                                    <a href="{{ route('auth.atla.visualizar', $registro->slug) }}" class="btn">Ver</a>
                                     <a href="{{ route('auth.atla.editar',$registro->slug) }}" class="btn">Editar</a>
                                     <a href="{{ route('auth.atla.deletar', $registro->slug) }}" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar esse atla');">Deletar</a>
                                 </td>

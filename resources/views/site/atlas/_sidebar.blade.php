@@ -5,8 +5,8 @@
 </div>
 
 <div id="leftSidebar" class="col-lg-2 border-right p-4">
-    <p style="font-weight: bold;">
-        Páginas em {{ $categoria->nome ?? '' }}
+    <p>
+        Páginas em <strong>{{ $categoria->nome ?? '' }}</strong>
     </p>
     <input class="form-control mb-3" id="pesquisa_atlas" type="search" id="form-autocomplete" placeholder="Pesquisar...">
     <div id="paginasAtlas" class="list-group p-0 text-left">
