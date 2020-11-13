@@ -28,8 +28,8 @@ class RegisterRequest extends FormRequest
             'user_description' => 'max:255|nullable',
             'link_lattes' => 'url|string|nullable',
             'tipo_avatar' => 'nullable',
-            'anexo_drive' => 'required_if:tipo_avatar,link_drive|nullable',
-            'anexo_web' => 'required_if:tipo_avatar,link_web|nullable',
+            'anexo_upload' => 'upload|mimes:jpeg,jpg,png,gif|max:2048|nullable',
+            
 	    
         ];
     }

@@ -8,13 +8,9 @@ $user = Auth::user()
     @endisset
     <div class="form-group d-flex flex-column align-items-left">
         <div id="radio-group-anexo">
-            <label class="@error('tipo_avatar') is-invalid @enderror @error('anexo_web') is-invalid @enderror @error('anexo_drive') is-invalid @enderror @error('anexo_upload') is-invalid @enderror">Escolher origem da foto do perfil</label><br>
+            <label class="@error('tipo_avatar') is-invalid @enderror @error('anexo_web') is-invalid @enderror @error('anexo_drive') is-invalid @enderror @error('anexo_upload') is-invalid @enderror">Escolher foto do perfil</label><br>
             <input type="radio" name="tipo_avatar" value="upload" id="upload-radio" {{ isset($user) ? ($user->tipo_avatar== 'upload' ? 'checked' : '') : ''}}>
             <label for="upload-radio">Enviar arquivo do dispositivo</label><br>
-            <input type="radio" name="tipo_avatar" value="link_drive" id="drive-radio" {{ isset($user) ? ($user->tipo_avatar== 'link_drive' ? 'checked' : '') : '' }}>
-            <label for="drive-radio">Link compartilhado do Google Drive</label><br>
-            <input type="radio" name="tipo_avatar" value="link_web" id="web-radio" {{ isset($user) ? ($user->tipo_avatar == 'link_web' ? 'checked' : '') : '' }}>
-            <label for="web-radio">Link da imagem da web</label>
             @if($errors->first('tipo_avatar') || $errors->first('anexo_upload') || $errors->first('anexo_drive') || $errors->first('anexo_web'))
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('tipo_avatar') | $errors->first('anexo_upload') | $errors->first('anexo_drive') | $errors->first('anexo_web')}}</strong>

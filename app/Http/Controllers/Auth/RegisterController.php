@@ -89,9 +89,8 @@ class RegisterController extends Controller
             'link_lattes' => 'url|string|nullable',
             'g-recaptcha-response' => 'required',
             'tipo_avatar' => 'max:255|nullable',
-            'anexo_upload' => 'required_if:tipo_avatar,upload|mimes:jpeg,jpg,png,gif|max:2048|nullable',
-            'anexo_drive' => 'required_if:tipo_avatar,link_drive|nullable|url',
-            'anexo_web' => 'required_if:tipo_avatar,link_web|nullable|url',
+            'anexo_upload' => 'upload|mimes:jpeg,jpg,png,gif|max:2048|nullable',
+            
 
         ],[
             'password.regex'=>'Sua senha deve conter no mínimo de 6 caracteres,deve conter pelo menos uma letra maiúscula,uma minúscula,um número e um símbolo',
