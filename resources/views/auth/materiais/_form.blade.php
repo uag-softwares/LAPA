@@ -39,10 +39,10 @@
 </div>
 
 <div class="form-group" id="radio-group-anexo">
-    <label class="@error('tipo_anexo') is-invalid @enderror @error('anexo_web') is-invalid @enderror">Escolher origem do material anexo*</label><br>
-    <input disabled type="radio" name="tipo_anexo" value="upload" id="upload-radio" {{ isset($registro) ? ($registro->tipo_anexo == 'upload' ? 'checked' : '') : ''}}>
+    <label class="@error('tipo_anexo') is-invalid @enderror @error('anexo_web') is-invalid @enderror @error('anexo_drive') is-invalid @enderror @error('anexo_upload') is-invalid @enderror">Escolher origem do material anexo*</label><br>
+    <input type="radio" name="tipo_anexo" value="upload" id="upload-radio" {{ isset($registro) ? ($registro->tipo_anexo == 'upload' ? 'checked' : '') : ''}}>
     <label for="upload-radio">Enviar arquivo do dispositivo</label><br>
-    <input type="radio" name="tipo_anexo" value="link_web" id="web-radio" {{ isset($registro) ? ($registro->tipo_anexo == 'link_web' ? 'checked' : '') : '' }}>
+    <input type="radio" name="tipo_anexo" value="link_web" id="drive-radio" {{ isset($registro) ? ($registro->tipo_anexo == 'link_web' ? 'checked' : '') : '' }}>
     <label for="web-radio">Link de anexo do material</label>
     @if($errors->first('tipo_anexo') || $errors->first('anexo_upload') || $errors->first('anexo_web'))
         <span class="invalid-feedback" role="alert">
@@ -52,13 +52,20 @@
 </div>
 
 <div class="form-group form-group-anime {{ isset($registro) ? 'show' : '' }}">
-    <div id="upload" class="input-anime {{ isset($registro) ? ($registro->tipo_anexo == 'upload' ? 'show' : '') : '' }}" for="anexo_upload">
-        <label for="nome">Escolher arquivo de anexo</label>
-        <input id="anexo" class="d-none form-control form-control-lg @error('anexo') is-invalid @enderror" type="file" name="anexo_upload" placeholder="">
-    </div>
+    <label id="upload" class="file-input w-100 input-anime {{ isset($registro) ? ($registro->tipo_anexo == 'upload' ? 'show' : '') : '' }}" for="anexo">
+        <div class="d-flex flex-column text-center border rounded bg-white">
+            <div class="file-header">
+                <img height="200px" id="img-foto" src="{{ asset($registro->anexo ?? asset('img/file-image.svg')) }}" alt="" style="max-height: 200px">
+            </div>
+            <div class="file-label">
+                <p>Escolher um arquivo para o anexo.</p>
+            </div>
+        </div>
+        <input id="anexo" class="d-none form-control form-control-lg" type="file" name="anexo_upload" placeholder="Escolha um arquivo jpeg, jpg, png ou gif" onchange="document.getElementById('img-foto').src = window.URL.createObjectURL(this.files[0])">
+    </label>
     <div id="link_web" class="web-link input-anime {{ isset($registro) ? ($registro->tipo_anexo == 'link_web' ? 'show' : '') : '' }}">
         <label>Link do anexo</label>
-        <input type="text" class="form-control form-control-lg" name="anexo_web" placeholder="A imagem deve ser no formato jpeg, jpg, png ou gif." value="{{ old('anexo_web') }}">
+        <input type="text" class="form-control form-control-lg" name="anexo_web" placeholder="O link de anexo deve ser num formato de documento válido ex.: pdf, doc, png" value="{{ isset($registro->tipo_anexo) && $registro->tipo_anexo == 'link_web' ? $registro->anexo : old('anexo_web') }}">
     </div>	   
     @error('anexo')
         <span class="invalid-feedback" role="alert">

@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
+use Str;
 class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
@@ -16,7 +16,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name','cpf','email','telephone','user_description','avatar','user_type','email_verified_at','cpf_verified_at','link_lattes','slug',
+        'name','cpf','email','telephone','user_description','avatar','user_type','email_verified_at','cpf_verified_at','link_lattes','slug', 'tipo_avatar',
     ];
 
     
@@ -41,8 +41,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function conta()
     {
-         return $this->hasOne('App\Conta');
-
+        return $this->hasOne('App\Conta');
     }
 
     public function visita()
@@ -54,15 +53,16 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->create($user);
     }
-         /**
-  * Get the route key for the model.
-  *
-  * @return string
-  */
-  public function getRouteKeyName()
-  {
-    return 'slug';
-  }
+
+    /**
+    * Get the route key for the model.
+    *
+    * @return string
+    */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
     public function contato() {
         return $this->hasMany('App\Sobre');

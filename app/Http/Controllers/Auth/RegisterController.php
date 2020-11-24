@@ -26,6 +26,8 @@ use Illuminate\Support\Facades\Storage;
 use Image;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Illuminate\Validation\Rule;
+use App\Util\ConvertToEmbedableImageLink;
+
 class RegisterController extends Controller
 {
     /*
@@ -82,18 +84,19 @@ class RegisterController extends Controller
             'name' =>'required|regex:/^[\pL\s\-.]+$/u|string|min:3|max:255',
             'email' => ['required', 'string', 'email', 'max:255',Rule::unique('users')->where(function ($query){return $query->where('user_type','admin');})],
             'password' => 'required|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/|string|min:6|confirmed',
-	    'cpf' => ['required','regex:/\d{3}\.\d{3}\.\d{3}\-\d{2}/','string',Rule::unique('users')->where(function ($query){return $query->where('user_type','admin');})],
-
+            'cpf' => ['required','regex:/\d{3}\.\d{3}\.\d{3}\-\d{2}/','string',Rule::unique('users')->where(function ($query){return $query->where('user_type','admin');})],
             'user_description' => 'max:255|nullable',
             'link_lattes' => 'url|string|nullable',
-            'avatar' => 'mimes:jpeg,jpg,png,gif|max:2048|nullable',
-	        'g-recaptcha-response' => 'required',
+            'g-recaptcha-response' => 'required',
+            'tipo_avatar' => 'max:255|nullable',
+            'anexo_upload' => 'upload|mimes:jpeg,jpg,png,gif|max:2048|nullable',
             
+
         ],[
-       'password.regex'=>'Sua senha deve conter no mínimo de 6 caracteres,deve conter pelo menos uma letra maiúscula,uma minúscula,um número e um símbolo',
-       'email.unique'=>'O valor informado para o campo e-mail já está em uso em uma conta de administrador',
-       'cpf.unique'=>'O valor informado para o campo cpf já está em uso em uma conta de administrador',
-       'g-recaptcha-response.required' => 'O campo reCaptcha é obrigatório',
+            'password.regex'=>'Sua senha deve conter no mínimo de 6 caracteres,deve conter pelo menos uma letra maiúscula,uma minúscula,um número e um símbolo',
+            'email.unique'=>'O valor informado para o campo e-mail já está em uso em uma conta de administrador',
+            'cpf.unique'=>'O valor informado para o campo cpf já está em uso em uma conta de administrador',
+            'g-recaptcha-response.required' => 'O campo reCaptcha é obrigatório',
        ]);
        
     }
@@ -106,7 +109,9 @@ class RegisterController extends Controller
      */
      
     protected function create(array $data)
-    {  $registros=$this->usuario->where( 'user_type', 'admin')->get()->whereNotNull('cpf_verified_at')->all();
+    {  
+
+      $registros=$this->usuario->where( 'user_type', 'admin')->get()->whereNotNull('cpf_verified_at')->all();
        $findUser=$this->usuario->where('email',$data['email'])->first();
        $avatar=null;
        $request = new Request($data);
@@ -135,21 +140,27 @@ class RegisterController extends Controller
         ]);
 
         $user['slug']=str_slug($user->name).'-'.$user->id;
-	if($request->has('avatar')) {
-            $anexo = $data['avatar'];
-            $dir = 'img/avatares/';
-            $exAnexo =$anexo->guessClientExtension();
-            $nomeAnexo = 'avatar_'.$user['slug'].'.'.$exAnexo;
-            $anexo->move($dir, $nomeAnexo);
-            $user['avatar']= $dir.'/'.$nomeAnexo;
-           
+        $user['avatar'] = $data['anexo_web'];
+        if(in_array('tipo_avatar', $data)) {
+            if($data['tipo_avatar'] == 'link_drive') {
+                        $user['avatar']  = ConvertToEmbedableImageLink::convertToEmbedableImageLink($data['anexo_drive']);
+            } else if (($data['tipo_avatar'] == 'upload') && $data->hasFile('anexo_upload')) {
+                $anexo = $data->file('anexo_upload');
+                $dir = 'img/avatares/';
+                $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
+                $nomeAnexo = 'avatar_'.$user['slug'].'.'.$ex;
+                $anexo->move($dir, $nomeAnexo);
+                $user['avatar'] = $dir.'/'.$nomeAnexo;
+            }
         }
+
         $user->update($user->attributesToArray());
 
 	foreach ($registros as $registro) {
             $registro->notify(new SolicitacaoAcesso($user));
         }
         return $user;
+        
     }
 
     public function index (){
@@ -203,16 +214,22 @@ class RegisterController extends Controller
     {  
         $data->validated();
         $dados = $data->all();
-	$user=Auth::user();
+        $user=Auth::user();
         $dados['slug']=str_slug($dados['name']).'-'.$user->id;
-        if($data->hasFile('avatar')){
-            $anexo = $data->file('avatar');
-            $dir = 'img/avatares/';
-            $exAnexo =$anexo->guessClientExtension();
-            $nomeAnexo = $nomeAnexo = 'avatar_'.$user['slug'].'.'.$exAnexo;
-            $anexo->move($dir, $nomeAnexo);
-            $dados['avatar'] = $dir.'/'.$nomeAnexo;
-           
+
+        $data['avatar'] = $user->avatar;
+        $dados['tipo_avatar'] = $data['tipo_avatar'];
+        if($data->has('tipo_avatar')) {
+            if($data['tipo_avatar'] == 'link_drive') {
+                $dados['avatar']  = ConvertToEmbedableImageLink::convertToEmbedableImageLink($data['anexo_drive']);
+            }else if (($data['tipo_avatar'] == 'upload') && $data->hasFile('anexo_upload')) {
+                $anexo = $data->file('anexo_upload');
+                $dir = 'img/avatares/';
+                $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
+                $nomeAnexo = 'avatar_'.$user['slug'].'.'.$ex;
+                $anexo->move($dir, $nomeAnexo);
+                $dados['avatar'] = $dir.'/'.$nomeAnexo;
+            }
         }
         
         $user->update($dados);
@@ -232,8 +249,11 @@ class RegisterController extends Controller
     }
 
     public function siteIndex(){
-        $usersAdmin=$this->usuario->where( 'user_type', 'admin')->get();
-        $registros= $usersAdmin->whereNotNull('cpf_verified_at')->all();
+
+        $usersAdmin= $this->usuario->where( 'user_type', 'admin')->get();
+        $registro= $usersAdmin->whereNotNull('cpf_verified_at')->reverse();
+        $registros= $registro->whereNotIn('email', ['v.santos0406@gmail.com','raquellvieiraa@gmail.com',
+        'vianasantana21@gmail.com']);
 
         $contato = $this->contato->latest('updated_at')->first();
 
@@ -264,3 +284,8 @@ class RegisterController extends Controller
     	return view('auth.privacidade_termos');
     }
 }
+
+
+
+
+

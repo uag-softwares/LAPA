@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+
 use App\Material;
 use App\Disciplina;
-use Validator;
 use App\Http\Requests\CriarMaterialRequest;
 use App\Http\Requests\AtualizarMaterialRequest;
 use Auth;
+use App\Util\SaveFileUtil;
+
 class MaterialController extends Controller
 {
    protected $material;
@@ -16,14 +17,17 @@ class MaterialController extends Controller
    
     public function __construct(Material $material, Disciplina $disciplina)
     {
+
+        $this->material = $material;
+        $this->disciplina = $disciplina;
+
         $this->middleware('auth', ['except' => [
             'materiaisPorDisciplina',
             'ver',
             'siteIndex',
+            'siteVisualizarMaterial',
         ]]);
 
-        $this->material = $material;
-        $this->disciplina = $disciplina;
     }
 
     public function index() 
@@ -50,7 +54,7 @@ class MaterialController extends Controller
 
     public function adicionar() 
     {
-        $disciplinas=$this->disciplina->all();
+        $disciplinas = $this->disciplina->all();
         return view('auth.materiais.adicionar', compact('disciplinas'));
     }
 
@@ -77,23 +81,26 @@ class MaterialController extends Controller
         $material['slug'] = str_slug($material->titulo).'-'.$material->id;
 
         $material['anexo'] = $request['anexo_web'];  
-             
         if (($request['tipo_anexo'] == 'upload') && $request->hasFile('anexo_upload')) {
-            $anexo = $request->file('anexo_upload');
-            $dir = 'img/materiais/';
-            $extensao = $anexo->guessClientExtension(); //Define a extensao do arquivo
-            $nomeAnexo = 'anexo_'.$material['slug'].'.'.$extensao;
-            $anexo->move($dir, $nomeAnexo);
-            $material['anexo'] = $dir.'/'.$nomeAnexo;
+            $material['anexo'] = SaveFileUtil::saveFIle(
+                $request->file('anexo_upload'),
+                $material->id,
+                'img/materiais/'
+            );
         }
 
         $material->update($material->attributesToArray());
-        return redirect()->route('auth.materiais')->with('success', 'Material adicionado com sucesso!');
+        if($publicado) {
+            return redirect()->route('auth.materiais')->with('success', 'Material adicionado com sucesso!');
+        }
+        return redirect()->route('auth.material.visualizar', $material)->with('success', 'Página do Material salva com sucesso!');
+        
+       
     }
 
     public function editar(Material $registro) 
     {
-	$disciplinas=$this->disciplina->all();
+	    $disciplinas=$this->disciplina->all();
         return view('auth.materiais.editar', compact('registro','disciplinas'));        
     }
 
@@ -108,22 +115,39 @@ class MaterialController extends Controller
             $publicado = true;
         }       
 
-
-        $dados['anexo'] = $request['anexo_web'];
+        $dados['anexo'] = $material->anexo;
         $dados['tipo_anexo'] = $request['tipo_anexo'];
         if(($request['tipo_anexo'] == 'upload') && $request->hasFile('anexo_upload')) {
-            $anexo = $request->file('anexo_uploadgit');
-            $dir = 'img/materiais/';
-            $extensao = $anexo->guessClientExtension(); //Define a extensao do arquivo
-            $nomeAnexo = 'anexo_'.$dados['slug'].'.'.$extensao;
-            $anexo->move($dir, $nomeAnexo);
-            $dados['anexo'] = $dir.'/'.$nomeAnexo;
+            $dados['anexo'] = SaveFileUtil::saveFIle(
+                $request->file('anexo_upload'),
+                $material->id,
+                'img/materiais/'
+            );
+
+          
+        }
+       
+        $dados['slug'] = str_slug($dados['titulo']).'-'.$identifier;
+        $material->update($dados);
+        if($dados['publicado']) {
+            return redirect()->route('auth.materiais')->with('success', 'Material atualizado com sucesso!');
         }
 
+        return redirect()->route('auth.material.visualizar', $material)->with('success', 'Material salvo com sucesso!');
+    }
 
-        $dados['slug']=str_slug($dados['titulo']).'-'.$identifier;
-        $this->material->update($dados);
-        return redirect()->route('auth.materiais')->with('success', 'Material atualizado com sucesso!');
+    public function publicar(Material $registro) 
+    {
+        $dados = ['publicado' => true];
+        $registro->update($dados);
+        return redirect()->back()->with('success', 'Material publicado com sucesso.');
+       
+    }
+
+    public function ver(Material $registro) 
+    {
+        $disciplinas = $registro->disciplina;
+        return view('auth.materiais.ver', compact('registro', 'disciplinas'));
     }
 
     public function deletar(Material $registro)
@@ -147,6 +171,11 @@ class MaterialController extends Controller
         $paginas = $busca->latest()->paginate(1);    
         return view('site.materiais.ver_materiais', compact('registros', 'disciplina', 'paginas'));
     }
+
+    public function siteVisualizarMaterial(Material $registro){
+        return view('site.materiais.visualizarMaterial', compact('registro'));
+    }
+
 
     
 }

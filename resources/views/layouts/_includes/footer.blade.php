@@ -23,17 +23,9 @@
 <!-- include simple-anime library -->
 <script src="{{ asset('js/simple-anime.js') }}"></script>
 
-<!-- include font-size-acessibilidade -->
-<script src="{{ asset('js/font-size-acessibilidade.js') }}"></script>
-
 <!-- app scripts -->
 <script src="{{ asset('js/animation_config.js') }}"></script>
-<!-- include contraste-acessibilidade -->
-<script src="{{ asset('js/contraste-acessibilidade.js') }}"></script>
-<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
-<!-- Tradutor-->
-        <script src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" type="text/javascript"></script>
-        
+
 <!-- Footer -->
 	<footer>
 		<div class="container">

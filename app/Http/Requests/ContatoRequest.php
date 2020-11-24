@@ -24,11 +24,11 @@ class ContatoRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'nullable|email',
+            'email' => 'nullable|email|max:255',
             'telefone' => 'nullable|regex:/\(?\d{2}\)?\s?\d{5}\-?\d{4}/', 
-            'instagram' => 'nullable|url',
-            'twitter' => 'nullable|url',
-            'facebook' => 'nullable|url',
+            'instagram' => 'nullable|url|max:255',
+            'twitter' => 'nullable|url|max:255',
+            'facebook' => 'nullable|url|max:255',
         ];
     }
 

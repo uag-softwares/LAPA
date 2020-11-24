@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Postagem;
 use App\User;
 use Validator;
-use App\Http\Requests\PostagemRequest;
+use App\Http\Requests\CriarPostagemRequest;
+use App\Http\Requests\AtualizarPostagemRequest;
 use Auth;
 use App\Util\ConvertToEmbedableImageLink;
 
@@ -20,16 +21,19 @@ class PostagemController extends Controller
 
     public function __construct(Postagem $postagem, User $user)
     {
-        $this->middleware('auth', ['except' => ['siteIndexNoticia','sitevisualizarEvento',
-                                  'sitevisualizarNoticia','sitevisualizarEdital',
-                                  'siteHome','siteIndexEvento','siteIndexEdital']]);
+        $this->middleware('auth', ['except' => [
+            'siteHome',
+            'siteIndexNoticia',
+            'siteIndexEvento',
+            'siteIndexEdital',
+            'siteVisualizarPostagem',
+        ]]);
         $this->postagem = $postagem;
         $this->user = $user;
     }
 
     public function index() 
     {
-
         $registros = $this->postagem;
         $filtros['nomes'] = array();
 
@@ -58,7 +62,7 @@ class PostagemController extends Controller
         return view('auth.postagem.adicionar', compact('tipo_postagens'));
     }
 
-    public function salvar(PostagemRequest $request) 
+    public function salvar(CriarPostagemRequest $request) 
     {
         $request->validated();
         $this->user = Auth::user();
@@ -115,7 +119,7 @@ class PostagemController extends Controller
         return view('auth.postagem.editar', compact('registro','tipo_postagens'));        
     }
 
-    public function atualizar(PostagemRequest $request, $identifier)
+    public function atualizar(AtualizarPostagemRequest $request, $identifier)
     {
         $request->validated();
         $dados = $request->all();
@@ -126,7 +130,7 @@ class PostagemController extends Controller
         * se for drive ele entra no if para converter o link para ser embarcado na página
         * se for upload ele entra no else if para arrumar o nome do arquivo
         */
-        $dados['anexo'] = $request['anexo_web'];
+        $dados['anexo'] = $post->anexo;
         $dados['tipo_anexo'] = $request['tipo_anexo'];
         if($request['tipo_anexo'] == 'link_drive') {
             $dados['anexo'] = ConvertToEmbedableImageLink::convertToEmbedableImageLink($request['anexo_drive']);
@@ -212,5 +216,18 @@ class PostagemController extends Controller
     public function siteVisualizarPostagem(Postagem $registro){
         return view('site.postagens.visualizarPostagem', compact('registro'));
     }
+
+    public function publicar_postagem(Postagem $registro) 
+    {
+        $dados = ['publicado' => true];
+
+        $registro->update($dados);
+        return redirect()->back()->with('success', 'Postagem publicada com sucesso.');
+    }
+    public function visualizarRascunho(Postagem $registro){
+        return view('auth.postagem.ver', compact('registro'));
+    }
+
+    
 
 }

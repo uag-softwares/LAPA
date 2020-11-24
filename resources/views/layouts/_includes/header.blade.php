@@ -14,7 +14,7 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap" rel="stylesheet">
         <!-- Tamanho da font do cookie acessibilidade -->
-        <script src="{{ asset('js/font_size_cookie.js') }}"></script>
+        <script src="{{ asset('js/font_size_acessibilidade.js') }}"></script>
 
 
         <!-- Styles -->
@@ -22,6 +22,15 @@
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">
         <link href="{{ asset('css/clndr.css') }}" rel="stylesheet">
         <link href="{{ asset('css/simple-anime.css') }}" rel="stylesheet">
+
+        <!-- Alto contraste -->
+        <link href="{{ asset('css/style_contraste.css') }}" rel="stylesheet" id="css-contraste" disabled="true">
+        <script>
+            var linkCssContraste = document.getElementById("css-contraste");
+            if( localStorage.getItem("contraste") === "true" ) {
+                linkCssContraste.removeAttribute('disabled');
+            }
+        </script>
         
         <!-- Bootstrap Datepicker -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.standalone.min.css">
@@ -46,17 +55,14 @@
         <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
         <!-- br barra-->
         <script defer="defer" src="//barra.brasil.gov.br/barra.js" type="text/javascript"></script>
-        <!-- Contraste-->
-        <script type="text/javascript" src="js/contraste.js"></script>
-        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
 
-        <!-- Tradutor-->
-        <script src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" type="text/javascript"></script>
-        <script src="jquery.js"></script>
-        <script src="jquery.translate.js"></script>
     </head>
     <body>
     @include('layouts._includes.barra_gov')
     @include('layouts._includes.barra_acessibilidade')
+
+    <!-- contraste cookies -->
+    <script src="{{ asset('js/contraste_cookies.js') }}"></script>
+    
     @include('layouts._includes.nav')
     

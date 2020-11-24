@@ -11,12 +11,8 @@ use App\Notifications\SolicitacaoVisita;
 use App\Notifications\SolicitacaoVisitaAceita;
 use App\Notifications\SolicitacaoVisitaRecusada;
 use App\Notifications\ConfirmarEmailVisita;
-use \Illuminate\Notifications\Notifiable;
 use Notification;
 use Auth;
-use Illuminate\Support\Carbon;
-
-use Illuminate\Support\Facades\DB;
 
 class VisitaController extends Controller
 {
@@ -45,7 +41,8 @@ class VisitaController extends Controller
     {
         $registros = $this->visita->whereHas('user', function($query) {
             $query->whereNotNull('email_verified_at');
-            })->latest()->get();
+        })->latest()->get();
+        
         return view('auth.visitas.index', compact('registros'));
     }
 
@@ -56,8 +53,8 @@ class VisitaController extends Controller
 
     public function salvar($visita) 
     {
-         $visita=$this->visita->create($visita);
-         $visita['slug']='visita'.'-'.$visita->id;
+         $visita = $this->visita->create($visita);
+         $visita['slug'] = 'visita'.'-'.$visita->id;
          $visita->update($visita->attributesToArray());
     }
 

@@ -47,15 +47,6 @@ body {
   font-size: 1rem;
 
 }
-.contraste {
-    background: #212529;
-}
-.contraste h4 {
-  color: #00ad50;
-}
-.contraste h3{
-   color: #00ad50;
-}
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: var(--font-regular);
@@ -79,10 +70,6 @@ nav.navbar {
 .acessibilidade * {
   margin-right: 10px;
   margin-left: 10px;
-}
-
-.acessibilidade {
-  background-color: var(--main-white);
 }
 
 /* Largura da header */
@@ -192,7 +179,7 @@ form,
 }
 
 .postagem .img-fluid {
-  height: 400px;
+  height: 300px;
 }
 
 .postagem h1 {
@@ -206,27 +193,27 @@ form,
   text-align: left;
 }
 
-.postagem .info {
+.info {
   font-size: var(--font-size-info);
   font-style: italic;
 }
 
-.postagem .tag {
+.tag {
   color: var(--main-white);
   font-weight: var(--font-bold);
   padding: 5px;
   border-radius: 5px;
 }
 
-.postagem .tag.edital {
+.tag.edital {
   background-color: blue;
 }
 
-.postagem .tag.noticia {
+.tag.noticia {
   background-color: red;
 }
 
-.postagem .tag.evento {
+.tag.evento {
   background-color: var(--main-green);
 }
 
@@ -235,7 +222,7 @@ form,
 /* 4- Menu usuario logado */
 .card.manage{
   cursor: pointer;
-  width: 12em;
+  width: 13em;
   margin: 0 0.5rem 0.5rem;
   background-color: var(--main-white);
 }
@@ -325,7 +312,7 @@ a.clickable-card, a:hover.clickable-card {
 }
 
 .home.card div.card-header {
-  height: 10em;
+  height: 8em;
   overflow: hidden;
   padding: 0;
 }
@@ -383,7 +370,7 @@ input[name='nome']::placeholder {
   color: var(--main-white);
 }
 
-.drive-input .info {
+.form-group .info {
   font-size: 14px;
 }
 
@@ -447,7 +434,11 @@ input:disabled + label:hover::before {
 }
 
 .js .form-group-anime.show {
-  height: 150px;
+  height: 210px;
+}
+
+.js .form-group-anime.user.show {
+  height: 110px;
 }
 
 .js .input-anime {
@@ -609,7 +600,7 @@ thead tr th:first-child {
 /* Fim de 10- Estilos das tabelas do site */
 
 /* 11- Estilo do editor de texto Summernote */
-.note-editor .btn {
+.note-editor .btn, .note-editing-area {
   background-color: var(--main-white);
   color: var(--main-black);
 }
