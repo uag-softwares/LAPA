@@ -9,24 +9,20 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Auth;
 use Illuminate\Http\Request;
-use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\EmailVisitaRequest;
 use App\Notifications\SolicitacaoAcesso;
 use App\Notifications\SolicitacaoAcesso_aceita;
 use App\Notifications\SolicitacaoAcesso_recusada;
-use \Illuminate\Notifications\Notifiable;
 use Notification;
 use App\Conta;
 use App\Visita;
 use App\Contato;
 use App\User;
-use Illuminate\Http\File;
-use Illuminate\Support\Facades\Storage;
-use Image;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Illuminate\Validation\Rule;
 use App\Util\ConvertToEmbedableImageLink;
+use App\Util\SaveFileUtil;
+
 
 class RegisterController extends Controller
 {
@@ -87,16 +83,16 @@ class RegisterController extends Controller
             'cpf' => ['required','regex:/\d{3}\.\d{3}\.\d{3}\-\d{2}/','string',Rule::unique('users')->where(function ($query){return $query->where('user_type','admin');})],
             'user_description' => 'max:255|nullable',
             'link_lattes' => 'url|string|nullable',
-            'g-recaptcha-response' => 'required',
+            // 'g-recaptcha-response' => 'required',
             'tipo_avatar' => 'max:255|nullable',
-            'anexo_upload' => 'upload|mimes:jpeg,jpg,png,gif|max:2048|nullable',
+            'anexo_upload' => 'mimes:jpeg,jpg,png,gif|max:2048|nullable',
             
 
         ],[
             'password.regex'=>'Sua senha deve conter no mínimo de 6 caracteres,deve conter pelo menos uma letra maiúscula,uma minúscula,um número e um símbolo',
             'email.unique'=>'O valor informado para o campo e-mail já está em uso em uma conta de administrador',
             'cpf.unique'=>'O valor informado para o campo cpf já está em uso em uma conta de administrador',
-            'g-recaptcha-response.required' => 'O campo reCaptcha é obrigatório',
+            // 'g-recaptcha-response.required' => 'O campo reCaptcha é obrigatório',
        ]);
        
     }
@@ -125,6 +121,7 @@ class RegisterController extends Controller
             'user_type' => 'admin',
             'link_lattes'=> $data['link_lattes'],
         ];
+        dd($dados);
 
        if($findUser==null){//se não existe usuário cadastrado
        $user= $this->usuario->create($dados);
@@ -140,18 +137,12 @@ class RegisterController extends Controller
         ]);
 
         $user['slug']=str_slug($user->name).'-'.$user->id;
-        $user['avatar'] = $data['anexo_web'];
-        if(in_array('tipo_avatar', $data)) {
-            if($data['tipo_avatar'] == 'link_drive') {
-                        $user['avatar']  = ConvertToEmbedableImageLink::convertToEmbedableImageLink($data['anexo_drive']);
-            } else if (($data['tipo_avatar'] == 'upload') && $data->hasFile('anexo_upload')) {
-                $anexo = $data->file('anexo_upload');
-                $dir = 'img/avatares/';
-                $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
-                $nomeAnexo = 'avatar_'.$user['slug'].'.'.$ex;
-                $anexo->move($dir, $nomeAnexo);
-                $user['avatar'] = $dir.'/'.$nomeAnexo;
-            }
+        if ($data->hasFile('anexo_upload')) {
+                $dados['avatar'] = SaveFileUtil::saveFIle(
+                    $data->file('anexo_upload'),
+                    $user->id,
+                    'img/avatares/'
+                );
         }
 
         $user->update($user->attributesToArray());
@@ -219,17 +210,12 @@ class RegisterController extends Controller
 
         $data['avatar'] = $user->avatar;
         $dados['tipo_avatar'] = $data['tipo_avatar'];
-        if($data->has('tipo_avatar')) {
-            if($data['tipo_avatar'] == 'link_drive') {
-                $dados['avatar']  = ConvertToEmbedableImageLink::convertToEmbedableImageLink($data['anexo_drive']);
-            }else if (($data['tipo_avatar'] == 'upload') && $data->hasFile('anexo_upload')) {
-                $anexo = $data->file('anexo_upload');
-                $dir = 'img/avatares/';
-                $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
-                $nomeAnexo = 'avatar_'.$user['slug'].'.'.$ex;
-                $anexo->move($dir, $nomeAnexo);
-                $dados['avatar'] = $dir.'/'.$nomeAnexo;
-            }
+        if ($data->hasFile('anexo_upload')) {
+            $dados['avatar'] = SaveFileUtil::saveFIle(
+                $data->file('anexo_upload'),
+                $user->id,
+                'img/avatares/'
+            );
         }
         
         $user->update($dados);

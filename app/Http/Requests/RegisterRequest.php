@@ -28,7 +28,7 @@ class RegisterRequest extends FormRequest
             'user_description' => 'max:255|nullable',
             'link_lattes' => 'url|string|nullable',
             'tipo_avatar' => 'nullable',
-            'anexo_upload' => 'upload|mimes:jpeg,jpg,png,gif|max:2048|nullable',
+            'anexo_upload' => 'mimes:jpeg,jpg,png,gif|max:2048|nullable',
             
 	    
         ];
