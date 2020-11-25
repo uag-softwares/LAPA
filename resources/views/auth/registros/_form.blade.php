@@ -6,24 +6,8 @@ $user = Auth::user()
              <img id="img-foto" src="{{asset($user->avatar) }}" alt="" height="200" width="200">
           </div>    
     @endisset
-    <div class="form-group d-flex flex-column align-items-left">
-        <div id="radio-group-anexo">
-            <label class="@error('tipo_avatar') is-invalid @enderror @error('anexo_web') is-invalid @enderror @error('anexo_drive') is-invalid @enderror @error('anexo_upload') is-invalid @enderror">Escolher origem da foto do perfil</label><br>
-            <input type="radio" name="tipo_avatar" value="upload" id="upload-radio" {{ isset($user) ? ($user->tipo_avatar== 'upload' ? 'checked' : '') : ''}}>
-            <label for="upload-radio">Enviar arquivo do dispositivo</label><br>
-            <input type="radio" name="tipo_avatar" value="link_drive" id="drive-radio" {{ isset($user) ? ($user->tipo_avatar== 'link_drive' ? 'checked' : '') : '' }}>
-            <label for="drive-radio">Link compartilhado do Google Drive</label><br>
-            <input type="radio" name="tipo_avatar" value="link_web" id="web-radio" {{ isset($user) ? ($user->tipo_avatar == 'link_web' ? 'checked' : '') : '' }}>
-            <label for="web-radio">Link da imagem da web</label>
-            @if($errors->first('tipo_avatar') || $errors->first('anexo_upload') || $errors->first('anexo_drive') || $errors->first('anexo_web'))
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $errors->first('tipo_avatar') | $errors->first('anexo_upload') | $errors->first('anexo_drive') | $errors->first('anexo_web')}}</strong>
-                </span>
-            @endif
-        </div> 
-    </div>
-    <div class="form-group form-group-anime user {{ isset($user) ? 'show' : '' }}">
-        <div id="upload" class="upload input-anime {{ isset($user) ? 'show' : '' }}">
+    <div class="form-group user">
+        <div id="upload" class="upload">
             <label>Enviar arquivo de foto do perfil</label>
             <input class="form-control form-control-lg" type="file" name="anexo_upload" placeholder="Escolha um arquivo jpeg, jpg, png ou gif" onchange="document.getElementById('img-foto').src = window.URL.createObjectURL(this.files[0])">
         </div>

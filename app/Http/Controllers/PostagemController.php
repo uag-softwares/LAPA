@@ -217,4 +217,17 @@ class PostagemController extends Controller
         return view('site.postagens.visualizarPostagem', compact('registro'));
     }
 
+    public function publicar_postagem(Postagem $registro) 
+    {
+        $dados = ['publicado' => true];
+
+        $registro->update($dados);
+        return redirect()->back()->with('success', 'Postagem publicada com sucesso.');
+    }
+    public function visualizarRascunho(Postagem $registro){
+        return view('auth.postagem.ver', compact('registro'));
+    }
+
+    
+
 }
