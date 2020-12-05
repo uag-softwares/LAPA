@@ -43,51 +43,83 @@
     <p>Área de conhecimento não cadastrada? <a class="" href="{{ route('auth.categoria.adicionar') }}">{{ __('Cadastrar Área de conhecimento') }}</a>.</p>
 </div>
 
-<div class="form-group" id="radio-group-anexo">
-    <label class="@error('tipo_anexo') is-invalid @enderror @error('anexo_web') is-invalid @enderror @error('anexo_drive') is-invalid @enderror @error('anexo_upload') is-invalid @enderror">Escolher origem da imagem anexa*</label><br>
-    <input type="radio" name="tipo_anexo" value="upload" id="upload-radio" {{ isset($registro) ? ($registro->tipo_anexo == 'upload' ? 'checked' : '') : ''}}>
-    <label for="upload-radio">Enviar arquivo do dispositivo</label><br>
-    <input type="radio" name="tipo_anexo" value="link_drive" id="drive-radio" {{ isset($registro) ? ($registro->tipo_anexo == 'link_drive' ? 'checked' : '') : '' }}>
-    <label for="drive-radio">Link compartilhado do Google Drive</label><br>
-    <input type="radio" name="tipo_anexo" value="link_web" id="web-radio" {{ isset($registro) ? ($registro->tipo_anexo == 'link_web' ? 'checked' : '') : '' }}>
-    <label for="web-radio">Link da imagem da web</label>
-    @if($errors->first('tipo_anexo') || $errors->first('anexo_upload') || $errors->first('anexo_drive') || $errors->first('anexo_web'))
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $errors->first('tipo_anexo') | $errors->first('anexo_upload') | $errors->first('anexo_drive') | $errors->first('anexo_web')}}</strong>
-        </span>
+<div class="form-group" id="anexos">
+    @if (isset($registro))
+        @php
+            $anexos = App\Anexo::where('atla_id', $registro->id)->get();
+        @endphp
     @endif
-</div>
 
-<div class="form-group form-group-anime {{ isset($registro) ? 'show' : '' }}">
-    <label id="upload" class="file-input w-100 input-anime {{ isset($registro) ? ($registro->tipo_anexo == 'upload' ? 'show' : '') : '' }}" for="anexo">
-        <div class="d-flex flex-column text-center border rounded bg-white">
-            <div class="file-header">
-                <img height="200px" id="img-foto" src="{{ asset($registro->anexo ?? asset('img/file-image.svg')) }}" alt="" style="max-height: 200px">
-            </div>
-            <div class="file-label">
-                <p>Escolher uma imagem jpeg, jpg, png ou gif.</p>
-            </div>
-        </div>
-        <input id="anexo" class="d-none form-control form-control-lg" type="file" name="anexo_upload" placeholder="Escolha um arquivo jpeg, jpg, png ou gif" onchange="document.getElementById('img-foto').src = window.URL.createObjectURL(this.files[0])">
-    </label>
-    <div id="link_drive"  class="drive-input input-anime {{ isset($registro) ? ($registro->tipo_anexo == 'link_drive' ? 'show' : '') : '' }}">
-        <label>Link da imagem do Google Drive*</label>
-        <input type="text" class="form-control form-control-lg" name="anexo_drive" placeholder="A imagem deve ser no formato jpeg, jpg, png ou gif." value="{{ isset($registro->tipo_anexo) && $registro->tipo_anexo == 'link_drive' ? $registro->anexo : old('anexo_drive') }}">
-        <p class="info">*O link é obtido na opção "Gerar link compartilhável" pelo Google Drive e deve ter a permissão "Visível a qualquer pessoa com link".</p>
+    <label for="anexos">Anexos*</label>
+    <div class="row mx-0 mb-2 anexo-field" id="anexoClone" style="display: none;">
+        <input class="form-control form-control-lg col-md-6" type="text" placeholder="Descrição do anexo">
+        <input class="form-control form-control-lg col-md-6" type="file">
     </div>
-    <div id="link_web" class="web-link input-anime {{ isset($registro) ? ($registro->tipo_anexo == 'link_web' ? 'show' : '') : '' }}">
-        <label>Link da imagem da web</label>
-        <input type="text" class="form-control form-control-lg" name="anexo_web" placeholder="A imagem deve ser no formato jpeg, jpg, png ou gif." value="{{ isset($registro->tipo_anexo) && $registro->tipo_anexo == 'link_web' ? $registro->anexo : old('anexo_web') }}">
-    </div>	   
-    @error('anexo')
+    <div class="row mx-0 mb-2 anexo-field">
+        
+        @if(!isset($anexos))
+            <input class="form-control form-control-lg col-md-6 {{ $errors->has('descricao_anexos.1') ? 'error' : '' }}" type="text" name="descricao_anexos[]" placeholder="Descrição do anexo" value="{{ old('descricao_anexos.0') }}">
+            <input class="form-control form-control-lg col-md-6 {{ $errors->has('anexos.1') ? 'error' : '' }}" type="file" name="anexos[]">
+        @elseif(isset($anexos[0]))
+            <input class="form-control form-control-lg col-md-9" type="text" placeholder="Descrição do anexo" value="{{ isset($anexos[0]->descricao) ? $anexos[0]->descricao : '' }}" disabled>
+            <img class="upload-small" src="{{ asset($anexos[0]->foto) }}" alt="{{ $anexos[0]->descricao }}">
+            <a href="{{ route('auth.anexo.deletar', $anexos[0]->id) }}" onclick="return confirm('Tem certeza que deseja deletar essa foto?');" class="btn btn-danger" title="Deletar anexo">
+                <span class="fas fa-trash"></span>
+            </a>
+        @else
+            <p>Nenhum anexo, clique no botão + para adicionar anexos.</p>
+        @endif
+    </div>
+    @if(isset($anexos))
+        @for($i = 1; $i < count($anexos); $i++)
+            <div class="row mx-0 mb-2 anexo-field">
+                <input class="form-control form-control-lg col-md-9" disabled type="text" placeholder="Descrição do anexo" value="{{ isset($anexos[$i]->descricao) ? $anexos[$i]->descricao : old('descricao_anexos.'.$i) }}">
+                <img class="upload-small" src="{{ asset($anexos[$i]->foto) }}" alt="{{ $anexos[$i]->descricao }}">
+                <a href="{{ route('auth.anexo.deletar', $anexos[$i]->id) }}" onclick="return confirm('Tem certeza que deseja deletar essa foto?');" class="btn btn-danger" title="Deletar anexo">
+                    <span class="fas fa-trash"></span>
+                </a>
+            </div>
+        @endfor
+    @endif
+
+    {{-- @dd($errors) --}}
+    @for ($i = 0; isset(old('descricao_anexos')[$i]); $i++)
+        <div class="row mx-0 mb-2 {{ $errors->has('anexos.'.$i) || $errors->has('descricao_anexos.'.$i) ? 'is-invalid' : '' }}">
+            <input class="form-control form-control-lg col-md-6 {{ $errors->has('descricao_anexos.'.$i) ? 'is-invalid' : '' }}" type="text" name="descricao_anexos[]" placeholder="Descrição do anexo" value="{{ isset($registro->opcao[$i]) ? $registro->opcao[$i]->nome : old('descricao_anexos.'.$i) }}">
+            <input class="form-control form-control-lg col-md-6 {{ $errors->has('anexos.'.$i) ? 'is-invalid' : '' }}" type="file" name="anexos[]" id="">
+        </div>
+    @endfor
+
+    @error('descricao_anexos.*')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+    @enderror
+
+    @error('anexos.*')
+        <div class="is-invalid"></div>
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
         </span>
     @enderror
 </div>
+<div class="input-btn border-bottom pb-4 mb-4">
+    <button type="button" class="btn" id="maisAnexos" title="Mais anexos">
+        <span class="fa fa-plus"></span>
+    </button>
+</div>
 
 @section('scripts')
-  <!-- Script de mostrar/esconder campos de anexos -->
-  <script src="{{ asset('js/toggle_anexo_input.js') }}"></script>
-@endsection
 
+    <script>
+        document.getElementById("maisAnexos").addEventListener("click", function() {
+            var opcao = document.getElementById("anexoClone").cloneNode(true);
+            opcao.children[0].value = "";
+            opcao.children[0].name = "descricao_anexos[]";
+            opcao.children[1].name = "anexos[]";
+            opcao.style = "display: flex";
+            document.querySelector("#anexos").appendChild(opcao);
+        });
+    </script>
+
+@endsection

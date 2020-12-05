@@ -300,6 +300,24 @@ a.clickable-card, a:hover.clickable-card {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
+.atlas .carousel-indicators {
+  margin-bottom: 0;
+}
+
+.atlas .carousel-indicators li {
+  width: 40px;
+  height: 40px;
+}
+
+.atlas .carousel-indicators img {
+  height: 40px;
+  object-fit: cover;
+}
+
+.atlas .carousel-caption p {
+  margin-bottom: 2rem;
+}
+
 /* Fim de 5.1- Slide da home do site */
 
 /* 5.2- Cards de postagens do site */
@@ -464,6 +482,24 @@ input:disabled + label:hover::before {
   animation: fadeInFromNoneHeight 250ms ease-in-out forwards;
 }
 
+.upload-small {
+  margin: 0 1rem 0 1rem;
+  border: 1px solid var(--main-black);
+  border-radius: 5px;
+  width: calc(1.5em + 1rem + 2px);
+  height: calc(1.5em + 1rem + 2px);
+}
+
+.anexo-field {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  width: 100%;
+}
+
+.anexo-field a {
+  margin-left: auto;
+}
 /* Fim de 6- Formularios do site */
 
 /* 7- Botoes do site */
@@ -683,6 +719,52 @@ thead tr th:first-child {
 
 /* Fim de 12.2- Sidebar da esquerda de Atlas */
 
+/* 12.3- Sidebar da direita de Atlas */
+#fotosAtlas {
+  padding: 0 0 1.5em 0;
+}
+
+#fotosAtlas a {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+#rightSidebar {
+  overflow: auto;
+  position: absolute;
+  right: 0;
+  height: 100%;
+  width: 270px;
+  background-color: var(--main-white);
+  z-index: 998;
+  transform: translate3d(270px, 0, 0);
+  transition: transform 250ms ease-in-out;
+}
+
+#rightSidebar.show {
+  transform: translate3d(0, 0, 0);
+}
+
+#toggleRightSidebar {
+  z-index: 999;
+  top: 10px;
+  right: 0;
+  transform: translate3d(0, 0, 0);
+  transition: transform 250ms ease-in-out;
+}
+
+#toggleRightSidebar .btn {
+  border-radius: 5px 0 0 5px;
+  color: var(--main-white);
+}
+
+#toggleRightSidebar.push {
+  transform: translate3d(-270px, 0, 0);
+}
+
+/* Fim de 12.3- Sidebar da direita de Atlas */
+
 /* 12.3- Lista de atlas e materiais */
 .material-group.list-group-item.list-group-item-action {
   display: flex;
@@ -844,6 +926,12 @@ a:hover.page-link {
 
 @media only screen and (min-width: 992px) {
   #leftSidebar {
+    position: static;
+    height: auto;
+    transform: translate3d(0, 0, 0);
+  }
+
+  #rightSidebar {
     position: static;
     height: auto;
     transform: translate3d(0, 0, 0);

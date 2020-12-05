@@ -14,7 +14,7 @@ class Atla extends Model
      * @var array
      */
     protected $fillable = [
-        'titulo', 'descricao', 'anexo', 'publicado', 'categoria_id','slug', 'tipo_anexo',
+        'titulo', 'descricao', 'anexo', 'publicado', 'categoria_id','slug',
     ];
 
     public function categoria() {

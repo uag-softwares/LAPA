@@ -9,7 +9,6 @@ use App\Anexo;
 use App\Http\Requests\CriarAtlaRequest;
 use App\Http\Requests\AtualizarAtlaRequest;
 use Auth;
-use App\Util\ConvertToEmbedableImageLink;
 use App\Util\SaveFileUtil;
 
 class AtlaController extends Controller
@@ -86,19 +85,21 @@ class AtlaController extends Controller
         $atla['slug'] = str_slug($atla->titulo).'-'.$atla->id;
 
         // Salva cada foto anexada a pagina do atlas
-        for($i = 0; $i < count($request['anexos']); $i++) {
+        if(isset($request['anexos'])) {
+            for($i = 0; $i < count($request['anexos']); $i++) {
 
-            $anexo = [
-                'descricao' => $request['descricao_anexos'][$i] ?? null,
-                'foto' => $request['anexos'][$i],
-                'atla_id' => $atla->id,
-            ];
-            
-            $anexoSalvo = $this->anexo->create($anexo);
+                $anexo = [
+                    'descricao' => $request['descricao_anexos'][$i] ?? null,
+                    'foto' => $request['anexos'][$i],
+                    'atla_id' => $atla->id,
+                ];
+                
+                $anexoSalvo = $this->anexo->create($anexo);
 
-            if(isset($request->file('anexos')[$i])) {
-                $anexo['foto'] = SaveFileUtil::saveFile($request->file('foto')[$i], $anexoSalvo->id, 'img/atlas');
-                $anexoSalvo->update($anexo);
+                if(isset($request->file('anexos')[$i])) {
+                    $anexo['foto'] = SaveFileUtil::saveFile($request->file('anexos')[$i], $anexoSalvo->id, 'img/atlas');
+                    $anexoSalvo->update($anexo);
+                }
             }
         }
        
@@ -140,6 +141,26 @@ class AtlaController extends Controller
             $dados['publicado'] = true;
         } 
         $dados['slug'] = str_slug($dados['titulo']).'-'.$identifier;
+
+        // Salva cada foto anexada a pagina do atlas
+        if(isset($request['anexos'])) {
+            for($i = 0; $i < count($request['anexos']); $i++) {
+    
+                $anexo = [
+                    'descricao' => $request['descricao_anexos'][$i] ?? null,
+                    'foto' => $request['anexos'][$i],
+                    'atla_id' => $atla->id,
+                ];
+                
+                $anexoSalvo = $this->anexo->create($anexo);
+    
+                if(isset($request->file('anexos')[$i])) {
+                    $anexo['foto'] = SaveFileUtil::saveFile($request->file('anexos')[$i], $anexoSalvo->id, 'img/atlas');
+                    $anexoSalvo->update($anexo);
+                }
+            }
+        }
+        
         $atla->update($dados);
 
         if($dados['publicado']) {
@@ -205,6 +226,12 @@ class AtlaController extends Controller
     {
         $categoria = $registro->categoria;
         return view('auth.atlas.ver', compact('registro', 'categoria'));
+    }
+
+    public function deletarAnexo(Anexo $registro)
+    {
+        $registro->delete();
+        return redirect()->back();        
     }
 
    

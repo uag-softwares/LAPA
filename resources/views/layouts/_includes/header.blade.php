@@ -51,15 +51,15 @@
         <!-- reCAPTCHA-->
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <!-- Vlibras -->
-        <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-        <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+        {{-- <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+        <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script> --}}
         <!-- br barra-->
-        <script defer="defer" src="//barra.brasil.gov.br/barra.js" type="text/javascript"></script>
+        {{-- <script defer="defer" src="//barra.brasil.gov.br/barra.js" type="text/javascript"></script> --}}
 
     </head>
     <body>
-    @include('layouts._includes.barra_gov')
-    @include('layouts._includes.barra_acessibilidade')
+    {{-- @include('layouts._includes.barra_gov') --}}
+    {{-- @include('layouts._includes.barra_acessibilidade') --}}
 
     <!-- contraste cookies -->
     <script src="{{ asset('js/contraste_cookies.js') }}"></script>
