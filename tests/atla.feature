@@ -12,8 +12,6 @@ Feature: atla
     When Eu preencho o campo titulo com "Olho mamifero"
     And Eu preencho o campo descricao com "foto do olho do mamifero"
     And Eu seleciono a categoria "Sistema nervoso"
-    And Eu seleciono o campo escolher origem do anexo link do drive
-    And Eu preencho o campo do link do arquivo com "https://drive.google.com/file/d/1eJt5xYMq3chZL92_vbHSDq5VmMO22V80/view?usp=sharing"
     And Eu clico em Publicar agora
     Then Eu vejo que o atlas foi adicionado corretamente
   
@@ -25,8 +23,6 @@ Feature: atla
     When Eu preencho o campo titulo com "O"
     And Eu preencho o campo descricao com "foto do olho do mamifero"
     And Eu seleciono a categoria "Sistema nervoso"
-    And Eu seleciono o campo escolher origem do anexo link da web
-    And Eu preencho o campo do link da web com "https://drive.google.com/file/d/1eJt5xYMq3chZL92_vbHSDq5VmMO22V80/view?usp=sharing"
     And Eu clico em Publicar agora
     Then Eu vejo a mensagem de erro "O tamanho mínimo do título é de 5 letras"
   
@@ -38,8 +34,6 @@ Feature: atla
     When Eu preencho o campo titulo com "Olho de um peixe"
     And Eu preencho o campo descricao com "OOO"
     And Eu seleciono a categoria "Sistema nervoso"
-    And Eu seleciono o campo escolher origem do anexo link da web
-    And Eu preencho o campo do link do arquivo com "https://drive.google.com/file/d/1eJt5xYMq3chZL92_vbHSDq5VmMO22V80/view?usp=sharing"
     And Eu clico em Publicar agora
     Then Eu vejo a mensagem de erro "O tamanho mínimo da descrição é 10 letras"
 
@@ -52,7 +46,7 @@ Feature: atla
     And Eu preencho o campo descricao com "foto do olho do mamifero"
     And Eu seleciono a categoria "Sistema nervoso"
     And Eu clico em Publicar agora
-    Then Eu vejo a mensagem de erro "O campo tipo anexo é obrigatório."
+    Then Eu vejo que o atlas foi adicionado corretamente
 
   Scenario: criar um atla sem categoria
     Given Eu estou logado como "Raquel" com email "raquel@admin.com" e senha "12345678"
@@ -60,8 +54,6 @@ Feature: atla
     And Eu estou na pagina de adicionar atlas
     When Eu preencho o campo titulo com "Olho de um peixe"
     And Eu preencho o campo descricao com "foto do olho do mamifero"
-    And Eu seleciono o campo escolher origem do anexo link do drive
-    And Eu preencho o campo do link do arquivo com "https://drive.google.com/file/d/1eJt5xYMq3chZL92_vbHSDq5VmMO22V80/view?usp=sharing"
     And Eu clico em Publicar agora
     Then Eu vejo a mensagem de erro "A área de conhecimento é obrigatória"
 
@@ -71,8 +63,6 @@ Feature: atla
     And Eu estou na pagina de gerenciar atlas
     And Eu clico em editar o atlas "Olho mamifero"
     When Eu edito a descricao para ""
-    And Eu seleciono o campo escolher origem do anexo link da web
-    And Eu preencho o campo do link da web com "https://drive.google.com/file/d/1eJt5xYMq3chZL92_vbHSDq5VmMO22V80/view?usp=sharing"
     And Eu clico em Publicar agora
     Then Eu vejo a mensagem de erro "A descrição do atlas é obrigatório."
 
@@ -82,8 +72,6 @@ Feature: atla
     And Eu estou na pagina de gerenciar atlas
     And Eu clico em editar o atlas "Olho mamifero"
     When Eu edito o titulo para "Ol"
-    And Eu seleciono o campo escolher origem do anexo link da web
-    And Eu preencho o campo do link da web com "https://drive.google.com/file/d/1eJt5xYMq3chZL92_vbHSDq5VmMO22V80/view?usp=sharing"
     And Eu clico em Publicar agora
     Then Eu vejo a mensagem de erro "O tamanho mínimo do título é de 5 letras."
 
@@ -97,8 +85,6 @@ Feature: atla
     When Eu edito o titulo para "Olho esquerdo"
     And Eu edito a descricao para "Olho mamifero na diagonal"
     And Eu seleciono a categoria "Sistema nervoso"
-    And Eu seleciono o campo escolher origem do anexo link da web
-    And Eu preencho o campo do link da web com "https://drive.google.com/file/d/1eJt5xYMq3chZL92_vbHSDq5VmMO22V80/view?usp=sharing"
     And Eu clico em Publicar agora
     Then Eu vejo que o atlas foi atualizado corretamente
 
