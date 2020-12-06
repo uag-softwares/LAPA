@@ -15,3 +15,13 @@ $("#toggleLeftSidebar").on("click", function() {
     $("#toggleLeftSidebar a span").toggleClass("fa-chevron-right");
     $("#toggleLeftSidebar a span").toggleClass("fa-chevron-left");
 });
+
+// Toggle pages on mobile
+$("#toggleRightSidebar").on("click", function() {
+    // $("#leftSidebar").toggleClass("hide");
+    // $("#leftSidebar").toggleClass("position-absolute");
+    $("#rightSidebar").toggleClass("show");
+    $("#toggleRightSidebar").toggleClass("push");
+    $("#toggleRightSidebar a span").toggleClass("fa-chevron-left");
+    $("#toggleRightSidebar a span").toggleClass("fa-chevron-right");
+});

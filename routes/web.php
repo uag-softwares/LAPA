@@ -106,6 +106,7 @@ Route::middleware(['auth','check.cpf'])->group(function () {
 	Route::get('/auth/atla/deletar/{registro:slug}', ['as' => 'auth.atla.deletar', 'uses' => 'AtlaController@deletar'],function (App\Atla $registro) {return $registro;});
 	Route::get('/auth/atla/visualizar/{registro:slug}', ['as' => 'auth.atla.visualizar', 'uses' => 'AtlaController@ver'], function (App\Atla $registro) {return $registro;});
 	Route::get('/auth/atla/publicar/{registro:slug}', ['as' => 'auth.atla.publicar', 'uses' => 'AtlaController@publicar'], function (App\Atla $registro) {return $registro;});
+	Route::get('/auth/anexos/deletar/{registro:id}', ['as' => 'auth.anexo.deletar', 'uses' => 'AtlaController@deletarAnexo'],function (App\Anexo $registro) {return $registro;});
 
 	Route::get('/auth/materiais', ['as' => 'auth.materiais', 'uses' => 'MaterialController@index'], function () {});
 	Route::get('/auth/materiais/adicionar', ['as' => 'auth.material.adicionar', 'uses' => 'MaterialController@adicionar'], function () {});

@@ -27,8 +27,8 @@ class AtualizarAtlaRequest extends FormRequest
             'titulo' => 'required|min:5|string|max:255',
             'descricao' => 'required|min:10|string',
             'categoria_id' => 'required|integer|exists:categorias,id',
-            'anexo_drive' => 'required_if:tipo_anexo,link_drive|nullable|url',
-            'anexo_web' => 'required_if:tipo_anexo,link_web|nullable|url',
+            'descricao_anexos.*' => 'max:255',
+            'anexos.*' => 'image|max:2048',
         ];
     }
 
@@ -46,8 +46,8 @@ class AtualizarAtlaRequest extends FormRequest
             'descricao.min' => 'O tamanho mínimo da descrição é 10 letras.',
             'categoria_id.required' => 'A área de conhecimento é obrigatória.',
             'categoria_id.exists' => 'A área de conhecimento deve estar cadastrada.',
-            'anexo_web.required_if' => 'É necessário enviar um link de imagem da web quando a opção for selecionada, selecione a opção desejada novamente.',
-            'anexo_drive.required_if' => 'É necessário enviar um link de imagem do Google Drive quando a opção for selecionada, selecione a opção desejada novamente.',
+            'descricao_anexos.*.max' => 'O campo de descrição não deve ter mais que 255 letras',
+            'anexos.*.image' => 'Os arquivos devem ser dos seguintes tipos: jpeg, png, bmp, gif, svg ou webp.',
         ];
     }
 }

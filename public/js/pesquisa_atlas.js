@@ -8,6 +8,16 @@ $(document).ready(function(){
     });
 });
 
+// Pesquisa no atlas
+$(document).ready(function(){
+    $("#pesquisa_fotos").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#fotosAtlas a").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+        });
+    });
+});
+
 // Pesquisa categoria no atlas
 $(document).ready(function(){
     $("#pesquisa_categoria").on("keyup", function() {
