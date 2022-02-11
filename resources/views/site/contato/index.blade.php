@@ -7,8 +7,8 @@
             <p class="fadeInDown" data-anime="300"> {{ $contato->texto ?? '' }}</p>
         @endif
 
-        <section class="row fadeInDown" data-anime="450">
-            <section class="col-sm-12 col-md-6 col-lg-6">
+        <section class="d-flex flex-column-reverse fadeInDown align-items-center" data-anime="450">
+            <section class="col-sm-12 col-md-12 col-lg-12">
                 <h3>Desenvolvido por:</h3>
                 <div class="user-card d-flex mx-auto text-left shadow-sm mb-3 usuarios" style="max-width: 500px;">
                     <div class="d-block my-auto mx-4 w-75" style="overflow: hidden;">
@@ -39,10 +39,10 @@
                 <div class="user-card d-flex mx-auto text-left shadow-sm mb-3 usuarios" style="max-width: 500px;">
                     <div class="d-block my-auto mx-4 w-75" style="overflow: hidden;">
                         <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                            <a target="_blank" href="http://lattes.cnpq.br/3076429582182777">Vinícius Santos</a><br>
+                            <a target="_blank" href="https://viniciusalmeida.dev">Vinícius Santos</a><br>
                         </p>
                         <p class="m-0 mt-auto" style="white-space: nowrap; font-size: 12px; overflow: hidden; text-overflow: ellipsis;">
-                            E-mail: <a href = "mailto:v.santos0406@gmail.com">v.santos0406@gmail.com</a> 
+                            E-mail: <a href = "mailto:contato@viniciusalmeida.dev">contato@viniciusalmeida.dev</a> 
                         </p>
                     </div>
                     <div class="rounded-right" style="display: flex; justify-content: center; align-items: center; width: 5em; height: 5em; background-position: center; background-size: cover;">

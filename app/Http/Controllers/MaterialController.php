@@ -159,8 +159,11 @@ class MaterialController extends Controller
 
     public function siteIndex() 
     {
-        $registros = $this->material->all();
-        $disciplinas = $this->disciplina->all();
+        $registros = $this->material->where('publicado', true)->latest()->get();
+
+        $disciplinas = $this->disciplina->whereHas('material', function($queryMaterials) {
+            $queryMaterials->where('publicado', true);
+        })->latest()->get();
         return view('site.materiais.index', compact('registros', 'disciplinas'));
     }
     

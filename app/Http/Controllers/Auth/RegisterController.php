@@ -110,8 +110,8 @@ class RegisterController extends Controller
       $registros=$this->usuario->where( 'user_type', 'admin')->get()->whereNotNull('cpf_verified_at')->all();
        $findUser=$this->usuario->where('email',$data['email'])->first();
        $avatar=null;
-       $request = new Request($data);
-       
+       $request = request();
+    //    dd($request->file('anexo_upload'));
        $dados=[
             'name' =>  $data ['name'],
             'cpf' =>  $data ['cpf'],
@@ -121,7 +121,6 @@ class RegisterController extends Controller
             'user_type' => 'admin',
             'link_lattes'=> $data['link_lattes'],
         ];
-        dd($dados);
 
        if($findUser==null){//se não existe usuário cadastrado
        $user= $this->usuario->create($dados);
@@ -137,9 +136,9 @@ class RegisterController extends Controller
         ]);
 
         $user['slug']=str_slug($user->name).'-'.$user->id;
-        if ($data->hasFile('anexo_upload')) {
-                $dados['avatar'] = SaveFileUtil::saveFIle(
-                    $data->file('anexo_upload'),
+        if ($request->file('anexo_upload')) {
+                $user['avatar'] = SaveFileUtil::saveFIle(
+                    $request->file('anexo_upload'),
                     $user->id,
                     'img/avatares/'
                 );

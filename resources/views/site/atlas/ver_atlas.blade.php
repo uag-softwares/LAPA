@@ -2,7 +2,7 @@
 
 @section('titulo', 'Atlas Interativo')
 @section('content')
-<div class="d-flex position-relative">
+<div class="d-flex position-relative overflow-hidden">
 
     @if (count($paginas) >= 1)
 
@@ -23,6 +23,10 @@
                     <div class="col-md-7 col-12 text-left">
                         <h2 class="title pb-3">{{ $pagina->titulo }}</h2>
                         <p class="info" style="text-transform: capitalize;">
+                            <a style="color: white;" href="{{ route('site.atlas.index') }}">
+                                <span class="tag evento">Atlas Interativo</span>
+                            </a>
+                            <span class="tag evento">/</span>
                             <a style="color: white;" href="{{ route('site.atlas.disciplina', $categoria->disciplina) }}">
                                 <span class="tag evento">{{ $categoria->disciplina->nome}}</span>
                             </a>
@@ -53,14 +57,14 @@
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
                                         <img class="img d-block w-100" src="{{ asset($anexos[0]->foto) }}" alt="{{ $anexos[0]->descricao ?? $anexos[0]->descricao }}">
-                                        <a class="carousel-caption d-none d-md-block">
+                                        <a class="carousel-caption rounded-bottom d-none d-md-block">
                                             <p>{{ $anexos[0]->descricao }}</p>
                                         </a>
                                     </div>
                                     @for ($i = 1; $i < count($anexos); $i++)
                                         <div class="carousel-item">
                                             <img class="img d-block w-100" src="{{ asset($anexos[$i]->foto) }}" alt="{{ $anexos[$i]->descricao ?? $anexos[$i]->descricao }}">
-                                            <a class="carousel-caption d-none d-md-block">
+                                            <a class="carousel-caption rounded-bottom d-none d-md-block">
                                                 <p>{{ $anexos[$i]->descricao }}</p>
                                             </a>
                                         </div>

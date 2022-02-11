@@ -94,6 +94,6 @@
 				@endif	
 		</div>
 	</div>
-  <p>© 2020 Todos os direitos reservados.</p>
+  <p>© {{ date('Y') }} Todos os direitos reservados.</p>
 </footer>
 <!-- ./Footer -->
