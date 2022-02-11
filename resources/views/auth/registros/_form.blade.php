@@ -10,16 +10,7 @@ $user = Auth::user()
         <div id="upload" class="upload">
             <label>Enviar arquivo de foto do perfil</label>
             <input class="form-control form-control-lg" type="file" name="anexo_upload" placeholder="Escolha um arquivo jpeg, jpg, png ou gif" onchange="document.getElementById('img-foto').src = window.URL.createObjectURL(this.files[0])">
-        </div>
-        <div id="link_drive"  class="drive-input input-anime {{ isset($user) ? ($user->tipo_avatar == 'link_drive' ? 'show' : '') : '' }}">
-            <label>Link da imagem do Google Drive</label>
-            <input type="text" class="form-control form-control-lg" name="anexo_drive" placeholder="A imagem deve ser no formato jpeg, jpg, png ou gif." value="{{ isset($registro->tipo_avatar) && $registro->tipo_avatar == 'link_drive' ? $user->avatar : old('avatar') }}">
-            <p class="info">*O link é obtido na opção "Gerar link compartilhável" pelo Google Drive e deve ter a permissão "Visível a qualquer pessoa com link".</p>
-        </div>
-        <div id="link_web" class="web-link input-anime {{ isset($user) ? ($user->tipo_avatar == 'link_web' ? 'show' : '') : '' }}">
-            <label>Link da imagem da web</label>
-            <input type="text" class="form-control form-control-lg" name="anexo_web" placeholder="A imagem deve ser no formato jpeg, jpg, png ou gif." value="{{ isset($registro->tipo_anexo) && $registro->tipo_anexo == 'link_web' ? $user->avatar : old('avatar') }}">
-        </div>     
+        </div>   
         @error('avatar')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
