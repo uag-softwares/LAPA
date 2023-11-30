@@ -55,14 +55,14 @@
                                     @endfor
                                 </ol>
                                 <div class="carousel-inner">
-                                    <div class="carousel-item active">
+                                    <div class="carousel-item active" data-interval="0">
                                         <img class="img d-block w-100" src="{{ asset($anexos[0]->foto) }}" alt="{{ $anexos[0]->descricao ?? $anexos[0]->descricao }}">
                                         <a class="carousel-caption rounded-bottom d-none d-md-block">
                                             <p>{{ $anexos[0]->descricao }}</p>
                                         </a>
                                     </div>
                                     @for ($i = 1; $i < count($anexos); $i++)
-                                        <div class="carousel-item">
+                                        <div class="carousel-item" data-interval="0">
                                             <img class="img d-block w-100" src="{{ asset($anexos[$i]->foto) }}" alt="{{ $anexos[$i]->descricao ?? $anexos[$i]->descricao }}">
                                             <a class="carousel-caption rounded-bottom d-none d-md-block">
                                                 <p>{{ $anexos[$i]->descricao }}</p>
