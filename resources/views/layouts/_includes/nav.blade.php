@@ -44,6 +44,9 @@
                             <li class="nav-item {{ Request::is('site/atlas/*') ? 'active' : '' }}">
                                 <a href="{{ route('site.atlas.index') }}" class="nav-link">Atlas Interativo</a>
                             </li>
+                            <li class="nav-item">
+                                <a href="https://modelos3d.vercel.app/" class="nav-link">Anatomia 3D</a>
+                            </li>
                             <li class="nav-item {{ Request::is('site/visita/*') ? 'active' : '' }}">
                                 <a href="{{ route('site.visita.busca') }}" class="nav-link">Visitas</a>
                             </li>
